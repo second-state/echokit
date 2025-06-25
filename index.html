@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ESP32 AI Assistant - Open Source</title>
+    <title>EchoKit - Open Source Voice Agent Platform</title>
     <style>
         * {
             margin: 0;
@@ -48,7 +48,7 @@
         .logo {
             font-size: 24px;
             font-weight: 800;
-            background: linear-gradient(45deg, #9333ea, #06b6d4, #10b981);
+            background: linear-gradient(45deg, #ce422b, #9333ea, #06b6d4);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -106,9 +106,7 @@
             bottom: 0;
             background: 
                 radial-gradient(circle at 20% 30%, rgba(147, 51, 234, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 80% 70%, rgba(6, 182, 212, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 50% 50%, rgba(16, 185, 129, 0.1) 0%, transparent 70%);
-            animation: float 6s ease-in-out infinite;
+                radial-gradient(circle at 80% 70%, rgba(6, 182, 212, 0.15) 0%, transparent 50%);
         }
 
         .hero-content {
@@ -125,7 +123,6 @@
             font-size: 0.9rem;
             font-weight: 600;
             margin-bottom: 30px;
-            animation: fadeInUp 1s ease;
         }
 
         .hero h1 {
@@ -136,7 +133,6 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            animation: fadeInUp 1s ease 0.2s both;
             line-height: 1.1;
         }
 
@@ -145,7 +141,6 @@
             font-weight: 600;
             margin-bottom: 15px;
             color: #9333ea;
-            animation: fadeInUp 1s ease 0.3s both;
         }
 
         .hero p {
@@ -155,7 +150,6 @@
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
-            animation: fadeInUp 1s ease 0.4s both;
         }
 
         .cta-buttons {
@@ -163,7 +157,6 @@
             gap: 20px;
             justify-content: center;
             flex-wrap: wrap;
-            animation: fadeInUp 1s ease 0.5s both;
         }
 
         .cta-button {
@@ -176,23 +169,6 @@
             font-weight: 600;
             transition: all 0.3s ease;
             box-shadow: 0 10px 30px rgba(147, 51, 234, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cta-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .cta-button:hover::before {
-            left: 100%;
         }
 
         .cta-button:hover {
@@ -209,10 +185,9 @@
             background: rgba(255, 255, 255, 0.2);
         }
 
-        /* Features Section */
-        .features {
+        /* Section Styles */
+        .section {
             padding: 100px 0;
-            background: rgba(255, 255, 255, 0.02);
         }
 
         .section-title {
@@ -236,313 +211,223 @@
             margin-right: auto;
         }
 
+        /* Features Section - Card Layout */
+        .features {
+            background: linear-gradient(180deg, rgba(147, 51, 234, 0.05) 0%, transparent 100%);
+        }
+
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-bottom: 80px;
-        }
-
-        .feature-card {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
-            padding: 40px 30px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(147, 51, 234, 0.2);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(147, 51, 234, 0.05), transparent);
-            transform: rotate(45deg);
-            transition: transform 0.5s ease;
-        }
-
-        .feature-card:hover::before {
-            transform: rotate(45deg) translate(50px, 50px);
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(147, 51, 234, 0.2);
-            border-color: rgba(147, 51, 234, 0.4);
-        }
-
-        .feature-icon {
-            width: 70px;
-            height: 70px;
-            background: linear-gradient(45deg, #9333ea, #06b6d4);
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 30px;
-            margin-bottom: 25px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .feature-card h3 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 15px;
-            color: #9333ea;
-            position: relative;
-            z-index: 2;
-        }
-
-        .feature-card p {
-            opacity: 0.9;
-            position: relative;
-            z-index: 2;
-            line-height: 1.6;
-        }
-
-        /* Capabilities Section */
-        .capabilities {
-            padding: 100px 0;
-        }
-
-        .capabilities-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 30px;
             margin-top: 60px;
         }
 
-        .capability-item {
-            text-align: center;
-            padding: 30px 20px;
-            background: linear-gradient(135deg, rgba(147, 51, 234, 0.1), rgba(6, 182, 212, 0.1));
-            border-radius: 15px;
+        .feature-card {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 35px;
             border: 1px solid rgba(147, 51, 234, 0.2);
             transition: all 0.3s ease;
         }
 
-        .capability-item:hover {
-            transform: translateY(-5px);
-            background: linear-gradient(135deg, rgba(147, 51, 234, 0.15), rgba(6, 182, 212, 0.15));
+        .feature-card:hover {
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(147, 51, 234, 0.4);
+            box-shadow: 0 20px 40px rgba(147, 51, 234, 0.15);
         }
 
-        .capability-icon {
-            font-size: 48px;
-            margin-bottom: 20px;
-            display: block;
+        .feature-card h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #9333ea;
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
 
-        .capability-item h3 {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 10px;
-            color: #06b6d4;
+        .benefit-icon {
+            font-size: 1.5rem;
         }
 
-        /* Demo Section */
-        .demo {
-            padding: 100px 0;
+        /* Benefits Section - List Layout */
+        .benefits {
             background: rgba(0, 0, 0, 0.2);
         }
 
-        .demo-container {
+        .benefits-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
         }
 
-        .demo-content h2 {
-            font-size: 2.5rem;
-            font-weight: 800;
+        .benefit-card {
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.1), rgba(16, 185, 129, 0.1));
+            border-radius: 20px;
+            padding: 40px;
+            border-left: 4px solid #06b6d4;
+        }
+
+        .benefit-card h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
             margin-bottom: 20px;
-            background: linear-gradient(45deg, #ffffff, #9333ea);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .demo-features {
-            list-style: none;
-            margin: 30px 0;
-        }
-
-        .demo-features li {
-            padding: 10px 0;
+            color: #06b6d4;
             display: flex;
             align-items: center;
             gap: 15px;
         }
 
-        .demo-features li::before {
-            content: '✨';
-            font-size: 20px;
+        .benefit-list {
+            list-style: none;
+            margin-top: 20px;
         }
 
-        .demo-visual {
-            background: linear-gradient(135deg, rgba(147, 51, 234, 0.1), rgba(6, 182, 212, 0.1));
-            border-radius: 20px;
-            padding: 40px;
-            border: 1px solid rgba(147, 51, 234, 0.2);
+        .benefit-list li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+            opacity: 0.9;
+        }
+
+        .benefit-list li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: #06b6d4;
+            font-weight: bold;
+        }
+
+        /* Examples Section - Grid Layout */
+        .examples {
+            background: linear-gradient(45deg, rgba(16, 185, 129, 0.05) 0%, rgba(6, 182, 212, 0.05) 100%);
+        }
+
+        .examples-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            margin-top: 60px;
+        }
+
+        .example-card {
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 12px;
+            padding: 30px 20px;
             text-align: center;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            transition: all 0.3s ease;
         }
 
-        .ai-avatar {
-            width: 120px;
-            height: 120px;
-            background: linear-gradient(45deg, #9333ea, #06b6d4);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 48px;
-            margin: 0 auto 30px;
-            animation: pulse 2s ease-in-out infinite;
+        .example-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(16, 185, 129, 0.4);
+        }
+
+        .example-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .example-card h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #10b981;
+        }
+
+        /* Live Demo Section - Wide Cards */
+        .live-demo {
+            background: rgba(147, 51, 234, 0.05);
+        }
+
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .demo-item {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            border: 2px solid rgba(147, 51, 234, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .demo-item:hover {
+            transform: scale(1.05);
+            border-color: rgba(147, 51, 234, 0.6);
+            box-shadow: 0 15px 30px rgba(147, 51, 234, 0.2);
+        }
+
+        .demo-item h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #9333ea;
+        }
+
+        /* Getting Started Section - Minimal Cards */
+        .getting-started {
+            background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.3) 100%);
+        }
+
+        .guide-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .guide-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 35px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .guide-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-3px);
+        }
+
+        .guide-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #ffffff;
+        }
+
+        .guide-card p {
+            margin-bottom: 20px;
+            opacity: 0.8;
+        }
+
+        .guide-link {
+            color: #06b6d4;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .guide-link:hover {
+            color: #ffffff;
         }
 
         /* Waitlist Section */
         .waitlist {
             padding: 100px 0;
-            background: linear-gradient(135deg, rgba(147, 51, 234, 0.1), rgba(6, 182, 212, 0.05));
+            background: linear-gradient(135deg, rgba(147, 51, 234, 0.1), rgba(6, 182, 212, 0.1));
             text-align: center;
-        }
-
-        .waitlist-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .waitlist h2 {
-            font-size: 3rem;
-            font-weight: 800;
-            margin-bottom: 20px;
-            background: linear-gradient(45deg, #ffffff, #9333ea, #06b6d4);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .waitlist p {
-            font-size: 1.3rem;
-            margin-bottom: 40px;
-            opacity: 0.9;
-            line-height: 1.7;
-        }
-
-        .waitlist-features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-            margin: 50px 0;
-        }
-
-        .waitlist-feature {
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            border: 1px solid rgba(147, 51, 234, 0.2);
-            transition: all 0.3s ease;
-        }
-
-        .waitlist-feature:hover {
-            transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.08);
-        }
-
-        .waitlist-feature-icon {
-            font-size: 2rem;
-            margin-bottom: 15px;
-            display: block;
-        }
-
-        .waitlist-feature h3 {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #9333ea;
-            margin-bottom: 8px;
-        }
-
-        .waitlist-feature p {
-            font-size: 0.95rem;
-            opacity: 0.8;
-            margin: 0;
-        }
-
-        .waitlist-cta {
-            margin-top: 50px;
-        }
-
-        .waitlist-button {
-            display: inline-block;
-            padding: 20px 50px;
-            background: linear-gradient(45deg, #9333ea, #06b6d4);
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 1.2rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 15px 35px rgba(147, 51, 234, 0.4);
-            position: relative;
-            overflow: hidden;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .waitlist-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .waitlist-button:hover::before {
-            left: 100%;
-        }
-
-        .waitlist-button:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 45px rgba(147, 51, 234, 0.6);
-        }
-
-        .waitlist-note {
-            margin-top: 30px;
-            font-size: 1rem;
-            opacity: 0.7;
-            font-style: italic;
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            33% { transform: translateY(-20px) rotate(1deg); }
-            66% { transform: translateY(-10px) rotate(-1deg); }
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
         }
 
         /* Responsive */
@@ -555,13 +440,16 @@
                 font-size: 2.8rem;
             }
 
-            .section-title, .waitlist h2 {
+            .section-title {
                 font-size: 2.2rem;
             }
 
-            .demo-container {
+            .benefits-grid, .guide-cards {
                 grid-template-columns: 1fr;
-                gap: 40px;
+            }
+
+            .examples-grid {
+                grid-template-columns: 1fr;
             }
 
             .cta-buttons {
@@ -572,26 +460,19 @@
             .features-grid {
                 grid-template-columns: 1fr;
             }
-
-            .waitlist-features {
-                grid-template-columns: 1fr;
-            }
-
-            .waitlist-button {
-                padding: 18px 40px;
-                font-size: 1.1rem;
-            }
         }
     </style>
 </head>
 <body>
     <header>
         <nav class="container">
-            <div class="logo">Echo Kit</div>
+            <div class="logo">EchoKit</div>
             <div class="nav-links">
                 <a href="#features">Features</a>
-                <a href="#capabilities">Capabilities</a>
-                <a href="#demo">Demo</a>
+                <a href="#benefits">Benefits</a>
+                <a href="#examples">Examples</a>
+                <a href="#demo">See It In Action</a>
+                <a href="#getting-started">Get Started</a>
                 <a href="#waitlist">Waitlist</a>
             </div>
         </nav>
@@ -606,148 +487,163 @@
                 <p>The only full-stack voice agent solution you'll ever need. From ESP32 hardware to AI inference servers - run everything privately on your laptop with zero cloud dependencies. Built with Rust for maximum performance and safety.</p>
                 <div class="cta-buttons">
                     <a href="https://forms.gle/EMDP2WRa4dX3QRW88" target="_blank" class="cta-button">🎁 Win Hardware Dev Kit</a>
-                    <a href="#waitlist" class="cta-button cta-secondary">View on GitHub</a>
+                    <a href="#getting-started" class="cta-button cta-secondary">Get Started</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="features" class="features">
+    <section id="features" class="section features">
         <div class="container">
             <h2 class="section-title">Complete Full-Stack Solution</h2>
             <p class="section-subtitle">Hardware, firmware, servers, and AI inference - everything you need in one open source package</p>
             
             <div class="features-grid">
                 <div class="feature-card">
-                    <div class="feature-icon">🏗️</div>
-                    <h3>Full Stack Open Source</h3>
+                    <h3><span class="benefit-icon">🏗️</span>Full Stack Open Source</h3>
                     <p>Complete solution from ESP32 hardware design to AI inference server. Run the entire voice agent stack on your private laptop - no cloud required, completely free.</p>
                 </div>
 
                 <div class="feature-card">
-                    <div class="feature-icon">🌐</div>
-                    <h3>Universal LLM Support</h3>
-                    <p>Works with all major LLMs, voice-to-text, and TTS models through the Gaia network. Choose your preferred AI models or switch between them seamlessly.</p>
+                    <h3><span class="benefit-icon">🌐</span>Support All AI Models</h3>
+                    <p>Works with all major LLMs, voice-to-text, and TTS models through the Gaia network. Features streaming TTS for real-time voice synthesis. Choose your preferred AI models or switch between them seamlessly.</p>
                 </div>
 
                 <div class="feature-card">
-                    <div class="feature-icon">🎭</div>
-                    <h3>Voice Cloning</h3>
+                    <h3><span class="benefit-icon">🎭</span>Voice Cloning</h3>
                     <p>Create personalized voice experiences with advanced voice cloning technology. Make your AI assistant sound exactly how you want it to.</p>
                 </div>
 
                 <div class="feature-card">
-                    <div class="feature-icon">📚</div>
-                    <h3>Custom Knowledge Base</h3>
+                    <h3><span class="benefit-icon">📚</span>Custom Knowledge Base</h3>
                     <p>Ground your LLMs with personal and customized knowledge bases. Feed your AI assistant domain-specific information for more accurate responses.</p>
                 </div>
 
                 <div class="feature-card">
-                    <div class="feature-icon">🎯</div>
-                    <h3>Advanced Prompting</h3>
-                    <p>Support for complex prompts and large context windows. Fine-tune your LLM responses with sophisticated prompt engineering and context management.</p>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon">🔧</div>
-                    <h3>MCP Actions & Tools</h3>
+                    <h3><span class="benefit-icon">🔧</span>MCP Actions & Tools</h3>
                     <p>Extensible action system with MCP-based tool calls and agentic search capabilities. Enhance your AI's abilities with custom tools and integrations.</p>
                 </div>
 
                 <div class="feature-card">
-                    <div class="feature-icon">⚡</div>
-                    <h3>Ultra-Low Latency</h3>
-                    <p>Powered by Agora's super low latency voice network for real-time conversations. Experience instant voice interactions without delays.</p>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon">🦀</div>
-                    <h3>Rust Performance</h3>
+                    <h3><span class="benefit-icon">🦀</span>Rust Performance</h3>
                     <p>Built entirely in Rust for maximum safety, performance, and reliability. Memory-safe code with zero-cost abstractions and blazing-fast execution.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="capabilities" class="capabilities">
+    <section id="benefits" class="section benefits">
         <div class="container">
-            <h2 class="section-title">Technical Capabilities</h2>
-            <p class="section-subtitle">Cutting-edge AI technologies integrated into a cohesive voice agent platform</p>
+            <h2 class="section-title">Who Benefits from EchoKit?</h2>
+            <p class="section-subtitle">Whether you're building hardware or developing AI agents, EchoKit provides the tools you need</p>
             
-            <div class="capabilities-grid">
-                <div class="capability-item">
-                    <span class="capability-icon">🖥️</span>
-                    <h3>Private Deployment</h3>
-                    <p>Run on your laptop</p>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <h3><span class="benefit-icon">🤖</span>Agent Developers</h3>
+                    <p>Build sophisticated AI agents with complete control over every component of the stack.</p>
+                    <ul class="benefit-list">
+                        <li>Use your own AI models on the backend (VAD, ASR, LLM, VLM, TTS, end-to-end)</li>
+                        <li>Choose any inference providers (OpenAI, Gemini, Groq, Gaia) and use finetuned/personalized models with cloned voice TTS and custom LLM responses</li>
+                        <li>Custom prompts for each model</li>
+                        <li>MCP server integration for agentic search and actions</li>
+                    </ul>
                 </div>
-                
-                <div class="capability-item">
-                    <span class="capability-icon">🤖</span>
-                    <h3>All LLMs</h3>
-                    <p>Universal model support</p>
-                </div>
-                
-                <div class="capability-item">
-                    <span class="capability-icon">🎤</span>
-                    <h3>Voice Cloning</h3>
-                    <p>Custom voice synthesis</p>
-                </div>
-                
-                <div class="capability-item">
-                    <span class="capability-icon">📖</span>
-                    <h3>Knowledge Grounding</h3>
-                    <p>Custom data integration</p>
-                </div>
-                
-                <div class="capability-item">
-                    <span class="capability-icon">💭</span>
-                    <h3>Complex Prompts</h3>
-                    <p>Large context windows</p>
-                </div>
-                
-                <div class="capability-item">
-                    <span class="capability-icon">🔗</span>
-                    <h3>MCP Actions</h3>
-                    <p>Tool calls & search</p>
-                </div>
-                
-                <div class="capability-item">
-                    <span class="capability-icon">🚀</span>
-                    <h3>Agora Network</h3>
-                    <p>Ultra-low latency</p>
-                </div>
-                
-                <div class="capability-item">
-                    <span class="capability-icon">🦀</span>
-                    <h3>Rust Powered</h3>
-                    <p>Safe & performant</p>
+
+                <div class="benefit-card">
+                    <h3><span class="benefit-icon">🔧</span>Device Makers</h3>
+                    <p>Freely adopt our firmware for your own hardware projects and enhance them with powerful addons.</p>
+                    <ul class="benefit-list">
+                        <li>Camera integration for visual AI</li>
+                        <li>Environmental sensors support</li>
+                        <li>RFID and NFC capabilities</li>
+                        <li>Advanced audio/video processors</li>
+                        <li>Complete hardware customization freedom</li>
+                    </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="demo" class="demo">
+    <section id="examples" class="section examples">
         <div class="container">
-            <div class="demo-container">
-                <div class="demo-content">
-                    <h2>Full Stack Architecture</h2>
-                    <p>Experience the complete voice agent ecosystem running privately on your infrastructure. From ESP32 hardware to AI inference servers, everything works together seamlessly.</p>
-                    
-                    <ul class="demo-features">
-                        <li>Complete hardware & firmware stack</li>
-                        <li>Agent server with Gaia network integration</li>
-                        <li>AI inference server supporting all major models</li>
-                        <li>Rust-powered performance & safety</li>
-                        <li>Zero cloud dependencies</li>
-                    </ul>
-                    
-                    <a href="#waitlist" class="cta-button">View on GitHub</a>
+            <h2 class="section-title">Examples & Video Demos</h2>
+            <p class="section-subtitle">See EchoKit in action with these real-world applications</p>
+            
+            <div class="examples-grid">
+                <div class="example-card">
+                    <span class="example-icon">📚</span>
+                    <h3>Knowledge QA</h3>
+                    <p>Customized MCP for agentic knowledge search. Ask complex questions and get intelligent, context-aware answers from your personal knowledge base.</p>
+                    <a href="#" class="cta-button" style="margin-top: 15px; padding: 10px 20px; font-size: 0.9rem;">Watch Demo →</a>
                 </div>
-                
-                <div class="demo-visual">
-                    <div class="ai-avatar">🦀</div>
-                    <h3>Rust-Powered Voice Agent</h3>
-                    <p>"I'm your complete voice agent solution - from ESP32 hardware to AI servers. Run me entirely on your private infrastructure with support for any LLM, custom knowledge bases, and voice cloning. Built in Rust for maximum performance!"</p>
+
+                <div class="example-card">
+                    <span class="example-icon">🌍</span>
+                    <h3>Translation</h3>
+                    <p>Fast, multilingual ASR, LLM and TTS with custom prompts. Real-time translation between multiple languages with natural voice output.</p>
+                    <a href="#" class="cta-button" style="margin-top: 15px; padding: 10px 20px; font-size: 0.9rem;">Watch Demo →</a>
+                </div>
+
+                <div class="example-card">
+                    <span class="example-icon">👨‍🏫</span>
+                    <h3>Teacher</h3>
+                    <p>Customized MCP for agentic knowledge search with LLM prompts for teaching style. Personalized educational assistant that adapts to learning preferences.</p>
+                    <a href="#" class="cta-button" style="margin-top: 15px; padding: 10px 20px; font-size: 0.9rem;">Watch Demo →</a>
+                </div>
+
+                <div class="example-card">
+                    <span class="example-icon">👤</span>
+                    <h3>Digital Twin</h3>
+                    <p>Cloned voice with LLM prompts for personality style. Create a digital version of yourself or anyone else with their unique voice and mannerisms.</p>
+                    <a href="#" class="cta-button" style="margin-top: 15px; padding: 10px 20px; font-size: 0.9rem;">Watch Demo →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="demo" class="section live-demo">
+        <div class="container">
+            <h2 class="section-title">See It In Action</h2>
+            <p class="section-subtitle">Experience EchoKit's capabilities in real-time</p>
+            
+            <div class="demo-grid">
+                <div class="demo-item">
+                    <h3>🎵 Streaming TTS</h3>
+                    <p>Real-time text-to-speech streaming with ultra-low latency. Hear natural voice synthesis as you type.</p>
+                    <a href="#" class="cta-button" style="margin-top: 15px; padding: 10px 20px; font-size: 0.9rem;">Try Live Demo →</a>
+                </div>
+
+                <div class="demo-item">
+                    <h3>🎭 DevKit Photos</h3>
+                    <p>Physical hardware demonstration carried by Lego figures. See the actual ESP32 development kit in action.</p>
+                    <a href="#" class="cta-button" style="margin-top: 15px; padding: 10px 20px; font-size: 0.9rem;">View Photos →</a>
+                </div>
+
+                <div class="demo-item">
+                    <h3>⛪ Pastor Chatbot</h3>
+                    <p>Specialized LLM implementation for religious guidance and spiritual conversations. Demonstrates domain-specific AI customization.</p>
+                    <a href="#" class="cta-button" style="margin-top: 15px; padding: 10px 20px; font-size: 0.9rem;">Chat Now →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="getting-started" class="section getting-started">
+        <div class="container">
+            <h2 class="section-title">Getting Started</h2>
+            <p class="section-subtitle">Jump into EchoKit development with our comprehensive guides</p>
+            
+            <div class="guide-cards">
+                <div class="guide-card">
+                    <h3>🚀 Quick Start Guide</h3>
+                    <p>Get your EchoKit up and running in minutes. Complete setup instructions from hardware assembly to first voice interaction.</p>
+                    <a href="https://hackmd.io/@wasmedge/SJHX3L9Zgx" target="_blank" class="guide-link">View Quick Start Guide →</a>
+                </div>
+
+                <div class="guide-card">
+                    <h3>🧠 Knowledge Agent Tutorial</h3>
+                    <p>Learn how to create a knowledge agent to replace the default LLM. Build custom AI assistants with specialized knowledge domains.</p>
+                    <a href="https://hackmd.io/@wasmedge/ry2_a9-Elx" target="_blank" class="guide-link">Create Knowledge Agent →</a>
                 </div>
             </div>
         </div>
@@ -755,45 +651,17 @@
 
     <section id="waitlist" class="waitlist">
         <div class="container">
-            <div class="waitlist-content">
-                <h2>Join the Waitlist</h2>
-                <p>Be among the first to get access to the complete Echo Kit platform. Join our waitlist to receive early access, exclusive updates, and a chance to win a free hardware development kit!</p>
-                
-                <div class="waitlist-features">
-                    <div class="waitlist-feature">
-                        <span class="waitlist-feature-icon">🚀</span>
-                        <h3>Early Access</h3>
-                        <p>Get the platform before public release</p>
-                    </div>
-                    
-                    <div class="waitlist-feature">
-                        <span class="waitlist-feature-icon">🎁</span>
-                        <h3>Free Hardware Kit</h3>
-                        <p>Chance to win ESP32 development kit</p>
-                    </div>
-                    
-                    <div class="waitlist-feature">
-                        <span class="waitlist-feature-icon">📧</span>
-                        <h3>Exclusive Updates</h3>
-                        <p>Development progress and tutorials</p>
-                    </div>
-                    
-                    <div class="waitlist-feature">
-                        <span class="waitlist-feature-icon">👥</span>
-                        <h3>Community Access</h3>
-                        <p>Join our private developer community</p>
-                    </div>
-                </div>
-                
-                <div class="waitlist-cta">
-                    <a href="https://forms.gle/EMDP2WRa4dX3QRW88" target="_blank" class="waitlist-button">
-                        🎯 Join Waitlist Now
-                    </a>
-                    <p class="waitlist-note">Limited spots available • 100% free and open source</p>
-                </div>
-            </div>
+            <h2 style="font-size: 3rem; font-weight: 800; margin-bottom: 20px; background: linear-gradient(45deg, #ffffff, #9333ea); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Join the EchoKit Waitlist</h2>
+            <p style="font-size: 1.3rem; margin-bottom: 40px; opacity: 0.9; max-width: 600px; margin-left: auto; margin-right: auto;">Be the first to get access to EchoKit and receive exclusive updates on our open source voice agent platform development.</p>
+            <a href="https://forms.gle/EMDP2WRa4dX3QRW88" target="_blank" class="cta-button" style="font-size: 1.2rem; padding: 20px 50px; display: inline-block;">Join Waitlist →</a>
         </div>
     </section>
+
+    <footer style="padding: 40px 0; background: rgba(0, 0, 0, 0.3); border-top: 1px solid rgba(147, 51, 234, 0.2); text-align: center;">
+        <div class="container">
+            <p style="opacity: 0.8;">&copy; 2025 EchoKit. Open source under GPL3 License.</p>
+        </div>
+    </footer>
 
     <script>
         // Smooth scrolling for navigation links
@@ -831,25 +699,18 @@
         const observer = new IntersectionObserver(entries => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.style.animation = 'fadeInUp 0.8s ease forwards';
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
                 }
             });
         }, observerOptions);
 
-        document.querySelectorAll('.feature-card, .capability-item, .demo-content, .demo-visual, .waitlist-feature').forEach(el => {
+        document.querySelectorAll('.feature-card, .benefit-card, .example-card, .demo-item, .guide-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
             observer.observe(el);
         });
-
-        // AI Avatar interaction
-        const aiAvatar = document.querySelector('.ai-avatar');
-        if (aiAvatar) {
-            aiAvatar.addEventListener('click', function() {
-                this.style.animation = 'pulse 0.5s ease';
-                setTimeout(() => {
-                    this.style.animation = 'pulse 2s ease-in-out infinite';
-                }, 500);
-            });
-        }
     </script>
 </body>
 </html>
