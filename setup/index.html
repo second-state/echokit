@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>蓝牙控制面板</title>
+    <title>Setup EchoKit</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <style>
@@ -72,35 +72,35 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header d-flex justify-content-between align-items-center">
-                        <h4 class="mb-0">蓝牙控制面板</h4>
+                        <h4 class="mb-0">Setup EchoKit via Bluetooth</h4>
                         <div>
                             <span class="status-indicator status-disconnected" id="statusIndicator"></span>
-                            <span id="connectionStatus">未连接</span>
+                            <span id="connectionStatus">Disconnected</span>
                         </div>
                     </div>
                     <div class="card-body">
                         <div class="d-grid gap-2 mb-4">
                             <button class="btn btn-primary" id="connectButton">
-                                <i class="bi bi-bluetooth"></i> 连接设备
+                                <i class="bi bi-bluetooth"></i> Connect to EchoKit
                             </button>
                         </div>
 
                         <div id="controlPanel" style="display: none;">
                             <div class="card mb-3">
                                 <div class="card-header">
-                                    <h5 class="mb-0">SSID 设置</h5>
+                                    <h5 class="mb-0">WiFi SSID</h5>
                                 </div>
                                 <div class="card-body">
                                     <div class="input-group mb-3">
                                         <span class="input-group-text">SSID</span>
-                                        <input type="text" class="form-control" id="ssidInput" placeholder="输入SSID">
+                                        <input type="text" class="form-control" id="ssidInput" placeholder="WiFi network name SSID">
                                     </div>
                                     <div class="d-flex justify-content-between">
                                         <button class="btn btn-primary" id="readSsidButton">
-                                            <i class="bi bi-arrow-down-circle"></i> 读取
+                                            <i class="bi bi-arrow-down-circle"></i> Read
                                         </button>
                                         <button class="btn btn-primary" id="writeSsidButton">
-                                            <i class="bi bi-arrow-up-circle"></i> 写入
+                                            <i class="bi bi-arrow-up-circle"></i> Write
                                         </button>
                                     </div>
                                 </div>
@@ -108,19 +108,19 @@
 
                             <div class="card mb-3">
                                 <div class="card-header">
-                                    <h5 class="mb-0">密码设置</h5>
+                                    <h5 class="mb-0">WiFi Password</h5>
                                 </div>
                                 <div class="card-body">
                                     <div class="input-group mb-3">
-                                        <span class="input-group-text">密码</span>
-                                        <input type="password" class="form-control" id="passInput" placeholder="输入密码">
+                                        <span class="input-group-text">Password</span>
+                                        <input type="password" class="form-control" id="passInput" placeholder="WiFi Password">
                                     </div>
                                     <div class="d-flex justify-content-between">
                                         <button class="btn btn-primary" id="readPassButton">
-                                            <i class="bi bi-arrow-down-circle"></i> 读取
+                                            <i class="bi bi-arrow-down-circle"></i> Read
                                         </button>
                                         <button class="btn btn-primary" id="writePassButton">
-                                            <i class="bi bi-arrow-up-circle"></i> 写入
+                                            <i class="bi bi-arrow-up-circle"></i> Write
                                         </button>
                                     </div>
                                 </div>
@@ -128,20 +128,20 @@
 
                             <div class="card">
                                 <div class="card-header">
-                                    <h5 class="mb-0">服务器URL设置</h5>
+                                    <h5 class="mb-0">EchoKit server</h5>
                                 </div>
                                 <div class="card-body">
                                     <div class="input-group mb-3">
                                         <span class="input-group-text">URL</span>
                                         <input type="text" class="form-control" id="serverUrlInput"
-                                            placeholder="输入服务器URL">
+                                            placeholder="The server URL">
                                     </div>
                                     <div class="d-flex justify-content-between">
                                         <button class="btn btn-primary" id="readServerUrlButton">
-                                            <i class="bi bi-arrow-down-circle"></i> 读取
+                                            <i class="bi bi-arrow-down-circle"></i> Read
                                         </button>
                                         <button class="btn btn-primary" id="writeServerUrlButton">
-                                            <i class="bi bi-arrow-up-circle"></i> 写入
+                                            <i class="bi bi-arrow-up-circle"></i> Write
                                         </button>
                                     </div>
                                 </div>
@@ -157,11 +157,11 @@
     <div class="toast-container">
         <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="notificationToast">
             <div class="toast-header">
-                <strong class="me-auto" id="toastTitle">通知</strong>
+                <strong class="me-auto" id="toastTitle">Message</strong>
                 <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
             </div>
             <div class="toast-body" id="toastMessage">
-                消息内容
+                Message content
             </div>
         </div>
     </div>
@@ -234,15 +234,15 @@
 
                 // 显示控制面板
                 controlPanel.style.display = 'block';
-                connectButton.innerHTML = '<i class="bi bi-bluetooth"></i> 断开连接';
+                connectButton.innerHTML = '<i class="bi bi-bluetooth"></i> Disconnect';
 
                 // 设备断开连接时的处理
                 device.addEventListener('gattserverdisconnected', handleDisconnection);
 
-                showNotification('成功', '已成功连接到设备');
+                showNotification('Success', 'Connected to the device');
             } catch (error) {
                 console.error('连接失败:', error);
-                showNotification('错误', '连接设备失败: ' + error.message, true);
+                showNotification('Error', 'Device connection failed: ' + error.message, true);
             }
         }
 
@@ -251,10 +251,10 @@
             if (device && device.gatt.connected) {
                 try {
                     await device.gatt.disconnect();
-                    showNotification('信息', '已断开设备连接');
+                    showNotification('Message', 'Disconnected from the device');
                 } catch (error) {
-                    console.error('断开连接失败:', error);
-                    showNotification('错误', '断开连接失败: ' + error.message, true);
+                    console.error('Failed to disconnect: ', error);
+                    showNotification('Error', 'Failed to disconnect: ' + error.message, true);
                 }
             }
         }
@@ -264,11 +264,11 @@
             isConnected = false;
             updateConnectionStatus();
             controlPanel.style.display = 'none';
-            connectButton.innerHTML = '<i class="bi bi-bluetooth"></i> 连接设备';
+            connectButton.innerHTML = '<i class="bi bi-bluetooth"></i> Connect to the device';
             device = null;
             server = null;
             service = null;
-            showNotification('信息', '设备已断开连接');
+            showNotification('Message', 'Device disconnected');
         }
 
         // 更新连接状态UI
@@ -280,14 +280,14 @@
             } else {
                 statusIndicator.classList.remove('status-connected');
                 statusIndicator.classList.add('status-disconnected');
-                connectionStatus.textContent = '未连接';
+                connectionStatus.textContent = 'Disconnected';
             }
         }
 
         // 读取Characteristic值
         async function readCharacteristic(characteristicId, inputElement) {
             if (!isConnected || !service) {
-                showNotification('错误', '设备未连接', true);
+                showNotification('Error', 'Device disconnected', true);
                 return;
             }
 
@@ -301,22 +301,22 @@
 
                 // 更新输入框
                 inputElement.value = stringValue;
-                showNotification('成功', '读取数据成功');
+                showNotification('Success', 'Data is read from the device');
             } catch (error) {
-                console.error('读取失败:', error);
-                showNotification('错误', '读取数据失败: ' + error.message, true);
+                console.error('Error: ', error);
+                showNotification('Error', 'Cannot read data from the device: ' + error.message, true);
             }
         }
 
         // 写入Characteristic值
         async function writeCharacteristic(characteristicId, inputValue) {
             if (!isConnected || !service) {
-                showNotification('错误', '设备未连接', true);
+                showNotification('Error', 'Device Disconnected', true);
                 return;
             }
 
             if (!inputValue) {
-                showNotification('错误', '输入值不能为空', true);
+                showNotification('Error', 'The value cannot be empty', true);
                 return;
             }
 
@@ -327,8 +327,8 @@
                 await characteristic.writeValue(data);
                 showNotification('成功', '写入数据成功');
             } catch (error) {
-                console.error('写入失败:', error);
-                showNotification('错误', '写入数据失败: ' + error.message, true);
+                console.error('Failed to write: ', error);
+                showNotification('Error', 'Cannot write into the device: ' + error.message, true);
             }
         }
 
@@ -367,7 +367,7 @@
 
         // 检查浏览器是否支持Web Bluetooth API
         if (!navigator.bluetooth) {
-            showNotification('错误', '您的浏览器不支持Web Bluetooth API，请使用Chrome或Edge浏览器', true);
+            showNotification('Error', 'Your browser does not support the Web Bluetooth API，please use Chrome or Edge browsers', true);
             connectButton.disabled = true;
         }
     </script>
