@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>蓝牙控制面板</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            padding-top: 20px;
+        }
+
+        .card {
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .card-header {
+            background-color: #6c757d;
+            color: white;
+            border-radius: 10px 10px 0 0 !important;
+        }
+
+        .status-indicator {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 5px;
+        }
+
+        .status-disconnected {
+            background-color: #dc3545;
+        }
+
+        .status-connected {
+            background-color: #28a745;
+        }
+
+        .toast-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1050;
+        }
+
+        .input-group-text {
+            background-color: #6c757d;
+            color: white;
+            border: none;
+        }
+
+        .btn-primary {
+            background-color: #5a6268;
+            border-color: #5a6268;
+        }
+
+        .btn-primary:hover {
+            background-color: #4e555b;
+            border-color: #4e555b;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h4 class="mb-0">蓝牙控制面板</h4>
+                        <div>
+                            <span class="status-indicator status-disconnected" id="statusIndicator"></span>
+                            <span id="connectionStatus">未连接</span>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-grid gap-2 mb-4">
+                            <button class="btn btn-primary" id="connectButton">
+                                <i class="bi bi-bluetooth"></i> 连接设备
+                            </button>
+                        </div>
+
+                        <div id="controlPanel" style="display: none;">
+                            <div class="card mb-3">
+                                <div class="card-header">
+                                    <h5 class="mb-0">SSID 设置</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text">SSID</span>
+                                        <input type="text" class="form-control" id="ssidInput" placeholder="输入SSID">
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <button class="btn btn-primary" id="readSsidButton">
+                                            <i class="bi bi-arrow-down-circle"></i> 读取
+                                        </button>
+                                        <button class="btn btn-primary" id="writeSsidButton">
+                                            <i class="bi bi-arrow-up-circle"></i> 写入
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card mb-3">
+                                <div class="card-header">
+                                    <h5 class="mb-0">密码设置</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text">密码</span>
+                                        <input type="password" class="form-control" id="passInput" placeholder="输入密码">
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <button class="btn btn-primary" id="readPassButton">
+                                            <i class="bi bi-arrow-down-circle"></i> 读取
+                                        </button>
+                                        <button class="btn btn-primary" id="writePassButton">
+                                            <i class="bi bi-arrow-up-circle"></i> 写入
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="mb-0">服务器URL设置</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text">URL</span>
+                                        <input type="text" class="form-control" id="serverUrlInput"
+                                            placeholder="输入服务器URL">
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <button class="btn btn-primary" id="readServerUrlButton">
+                                            <i class="bi bi-arrow-down-circle"></i> 读取
+                                        </button>
+                                        <button class="btn btn-primary" id="writeServerUrlButton">
+                                            <i class="bi bi-arrow-up-circle"></i> 写入
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 提示消息容器 -->
+    <div class="toast-container">
+        <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="notificationToast">
+            <div class="toast-header">
+                <strong class="me-auto" id="toastTitle">通知</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body" id="toastMessage">
+                消息内容
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // 定义UUID
+        const SERVICE_ID = "623fa3e2-631b-4f8f-a6e7-a7b09c03e7e0";
+        const SSID_ID = "1fda4d6e-2f14-42b0-96fa-453bed238375";
+        const PASS_ID = "a987ab18-a940-421a-a1d7-b94ee22bccbe";
+        const SERVER_URL_ID = "cef520a9-bcb5-4fc6-87f7-82804eee2b20";
+
+        // 全局变量
+        let device = null;
+        let server = null;
+        let service = null;
+        let isConnected = false;
+        let toast = null;
+
+        // DOM元素
+        const connectButton = document.getElementById('connectButton');
+        const controlPanel = document.getElementById('controlPanel');
+        const statusIndicator = document.getElementById('statusIndicator');
+        const connectionStatus = document.getElementById('connectionStatus');
+        const ssidInput = document.getElementById('ssidInput');
+        const passInput = document.getElementById('passInput');
+        const serverUrlInput = document.getElementById('serverUrlInput');
+        const readSsidButton = document.getElementById('readSsidButton');
+        const writeSsidButton = document.getElementById('writeSsidButton');
+        const readPassButton = document.getElementById('readPassButton');
+        const writePassButton = document.getElementById('writePassButton');
+        const readServerUrlButton = document.getElementById('readServerUrlButton');
+        const writeServerUrlButton = document.getElementById('writeServerUrlButton');
+        const notificationToast = document.getElementById('notificationToast');
+        const toastTitle = document.getElementById('toastTitle');
+        const toastMessage = document.getElementById('toastMessage');
+
+        // 初始化Toast
+        toast = new bootstrap.Toast(notificationToast);
+
+        // 显示通知
+        function showNotification(title, message, isError = false) {
+            toastTitle.textContent = title;
+            toastMessage.textContent = message;
+            notificationToast.classList.remove('bg-danger', 'text-white');
+
+            if (isError) {
+                notificationToast.classList.add('bg-danger', 'text-white');
+            }
+
+            toast.show();
+        }
+
+        // 连接设备
+        async function connectToDevice() {
+            try {
+                // 请求蓝牙设备
+                device = await navigator.bluetooth.requestDevice({
+                    filters: [{ services: [SERVICE_ID] }],
+                    optionalServices: [SERVICE_ID]
+                });
+
+                // 连接到GATT服务器
+                server = await device.gatt.connect();
+                service = await server.getPrimaryService(SERVICE_ID);
+
+                // 更新UI状态
+                isConnected = true;
+                updateConnectionStatus();
+
+                // 显示控制面板
+                controlPanel.style.display = 'block';
+                connectButton.innerHTML = '<i class="bi bi-bluetooth"></i> 断开连接';
+
+                // 设备断开连接时的处理
+                device.addEventListener('gattserverdisconnected', handleDisconnection);
+
+                showNotification('成功', '已成功连接到设备');
+            } catch (error) {
+                console.error('连接失败:', error);
+                showNotification('错误', '连接设备失败: ' + error.message, true);
+            }
+        }
+
+        // 断开连接
+        async function disconnectFromDevice() {
+            if (device && device.gatt.connected) {
+                try {
+                    await device.gatt.disconnect();
+                    showNotification('信息', '已断开设备连接');
+                } catch (error) {
+                    console.error('断开连接失败:', error);
+                    showNotification('错误', '断开连接失败: ' + error.message, true);
+                }
+            }
+        }
+
+        // 处理设备断开连接
+        function handleDisconnection() {
+            isConnected = false;
+            updateConnectionStatus();
+            controlPanel.style.display = 'none';
+            connectButton.innerHTML = '<i class="bi bi-bluetooth"></i> 连接设备';
+            device = null;
+            server = null;
+            service = null;
+            showNotification('信息', '设备已断开连接');
+        }
+
+        // 更新连接状态UI
+        function updateConnectionStatus() {
+            if (isConnected) {
+                statusIndicator.classList.remove('status-disconnected');
+                statusIndicator.classList.add('status-connected');
+                connectionStatus.textContent = '已连接';
+            } else {
+                statusIndicator.classList.remove('status-connected');
+                statusIndicator.classList.add('status-disconnected');
+                connectionStatus.textContent = '未连接';
+            }
+        }
+
+        // 读取Characteristic值
+        async function readCharacteristic(characteristicId, inputElement) {
+            if (!isConnected || !service) {
+                showNotification('错误', '设备未连接', true);
+                return;
+            }
+
+            try {
+                const characteristic = await service.getCharacteristic(characteristicId);
+                const value = await characteristic.readValue();
+
+                // 将ArrayBuffer转换为字符串
+                const decoder = new TextDecoder();
+                const stringValue = decoder.decode(value);
+
+                // 更新输入框
+                inputElement.value = stringValue;
+                showNotification('成功', '读取数据成功');
+            } catch (error) {
+                console.error('读取失败:', error);
+                showNotification('错误', '读取数据失败: ' + error.message, true);
+            }
+        }
+
+        // 写入Characteristic值
+        async function writeCharacteristic(characteristicId, inputValue) {
+            if (!isConnected || !service) {
+                showNotification('错误', '设备未连接', true);
+                return;
+            }
+
+            if (!inputValue) {
+                showNotification('错误', '输入值不能为空', true);
+                return;
+            }
+
+            try {
+                const characteristic = await service.getCharacteristic(characteristicId);
+                const encoder = new TextEncoder();
+                const data = encoder.encode(inputValue);
+                await characteristic.writeValue(data);
+                showNotification('成功', '写入数据成功');
+            } catch (error) {
+                console.error('写入失败:', error);
+                showNotification('错误', '写入数据失败: ' + error.message, true);
+            }
+        }
+
+        // 事件监听
+        connectButton.addEventListener('click', async () => {
+            if (!isConnected) {
+                await connectToDevice();
+            } else {
+                await disconnectFromDevice();
+            }
+        });
+
+        readSsidButton.addEventListener('click', () => {
+            readCharacteristic(SSID_ID, ssidInput);
+        });
+
+        writeSsidButton.addEventListener('click', () => {
+            writeCharacteristic(SSID_ID, ssidInput.value);
+        });
+
+        readPassButton.addEventListener('click', () => {
+            readCharacteristic(PASS_ID, passInput);
+        });
+
+        writePassButton.addEventListener('click', () => {
+            writeCharacteristic(PASS_ID, passInput.value);
+        });
+
+        readServerUrlButton.addEventListener('click', () => {
+            readCharacteristic(SERVER_URL_ID, serverUrlInput);
+        });
+
+        writeServerUrlButton.addEventListener('click', () => {
+            writeCharacteristic(SERVER_URL_ID, serverUrlInput.value);
+        });
+
+        // 检查浏览器是否支持Web Bluetooth API
+        if (!navigator.bluetooth) {
+            showNotification('错误', '您的浏览器不支持Web Bluetooth API，请使用Chrome或Edge浏览器', true);
+            connectButton.disabled = true;
+        }
+    </script>
+</body>
+
+</html>
