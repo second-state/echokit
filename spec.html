@@ -454,7 +454,6 @@
                 padding: 0 10px;
             }
 
-            /* 图片展示区域移动端优化 */
             .image-tabs {
                 gap: 6px;
                 padding: 0 10px;
@@ -648,6 +647,20 @@
     </style>
 </head>
 
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EMHQHV54LP"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-EMHQHV54LP');
+</script>
+
 <body>
     <header>
         <nav class="container">
@@ -671,25 +684,23 @@
             <div class="gallery-container">
                 <div class="image-tabs">
                     <button class="tab-button active" data-target="overview">Hardware Overview</button>
-                    <button class="tab-button" data-target="processor">ESP32-S3 Chip</button>
-                    <button class="tab-button" data-target="audio">Audio Components</button>
-                    <button class="tab-button" data-target="display">OLED Display</button>
-                    <button class="tab-button" data-target="interfaces">USB-C & GPIO</button>
+                    <button class="tab-button" data-target="processor">ESP32-S3 SoC</button>
+                    <button class="tab-button" data-target="audio">Microphone</button>
+                    <button class="tab-button" data-target="display">LCD Display</button>
+                    <button class="tab-button" data-target="interfaces">USB-C</button>
                     <button class="tab-button" data-target="buttons">Control Buttons</button>
-                    <button class="tab-button" data-target="extensions">Extension Boards</button>
+                    <button class="tab-button" data-target="extensions">Extension Board</button>
                 </div>
 
                 <div class="main-image-container">
                     <!-- 使用你的实际硬件图片 -->
                     <img src="./assets/overview-echokit.jpg" alt="Hardware Overview" class="main-hardware-image active" data-image="overview">
                     <img src="./assets/esp32-s3-processor-echokit.jpg" alt="ESP32-S3 Processor" class="main-hardware-image" data-image="processor">
-                    <img src="./assets/audio-components-echokit.jpg" alt="Audio Components" class="main-hardware-image" data-image="audio">
-                    <img src="./assets/oled-display-echokit.jpg" alt="OLED Display" class="main-hardware-image" data-image="display">
-                    <img src="./assets/usbc-echokit.jpg" alt="USB-C and GPIO" class="main-hardware-image" data-image="interfaces">
+                    <img src="./assets/audio-components-echokit.jpg" alt="Microphone" class="main-hardware-image" data-image="audio">
+                    <img src="./assets/oled-display-echokit.jpg" alt="LCD Display" class="main-hardware-image" data-image="display">
+                    <img src="./assets/usbc-echokit.jpg" alt="USB-C" class="main-hardware-image" data-image="interfaces">
                     <img src="./assets/control-button-echokit.jpg" alt="Control Buttons" class="main-hardware-image" data-image="buttons">
-                    <img src="./assets/overview-echokit-esp32.jpg" alt="Extension Boards" class="main-hardware-image" data-image="extensions">
-                    
-                    <p class="image-description" id="imageDescription">🔍 Click image to enlarge - Complete hardware overview</p>
+                    <img src="./assets/overview-echokit-esp32.jpg" alt="Extension Board" class="main-hardware-image" data-image="extensions">
                 </div>
 
                 <div class="thumbnail-gallery">
