@@ -152,20 +152,18 @@
             margin: 0 auto 30px;
             border-radius: 20px;
             overflow: hidden;
-            padding: 0;
+            box-shadow: 0 20px 60px rgba(147, 51, 234, 0.3);
+            background: rgba(255, 255, 255, 0.05);
+            padding: 25px;
         }
 
         .main-hardware-image {
             width: 100%;
             height: auto;
-            max-height: 500px;
-            object-fit: contain;
-            object-position: center;
             border-radius: 15px;
             cursor: pointer;
             transition: transform 0.3s ease;
             display: none;
-            background: rgba(255, 255, 255, 0.02);
         }
 
         .main-hardware-image.active {
@@ -196,7 +194,6 @@
             width: 80px;
             height: 60px;
             object-fit: cover;
-            object-position: center;
             border-radius: 8px;
             cursor: pointer;
             border: 2px solid transparent;
@@ -438,90 +435,198 @@
 
             .hero h1 {
                 font-size: 2.5rem;
+                line-height: 1.2;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+                margin-bottom: 15px;
+                padding: 0 10px;
             }
 
             .section-title {
                 font-size: 2.2rem;
+                line-height: 1.2;
             }
 
-            .main-image-container {
-                max-width: 100%;
+            .section-subtitle {
+                font-size: 1rem;
                 padding: 0 10px;
             }
 
-            .main-hardware-image {
-                max-height: 400px;
+            /* 图片展示区域移动端优化 */
+            .image-tabs {
+                gap: 6px;
+                padding: 0 10px;
+            }
+
+            .tab-button {
+                padding: 6px 12px;
+                font-size: 0.75rem;
+                min-width: auto;
+                flex: 1;
+                text-align: center;
+            }
+
+            .main-image-container {
+                margin: 0 10px 20px;
+                padding: 15px;
+            }
+
+            .image-description {
+                font-size: 0.9rem;
+                margin-top: 15px;
             }
 
             .thumbnail-gallery {
-                gap: 10px;
+                gap: 8px;
                 padding: 0 10px;
             }
 
             .thumbnail {
-                width: 70px;
-                height: 50px;
+                width: 45px;
+                height: 35px;
+                border-radius: 6px;
             }
 
+            /* 规格表移动端优化 */
             .nutrition-style-specs {
                 margin: 40px 10px 0;
+                max-width: none;
             }
 
             .specs-content {
                 padding: 15px;
             }
 
-            .spec-main-item, .spec-sub-item {
+            .spec-title {
+                font-size: 1rem;
+                margin-bottom: 10px;
+            }
+
+            .spec-main-item {
+                font-size: 1.1rem;
+                margin: 6px 0;
+                flex-wrap: wrap;
+                gap: 5px;
+            }
+
+            .spec-sub-item {
+                font-size: 0.85rem;
+                margin: 4px 0;
+                padding-left: 15px;
+            }
+
+            .spec-highlight {
                 font-size: 0.9rem;
+                padding: 1px 4px;
             }
 
-            .image-tabs {
-                gap: 8px;
-                padding: 0 10px;
+            .spec-note {
+                font-size: 0.75rem;
+                margin-top: 15px;
+                line-height: 1.4;
             }
 
-            .tab-button {
-                padding: 8px 16px;
-                font-size: 0.8rem;
-            }
-
+            /* CTA按钮移动端优化 */
             .cta-button {
                 display: block;
-                margin: 10px auto;
-                width: fit-content;
+                margin: 15px auto;
+                width: calc(100% - 40px);
+                max-width: 300px;
+                padding: 15px 20px;
+                font-size: 1rem;
             }
 
+            /* Footer移动端优化 */
             .footer-links {
                 flex-direction: column;
                 gap: 15px;
+                margin-top: 15px;
+            }
+
+            .footer-links a {
+                font-size: 0.9rem;
+            }
+
+            /* 模态框移动端优化 */
+            .modal-content {
+                max-width: 90%;
+                max-height: 90%;
+                margin: 20px;
+            }
+
+            .close {
+                font-size: 30px;
+                top: 10px;
+                right: 20px;
             }
         }
 
+        /* 小屏幕进一步优化 */
         @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+
             .hero h1 {
                 font-size: 2rem;
             }
 
-            .main-image-container {
-                padding: 0 5px;
+            .hero-subtitle {
+                font-size: 1rem;
             }
 
-            .main-hardware-image {
-                max-height: 300px;
-            }
-
-            .thumbnail {
-                width: 60px;
-                height: 45px;
+            .section-title {
+                font-size: 1.8rem;
             }
 
             .image-tabs {
-                gap: 5px;
+                flex-wrap: wrap;
+                gap: 4px;
             }
 
             .tab-button {
-                padding: 6px 12px;
-                font-size: 0.75rem;
+                padding: 5px 8px;
+                font-size: 0.7rem;
+                min-width: 80px;
+            }
+
+            .main-image-container {
+                padding: 10px;
+                margin: 0 5px 15px;
+            }
+
+            .thumbnail {
+                width: 38px;
+                height: 28px;
+            }
+
+            .thumbnail-gallery {
+                gap: 6px;
+            }
+
+            .nutrition-style-specs {
+                margin: 30px 5px 0;
+            }
+
+            .specs-header {
+                font-size: 1.2rem;
+                padding: 12px 15px;
+            }
+
+            .spec-main-item {
+                font-size: 1rem;
+            }
+
+            .spec-sub-item {
+                font-size: 0.8rem;
+                padding-left: 10px;
+            }
+
+            .cta-button {
+                width: calc(100% - 20px);
+                margin: 10px auto;
             }
         }
 
@@ -542,26 +647,14 @@
         }
     </style>
 </head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-EMHQHV54LP"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
 
-    function gtag() {
-        dataLayer.push(arguments);
-    }
-
-    gtag('js', new Date());
-
-    gtag('config', 'G-EMHQHV54LP');
-</script>
 <body>
     <header>
         <nav class="container">
             <div class="logo">EchoKit</div>
             <div class="nav-links">
                 <a href="#specifications">Specifications</a>
-                <a href="index.html" class="back-link">← Back to Home</a>
+                <a href="#" class="back-link">← Back to Home</a>
             </div>
         </nav>
     </header>
@@ -587,26 +680,26 @@
                 </div>
 
                 <div class="main-image-container">
-                    <!-- Replace these with your actual hardware images -->
-                    <img src="./assets/overview-echokit-esp32.jpg" alt="Hardware Overview" class="main-hardware-image active" data-image="overview">
+                    <!-- 使用你的实际硬件图片 -->
+                    <img src="./assets/overview-echokit.jpg" alt="Hardware Overview" class="main-hardware-image active" data-image="overview">
                     <img src="./assets/esp32-s3-processor-echokit.jpg" alt="ESP32-S3 Processor" class="main-hardware-image" data-image="processor">
                     <img src="./assets/audio-components-echokit.jpg" alt="Audio Components" class="main-hardware-image" data-image="audio">
                     <img src="./assets/oled-display-echokit.jpg" alt="OLED Display" class="main-hardware-image" data-image="display">
                     <img src="./assets/usbc-echokit.jpg" alt="USB-C and GPIO" class="main-hardware-image" data-image="interfaces">
                     <img src="./assets/control-button-echokit.jpg" alt="Control Buttons" class="main-hardware-image" data-image="buttons">
-                    <img src="/api/placeholder/700/500" alt="Extension Boards" class="main-hardware-image" data-image="extensions">
+                    <img src="./assets/overview-echokit-esp32.jpg" alt="Extension Boards" class="main-hardware-image" data-image="extensions">
                     
                     <p class="image-description" id="imageDescription">🔍 Click image to enlarge - Complete hardware overview</p>
                 </div>
 
                 <div class="thumbnail-gallery">
-                    <img src="/api/placeholder/80/60" alt="Overview" class="thumbnail active" data-target="overview">
-                    <img src="/api/placeholder/80/60" alt="Processor" class="thumbnail" data-target="processor">
-                    <img src="/api/placeholder/80/60" alt="Audio" class="thumbnail" data-target="audio">
-                    <img src="/api/placeholder/80/60" alt="Display" class="thumbnail" data-target="display">
-                    <img src="/api/placeholder/80/60" alt="Interfaces" class="thumbnail" data-target="interfaces">
-                    <img src="/api/placeholder/80/60" alt="Buttons" class="thumbnail" data-target="buttons">
-                    <img src="/api/placeholder/80/60" alt="Extensions" class="thumbnail" data-target="extensions">
+                    <img src="./assets/overview-echokit.jpg" alt="Overview" class="thumbnail active" data-target="overview">
+                    <img src="./assets/esp32-s3-processor-echokit.jpg" alt="Processor" class="thumbnail" data-target="processor">
+                    <img src="./assets/audio-components-echokit.jpg" alt="Audio" class="thumbnail" data-target="audio">
+                    <img src="./assets/oled-display-echokit.jpg" alt="Display" class="thumbnail" data-target="display">
+                    <img src="./assets/usbc-echokit.jpg" alt="Interfaces" class="thumbnail" data-target="interfaces">
+                    <img src="./assets/control-button-echokit.jpg" alt="Buttons" class="thumbnail" data-target="buttons">
+                    <img src="./assets/overview-echokit-esp32.jpg" alt="Extensions" class="thumbnail" data-target="extensions">
                 </div>
             </div>
         </div>
@@ -811,6 +904,17 @@
         const modalImage = document.getElementById('modalImage');
         const closeBtn = document.getElementsByClassName('close')[0];
 
+        // Image mapping - 使用你的实际图片路径
+        const imageMapping = [
+            './assets/overview-echokit.jpg',
+            './assets/esp32-s3-processor-echokit.jpg', 
+            './assets/audio-components-echokit.jpg',
+            './assets/oled-display-echokit.jpg',
+            './assets/usbc-echokit.jpg',
+            './assets/control-button-echokit.jpg',
+            './assets/overview-echokit-esp32.jpg'
+        ];
+
         const imageDescriptions = {
             'overview': '🔍 Click image to enlarge - Complete hardware overview',
             'processor': '🔍 Click image to enlarge - ESP32-S3 dual-core processor detail',
@@ -820,6 +924,18 @@
             'buttons': '🔍 Click image to enlarge - Three hardware control buttons',
             'extensions': '🔍 Click image to enlarge - Extension board capabilities'
         };
+
+        // 自动设置图片源
+        function setupImages() {
+            imageMapping.forEach((imagePath, index) => {
+                if (mainImages[index]) {
+                    mainImages[index].src = imagePath;
+                }
+                if (thumbnails[index]) {
+                    thumbnails[index].src = imagePath;
+                }
+            });
+        }
 
         function switchImage(target) {
             // Hide all images
@@ -884,6 +1000,9 @@
                 modal.style.display = 'none';
             }
         }
+
+        // 页面加载时设置图片
+        document.addEventListener('DOMContentLoaded', setupImages);
 
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
