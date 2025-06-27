@@ -438,11 +438,32 @@
             color: #ffffff;
         }
 
-        /* Waitlist Section */
-        .waitlist {
-            padding: 100px 0;
+        /* Preorder Section - FIXED */
+        .preorder {
+            padding: 120px 0; /* 增加内边距，特别是底部 */
             background: linear-gradient(135deg, rgba(147, 51, 234, 0.1), rgba(6, 182, 212, 0.1));
             text-align: center;
+        }
+
+        .preorder-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #ffffff, #9333ea);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-align: center; /* 确保标题居中 */
+        }
+
+        .preorder-subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center; /* 确保副标题居中 */
         }
 
         /* Responsive */
@@ -464,6 +485,10 @@
             }
 
             .section-title {
+                font-size: 2.2rem;
+            }
+
+            .preorder-title {
                 font-size: 2.2rem;
             }
 
@@ -754,10 +779,8 @@
 
 <section id="preorder" class="preorder">
     <div class="container">
-        <h2 style="font-size: 3rem; font-weight: 800; margin-bottom: 20px; background: linear-gradient(45deg, #ffffff, #9333ea); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
-            Preorder EchoKit Beta</h2>
-        <p style="font-size: 1.3rem; margin-bottom: 40px; opacity: 0.9; max-width: 600px; margin-left: auto; margin-right: auto;">
-            Order now to be among the first to receive the devkit and join the beta cohort in summer 2025</p>
+        <h2 class="preorder-title">Preorder EchoKit Beta</h2>
+        <p class="preorder-subtitle">Order now to be among the first to receive the devkit and join the beta cohort in summer 2025</p>
         <div class="cta-buttons">
             <a href="https://echokit.dev/spec.html" target="_blank" class="cta-button cta-secondary"
                style="font-size: 1.2rem; padding: 20px 50px; display: inline-block;">Spec →</a>
