@@ -33,7 +33,7 @@
             left: 0;
             right: 0;
             z-index: 1000;
-            background: rgba(10, 10, 31, 0.9);
+            background: rgba(10, 10, 31, 0.6);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid rgba(147, 51, 234, 0.2);
             transition: all 0.3s ease;
@@ -110,6 +110,7 @@
         }
 
         .hero-content {
+            width: 40%;
             position: relative;
             z-index: 2;
         }
@@ -151,6 +152,17 @@
             margin-left: auto;
             margin-right: auto;
         }
+
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.5;
+            z-index: 1;
+        }}
 
         .cta-buttons {
             display: flex;
@@ -488,7 +500,7 @@
     </header>
 
     <section class="hero">
-        <div class="container">
+        <div class="container" style="display: flex; justify-content: space-around; align-items: center;">
             <div class="hero-content">
                 <div class="hero-badge">🦀 Full Stack Rust-Powered AI</div>
                 <h1>Open Source Voice Agent Platform</h1>
@@ -499,6 +511,7 @@
                     <a href="https://github.com/second-state/esp_assistant" class="cta-button cta-secondary">Get Started</a>
                 </div>
             </div>
+            <video src="/media/hero.mp4" autoplay muted loop class="hero-video"></video>
         </div>
     </section>
 
@@ -693,10 +706,10 @@
         window.addEventListener('scroll', () => {
             const header = document.querySelector('header');
             if (window.scrollY > 100) {
-                header.style.background = 'rgba(10, 10, 31, 0.95)';
+                header.style.background = 'rgba(10, 10, 31, 0.15)';
                 header.style.backdropFilter = 'blur(20px)';
             } else {
-                header.style.background = 'rgba(10, 10, 31, 0.9)';
+                header.style.background = 'rgba(10, 10, 31, 0.6)';
                 header.style.backdropFilter = 'blur(20px)';
             }
         });
