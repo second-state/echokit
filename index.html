@@ -20,7 +20,7 @@
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 80%;
             margin: 0 auto;
             padding: 0 20px;
         }
@@ -104,15 +104,17 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: 
-                radial-gradient(circle at 20% 30%, rgba(147, 51, 234, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 80% 70%, rgba(6, 182, 212, 0.15) 0%, transparent 50%);
+            background: radial-gradient(circle at 20% 30%, rgba(147, 51, 234, 0.15) 0%, transparent 50%),
+            radial-gradient(circle at 80% 70%, rgba(6, 182, 212, 0.15) 0%, transparent 50%);
         }
 
         .hero-content {
-            width: 40%;
             position: relative;
             z-index: 2;
+        }
+
+        .hero-content p {
+            display: none;
         }
 
         .hero-badge {
@@ -129,7 +131,7 @@
         .hero h1 {
             font-size: 4.5rem;
             font-weight: 900;
-            margin-bottom: 20px;
+            padding-bottom: 40px;
             background: linear-gradient(45deg, #ffffff, #9333ea, #06b6d4);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -138,6 +140,7 @@
         }
 
         .hero-subtitle {
+            display: none;
             font-size: 1.5rem;
             font-weight: 600;
             margin-bottom: 15px;
@@ -160,9 +163,9 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            opacity: 0.5;
+            opacity: 0.7;
             z-index: 1;
-        }}
+        }
 
         .cta-buttons {
             display: flex;
@@ -452,6 +455,14 @@
                 font-size: 2.8rem;
             }
 
+            .hero-content p {
+                display: block;
+            }
+
+            .hero-subtitle {
+                display: block;
+            }
+
             .section-title {
                 font-size: 2.2rem;
             }
@@ -478,263 +489,355 @@
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-EMHQHV54LP"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    window.dataLayer = window.dataLayer || [];
 
-  gtag('config', 'G-EMHQHV54LP');
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-EMHQHV54LP');
 </script>
 <body>
-    <header>
-        <nav class="container">
-            <div class="logo">EchoKit</div>
-            <div class="nav-links">
-                <a href="#features">Features</a>
-                <a href="#benefits">Benefits</a>
-                <a href="#examples">Examples</a>
-                <a href="#demo">See It In Action</a>
-                <a href="#getting-started">Get Started</a>
-                <a href="#waitlist">Waitlist</a>
-            </div>
-        </nav>
-    </header>
-
-    <section class="hero">
-        <div class="container" style="display: flex; justify-content: space-around; align-items: center;">
-            <div class="hero-content">
-                <div class="hero-badge">🦀 Full Stack Rust-Powered AI</div>
-                <h1>Open Source Voice Agent Platform</h1>
-                <div class="hero-subtitle">Build and Host Your Own Agent</div>
-                <p>The only full-stack voice agent solution you'll ever need. From ESP32 hardware to AI inference servers - run everything privately on your laptop with zero cloud dependencies. Built with Rust for maximum performance and safety.</p>
-                <div class="cta-buttons">
-                    <a href="https://buy.stripe.com/eVqcN66z96tlcJo2TH63K00" target="_blank" class="cta-button">🎁 Early access the Dev Kit</a>
-                    <a href="https://github.com/second-state/esp_assistant" class="cta-button cta-secondary">Get Started</a>
-                </div>
-            </div>
-            <video src="/media/hero.mp4" autoplay muted loop class="hero-video"></video>
+<header>
+    <nav class="container">
+        <div class="logo">EchoKit</div>
+        <div class="nav-links">
+            <a href="#features">Features</a>
+            <a href="#benefits">Benefits</a>
+            <a href="#examples">Examples</a>
+            <a href="#demo">See It In Action</a>
+            <a href="#getting-started">Get Started</a>
+            <a href="#waitlist">Waitlist</a>
         </div>
-    </section>
+    </nav>
+</header>
 
-    <section id="features" class="section features">
-        <div class="container">
-            <h2 class="section-title">Complete Full-Stack Solution</h2>
-            <p class="section-subtitle">Hardware, firmware, servers, and AI inference - everything you need in one open source package</p>
-            
-            <div class="features-grid">
-                <div class="feature-card">
-                    <h3><span class="benefit-icon">🏗️</span>Full Stack Open Source</h3>
-                    <p>Complete solution from ESP32 hardware design to AI inference server. Run the entire voice agent stack on your private laptop - no cloud required, completely free.</p>
-                </div>
-
-                <div class="feature-card">
-                    <h3><span class="benefit-icon">🌐</span>Support All AI Models</h3>
-                    <p>Works with all major LLMs, voice-to-text, and TTS models through the Gaia network. Features streaming TTS for real-time voice synthesis. Choose your preferred AI models or switch between them seamlessly.</p>
-                </div>
-
-                <div class="feature-card">
-                    <h3><span class="benefit-icon">🎭</span>Voice Cloning</h3>
-                    <p>Create personalized voice experiences with advanced voice cloning technology. Make your AI assistant sound exactly how you want it to.</p>
-                </div>
-
-                <div class="feature-card">
-                    <h3><span class="benefit-icon">📚</span>Custom Knowledge Base</h3>
-                    <p>Ground your LLMs with personal and customized knowledge bases. Feed your AI assistant domain-specific information for more accurate responses.</p>
-                </div>
-
-                <div class="feature-card">
-                    <h3><span class="benefit-icon">🔧</span>MCP Actions & Tools</h3>
-                    <p>Extensible action system with MCP-based tool calls and agentic search capabilities. Enhance your AI's abilities with custom tools and integrations.</p>
-                </div>
-
-                <div class="feature-card">
-                    <h3><span class="benefit-icon">🦀</span>Rust Performance</h3>
-                    <p>Built entirely in Rust for maximum safety, performance, and reliability. Memory-safe code with zero-cost abstractions and blazing-fast execution.</p>
-                </div>
+<section class="hero">
+    <div class="container" style="display: flex; justify-content: space-around; align-items: center;">
+        <div class="hero-content">
+            <div class="hero-badge">🦀 Full Stack Rust-Powered AI</div>
+            <h1>Open Source Voice Agent Platform</h1>
+            <div class="hero-subtitle">Build and Host Your Own Agent</div>
+            <p>The only full-stack voice agent solution you'll ever need. From ESP32 hardware to AI inference servers -
+                run everything privately on your laptop with zero cloud dependencies. Built with Rust for maximum
+                performance and safety.</p>
+            <div class="cta-buttons">
+                <a href="https://buy.stripe.com/eVqcN66z96tlcJo2TH63K00" target="_blank" class="cta-button">🎁 Early
+                    access the Dev Kit</a>
+                <a href="https://github.com/second-state/esp_assistant" class="cta-button cta-secondary">Get Started</a>
             </div>
         </div>
-    </section>
+        <svg id="unmuteIcon" fill="#000000" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
+             style="position: fixed; top: 100px; right: 30px;width: 60px; z-index: 2000; cursor: pointer; background: rgba(255,255,255,0.7); border-radius: 50%; padding: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.15);">
+            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+            <g id="SVGRepo_iconCarrier">
+                <path clip-rule="evenodd"
+                      d="m2 7.5v3c0 .8.6 1.5 1.4 1.5h2.3l3.2 2.8c.1.1.3.2.4.2s.2 0 .3-.1c.2-.1.4-.4.4-.7v-.9l-7.2-7.2c-.5.2-.8.8-.8 1.4zm8 2v-5.8c0-.3-.1-.5-.4-.7-.1 0-.2 0-.3 0s-.3 0-.4.2l-2.8 2.5-4.1-4.1-1 1 3.4 3.4 5.6 5.6 3.6 3.6 1-1z"
+                      fill-rule="evenodd"></path>
+            </g>
+        </svg>
+        <video src="/media/hero.mp4" autoplay loop class="hero-video" id="heroVideo"></video>
+    </div>
+</section>
 
-    <section id="benefits" class="section benefits">
-        <div class="container">
-            <h2 class="section-title">Who Benefits from EchoKit?</h2>
-            <p class="section-subtitle">Whether you're building hardware or developing AI agents, EchoKit provides the tools you need</p>
-            
-            <div class="benefits-grid">
-                <div class="benefit-card">
-                    <h3><span class="benefit-icon">🤖</span>Agent Developers</h3>
-                    <p>Build sophisticated AI agents with complete control over every component of the stack.</p>
-                    <ul class="benefit-list">
-                        <li>Use your own AI models on the backend (VAD, ASR, LLM, VLM, TTS, end-to-end)</li>
-                        <li>Choose any inference providers (OpenAI, Gemini, Groq, Gaia) and use finetuned/personalized models with cloned voice TTS and custom LLM responses</li>
-                        <li>Custom prompts for each model</li>
-                        <li>MCP server integration for agentic search and actions</li>
-                    </ul>
-                </div>
+<section id="features" class="section features">
+    <div class="container">
+        <h2 class="section-title">Complete Full-Stack Solution</h2>
+        <p class="section-subtitle">Hardware, firmware, servers, and AI inference - everything you need in one open
+            source package</p>
 
-                <div class="benefit-card">
-                    <h3><span class="benefit-icon">🔧</span>Device Makers</h3>
-                    <p>Freely adopt our firmware for your own hardware projects and enhance them with powerful addons.</p>
-                    <ul class="benefit-list">
-                        <li>Camera integration for visual AI</li>
-                        <li>Environmental sensors support</li>
-                        <li>RFID and NFC capabilities</li>
-                        <li>Advanced audio/video processors</li>
-                        <li>Complete hardware customization freedom</li>
-                    </ul>
-                </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <h3><span class="benefit-icon">🏗️</span>Full Stack Open Source</h3>
+                <p>Complete solution from ESP32 hardware design to AI inference server. Run the entire voice agent stack
+                    on your private laptop - no cloud required, completely free.</p>
+            </div>
+
+            <div class="feature-card">
+                <h3><span class="benefit-icon">🌐</span>Support All AI Models</h3>
+                <p>Works with all major LLMs, voice-to-text, and TTS models through the Gaia network. Features streaming
+                    TTS for real-time voice synthesis. Choose your preferred AI models or switch between them
+                    seamlessly.</p>
+            </div>
+
+            <div class="feature-card">
+                <h3><span class="benefit-icon">🎭</span>Voice Cloning</h3>
+                <p>Create personalized voice experiences with advanced voice cloning technology. Make your AI assistant
+                    sound exactly how you want it to.</p>
+            </div>
+
+            <div class="feature-card">
+                <h3><span class="benefit-icon">📚</span>Custom Knowledge Base</h3>
+                <p>Ground your LLMs with personal and customized knowledge bases. Feed your AI assistant domain-specific
+                    information for more accurate responses.</p>
+            </div>
+
+            <div class="feature-card">
+                <h3><span class="benefit-icon">🔧</span>MCP Actions & Tools</h3>
+                <p>Extensible action system with MCP-based tool calls and agentic search capabilities. Enhance your AI's
+                    abilities with custom tools and integrations.</p>
+            </div>
+
+            <div class="feature-card">
+                <h3><span class="benefit-icon">🦀</span>Rust Performance</h3>
+                <p>Built entirely in Rust for maximum safety, performance, and reliability. Memory-safe code with
+                    zero-cost abstractions and blazing-fast execution.</p>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section id="examples" class="section examples">
-        <div class="container">
-            <h2 class="section-title">Examples & Video Demos</h2>
-            <p class="section-subtitle">See EchoKit in action with these real-world applications</p>
-            
-            <div class="examples-grid">
-                <div class="example-card">
-                    <span class="example-icon">📚</span>
-                    <h3>Knowledge QA</h3>
-                    <p>Customized MCP for agentic knowledge search. Ask complex questions and get intelligent, context-aware answers from your personal knowledge base.</p>
-                    <a href="#" class="cta-button" style="margin-top: 15px; padding: 10px 20px; font-size: 0.9rem;">Watch Demo →</a>
-                </div>
+<section id="benefits" class="section benefits">
+    <div class="container">
+        <h2 class="section-title">Who Benefits from EchoKit?</h2>
+        <p class="section-subtitle">Whether you're building hardware or developing AI agents, EchoKit provides the tools
+            you need</p>
 
-                <div class="example-card">
-                    <span class="example-icon">🌍</span>
-                    <h3>Translation</h3>
-                    <p>Fast, multilingual ASR, LLM and TTS with custom prompts. Real-time translation between multiple languages with natural voice output.</p>
-                    <a href="#" class="cta-button" style="margin-top: 15px; padding: 10px 20px; font-size: 0.9rem;">Watch Demo →</a>
-                </div>
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <h3><span class="benefit-icon">🤖</span>Agent Developers</h3>
+                <p>Build sophisticated AI agents with complete control over every component of the stack.</p>
+                <ul class="benefit-list">
+                    <li>Use your own AI models on the backend (VAD, ASR, LLM, VLM, TTS, end-to-end)</li>
+                    <li>Choose any inference providers (OpenAI, Gemini, Groq, Gaia) and use finetuned/personalized
+                        models with cloned voice TTS and custom LLM responses
+                    </li>
+                    <li>Custom prompts for each model</li>
+                    <li>MCP server integration for agentic search and actions</li>
+                </ul>
+            </div>
 
-                <div class="example-card">
-                    <span class="example-icon">👨‍🏫</span>
-                    <h3>Teacher</h3>
-                    <p>Customized MCP for agentic knowledge search with LLM prompts for teaching style. Personalized educational assistant that adapts to learning preferences.</p>
-                    <a href="#" class="cta-button" style="margin-top: 15px; padding: 10px 20px; font-size: 0.9rem;">Watch Demo →</a>
-                </div>
-
-                <div class="example-card">
-                    <span class="example-icon">👤</span>
-                    <h3>Digital Twin</h3>
-                    <p>Cloned voice with LLM prompts for personality style. Create a digital version of yourself or anyone else with their unique voice and mannerisms.</p>
-                    <a href="#" class="cta-button" style="margin-top: 15px; padding: 10px 20px; font-size: 0.9rem;">Watch Demo →</a>
-                </div>
+            <div class="benefit-card">
+                <h3><span class="benefit-icon">🔧</span>Device Makers</h3>
+                <p>Freely adopt our firmware for your own hardware projects and enhance them with powerful addons.</p>
+                <ul class="benefit-list">
+                    <li>Camera integration for visual AI</li>
+                    <li>Environmental sensors support</li>
+                    <li>RFID and NFC capabilities</li>
+                    <li>Advanced audio/video processors</li>
+                    <li>Complete hardware customization freedom</li>
+                </ul>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section id="demo" class="section live-demo">
-        <div class="container">
-            <h2 class="section-title">Behind the scene</h2>
-            <p class="section-subtitle">Open source technologies behind the EchoKit</p>
-            
-            <div class="demo-grid">
-                <div class="demo-item">
-                    <h3>🎵 Streaming TTS</h3>
-                    <p>Real-time text-to-speech streaming with ultra-low latency. Supports voice clones. Written in Rust.</p>
-                    <a href="https://github.com/second-state/gsv_tts" class="cta-button" style="margin-top: 15px; padding: 10px 20px; font-size: 0.9rem;">Source code</a>
-                    <a href="https://0xf529f7fb014a64021d41c6b1c9a17767bec295d6.gaia.domains/" class="cta-button" style="margin-top: 15px; padding: 10px 20px; font-size: 0.9rem;">Try it live →</a>
-                </div>
+<section id="examples" class="section examples">
+    <div class="container">
+        <h2 class="section-title">Examples & Video Demos</h2>
+        <p class="section-subtitle">See EchoKit in action with these real-world applications</p>
 
-                <div class="demo-item">
-                    <h3>🧰 Device hardware</h3>
-                    <p>ESP32-based devkit with all the necessary hardware components for a voice agent!</p>
-                    <a href="https://buy.stripe.com/eVqcN66z96tlcJo2TH63K00" class="cta-button" style="margin-top: 15px; padding: 10px 20px; font-size: 0.9rem;">Buy now</a>
-                    <a href="https://youtu.be/3syJ3goixuc" class="cta-button" style="margin-top: 15px; padding: 10px 20px; font-size: 0.9rem;">Check it out →</a>
-                </div>
+        <div class="examples-grid">
+            <div class="example-card">
+                <span class="example-icon">📚</span>
+                <h3>Knowledge QA</h3>
+                <p>Customized MCP for agentic knowledge search. Ask complex questions and get intelligent, context-aware
+                    answers from your personal knowledge base.</p>
+                <a href="#" class="cta-button" style="margin-top: 15px; padding: 10px 20px; font-size: 0.9rem;">Watch
+                    Demo →</a>
+            </div>
 
-                <div class="demo-item">
-                    <h3>⛪ Custom LLM</h3>
-                    <p>LLM grounded by proprietary knowledge and values. This example is an LLM with Bible knowledge and Christian values.</p>
-                    <a href="https://pastorinsights.ai/" class="cta-button" style="margin-top: 15px; padding: 10px 20px; font-size: 0.9rem;">Chat Now →</a>
-                </div>
+            <div class="example-card">
+                <span class="example-icon">🌍</span>
+                <h3>Translation</h3>
+                <p>Fast, multilingual ASR, LLM and TTS with custom prompts. Real-time translation between multiple
+                    languages with natural voice output.</p>
+                <a href="#" class="cta-button" style="margin-top: 15px; padding: 10px 20px; font-size: 0.9rem;">Watch
+                    Demo →</a>
+            </div>
+
+            <div class="example-card">
+                <span class="example-icon">👨‍🏫</span>
+                <h3>Teacher</h3>
+                <p>Customized MCP for agentic knowledge search with LLM prompts for teaching style. Personalized
+                    educational assistant that adapts to learning preferences.</p>
+                <a href="#" class="cta-button" style="margin-top: 15px; padding: 10px 20px; font-size: 0.9rem;">Watch
+                    Demo →</a>
+            </div>
+
+            <div class="example-card">
+                <span class="example-icon">👤</span>
+                <h3>Digital Twin</h3>
+                <p>Cloned voice with LLM prompts for personality style. Create a digital version of yourself or anyone
+                    else with their unique voice and mannerisms.</p>
+                <a href="#" class="cta-button" style="margin-top: 15px; padding: 10px 20px; font-size: 0.9rem;">Watch
+                    Demo →</a>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section id="getting-started" class="section getting-started">
-        <div class="container">
-            <h2 class="section-title">Getting Started</h2>
-            <p class="section-subtitle">Jump into EchoKit development with our comprehensive guides</p>
-            
-            <div class="guide-cards">
-                <div class="guide-card">
-                    <h3>🚀 Quick Start Guide</h3>
-                    <p>Get your EchoKit up and running in minutes. Complete setup instructions from hardware assembly to first voice interaction.</p>
-                    <a href="https://github.com/second-state/esp_assistant" target="_blank" class="guide-link">View Quick Start Guide →</a>
-                </div>
+<section id="demo" class="section live-demo">
+    <div class="container">
+        <h2 class="section-title">Behind the scene</h2>
+        <p class="section-subtitle">Open source technologies behind the EchoKit</p>
 
-                <div class="guide-card">
-                    <h3>🧠 Knowledge Agent Tutorial</h3>
-                    <p>Learn how to create a knowledge agent to replace the default LLM. Build custom AI assistants with specialized knowledge domains.</p>
-                    <a href="https://hackmd.io/@wasmedge/ry2_a9-Elx" target="_blank" class="guide-link">Create Knowledge Agent →</a>
-                </div>
+        <div class="demo-grid">
+            <div class="demo-item">
+                <h3>🎵 Streaming TTS</h3>
+                <p>Real-time text-to-speech streaming with ultra-low latency. Supports voice clones. Written in
+                    Rust.</p>
+                <a href="https://github.com/second-state/gsv_tts" class="cta-button"
+                   style="margin-top: 15px; padding: 10px 20px; font-size: 0.9rem;">Source code</a>
+                <a href="https://0xf529f7fb014a64021d41c6b1c9a17767bec295d6.gaia.domains/" class="cta-button"
+                   style="margin-top: 15px; padding: 10px 20px; font-size: 0.9rem;">Try it live →</a>
+            </div>
+
+            <div class="demo-item">
+                <h3>🧰 Device hardware</h3>
+                <p>ESP32-based devkit with all the necessary hardware components for a voice agent!</p>
+                <a href="https://buy.stripe.com/eVqcN66z96tlcJo2TH63K00" class="cta-button"
+                   style="margin-top: 15px; padding: 10px 20px; font-size: 0.9rem;">Buy now</a>
+                <a href="https://youtu.be/3syJ3goixuc" class="cta-button"
+                   style="margin-top: 15px; padding: 10px 20px; font-size: 0.9rem;">Check it out →</a>
+            </div>
+
+            <div class="demo-item">
+                <h3>⛪ Custom LLM</h3>
+                <p>LLM grounded by proprietary knowledge and values. This example is an LLM with Bible knowledge and
+                    Christian values.</p>
+                <a href="https://pastorinsights.ai/" class="cta-button"
+                   style="margin-top: 15px; padding: 10px 20px; font-size: 0.9rem;">Chat Now →</a>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section id="waitlist" class="waitlist">
-        <div class="container">
-            <h2 style="font-size: 3rem; font-weight: 800; margin-bottom: 20px; background: linear-gradient(45deg, #ffffff, #9333ea); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Join the EchoKit Waitlist</h2>
-            <p style="font-size: 1.3rem; margin-bottom: 40px; opacity: 0.9; max-width: 600px; margin-left: auto; margin-right: auto;">Be the first to get access to EchoKit and receive exclusive updates on our open source voice agent platform development.</p>
-            <a href="https://forms.gle/EMDP2WRa4dX3QRW88" target="_blank" class="cta-button" style="font-size: 1.2rem; padding: 20px 50px; display: inline-block;">Join Waitlist →</a>
+<section id="getting-started" class="section getting-started">
+    <div class="container">
+        <h2 class="section-title">Getting Started</h2>
+        <p class="section-subtitle">Jump into EchoKit development with our comprehensive guides</p>
+
+        <div class="guide-cards">
+            <div class="guide-card">
+                <h3>🚀 Quick Start Guide</h3>
+                <p>Get your EchoKit up and running in minutes. Complete setup instructions from hardware assembly to
+                    first voice interaction.</p>
+                <a href="https://github.com/second-state/esp_assistant" target="_blank" class="guide-link">View Quick
+                    Start Guide →</a>
+            </div>
+
+            <div class="guide-card">
+                <h3>🧠 Knowledge Agent Tutorial</h3>
+                <p>Learn how to create a knowledge agent to replace the default LLM. Build custom AI assistants with
+                    specialized knowledge domains.</p>
+                <a href="https://hackmd.io/@wasmedge/ry2_a9-Elx" target="_blank" class="guide-link">Create Knowledge
+                    Agent →</a>
+            </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <footer style="padding: 40px 0; background: rgba(0, 0, 0, 0.3); border-top: 1px solid rgba(147, 51, 234, 0.2); text-align: center;">
-        <div class="container">
-            <p style="opacity: 0.8;">&copy; 2025 EchoKit. Open source under GPL3 License.</p>
-        </div>
-    </footer>
+<section id="waitlist" class="waitlist">
+    <div class="container">
+        <h2 style="font-size: 3rem; font-weight: 800; margin-bottom: 20px; background: linear-gradient(45deg, #ffffff, #9333ea); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+            Join the EchoKit Waitlist</h2>
+        <p style="font-size: 1.3rem; margin-bottom: 40px; opacity: 0.9; max-width: 600px; margin-left: auto; margin-right: auto;">
+            Be the first to get access to EchoKit and receive exclusive updates on our open source voice agent platform
+            development.</p>
+        <a href="https://forms.gle/EMDP2WRa4dX3QRW88" target="_blank" class="cta-button"
+           style="font-size: 1.2rem; padding: 20px 50px; display: inline-block;">Join Waitlist →</a>
+    </div>
+</section>
 
-    <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
+<footer style="padding: 40px 0; background: rgba(0, 0, 0, 0.3); border-top: 1px solid rgba(147, 51, 234, 0.2); text-align: center;">
+    <div class="container">
+        <p style="opacity: 0.8;">&copy; 2025 EchoKit. Open source under GPL3 License.</p>
+    </div>
+</footer>
 
-        // Header scroll effect
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
-            if (window.scrollY > 100) {
-                header.style.background = 'rgba(10, 10, 31, 0.15)';
-                header.style.backdropFilter = 'blur(20px)';
-            } else {
-                header.style.background = 'rgba(10, 10, 31, 0.6)';
-                header.style.backdropFilter = 'blur(20px)';
+<script>
+    document.addEventListener('click', unlockAudio);
+    document.addEventListener('touchstart', unlockAudio);
+    document.addEventListener('keydown', unlockAudio);
+    const video = document.getElementById('heroVideo');
+
+    const unmuteIcon = document.getElementById('unmuteIcon');
+    if (unmuteIcon) {
+        unmuteIcon.addEventListener('click', unlockAudio);
+    }
+    function hideUnmuteIcon() {
+        if (unmuteIcon) unmuteIcon.style.display = 'none';
+    }
+
+    function unlockAudio() {
+        video.muted = false;
+        hideUnmuteIcon();
+        video.volume = 0;
+        let volume = 0;
+        const targetVolume = 1; // 最大音量
+        const step = 0.1;       // 每次增加的音量
+        const interval = 80;   // 每100ms增加一次
+
+        const fadeIn = setInterval(() => {
+            volume += step;
+            if (volume >= targetVolume) {
+                volume = targetVolume;
+                clearInterval(fadeIn);
+            }
+            video.volume = volume;
+        }, interval);
+        document.removeEventListener('click', unlockAudio);
+        document.removeEventListener('touchstart', unlockAudio);
+        document.removeEventListener('keydown', unlockAudio);
+    }
+
+    video.play().catch(err => {
+        if (err.name === 'NotAllowedError') {
+            video.muted = true;
+        }
+    });
+
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
             }
         });
+    });
 
-        // Animate elements on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+    // Header scroll effect
+    window.addEventListener('scroll', () => {
+        const header = document.querySelector('header');
+        if (window.scrollY > 100) {
+            header.style.background = 'rgba(10, 10, 31, 0.15)';
+            header.style.backdropFilter = 'blur(20px)';
+        } else {
+            header.style.background = 'rgba(10, 10, 31, 0.6)';
+            header.style.backdropFilter = 'blur(20px)';
+        }
+    });
 
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
+    // Animate elements on scroll
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
 
-        document.querySelectorAll('.feature-card, .benefit-card, .example-card, .demo-item, .guide-card').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(20px)';
-            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(el);
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
         });
-    </script>
+    }, observerOptions);
+
+    document.querySelectorAll('.feature-card, .benefit-card, .example-card, .demo-item, .guide-card').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(el);
+    });
+</script>
 </body>
 </html>
