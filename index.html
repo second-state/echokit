@@ -467,6 +467,15 @@
                 font-size: 2.2rem;
             }
 
+            .hero-video {
+                margin-top: 20px;
+                height: auto;
+                border-radius: 20px;
+                box-shadow: 0 10px 30px rgba(147, 51, 234, 0.2);
+                position: relative;
+                z-index: 2;
+            }
+
             .benefits-grid, .guide-cards {
                 grid-template-columns: 1fr;
             }
@@ -515,7 +524,7 @@
 </header>
 
 <section class="hero">
-    <div class="container" style="display: flex; justify-content: space-around; align-items: center;">
+    <div class="container">
         <div class="hero-content">
             <div class="hero-badge">🦀 Full Stack Rust-Powered AI</div>
             <h1>Open Source Voice Agent Platform</h1>
@@ -751,7 +760,6 @@
 
 <script>
     document.addEventListener('click', unlockAudio);
-    document.addEventListener('touchstart', unlockAudio);
     document.addEventListener('keydown', unlockAudio);
     const video = document.getElementById('heroVideo');
 
@@ -781,11 +789,12 @@
             video.volume = volume;
         }, interval);
         document.removeEventListener('click', unlockAudio);
-        document.removeEventListener('touchstart', unlockAudio);
         document.removeEventListener('keydown', unlockAudio);
     }
 
-    video.play().catch(err => {
+    video.play().then(()=>{
+        hideUnmuteIcon();
+    }).catch(err => {
         if (err.name === 'NotAllowedError') {
             video.muted = true;
         }
