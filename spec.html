@@ -27,7 +27,7 @@
 
         /* Header */
         header {
-            padding: 20px 0;
+            padding: 15px 0;
             position: fixed;
             top: 0;
             left: 0;
@@ -51,11 +51,18 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
         }
 
         .nav-links {
             display: flex;
-            gap: 30px;
+            gap: 20px;
+            align-items: center;
         }
 
         .nav-links a {
@@ -65,6 +72,7 @@
             transition: all 0.3s ease;
             display: flex;
             align-items: center;
+            font-size: 0.9rem;
         }
 
         .nav-links a:hover {
@@ -78,6 +86,58 @@
             border-radius: 20px;
             border: 1px solid rgba(147, 51, 234, 0.3);
             line-height: 1.2;
+        }
+
+        /* Mobile menu button */
+        .mobile-menu-btn {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .mobile-menu-btn span {
+            width: 25px;
+            height: 3px;
+            background: #ffffff;
+            margin: 3px 0;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+
+        .mobile-nav {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: rgba(10, 10, 31, 0.98);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(147, 51, 234, 0.2);
+            padding: 20px;
+        }
+
+        .mobile-nav.active {
+            display: block;
+        }
+
+        .mobile-nav a {
+            display: block;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(147, 51, 234, 0.1);
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-nav a:hover {
+            color: #9333ea;
+            transform: translateX(10px);
+        }
+
+        .mobile-nav a:last-child {
+            border-bottom: none;
         }
 
         /* Hero Section */
@@ -427,168 +487,261 @@
             transform: translateY(-2px);
         }
 
-        /* Responsive */
+        /* Mobile Responsive Styles */
         @media (max-width: 768px) {
+            .container {
+                padding: 0 15px;
+            }
+
+            /* Mobile header */
+            header {
+                padding: 12px 0;
+            }
+
             .nav-links {
                 display: none;
             }
 
+            .mobile-menu-btn {
+                display: flex;
+            }
+
+            .logo {
+                font-size: 22px;
+            }
+
+            /* Mobile hero */
+            .hero {
+                padding: 100px 0 60px;
+            }
+
             .hero h1 {
-                font-size: 2.5rem;
+                font-size: 2.2rem;
                 line-height: 1.2;
+                margin-bottom: 15px;
             }
 
             .hero-subtitle {
-                font-size: 1.1rem;
+                font-size: 1rem;
                 margin-bottom: 15px;
                 padding: 0 10px;
             }
 
+            /* Mobile section titles */
             .section-title {
-                font-size: 2.2rem;
+                font-size: 2rem;
                 line-height: 1.2;
+                margin-bottom: 15px;
             }
 
             .section-subtitle {
-                font-size: 1rem;
+                font-size: 0.95rem;
                 padding: 0 10px;
+                margin-bottom: 40px;
+            }
+
+            /* Mobile image gallery */
+            .hardware-showcase {
+                padding: 40px 0;
             }
 
             .image-tabs {
-                gap: 6px;
+                gap: 8px;
                 padding: 0 10px;
+                margin-bottom: 25px;
             }
 
             .tab-button {
-                padding: 6px 12px;
+                padding: 8px 12px;
                 font-size: 0.75rem;
                 min-width: auto;
                 flex: 1;
                 text-align: center;
+                white-space: nowrap;
             }
 
             .main-image-container {
                 margin: 0 10px 20px;
                 padding: 15px;
+                border-radius: 15px;
+            }
+
+            .main-hardware-image {
+                border-radius: 10px;
             }
 
             .image-description {
-                font-size: 0.9rem;
+                font-size: 0.85rem;
                 margin-top: 15px;
+                padding: 0 5px;
             }
 
             .thumbnail-gallery {
                 gap: 8px;
                 padding: 0 10px;
+                justify-content: center;
             }
 
             .thumbnail {
-                width: 45px;
-                height: 35px;
+                width: 50px;
+                height: 38px;
                 border-radius: 6px;
             }
 
-            /* 规格表移动端优化 */
+            /* Mobile specifications */
+            .specs-section {
+                padding: 60px 0;
+            }
+
             .nutrition-style-specs {
                 margin: 40px 10px 0;
                 max-width: none;
+                border-width: 2px;
+            }
+
+            .specs-header {
+                font-size: 1.1rem;
+                padding: 12px 15px;
+                letter-spacing: 0.5px;
             }
 
             .specs-content {
                 padding: 15px;
             }
 
+            .spec-section {
+                padding: 12px 0;
+                border-bottom-width: 6px;
+            }
+
             .spec-title {
-                font-size: 1rem;
+                font-size: 0.95rem;
                 margin-bottom: 10px;
             }
 
             .spec-main-item {
-                font-size: 1.1rem;
+                font-size: 1rem;
                 margin: 6px 0;
                 flex-wrap: wrap;
                 gap: 5px;
+                align-items: flex-start;
+            }
+
+            .spec-main-item span:last-child {
+                margin-left: auto;
             }
 
             .spec-sub-item {
-                font-size: 0.85rem;
+                font-size: 0.8rem;
                 margin: 4px 0;
                 padding-left: 15px;
+                flex-wrap: wrap;
+                gap: 3px;
+            }
+
+            .spec-sub-item span:last-child {
+                margin-left: auto;
             }
 
             .spec-highlight {
-                font-size: 0.9rem;
+                font-size: 0.85rem;
                 padding: 1px 4px;
             }
 
             .spec-note {
-                font-size: 0.75rem;
+                font-size: 0.7rem;
                 margin-top: 15px;
                 line-height: 1.4;
+                padding: 0 5px;
             }
 
-            /* CTA按钮移动端优化 */
+            /* Mobile CTA */
+            .purchase-cta {
+                padding: 60px 0;
+            }
+
+            .purchase-cta h2 {
+                font-size: 1.8rem !important;
+                margin-bottom: 15px !important;
+                line-height: 1.2;
+            }
+
+            .purchase-cta p {
+                font-size: 1rem !important;
+                margin-bottom: 30px !important;
+                padding: 0 10px;
+            }
+
             .cta-button {
                 display: block;
-                margin: 15px auto;
+                margin: 12px auto;
                 width: calc(100% - 40px);
-                max-width: 300px;
+                max-width: 320px;
                 padding: 15px 20px;
-                font-size: 1rem;
+                font-size: 0.95rem;
             }
 
-            /* Footer移动端优化 */
+            /* Mobile modal */
+            .modal-content {
+                max-width: 95%;
+                max-height: 90%;
+                margin: 10px;
+            }
+
+            .close {
+                font-size: 30px;
+                top: 10px;
+                right: 15px;
+            }
+
+            /* Mobile footer */
+            footer {
+                padding: 30px 0;
+            }
+
+            footer p {
+                font-size: 0.9rem;
+                padding: 0 10px;
+            }
+
             .footer-links {
                 flex-direction: column;
-                gap: 15px;
+                gap: 12px;
                 margin-top: 15px;
             }
 
             .footer-links a {
                 font-size: 0.9rem;
             }
-
-            /* 模态框移动端优化 */
-            .modal-content {
-                max-width: 90%;
-                max-height: 90%;
-                margin: 20px;
-            }
-
-            .close {
-                font-size: 30px;
-                top: 10px;
-                right: 20px;
-            }
         }
 
-        /* 小屏幕进一步优化 */
+        /* Extra small screens */
         @media (max-width: 480px) {
             .container {
-                padding: 0 15px;
+                padding: 0 12px;
             }
 
             .hero h1 {
-                font-size: 2rem;
-            }
-
-            .hero-subtitle {
-                font-size: 1rem;
-            }
-
-            .section-title {
                 font-size: 1.8rem;
             }
 
+            .hero-subtitle {
+                font-size: 0.9rem;
+            }
+
+            .section-title {
+                font-size: 1.6rem;
+            }
+
             .image-tabs {
-                flex-wrap: wrap;
-                gap: 4px;
+                gap: 5px;
+                padding: 0 5px;
             }
 
             .tab-button {
-                padding: 5px 8px;
+                padding: 6px 8px;
                 font-size: 0.7rem;
-                min-width: 80px;
+                min-width: 70px;
             }
 
             .main-image-container {
@@ -597,8 +750,8 @@
             }
 
             .thumbnail {
-                width: 38px;
-                height: 28px;
+                width: 42px;
+                height: 32px;
             }
 
             .thumbnail-gallery {
@@ -610,22 +763,27 @@
             }
 
             .specs-header {
-                font-size: 1.2rem;
-                padding: 12px 15px;
+                font-size: 1rem;
+                padding: 10px 12px;
             }
 
             .spec-main-item {
-                font-size: 1rem;
+                font-size: 0.9rem;
             }
 
             .spec-sub-item {
-                font-size: 0.8rem;
+                font-size: 0.75rem;
                 padding-left: 10px;
             }
 
             .cta-button {
                 width: calc(100% - 20px);
                 margin: 10px auto;
+                font-size: 0.9rem;
+            }
+
+            .purchase-cta h2 {
+                font-size: 1.5rem !important;
             }
         }
 
@@ -664,12 +822,23 @@
 <body>
     <header>
         <nav class="container">
-            <div class="logo">EchoKit</div>
+            <div class="logo" onclick="window.open('https://echokit.dev', '_blank')">EchoKit</div>
             <div class="nav-links">
                 <a href="#specifications">Specifications</a>
-                <a href="#" class="back-link">← Back to Home</a>
+                <a href="https://echokit.dev" class="back-link">← Back to Home</a>
+            </div>
+            <div class="mobile-menu-btn">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
         </nav>
+        <div class="mobile-nav">
+            <a href="#specifications">📋 Specifications</a>
+            <a href="https://github.com/second-state/esp_assistant" target="_blank">📖 Documentation</a>
+            <a href="https://buy.stripe.com/eVqcN66z96tlcJo2TH63K00" target="_blank">🚀 Preorder EchoKit</a>
+            <a href="https://echokit.dev">🏠 Back to Home</a>
+        </div>
     </header>
 
     <section class="hero">
@@ -693,7 +862,7 @@
                 </div>
 
                 <div class="main-image-container">
-                    <!-- 使用你的实际硬件图片 -->
+                    <!-- Using your actual hardware images -->
                     <img src="./assets/overview-echokit.jpg" alt="Hardware Overview" class="main-hardware-image active" data-image="overview">
                     <img src="./assets/esp32-s3-processor-echokit.jpg" alt="ESP32-S3 Processor" class="main-hardware-image" data-image="processor">
                     <img src="./assets/audio-components-echokit.jpg" alt="Microphone" class="main-hardware-image" data-image="audio">
@@ -701,6 +870,10 @@
                     <img src="./assets/usbc-echokit.jpg" alt="USB-C" class="main-hardware-image" data-image="interfaces">
                     <img src="./assets/control-button-echokit.jpg" alt="Control Buttons" class="main-hardware-image" data-image="buttons">
                     <img src="./assets/overview-echokit-esp32.jpg" alt="Extension Board" class="main-hardware-image" data-image="extensions">
+                    
+                    <div class="image-description" id="imageDescription">
+                        🔍 Click image to enlarge - Complete hardware overview
+                    </div>
                 </div>
 
                 <div class="thumbnail-gallery">
@@ -900,12 +1073,27 @@
                 <a href="https://forms.gle/EMDP2WRa4dX3QRW88" target="_blank">Waitlist</a>
                 <a href="https://hackmd.io/@wasmedge/ry2_a9-Elx" target="_blank">Documentation</a>
                 <a href="https://buy.stripe.com/eVqcN66z96tlcJo2TH63K00" target="_blank">Preorder</a>
-                <a href="#">Back to Home</a>
+                <a href="https://echokit.dev">Back to Home</a>
             </div>
         </div>
     </footer>
 
     <script>
+        // Mobile menu functionality
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const mobileNav = document.querySelector('.mobile-nav');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileNav.classList.toggle('active');
+        });
+
+        // Close mobile nav when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!mobileMenuBtn.contains(e.target) && !mobileNav.contains(e.target)) {
+                mobileNav.classList.remove('active');
+            }
+        });
+
         // Image gallery functionality
         const tabButtons = document.querySelectorAll('.tab-button');
         const mainImages = document.querySelectorAll('.main-hardware-image');
@@ -915,7 +1103,7 @@
         const modalImage = document.getElementById('modalImage');
         const closeBtn = document.getElementsByClassName('close')[0];
 
-        // Image mapping - 使用你的实际图片路径
+        // Image mapping - using your actual image paths
         const imageMapping = [
             './assets/overview-echokit.jpg',
             './assets/esp32-s3-processor-echokit.jpg', 
@@ -936,7 +1124,7 @@
             'extensions': '🔍 Click image to enlarge - Extension board capabilities'
         };
 
-        // 自动设置图片源
+        // Auto setup images
         function setupImages() {
             imageMapping.forEach((imagePath, index) => {
                 if (mainImages[index]) {
@@ -1012,7 +1200,7 @@
             }
         }
 
-        // 页面加载时设置图片
+        // Setup images on page load
         document.addEventListener('DOMContentLoaded', setupImages);
 
         // Smooth scrolling for navigation links
@@ -1025,6 +1213,8 @@
                         behavior: 'smooth',
                         block: 'start'
                     });
+                    // Close mobile nav after clicking
+                    mobileNav.classList.remove('active');
                 }
             });
         });
