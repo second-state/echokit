@@ -215,7 +215,6 @@
             toast.show();
         }
 
-        // 连接设备
         async function connectToDevice() {
             try {
                 // 请求蓝牙设备
@@ -224,24 +223,20 @@
                     optionalServices: [SERVICE_ID]
                 });
 
-                // 连接到GATT服务器
                 server = await device.gatt.connect();
                 service = await server.getPrimaryService(SERVICE_ID);
 
-                // 更新UI状态
                 isConnected = true;
                 updateConnectionStatus();
 
-                // 显示控制面板
                 controlPanel.style.display = 'block';
                 connectButton.innerHTML = '<i class="bi bi-bluetooth"></i> Disconnect';
 
-                // 设备断开连接时的处理
                 device.addEventListener('gattserverdisconnected', handleDisconnection);
 
                 showNotification('Success', 'Connected to the device');
             } catch (error) {
-                console.error('连接失败:', error);
+                console.error('Failed to connect: ', error);
                 showNotification('Error', 'Device connection failed: ' + error.message, true);
             }
         }
@@ -276,7 +271,7 @@
             if (isConnected) {
                 statusIndicator.classList.remove('status-disconnected');
                 statusIndicator.classList.add('status-connected');
-                connectionStatus.textContent = '已连接';
+                connectionStatus.textContent = 'Connected';
             } else {
                 statusIndicator.classList.remove('status-connected');
                 statusIndicator.classList.add('status-disconnected');
@@ -325,7 +320,7 @@
                 const encoder = new TextEncoder();
                 const data = encoder.encode(inputValue);
                 await characteristic.writeValue(data);
-                showNotification('成功', '写入数据成功');
+                showNotification('Success', 'Value is written to the device');
             } catch (error) {
                 console.error('Failed to write: ', error);
                 showNotification('Error', 'Cannot write into the device: ' + error.message, true);
