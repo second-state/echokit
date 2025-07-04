@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EchoKit - Open Source Voice Agent Platform</title>
+    <title>EchoKit - Build Your Private AI Voice Agent</title>
     <style>
         * {
             margin: 0;
@@ -20,7 +20,7 @@
         }
 
         .container {
-            max-width: 80%;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
         }
@@ -33,10 +33,9 @@
             left: 0;
             right: 0;
             z-index: 1000;
-            background: rgba(10, 10, 31, 0.6);
+            background: rgba(10, 10, 31, 0.9);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid rgba(147, 51, 234, 0.2);
-            transition: all 0.3s ease;
         }
 
         nav {
@@ -46,7 +45,7 @@
         }
 
         .logo {
-            font-size: 24px;
+            font-size: 28px;
             font-weight: 800;
             background: linear-gradient(45deg, #ce422b, #9333ea, #06b6d4);
             -webkit-background-clip: text;
@@ -72,66 +71,55 @@
             transform: translateY(-2px);
         }
 
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
+        .nav-cta {
             background: linear-gradient(45deg, #9333ea, #06b6d4);
-            transition: width 0.3s ease;
+            padding: 12px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(147, 51, 234, 0.3);
         }
 
-        .nav-links a:hover::after {
-            width: 100%;
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(147, 51, 234, 0.5);
         }
 
         /* Hero Section */
         .hero {
-            padding: 120px 0 80px;
+            padding: 140px 0 100px;
             text-align: center;
             position: relative;
             min-height: 100vh;
             display: flex;
             align-items: center;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
             background: radial-gradient(circle at 20% 30%, rgba(147, 51, 234, 0.15) 0%, transparent 50%),
-            radial-gradient(circle at 80% 70%, rgba(6, 182, 212, 0.15) 0%, transparent 50%);
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero-content p {
-            display: none;
+                        radial-gradient(circle at 80% 70%, rgba(6, 182, 212, 0.15) 0%, transparent 50%);
         }
 
         .hero-badge {
             display: inline-block;
-            padding: 8px 20px;
+            padding: 10px 24px;
             background: rgba(147, 51, 234, 0.2);
             border: 1px solid rgba(147, 51, 234, 0.3);
             border-radius: 50px;
             font-size: 0.9rem;
             font-weight: 600;
             margin-bottom: 30px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
         }
 
         .hero h1 {
             font-size: 4.5rem;
             font-weight: 900;
-            padding-bottom: 40px;
+            margin-bottom: 25px;
             background: linear-gradient(45deg, #ffffff, #9333ea, #06b6d4);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -140,31 +128,12 @@
         }
 
         .hero-subtitle {
-            display: none;
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 15px;
-            color: #9333ea;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             margin-bottom: 40px;
             opacity: 0.9;
-            max-width: 600px;
+            max-width: 700px;
             margin-left: auto;
             margin-right: auto;
-        }
-
-        .hero-video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.7;
-            z-index: 1;
         }
 
         .cta-buttons {
@@ -172,16 +141,18 @@
             gap: 20px;
             justify-content: center;
             flex-wrap: wrap;
+            margin-bottom: 60px;
         }
 
         .cta-button {
             display: inline-block;
-            padding: 15px 35px;
+            padding: 18px 40px;
             background: linear-gradient(45deg, #9333ea, #06b6d4);
             color: white;
             text-decoration: none;
             border-radius: 50px;
             font-weight: 600;
+            font-size: 1.1rem;
             transition: all 0.3s ease;
             box-shadow: 0 10px 30px rgba(147, 51, 234, 0.3);
         }
@@ -200,16 +171,73 @@
             background: rgba(255, 255, 255, 0.2);
         }
 
-        /* Section Styles */
-        .section {
+        .hero-video {
+            max-width: 800px;
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(147, 51, 234, 0.3);
+            margin-top: 40px;
+        }
+
+        /* Video Controls */
+        .video-controls {
+            position: fixed;
+            top: 100px;
+            right: 30px;
+            z-index: 2000;
+            cursor: pointer;
+            background: rgba(255,255,255,0.7);
+            border-radius: 50%;
+            padding: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            opacity: 0.5;
+            transition: opacity 0.3s ease;
+        }
+
+        .video-controls:hover {
+            opacity: 1;
+        }
+
+        .video-controls svg {
+            width: 40px;
+            height: 40px;
+            fill: #9333ea;
+        }
+
+        /* Trust Indicators */
+        .trust-indicators {
+            padding: 60px 0;
+            background: rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .trust-logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            opacity: 0.6;
+        }
+
+        .trust-logo {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #9333ea;
+        }
+
+        /* Loss Aversion Section */
+        .loss-aversion {
             padding: 100px 0;
+            background: linear-gradient(135deg, rgba(220, 38, 127, 0.1), rgba(147, 51, 234, 0.1));
         }
 
         .section-title {
             text-align: center;
-            font-size: 3rem;
+            font-size: 3.2rem;
             font-weight: 800;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             background: linear-gradient(45deg, #ffffff, #9333ea);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -218,32 +246,101 @@
 
         .section-subtitle {
             text-align: center;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             opacity: 0.8;
             margin-bottom: 60px;
-            max-width: 600px;
+            max-width: 700px;
             margin-left: auto;
             margin-right: auto;
         }
 
-        /* Features Section - Card Layout */
+        .pain-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        @media (min-width: 1200px) {
+            .pain-points {
+                grid-template-columns: repeat(2, 1fr);
+                max-width: 1000px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+
+        @media (min-width: 1600px) {
+            .pain-points {
+                grid-template-columns: repeat(4, 1fr);
+                max-width: 1400px;
+            }
+        }
+
+        .pain-point {
+            background: rgba(220, 38, 127, 0.1);
+            border: 1px solid rgba(220, 38, 127, 0.3);
+            border-radius: 16px;
+            padding: 35px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .pain-point:hover {
+            transform: translateY(-5px);
+            border-color: rgba(220, 38, 127, 0.5);
+        }
+
+        .pain-point h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #dc2626;
+        }
+
+        .pain-point .icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        /* Features Section */
         .features {
-            background: linear-gradient(180deg, rgba(147, 51, 234, 0.05) 0%, transparent 100%);
+            padding: 100px 0;
+            background: rgba(147, 51, 234, 0.05);
         }
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
             gap: 30px;
             margin-top: 60px;
         }
 
         .feature-card {
             background: rgba(255, 255, 255, 0.08);
-            border-radius: 16px;
-            padding: 35px;
+            border-radius: 20px;
+            padding: 40px;
             border: 1px solid rgba(147, 51, 234, 0.2);
             transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(45deg, #9333ea, #06b6d4);
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover::before {
+            transform: translateX(0);
         }
 
         .feature-card:hover {
@@ -254,7 +351,7 @@
         }
 
         .feature-card h3 {
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             font-weight: 700;
             margin-bottom: 15px;
             color: #9333ea;
@@ -263,37 +360,52 @@
             gap: 12px;
         }
 
-        .benefit-icon {
-            font-size: 1.5rem;
+        .feature-icon {
+            font-size: 2rem;
         }
 
-        /* Benefits Section - List Layout */
+        /* Benefits Section */
         .benefits {
+            padding: 100px 0;
             background: rgba(0, 0, 0, 0.2);
         }
 
         .benefits-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-            gap: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
             margin-top: 60px;
         }
 
         .benefit-card {
             background: linear-gradient(135deg, rgba(6, 182, 212, 0.1), rgba(16, 185, 129, 0.1));
             border-radius: 20px;
-            padding: 40px;
+            padding: 35px;
             border-left: 4px solid #06b6d4;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(6, 182, 212, 0.2);
         }
 
         .benefit-card h3 {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             font-weight: 700;
             margin-bottom: 20px;
             color: #06b6d4;
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 15px;
+        }
+
+        .benefit-card p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            line-height: 1.6;
         }
 
         .benefit-list {
@@ -302,171 +414,244 @@
         }
 
         .benefit-list li {
-            padding: 8px 0;
-            padding-left: 25px;
+            padding: 10px 0;
+            padding-left: 30px;
             position: relative;
             opacity: 0.9;
+            font-size: 1.1rem;
         }
 
         .benefit-list li::before {
-            content: '→';
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #06b6d4;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* Process Section */
+        .process {
+            padding: 100px 0;
+            background: linear-gradient(45deg, rgba(16, 185, 129, 0.05) 0%, rgba(6, 182, 212, 0.05) 100%);
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .process-step {
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(45deg, #9333ea, #06b6d4);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 800;
+            margin: 0 auto 30px;
+            box-shadow: 0 10px 30px rgba(147, 51, 234, 0.3);
+        }
+
+        .process-step h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #9333ea;
+        }
+
+        .process-step p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Pricing Section */
+        .pricing {
+            padding: 100px 0;
+            background: rgba(147, 51, 234, 0.05);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .pricing-card {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid rgba(147, 51, 234, 0.2);
+            text-align: center;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-card.featured {
+            border-color: #9333ea;
+            transform: scale(1.05);
+            background: rgba(147, 51, 234, 0.1);
+        }
+
+        .pricing-card.featured::before {
+            content: 'MOST POPULAR';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(45deg, #9333ea, #06b6d4);
+            color: white;
+            padding: 8px 24px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(147, 51, 234, 0.2);
+        }
+
+        .pricing-card h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #9333ea;
+        }
+
+        .price {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #06b6d4;
+            margin-bottom: 20px;
+        }
+
+        .price-note {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            margin-bottom: 30px;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 40px;
+        }
+
+        .pricing-features li {
+            padding: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .pricing-features li::before {
+            content: '✓';
             position: absolute;
             left: 0;
             color: #06b6d4;
             font-weight: bold;
         }
 
-        /* Examples Section - Grid Layout */
-        .examples {
-            background: linear-gradient(45deg, rgba(16, 185, 129, 0.05) 0%, rgba(6, 182, 212, 0.05) 100%);
+        /* FAQ Section */
+        .faq {
+            padding: 100px 0;
+            background: rgba(0, 0, 0, 0.2);
         }
 
-        .examples-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 25px;
+        .faq-list {
+            max-width: 800px;
+            margin: 0 auto;
             margin-top: 60px;
         }
 
-        .example-card {
-            background: rgba(255, 255, 255, 0.06);
+        .faq-item {
+            background: rgba(255, 255, 255, 0.05);
             border-radius: 12px;
-            padding: 30px 20px;
-            text-align: center;
-            border: 1px solid rgba(16, 185, 129, 0.2);
+            margin-bottom: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(147, 51, 234, 0.1);
+        }
+
+        .faq-question {
+            padding: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             transition: all 0.3s ease;
         }
 
-        .example-card:hover {
-            transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(16, 185, 129, 0.4);
+        .faq-question:hover {
+            background: rgba(147, 51, 234, 0.1);
         }
 
-        .example-icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
+        .faq-answer {
+            padding: 0 25px 25px;
+            opacity: 0.9;
+            display: none;
+        }
+
+        .faq-item.active .faq-answer {
             display: block;
         }
 
-        .example-card h3 {
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 15px;
-            color: #10b981;
-        }
-
-        /* Live Demo Section - Wide Cards */
-        .live-demo {
-            background: rgba(147, 51, 234, 0.05);
-        }
-
-        .demo-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 60px;
-        }
-
-        .demo-item {
-            background: rgba(255, 255, 255, 0.08);
-            border-radius: 20px;
-            padding: 40px 30px;
-            text-align: center;
-            border: 2px solid rgba(147, 51, 234, 0.3);
-            transition: all 0.3s ease;
-        }
-
-        .demo-item:hover {
-            transform: scale(1.05);
-            border-color: rgba(147, 51, 234, 0.6);
-            box-shadow: 0 15px 30px rgba(147, 51, 234, 0.2);
-        }
-
-        .demo-item h3 {
-            font-size: 1.4rem;
-            font-weight: 600;
-            margin-bottom: 15px;
-            color: #9333ea;
-        }
-
-        /* Getting Started Section - Minimal Cards */
-        .getting-started {
-            background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.3) 100%);
-        }
-
-        .guide-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 30px;
-            margin-top: 60px;
-        }
-
-        .guide-card {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 12px;
-            padding: 35px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        .guide-card:hover {
-            background: rgba(255, 255, 255, 0.08);
-            transform: translateY(-3px);
-        }
-
-        .guide-card h3 {
+        .faq-toggle {
             font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 15px;
-            color: #ffffff;
+            color: #9333ea;
+            transition: transform 0.3s ease;
         }
 
-        .guide-card p {
-            margin-bottom: 20px;
-            opacity: 0.8;
+        .faq-item.active .faq-toggle {
+            transform: rotate(45deg);
         }
 
-        .guide-link {
-            color: #06b6d4;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .guide-link:hover {
-            color: #ffffff;
-        }
-
-        /* Preorder Section - FIXED */
-        .preorder {
-            padding: 120px 0; /* 增加内边距，特别是底部 */
+        /* CTA Section */
+        .final-cta {
+            padding: 120px 0;
             background: linear-gradient(135deg, rgba(147, 51, 234, 0.1), rgba(6, 182, 212, 0.1));
             text-align: center;
         }
 
-        .preorder-title {
-            font-size: 3rem;
+        .final-cta h2 {
+            font-size: 3.5rem;
             font-weight: 800;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             background: linear-gradient(45deg, #ffffff, #9333ea);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            text-align: center; /* 确保标题居中 */
         }
 
-        .preorder-subtitle {
+        .final-cta p {
             font-size: 1.3rem;
-            margin-bottom: 40px;
+            margin-bottom: 50px;
             opacity: 0.9;
-            max-width: 600px;
+            max-width: 700px;
             margin-left: auto;
             margin-right: auto;
-            text-align: center; /* 确保副标题居中 */
         }
 
-        /* Responsive */
+        /* Footer */
+        footer {
+            padding: 60px 0;
+            background: rgba(0, 0, 0, 0.4);
+            border-top: 1px solid rgba(147, 51, 234, 0.2);
+            text-align: center;
+        }
+
+        /* Responsive Design */
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
@@ -476,36 +661,23 @@
                 font-size: 2.8rem;
             }
 
-            .hero-content p {
-                display: block;
-            }
-
-            .hero-subtitle {
-                display: block;
-            }
-
             .section-title {
-                font-size: 2.2rem;
+                font-size: 2.4rem;
             }
 
-            .preorder-title {
-                font-size: 2.2rem;
+            .final-cta h2 {
+                font-size: 2.5rem;
             }
 
-            .hero-video {
-                margin-top: 20px;
-                height: auto;
-                border-radius: 20px;
-                box-shadow: 0 10px 30px rgba(147, 51, 234, 0.2);
-                position: relative;
-                z-index: 2;
-            }
-
-            .benefits-grid, .guide-cards {
+            .benefits-grid, .pricing-grid {
                 grid-template-columns: 1fr;
             }
 
-            .examples-grid {
+            .pain-points {
+                grid-template-columns: 1fr;
+            }
+
+            .process-steps {
                 grid-template-columns: 1fr;
             }
 
@@ -518,384 +690,544 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        /* Animations */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .animate-on-scroll.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Floating Elements */
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .floating-element {
+            position: absolute;
+            background: rgba(147, 51, 234, 0.1);
+            border-radius: 50%;
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+            }
+        }
     </style>
 </head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-EMHQHV54LP"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-
-    function gtag() {
-        dataLayer.push(arguments);
-    }
-
-    gtag('js', new Date());
-
-    gtag('config', 'G-EMHQHV54LP');
-</script>
 <body>
-<header>
-    <nav class="container">
-        <div class="logo">EchoKit</div>
-        <div class="nav-links">
-            <a href="#features">Features</a>
-            <a href="#benefits">Benefits</a>
-           <!--  <a href="#examples">Examples</a> -->
-            <a href="#demo">See It In Action</a>
-            <a href="#getting-started">Get Started</a>
-            <a href="#preoder">Preorder</a>
-        </div>
-    </nav>
-</header>
+    <!-- Floating Background Elements -->
+    <div class="floating-elements">
+        <div class="floating-element" style="left: 10%; width: 20px; height: 20px; animation-delay: 0s;"></div>
+        <div class="floating-element" style="left: 20%; width: 15px; height: 15px; animation-delay: 2s;"></div>
+        <div class="floating-element" style="left: 30%; width: 25px; height: 25px; animation-delay: 4s;"></div>
+        <div class="floating-element" style="left: 40%; width: 18px; height: 18px; animation-delay: 6s;"></div>
+        <div class="floating-element" style="left: 50%; width: 22px; height: 22px; animation-delay: 8s;"></div>
+        <div class="floating-element" style="left: 60%; width: 16px; height: 16px; animation-delay: 10s;"></div>
+        <div class="floating-element" style="left: 70%; width: 24px; height: 24px; animation-delay: 12s;"></div>
+        <div class="floating-element" style="left: 80%; width: 19px; height: 19px; animation-delay: 14s;"></div>
+        <div class="floating-element" style="left: 90%; width: 21px; height: 21px; animation-delay: 16s;"></div>
+    </div>
 
-<section class="hero">
-    <div class="container">
-        <div class="hero-content">
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <div class="logo">EchoKit</div>
+            <div class="nav-links">
+                <a href="#problem">Problems</a>
+                <a href="#features">Features</a>
+                <a href="#benefits">Benefits</a>
+                <a href="#process">How It Works</a>
+                <a href="#preoder">Preoderg</a>
+            </div>
+            <a href="#preoder" class="nav-cta">Get Started</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
             <div class="hero-badge">🦀 Full Stack Rust-Powered AI</div>
-            <h1>Open Source Voice Agent Platform</h1>
-            <div class="hero-subtitle">Build and Host Your Own Agent</div>
-            <p>The only full-stack voice agent solution you'll ever need. From ESP32 hardware to AI inference servers -
-                run everything privately on your laptop with zero cloud dependencies. Built with Rust for maximum
-                performance and safety.</p>
+            <h1>Build Your Private AI Voice Agent</h1>
+            <p class="hero-subtitle">Stop paying Big Tech for AI that doesn't understand you. Build a complete voice agent stack that runs privately on your laptop OR use our hosted service - your choice, your control.</p>
             <div class="cta-buttons">
-                <a href="https://buy.stripe.com/eVqcN66z96tlcJo2TH63K00" target="_blank" class="cta-button"> Preoder
-                    EchoKit Beta</a>
-                <a href="https://github.com/second-state/esp_assistant" class="cta-button cta-secondary">Get Started</a>
+                <a href="#pricing" class="cta-button">Start Building Now</a>
+                <a href="https://github.com/second-state/esp_assistant" class="cta-button cta-secondary">View on GitHub</a>
+            </div>
+            <video src="/media/hero.mp4" autoplay muted loop class="hero-video" id="heroVideo"></video>
+            
+            <!-- Video Controls -->
+            <div class="video-controls" id="videoControls">
+                <svg id="unmuteIcon" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                    <path clip-rule="evenodd" d="m2 7.5v3c0 .8.6 1.5 1.4 1.5h2.3l3.2 2.8c.1.1.3.2.4.2s.2 0 .3-.1c.2-.1.4-.4.4-.7v-.9l-7.2-7.2c-.5.2-.8.8-.8 1.4zm8 2v-5.8c0-.3-.1-.5-.4-.7-.1 0-.2 0-.3 0s-.3 0-.4.2l-2.8 2.5-4.1-4.1-1 1 3.4 3.4 5.6 5.6 3.6 3.6 1-1z" fill-rule="evenodd"></path>
+                </svg>
+                <svg id="muteIcon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                    <path fill-rule="evenodd" d="M11.553 3.064A.75.75 0 0112 3.75v16.5a.75.75 0 01-1.255.555L5.46 16H2.75A1.75 1.75 0 011 14.25v-4.5C1 8.784 1.784 8 2.75 8h2.71l5.285-4.805a.75.75 0 01.808-.13zM10.5 5.445l-4.245 3.86a.75.75 0 01-.505.195h-3a.25.25 0 00-.25.25v4.5c0 .138.112.25.25.25h3a.75.75 0 01.505.195l4.245 3.86V5.445z"></path>
+                    <path d="M18.718 4.222a.75.75 0 011.06 0c4.296 4.296 4.296 11.26 0 15.556a.75.75 0 01-1.06-1.06 9.5 9.5 0 000-13.436.75.75 0 010-1.06z"></path>
+                    <path d="M16.243 7.757a.75.75 0 10-1.061 1.061 4.5 4.5 0 010 6.364.75.75 0 001.06 1.06 6 6 0 000-8.485z"></path>
+                </svg>
             </div>
         </div>
-        <svg id="unmuteIcon" fill="#9333ea" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
-             style="position: fixed; top: 100px; right: 30px;width: 60px; z-index: 2000; cursor: pointer; background: rgba(255,255,255,0.7); border-radius: 50%; padding: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.15);opacity: 0.5;">
-            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-            <g id="SVGRepo_iconCarrier">
-                <path clip-rule="evenodd"
-                      d="m2 7.5v3c0 .8.6 1.5 1.4 1.5h2.3l3.2 2.8c.1.1.3.2.4.2s.2 0 .3-.1c.2-.1.4-.4.4-.7v-.9l-7.2-7.2c-.5.2-.8.8-.8 1.4zm8 2v-5.8c0-.3-.1-.5-.4-.7-.1 0-.2 0-.3 0s-.3 0-.4.2l-2.8 2.5-4.1-4.1-1 1 3.4 3.4 5.6 5.6 3.6 3.6 1-1z"
-                      fill-rule="evenodd"></path>
-            </g>
-        </svg>
-        <svg id="muteIcon" fill="#9333ea" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
-             style="display: none;position: fixed; top: 100px; right: 30px;width: 60px; z-index: 2000; cursor: pointer; background: rgba(255,255,255,0.7); border-radius: 50%; padding: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.15);opacity: 0.5;">
-            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC"
-               stroke-width="0.144"></g>
-            <g id="SVGRepo_iconCarrier">
-                <path fill-rule="evenodd"
-                      d="M11.553 3.064A.75.75 0 0112 3.75v16.5a.75.75 0 01-1.255.555L5.46 16H2.75A1.75 1.75 0 011 14.25v-4.5C1 8.784 1.784 8 2.75 8h2.71l5.285-4.805a.75.75 0 01.808-.13zM10.5 5.445l-4.245 3.86a.75.75 0 01-.505.195h-3a.25.25 0 00-.25.25v4.5c0 .138.112.25.25.25h3a.75.75 0 01.505.195l4.245 3.86V5.445z"></path>
-                <path d="M18.718 4.222a.75.75 0 011.06 0c4.296 4.296 4.296 11.26 0 15.556a.75.75 0 01-1.06-1.06 9.5 9.5 0 000-13.436.75.75 0 010-1.06z"></path>
-                <path d="M16.243 7.757a.75.75 0 10-1.061 1.061 4.5 4.5 0 010 6.364.75.75 0 001.06 1.06 6 6 0 000-8.485z"></path>
-            </g>
-        </svg>
-        <video src="/media/hero.mp4" autoplay loop class="hero-video" id="heroVideo"></video>
-    </div>
-</section>
+    </section>
 
-<section id="features" class="section features">
-    <div class="container">
-        <h2 class="section-title">Complete Full-Stack Solution</h2>
-        <p class="section-subtitle">Hardware, firmware, servers, and AI inference - everything you need in one open
-            source package</p>
-
-        <div class="features-grid">
-            <div class="feature-card">
-                <h3><span class="benefit-icon">🏗️</span>Full Stack Open Source</h3>
-                <p>Complete solution from ESP32 hardware design to AI inference server. Run the entire voice agent stack
-                    on your private laptop - no cloud required, completely free.</p>
-            </div>
-
-            <div class="feature-card">
-                <h3><span class="benefit-icon">🌐</span>Support All AI Models</h3>
-                <p>Works with all major LLMs, voice-to-text, and TTS models through the Gaia network. Features streaming
-                    TTS for real-time voice synthesis. Choose your preferred AI models or switch between them
-                    seamlessly.</p>
-            </div>
-
-            <div class="feature-card">
-                <h3><span class="benefit-icon">🎭</span>Voice Cloning</h3>
-                <p>Create personalized voice experiences with advanced voice cloning technology. Make your AI assistant
-                    sound exactly how you want it to.</p>
-            </div>
-
-            <div class="feature-card">
-                <h3><span class="benefit-icon">📚</span>Custom Knowledge Base</h3>
-                <p>Ground your LLMs with personal and customized knowledge bases. Feed your AI assistant domain-specific
-                    information for more accurate responses.</p>
-            </div>
-
-            <div class="feature-card">
-                <h3><span class="benefit-icon">🔧</span>MCP Actions & Tools</h3>
-                <p>Extensible action system with MCP-based tool calls and agentic search capabilities. Enhance your AI's
-                    abilities with custom tools and integrations.</p>
-            </div>
-
-            <div class="feature-card">
-                <h3><span class="benefit-icon">🦀</span>Rust Performance</h3>
-                <p>Built entirely in Rust for maximum safety, performance, and reliability. Memory-safe code with
-                    zero-cost abstractions and blazing-fast execution.</p>
+    <!-- Trust Indicators -->
+    <section class="trust-indicators">
+        <div class="container">
+            <div class="trust-logos">
+                <div class="trust-logo">🏆 Open Source</div>
+                <div class="trust-logo">🔐 Your Choice</div>
+                <div class="trust-logo">⚡ Fast</div>
+                <div class="trust-logo">🆓 Free</div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<section id="benefits" class="section benefits">
-    <div class="container">
-        <h2 class="section-title">Who Benefits from EchoKit?</h2>
-        <p class="section-subtitle">Whether you're building hardware or developing AI agents, EchoKit provides the tools
-            you need</p>
-
-        <div class="benefits-grid">
-            <div class="benefit-card">
-                <h3><span class="benefit-icon">🤖</span>Agent Developers</h3>
-                <p>Build sophisticated AI agents with complete control over every component of the stack.</p>
-                <ul class="benefit-list">
-                    <li>Use your own AI models on the backend (VAD, ASR, LLM, VLM, TTS, end-to-end)</li>
-                    <li>Choose any inference providers (OpenAI, Gemini, Groq, Gaia) and use finetuned/personalized
-                        models with cloned voice TTS and custom LLM responses
-                    </li>
-                    <li>Custom prompts for each model</li>
-                    <li>MCP server integration for agentic search and actions</li>
-                </ul>
-            </div>
-
-            <div class="benefit-card">
-                <h3><span class="benefit-icon">🔧</span>Device Makers</h3>
-                <p>Freely adopt our firmware for your own hardware projects and enhance them with powerful addons.</p>
-                <ul class="benefit-list">
-                    <li>Camera integration for visual AI</li>
-                    <li>Environmental sensors support</li>
-                    <li>RFID and NFC capabilities</li>
-                    <li>Advanced audio/video processors</li>
-                    <li>Complete hardware customization freedom</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- 
-<section id="examples" class="section examples">
-    <div class="container">
-        <h2 class="section-title">Examples & Video Demos</h2>
-        <p class="section-subtitle">See EchoKit in action with these real-world applications</p>
-
-        <div class="examples-grid">
-            <div class="example-card">
-                <span class="example-icon">📚</span>
-                <h3>Knowledge QA</h3>
-                <p>Customized MCP for agentic knowledge search. Ask complex questions and get intelligent, context-aware
-                    answers from your personal knowledge base.</p>
-                <a href="#" class="cta-button" style="margin-top: 15px; padding: 10px 20px; font-size: 0.9rem;">Watch
-                    Demo →</a>
-            </div>
-
-            <div class="example-card">
-                <span class="example-icon">🌍</span>
-                <h3>Translation</h3>
-                <p>Fast, multilingual ASR, LLM and TTS with custom prompts. Real-time translation between multiple
-                    languages with natural voice output.</p>
-                <a href="#" class="cta-button" style="margin-top: 15px; padding: 10px 20px; font-size: 0.9rem;">Watch
-                    Demo →</a>
-            </div>
-
-            <div class="example-card">
-                <span class="example-icon">👨‍🏫</span>
-                <h3>Teacher</h3>
-                <p>Customized MCP for agentic knowledge search with LLM prompts for teaching style. Personalized
-                    educational assistant that adapts to learning preferences.</p>
-                <a href="#" class="cta-button" style="margin-top: 15px; padding: 10px 20px; font-size: 0.9rem;">Watch
-                    Demo →</a>
-            </div>
-
-            <div class="example-card">
-                <span class="example-icon">👤</span>
-                <h3>Digital Twin</h3>
-                <p>Cloned voice with LLM prompts for personality style. Create a digital version of yourself or anyone
-                    else with their unique voice and mannerisms.</p>
-                <a href="#" class="cta-button" style="margin-top: 15px; padding: 10px 20px; font-size: 0.9rem;">Watch
-                    Demo →</a>
+    <!-- Loss Aversion Section -->
+    <section id="problem" class="loss-aversion">
+        <div class="container">
+            <h2 class="section-title">Tired of AI That Doesn't Work For You?</h2>
+            <p class="section-subtitle">Current AI solutions are expensive, privacy-invasive, and limited. You deserve better.</p>
+            
+            <div class="pain-points">
+                <div class="pain-point animate-on-scroll">
+                    <span class="icon">🔒</span>
+                    <h3>No Privacy Choice</h3>
+                    <p>Big Tech forces you to use their cloud services. You deserve the freedom to choose where your data goes and how it's processed.</p>
+                </div>
+                
+                <div class="pain-point animate-on-scroll">
+                    <span class="icon">💸</span>
+                    <h3>Expensive Costs</h3>
+                    <p>AI systems cost too much, especially multimodal and real-time applications. Bills add up fast.</p>
+                </div>
+                
+                <div class="pain-point animate-on-scroll">
+                    <span class="icon">🤖</span>
+                    <h3>Limited Abilities</h3>
+                    <p>"Smart speakers" like Alexa and Siri barely do anything useful. They're not actually smart.</p>
+                </div>
+                
+                <div class="pain-point animate-on-scroll">
+                    <span class="icon">📦</span>
+                    <h3>Black Box Learning</h3>
+                    <p>AI is a black box, yet it's crucial for future work skills. You need to understand how it works.</p>
+                </div>
             </div>
         </div>
-    </div>
-</section>
--->
-    
-<section id="demo" class="section live-demo">
-    <div class="container">
-        <h2 class="section-title">Behind the scene</h2>
-        <p class="section-subtitle">Open source technologies behind the EchoKit</p>
+    </section>
 
-        <div class="demo-grid">
-            <div class="demo-item">
-                <h3>🎵 Streaming TTS</h3>
-                <p>Real-time text-to-speech streaming with ultra-low latency. Supports voice clones. Written in
-                    Rust.</p>
-                <a href="https://github.com/second-state/gsv_tts" class="cta-button cta-secondary"
-                   style="margin-top: 15px; padding: 10px 20px; font-size: 0.9rem;">Source code</a>
-                <a href="https://0xf529f7fb014a64021d41c6b1c9a17767bec295d6.gaia.domains/" class="cta-button"
-                   style="margin-top: 15px; padding: 10px 20px; font-size: 0.9rem;">Try it live →</a>
-            </div>
+    <!-- Benefits Section -->
+    <section id="benefits" class="benefits">
+        <div class="container">
+            <h2 class="section-title">Why You'll Love EchoKit</h2>
+            <p class="section-subtitle">Get exactly what you've been missing from current AI solutions</p>
 
-            <div class="demo-item">
-                <h3>🧰 Device hardware</h3>
-                <p>ESP32-based devkit with all the necessary hardware components for a voice agent!</p>
-                <a href="https://youtu.be/3syJ3goixuc" class="cta-button cta-secondary"
-                   style="margin-top: 15px; padding: 10px 20px; font-size: 0.9rem;">Check it out →</a>
-                <a href="https://buy.stripe.com/eVqcN66z96tlcJo2TH63K00" class="cta-button"
-                   style="margin-top: 15px; padding: 10px 20px; font-size: 0.9rem;">Buy now</a>
-            </div>
+            <div class="benefits-grid">
+                <div class="benefit-card animate-on-scroll">
+                    <h3><span class="benefit-icon">🎭</span>Fun Voice AI Characters</h3>
+                    <p>Get entertaining and engaging AI personalities right out of the box. No more boring, robotic responses.</p>
+                </div>
 
-            <div class="demo-item">
-                <h3>⛪ Custom LLM</h3>
-                <p>LLM grounded by proprietary knowledge and values. This example is an LLM with Bible knowledge and
-                    Christian values.</p>
-                <a href="https://pastorinsights.ai/" class="cta-button"
-                   style="margin-top: 15px; padding: 10px 20px; font-size: 0.9rem;">Chat Now →</a>
+                <div class="benefit-card animate-on-scroll">
+                    <h3><span class="benefit-icon">🆓</span>Use Private AI Models for Free</h3>
+                    <p>Setup and run your own AI models without any monthly fees or usage limits. Complete freedom.</p>
+                </div>
+
+                <div class="benefit-card animate-on-scroll">
+                    <h3><span class="benefit-icon">📚</span>Private Knowledge Base</h3>
+                    <p>Feed your AI assistant your own documents and information for truly personalized responses.</p>
+                </div>
+
+                <div class="benefit-card animate-on-scroll">
+                    <h3><span class="benefit-icon">🎯</span>Voice Commands & Actions</h3>
+                    <p>Control your environment and execute complex tasks through natural voice interactions.</p>
+                </div>
+
+                <div class="benefit-card animate-on-scroll">
+                    <h3><span class="benefit-icon">🎓</span>Learn How AI Really Works</h3>
+                    <p>Build an end-to-end AI project and understand every component. Future-proof your skills.</p>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<section id="getting-started" class="section getting-started">
-    <div class="container">
-        <h2 class="section-title">Getting Started</h2>
-        <p class="section-subtitle">Jump into EchoKit development with our comprehensive guides</p>
+    <!-- Features Section -->
+    <section id="features" class="section features">
+        <div class="container">
+            <h2 class="section-title">Everything You Need In One Package</h2>
+            <p class="section-subtitle">Complete full-stack solution from hardware to AI inference - all open source</p>
 
-        <div class="guide-cards">
-            <div class="guide-card">
-                <h3>🚀 Quick Start Guide</h3>
-                <p>Get your EchoKit up and running in minutes. Complete setup instructions from hardware assembly to
-                    first voice interaction.</p>
-                <a href="https://github.com/second-state/esp_assistant" target="_blank" class="guide-link">View Quick
-                    Start Guide →</a>
-            </div>
+            <div class="features-grid">
+                <div class="feature-card animate-on-scroll">
+                    <h3><span class="feature-icon">🏗️</span>Full Stack Open Source</h3>
+                    <p>Complete solution from ESP32 hardware design to AI inference server. Run everything privately on your own hardware or use our hosted service - you decide.</p>
+                </div>
 
-            <div class="guide-card">
-                <h3>🧠 Knowledge Agent Tutorial</h3>
-                <p>Learn how to create a knowledge agent to replace the default LLM. Build custom AI assistants with
-                    specialized knowledge domains.</p>
-                <a href="https://hackmd.io/@wasmedge/ry2_a9-Elx" target="_blank" class="guide-link">Create Knowledge
-                    Agent →</a>
+                <div class="feature-card animate-on-scroll">
+                    <h3><span class="feature-icon">🧠</span>Works with Any LLM</h3>
+                    <p>Compatible with all major LLMs, voice-to-text, and TTS models. Choose your preferred AI models or switch between them seamlessly.</p>
+                </div>
+
+                <div class="feature-card animate-on-scroll">
+                    <h3><span class="feature-icon">🎵</span>Voice Cloning</h3>
+                    <p>Create personalized voice experiences with advanced voice cloning technology. Make your AI sound exactly how you want.</p>
+                </div>
+
+                <div class="feature-card animate-on-scroll">
+                    <h3><span class="feature-icon">🔍</span>Agentic Search</h3>
+                    <p>Ground your LLMs with personal knowledge bases and intelligent search capabilities for more accurate responses.</p>
+                </div>
+
+                <div class="feature-card animate-on-scroll">
+                    <h3><span class="feature-icon">🔧</span>MCP Support</h3>
+                    <p>Extensible action system with MCP-based tool calls. Enhance your AI's abilities with custom tools and integrations.</p>
+                </div>
+
+                <div class="feature-card animate-on-scroll">
+                    <h3><span class="feature-icon">☁️</span>Flexible Deployment</h3>
+                    <p>Use hosted services for convenience or run your own server for complete control. Unlike Big Tech, we give you the choice - not force you into one option.</p>
+                </div>
+
+                <div class="feature-card animate-on-scroll">
+                    <h3><span class="feature-icon">🦀</span>Rust Performance</h3>
+                    <p>Built entirely in Rust for maximum safety, performance, and reliability. Memory-safe code with blazing-fast execution.</p>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<section id="preorder" class="preorder">
-    <div class="container">
-        <h2 class="preorder-title">Preorder EchoKit Beta</h2>
-        <p class="preorder-subtitle">Order now to be among the first to receive the devkit and join the beta cohort in summer 2025</p>
-        <div class="cta-buttons">
-            <a href="https://echokit.dev/spec.html" target="_blank" class="cta-button cta-secondary"
-               style="font-size: 1.2rem; padding: 20px 50px; display: inline-block;">Spec →</a>
-            <a href="https://buy.stripe.com/eVqcN66z96tlcJo2TH63K00" target="_blank" class="cta-button"
-               style="font-size: 1.2rem; padding: 20px 50px; display: inline-block;">Preorder Now →</a>
+
+
+    <!-- Process Section -->
+    <section id="process" class="process">
+        <div class="container">
+            <h2 class="section-title">Get Started in 3 Simple Steps</h2>
+            <p class="section-subtitle">From unboxing to chatting with your AI in minutes</p>
+
+            <div class="process-steps">
+                <div class="process-step animate-on-scroll">
+                    <div class="step-number">1</div>
+                    <h3>Power Up & Connect</h3>
+                    <p>Simply power up your EchoKit device and connect it to your WiFi network. No complex setup required.</p>
+                </div>
+
+                <div class="process-step animate-on-scroll">
+                    <div class="step-number">2</div>
+                    <h3>Start Chatting!</h3>
+                    <p>Begin talking to your AI assistant immediately. It works out of the box with powerful default models.</p>
+                </div>
+
+                <div class="process-step animate-on-scroll">
+                    <div class="step-number">3</div>
+                    <h3>Customize Your AI</h3>
+                    <p>Set up your own AI server, add custom knowledge, clone voices, and build advanced capabilities.</p>
+                </div>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<footer style="padding: 40px 0; background: rgba(0, 0, 0, 0.3); border-top: 1px solid rgba(147, 51, 234, 0.2); text-align: center;">
-    <div class="container">
-        <p style="opacity: 0.8;">&copy; 2025 EchoKit. Open source under GPL3 License.</p>
-    </div>
-</footer>
+    <!-- 
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <h2 class="section-title">Choose Your EchoKit</h2>
+            <p class="section-subtitle">From beginners to advanced developers - there's a perfect option for everyone</p>
 
-<script>
-    document.addEventListener('click', unlockAudio);
-    document.addEventListener('keydown', unlockAudio);
-    const video = document.getElementById('heroVideo');
+            <div class="pricing-grid">
+                <div class="pricing-card animate-on-scroll">
+                    <h3>Basic</h3>
+                    <div class="price">$149</div>
+                    <p class="price-note">One-time purchase</p>
+                    <ul class="pricing-features">
+                        <li>EchoKit hardware device</li>
+                        <li>Pre-configured firmware</li>
+                        <li>Basic voice AI capabilities</li>
+                        <li>GitHub repository access</li>
+                        <li>Community support</li>
+                    </ul>
+                    <a href="https://buy.stripe.com/eVqcN66z96tlcJo2TH63K00" class="cta-button">Order Basic</a>
+                </div>
 
-    const unmuteIcon = document.getElementById('unmuteIcon');
-    const muteIcon = document.getElementById('muteIcon');
-    if (unmuteIcon) {
-        unmuteIcon.addEventListener('click', unlockAudio);
-    }
+                <div class="pricing-card featured animate-on-scroll">
+                    <h3>Pro</h3>
+                    <div class="price">$249</div>
+                    <p class="price-note">One-time + $19/month</p>
+                    <ul class="pricing-features">
+                        <li>Everything in Basic</li>
+                        <li>Advanced AI model access</li>
+                        <li>Voice cloning capabilities</li>
+                        <li>Custom knowledge base tools</li>
+                        <li>Priority support</li>
+                        <li>Monthly model updates</li>
+                    </ul>
+                    <a href="https://buy.stripe.com/eVqcN66z96tlcJo2TH63K00" class="cta-button">Order Pro</a>
+                </div>
 
-    function hideUnmuteIcon() {
-        if (unmuteIcon) unmuteIcon.style.display = 'none';
-        if (muteIcon) muteIcon.style.display = 'block';
-    }
+                <div class="pricing-card animate-on-scroll">
+                    <h3>Hacker & Learner</h3>
+                    <div class="price">$349</div>
+                    <p class="price-note">Complete learning package</p>
+                    <ul class="pricing-features">
+                        <li>Everything in Pro</li>
+                        <li>Comprehensive learning book</li>
+                        <li>1-on-1 developer support</li>
+                        <li>Advanced tutorials</li>
+                        <li>Hardware schematics</li>
+                        <li>Source code deep dives</li>
+                    </ul>
+                    <a href="https://buy.stripe.com/eVqcN66z96tlcJo2TH63K00" class="cta-button">Order Hacker</a>
+                </div>
+            </div>
+        </div>
+    </section>
+Pricing Section -->
+    <!-- FAQ Section -->
+    <section id="faq" class="faq">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <p class="section-subtitle">Everything you need to know about EchoKit</p>
 
-    muteIcon.addEventListener('click', () => {
-        video.muted = true;
-        muteIcon.style.display = 'none';
-        unmuteIcon.style.display = 'block';
-    });
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Do I need any cloud services or subscriptions?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>No! EchoKit can run completely offline on your local hardware. You can choose to use it without any cloud dependencies.</p>
+                    </div>
+                </div>
 
-    function unlockAudio() {
-        video.muted = false;
-        hideUnmuteIcon();
-        video.volume = 0;
-        let volume = 0;
-        const targetVolume = 1; // 最大音量
-        const step = 0.1;       // 每次增加的音量
-        const interval = 80;   // 每100ms增加一次
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How difficult is it to set up?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>EchoKit is designed for easy setup. Basic functionality works out of the box - just power on and connect to WiFi. Advanced customization is available for those who want to dive deeper.</p>
+                    </div>
+                </div>
 
-        const fadeIn = setInterval(() => {
-            volume += step;
-            if (volume >= targetVolume) {
-                volume = targetVolume;
-                clearInterval(fadeIn);
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Can I use my own AI models?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolutely! EchoKit supports all major LLMs and you can easily switch between different models or use your own fine-tuned versions.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What about privacy and data security?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Unlike Big Tech, we believe privacy should be YOUR choice. Want complete privacy? Run everything locally - your data never leaves your device. Prefer convenience? Use our hosted service with transparent privacy practices. The power is in your hands.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>When will EchoKit be available?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We're currently in preorder phase with beta devices shipping in Sep 2025. Order now to be among the first to receive your EchoKit.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+  
+    <section id="preorder" class="preorder">
+            <div class="container">
+                <h2 class="preorder-title">Preorder EchoKit Beta</h2>
+                <p class="preorder-subtitle">Order now to be among the first to receive the devkit and join the beta cohort in summer 2025</p>
+                <div class="cta-buttons">
+                    <a href="https://echokit.dev/spec.html" target="_blank" class="cta-button cta-secondary"
+                       style="font-size: 1.2rem; padding: 20px 50px; display: inline-block;">Spec →</a>
+                    <a href="https://buy.stripe.com/eVqcN66z96tlcJo2TH63K00" target="_blank" class="cta-button"
+                       style="font-size: 1.2rem; padding: 20px 50px; display: inline-block;">Preorder Now →</a>
+                </div>
+            </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 EchoKit. Open source under GPL3 License.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(10, 10, 31, 0.95)';
+            } else {
+                header.style.background = 'rgba(10, 10, 31, 0.9)';
             }
-            video.volume = volume;
-        }, interval);
-        document.removeEventListener('click', unlockAudio);
-        document.removeEventListener('keydown', unlockAudio);
-    }
+        });
 
-    video.play().then(() => {
-        hideUnmuteIcon();
-    }).catch(err => {
-        if (err.name === 'NotAllowedError') {
-            video.muted = true;
-        }
-    });
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
 
-    // Smooth scrolling for navigation links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animated');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+
+        // FAQ Toggle
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                const isActive = faqItem.classList.contains('active');
+                
+                // Close all FAQ items
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
                 });
-            }
+                
+                // Open clicked item if it wasn't active
+                if (!isActive) {
+                    faqItem.classList.add('active');
+                }
+            });
         });
-    });
 
-    // Header scroll effect
-    window.addEventListener('scroll', () => {
-        const header = document.querySelector('header');
-        if (window.scrollY > 100) {
-            header.style.background = 'rgba(10, 10, 31, 0.15)';
-            header.style.backdropFilter = 'blur(20px)';
-        } else {
-            header.style.background = 'rgba(10, 10, 31, 0.6)';
-            header.style.backdropFilter = 'blur(20px)';
+        // Add interactive hover effects for pricing cards
+        document.querySelectorAll('.pricing-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                if (card.classList.contains('featured')) {
+                    card.style.transform = 'scale(1.05)';
+                } else {
+                    card.style.transform = 'translateY(0) scale(1)';
+                }
+            });
+        });
+
+        // Add click tracking for buttons (placeholder for analytics)
+        document.querySelectorAll('.cta-button').forEach(button => {
+            button.addEventListener('click', (e) => {
+                // Add analytics tracking here
+                console.log('CTA clicked:', button.textContent);
+            });
+        });
+
+        // Video Controls
+        document.addEventListener('click', unlockAudio);
+        document.addEventListener('keydown', unlockAudio);
+        const video = document.getElementById('heroVideo');
+        const unmuteIcon = document.getElementById('unmuteIcon');
+        const muteIcon = document.getElementById('muteIcon');
+        const videoControls = document.getElementById('videoControls');
+
+        if (unmuteIcon) {
+            unmuteIcon.addEventListener('click', unlockAudio);
         }
-    });
 
-    // Animate elements on scroll
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
+        function hideUnmuteIcon() {
+            if (unmuteIcon) unmuteIcon.style.display = 'none';
+            if (muteIcon) muteIcon.style.display = 'block';
+        }
 
-    const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
+        if (muteIcon) {
+            muteIcon.addEventListener('click', () => {
+                video.muted = true;
+                muteIcon.style.display = 'none';
+                unmuteIcon.style.display = 'block';
+            });
+        }
+
+        function unlockAudio(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            video.muted = false;
+            hideUnmuteIcon();
+            video.volume = 0;
+            let volume = 0;
+            const targetVolume = 0.5; // Moderate volume level
+            const step = 0.05;
+            const interval = 100;
+
+            const fadeIn = setInterval(() => {
+                volume += step;
+                if (volume >= targetVolume) {
+                    volume = targetVolume;
+                    clearInterval(fadeIn);
+                }
+                video.volume = volume;
+            }, interval);
+            
+            document.removeEventListener('click', unlockAudio);
+            document.removeEventListener('keydown', unlockAudio);
+        }
+
+        // Try to play video with sound
+        video.play().then(() => {
+            // Video started playing
+            if (video.muted) {
+                // Show unmute button if video is muted
+                videoControls.style.display = 'block';
+            } else {
+                // Hide controls if video has sound
+                hideUnmuteIcon();
+            }
+        }).catch(err => {
+            console.log('Video autoplay failed:', err);
+            if (err.name === 'NotAllowedError') {
+                video.muted = true;
+                videoControls.style.display = 'block';
             }
         });
-    }, observerOptions);
-
-    document.querySelectorAll('.feature-card, .benefit-card, .example-card, .demo-item, .guide-card').forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(20px)';
-        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        observer.observe(el);
-    });
-</script>
+    </script>
 </body>
 </html>
