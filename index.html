@@ -529,11 +529,6 @@
                     grid-template-columns: 1fr;
                 }
 
-                .pain-points {
-                    grid-template-columns: repeat(2, 1fr);
-                    gap: 20px;
-                }
-
                 .cta-buttons {
                     flex-direction: column;
                     align-items: center;
@@ -545,6 +540,86 @@
 
                 .trust-logo {
                     font-size: 1rem;
+                }
+
+                /* Mobile optimization for Loss Aversion section */
+                .container {
+                    max-width: 95%;
+                    padding: 0 15px;
+                }
+
+                .loss-aversion {
+                    padding: 60px 0;
+                }
+
+                .section-title {
+                    font-size: 2rem;
+                    line-height: 1.2;
+                    margin-bottom: 15px;
+                }
+
+                .section-subtitle {
+                    font-size: 1.1rem;
+                    margin-bottom: 40px;
+                    padding: 0 10px;
+                }
+
+                .pain-points {
+                    grid-template-columns: 1fr;
+                    gap: 20px;
+                    margin-top: 40px;
+                }
+
+                .pain-point {
+                    padding: 25px 20px;
+                    border-radius: 12px;
+                    text-align: center;
+                }
+
+                .pain-point .icon {
+                    font-size: 2.5rem;
+                    margin-bottom: 15px;
+                }
+
+                .pain-point h3 {
+                    font-size: 1.2rem;
+                    margin-bottom: 12px;
+                }
+
+                .pain-point p {
+                    font-size: 0.95rem;
+                    line-height: 1.5;
+                }
+            }
+
+            /* Additional mobile improvements for smaller screens */
+            @media (max-width: 480px) {
+                .loss-aversion {
+                    padding: 50px 0;
+                }
+
+                .section-title {
+                    font-size: 1.8rem;
+                }
+
+                .section-subtitle {
+                    font-size: 1rem;
+                }
+
+                .pain-point {
+                    padding: 20px 15px;
+                }
+
+                .pain-point .icon {
+                    font-size: 2.2rem;
+                }
+
+                .pain-point h3 {
+                    font-size: 1.1rem;
+                }
+
+                .pain-point p {
+                    font-size: 0.9rem;
                 }
             }
         </style>
@@ -1014,6 +1089,7 @@
         </footer>
 
         <script>
+            // Enable audio unlock functionality
             document.addEventListener("click", unlockAudio);
             document.addEventListener("keydown", unlockAudio);
             const video = document.getElementById("heroVideo");
@@ -1040,9 +1116,9 @@
                 hideUnmuteIcon();
                 video.volume = 0;
                 let volume = 0;
-                const targetVolume = 1; // 最大音量
-                const step = 0.1; // 每次增加的音量
-                const interval = 80; // 每100ms增加一次
+                const targetVolume = 1; // Maximum volume
+                const step = 0.1; // Volume increment
+                const interval = 80; // Interval in ms
 
                 const fadeIn = setInterval(() => {
                     volume += step;
