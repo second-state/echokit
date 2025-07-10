@@ -760,9 +760,9 @@
                 </svg>
                 <video
                     src="/media/hero.mp4"
+                    class="hero-video"
                     autoplay
                     loop
-                    class="hero-video"
                     id="heroVideo"
                 ></video>
             </div>
@@ -1090,6 +1090,7 @@
 
         <script>
             // Enable audio unlock functionality
+            let firstPlay = true;
             document.addEventListener("click", unlockAudio);
             document.addEventListener("keydown", unlockAudio);
             const video = document.getElementById("heroVideo");
@@ -1113,6 +1114,7 @@
 
             function unlockAudio() {
                 video.muted = false;
+                video.play()
                 hideUnmuteIcon();
                 video.volume = 0;
                 let volume = 0;
@@ -1132,14 +1134,20 @@
                 document.removeEventListener("keydown", unlockAudio);
             }
 
+            video.addEventListener('play', function () {
+                if (firstPlay) {
+                    unlockAudio();
+                    firstPlay = false;
+                }
+            });
+
             video.play()
                 .then(() => {
                     hideUnmuteIcon();
                 })
                 .catch((err) => {
                     if (err.name === "NotAllowedError") {
-                        video.muted = true;
-                        video.play()
+                        video.controls = true;
                     }
                 });
 
