@@ -1132,14 +1132,14 @@
                 document.removeEventListener("keydown", unlockAudio);
             }
 
-            video
-                .play()
+            video.play()
                 .then(() => {
                     hideUnmuteIcon();
                 })
                 .catch((err) => {
                     if (err.name === "NotAllowedError") {
                         video.muted = true;
+                        video.play()
                     }
                 });
 
