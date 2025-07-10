@@ -761,7 +761,9 @@
                 <video
                     src="/media/hero.mp4"
                     class="hero-video"
+                    poster="/media/video.png"
                     autoplay
+                    muted
                     loop
                     id="heroVideo"
                 ></video>
@@ -1090,6 +1092,7 @@
 
         <script>
             // Enable audio unlock functionality
+            let userInitiated = false;
             let firstPlay = true;
             document.addEventListener("click", unlockAudio);
             document.addEventListener("keydown", unlockAudio);
@@ -1114,7 +1117,6 @@
 
             function unlockAudio() {
                 video.muted = false;
-                video.play()
                 hideUnmuteIcon();
                 video.volume = 0;
                 let volume = 0;
@@ -1131,22 +1133,31 @@
                     video.volume = volume;
                 }, interval);
                 document.removeEventListener("click", unlockAudio);
-                document.removeEventListener("keydown", unlockAudio);
             }
 
+            video.addEventListener('click', () => {
+                userInitiated = true;
+            });
+
             video.addEventListener('play', function () {
-                if (firstPlay) {
-                    unlockAudio();
-                    firstPlay = false;
+                if (firstPlay && userInitiated) {
+                    try {
+                        video.muted = false;
+                        hideUnmuteIcon();
+                        firstPlay = false;
+                    }catch (e) {
+                        alert(e)
+                    }
                 }
             });
 
             video.play()
                 .then(() => {
-                    hideUnmuteIcon();
+                    // hideUnmuteIcon();
                 })
                 .catch((err) => {
                     if (err.name === "NotAllowedError") {
+                        video.muted = true;
                         video.controls = true;
                     }
                 });
