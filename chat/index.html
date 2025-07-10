@@ -76,7 +76,7 @@
                     </div>
 
                     <div class="chat chat-end">
-                        <div class="chat-bubble">Hello! I'd like to test the recording feature.</div>
+                        <div class="chat-bubble">Hello! Who are you?</div>
                     </div>
                 </div>
             </div>
@@ -94,7 +94,7 @@
                             d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z">
                         </path>
                     </svg>
-                    <span id="recordText">Start Recording</span>
+                    <span id="recordText">Start talking</span>
                     <kbd class="kbd kbd-sm ml-2 bg-white text-black">Space</kbd>
                 </button>
             </div>
@@ -702,7 +702,7 @@
                 if (this.isRecording) {
                     this.recordBtn.classList.add('btn-error', 'recording-pulse');
                     this.recordBtn.classList.remove('btn-primary');
-                    this.recordText.textContent = 'Stop Recording';
+                    this.recordText.textContent = 'Done talking';
                     this.recordingStatus.classList.remove('hidden');
 
                     // Update microphone icon to stop icon
@@ -712,7 +712,7 @@
                 } else {
                     this.recordBtn.classList.remove('btn-error', 'recording-pulse');
                     this.recordBtn.classList.add('btn-primary');
-                    this.recordText.textContent = 'Start Recording';
+                    this.recordText.textContent = 'Start talking';
                     this.recordingStatus.classList.add('hidden');
 
                     // Restore microphone icon
