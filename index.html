@@ -405,6 +405,129 @@
                 line-height: 1.6;
             }
 
+            /* Open Source Section */
+            .opensource {
+                background: rgba(0, 0, 0, 0.2);
+                padding: 100px 0;
+            }
+
+            .opensource-grid {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+                margin-top: 60px;
+            }
+
+            .repo-card {
+                background: linear-gradient(
+                    135deg,
+                    rgba(147, 51, 234, 0.1),
+                    rgba(6, 182, 212, 0.05)
+                );
+                border-radius: 20px;
+                padding: 35px;
+                border: 1px solid rgba(147, 51, 234, 0.2);
+                transition: all 0.3s ease;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .repo-card:hover {
+                transform: translateY(-8px);
+                background: linear-gradient(
+                    135deg,
+                    rgba(147, 51, 234, 0.15),
+                    rgba(6, 182, 212, 0.1)
+                );
+                border-color: rgba(147, 51, 234, 0.4);
+                box-shadow: 0 20px 40px rgba(147, 51, 234, 0.15);
+            }
+
+            .repo-card::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 3px;
+                background: linear-gradient(45deg, #9333ea, #06b6d4);
+            }
+
+            .repo-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-start;
+                margin-bottom: 15px;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+
+            .repo-card h3 {
+                font-size: 1.3rem;
+                font-weight: 700;
+                color: #9333ea;
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                margin: 0;
+            }
+
+            .repo-icon {
+                font-size: 1.4rem;
+            }
+
+            .tech-stack {
+                display: flex;
+                gap: 8px;
+                flex-wrap: wrap;
+            }
+
+            .tech-tag {
+                background: rgba(147, 51, 234, 0.2);
+                border: 1px solid rgba(147, 51, 234, 0.3);
+                border-radius: 15px;
+                padding: 4px 12px;
+                font-size: 0.8rem;
+                font-weight: 600;
+                color: #9333ea;
+            }
+
+            .repo-card p {
+                opacity: 0.9;
+                line-height: 1.6;
+                margin-bottom: 25px;
+                color: #ffffff;
+            }
+
+            .repo-link {
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                color: #06b6d4;
+                text-decoration: none;
+                font-weight: 600;
+                transition: all 0.3s ease;
+                border: 1px solid rgba(6, 182, 212, 0.3);
+                padding: 10px 20px;
+                border-radius: 25px;
+                background: rgba(6, 182, 212, 0.1);
+            }
+
+            .repo-link:hover {
+                color: #ffffff;
+                background: rgba(6, 182, 212, 0.2);
+                border-color: rgba(6, 182, 212, 0.5);
+                transform: translateY(-2px);
+            }
+
+            .github-icon {
+                font-size: 1.1rem;
+            }
+
+            .opensource-cta {
+                display: none;
+            }
+
             /* Process Section */
             .process {
                 padding: 100px 0;
@@ -525,7 +648,8 @@
 
                 .benefits-grid,
                 .features-grid,
-                .process-steps {
+                .process-steps,
+                .opensource-grid {
                     grid-template-columns: 1fr;
                 }
 
@@ -590,10 +714,86 @@
                     font-size: 0.95rem;
                     line-height: 1.5;
                 }
+
+                /* Mobile optimization for Open Source section */
+                .opensource {
+                    padding: 60px 0;
+                }
+
+                .opensource-grid {
+                    margin-top: 40px;
+                    gap: 20px;
+                }
+
+                .repo-card {
+                    padding: 25px 20px;
+                    border-radius: 15px;
+                }
+
+                .repo-header {
+                    flex-direction: column;
+                    align-items: flex-start;
+                    gap: 15px;
+                }
+
+                .repo-card h3 {
+                    font-size: 1.2rem;
+                }
+
+                .repo-icon {
+                    font-size: 1.2rem;
+                }
+
+                .tech-stack {
+                    width: 100%;
+                    justify-content: flex-start;
+                }
+
+                .tech-tag {
+                    font-size: 0.75rem;
+                    padding: 3px 10px;
+                }
+
+                .repo-card p {
+                    font-size: 0.95rem;
+                    line-height: 1.5;
+                    margin-bottom: 20px;
+                }
+
+                .repo-link {
+                    padding: 8px 16px;
+                    font-size: 0.9rem;
+                    width: 100%;
+                    justify-content: center;
+                }
+
+                .opensource-cta {
+                    margin-top: 40px;
+                    padding: 30px 20px;
+                    border-radius: 15px;
+                }
+
+                .opensource-cta-text {
+                    font-size: 1.1rem;
+                    margin-bottom: 20px;
+                }
             }
 
             /* Additional mobile improvements for smaller screens */
             @media (max-width: 480px) {
+                .opensource {
+                    padding: 50px 0;
+                }
+
+                .opensource-cta {
+                    margin-top: 30px;
+                    padding: 25px 15px;
+                }
+
+                .opensource-cta-text {
+                    font-size: 1rem;
+                }
+
                 .loss-aversion {
                     padding: 50px 0;
                 }
@@ -648,6 +848,7 @@
                     <a href="#problem">Problems</a>
                     <a href="#features">Features</a>
                     <a href="#benefits">Benefits</a>
+                    <a href="#opensource">Open Source</a>
                     <a href="#process">How It Works</a>
                     <a href="#preoder">Pre-order</a>
                 </div>
@@ -1002,6 +1203,106 @@
             </div>
         </section>
 
+        <!-- Open Source Section -->
+        <section id="opensource" class="opensource">
+            <div class="container">
+                <h2 class="section-title">Built on Open Source Foundation</h2>
+                <p class="section-subtitle">
+                    Transparent, community-driven development. Inspect every line of code, contribute to the project, and build your own customizations.
+                </p>
+
+                <div class="opensource-grid">
+                    <div class="repo-card animate-on-scroll">
+                        <div class="repo-header">
+                            <h3>
+                                <span class="repo-icon">🚀</span>EchoKit Server
+                            </h3>
+                            <div class="tech-stack">
+                                <span class="tech-tag">Rust</span>
+                                <span class="tech-tag">AI</span>
+                            </div>
+                        </div>
+                        <p>
+                            Core AI agent server with LLM integration, voice processing, and MCP support. 
+                            The brain of your voice assistant system.
+                        </p>
+                        <a href="https://github.com/second-state/echokit_server" 
+                           target="_blank" 
+                           class="repo-link">
+                            <span class="github-icon">⚡</span>
+                            View on GitHub
+                        </a>
+                    </div>
+
+                    <div class="repo-card animate-on-scroll">
+                        <div class="repo-header">
+                            <h3>
+                                <span class="repo-icon">📦</span>EchoKit Box
+                            </h3>
+                            <div class="tech-stack">
+                                <span class="tech-tag">Rust</span>
+                                <span class="tech-tag">Embedded</span>
+                            </div>
+                        </div>
+                        <p>
+                            Hardware firmware and embedded code for the EchoKit device. 
+                            Handles audio capture, WiFi connectivity, and device management.
+                        </p>
+                        <a href="https://github.com/second-state/echokit_box" 
+                           target="_blank" 
+                           class="repo-link">
+                            <span class="github-icon">⚡</span>
+                            View on GitHub
+                        </a>
+                    </div>
+
+                    <div class="repo-card animate-on-scroll">
+                        <div class="repo-header">
+                            <h3>
+                                <span class="repo-icon">🎙️</span>Silero VAD Server
+                            </h3>
+                            <div class="tech-stack">
+                                <span class="tech-tag">Rust</span>
+                                <span class="tech-tag">ML</span>
+                            </div>
+                        </div>
+                        <p>
+                            Voice Activity Detection service using Silero VAD models. 
+                            Efficiently detects when users are speaking for optimal interaction.
+                        </p>
+                        <a href="https://github.com/second-state/silero_vad_server" 
+                           target="_blank" 
+                           class="repo-link">
+                            <span class="github-icon">⚡</span>
+                            View on GitHub
+                        </a>
+                    </div>
+
+                    <div class="repo-card animate-on-scroll">
+                        <div class="repo-header">
+                            <h3>
+                                <span class="repo-icon">🗣️</span>GSV TTS
+                            </h3>
+                            <div class="tech-stack">
+                                <span class="tech-tag">Rust</span>
+                                <span class="tech-tag">TTS</span>
+                            </div>
+                        </div>
+                        <p>
+                            High-quality Text-to-Speech service with voice cloning capabilities. 
+                            Generate natural-sounding speech in any voice you want.
+                        </p>
+                        <a href="https://github.com/second-state/gsv_tts" 
+                           target="_blank" 
+                           class="repo-link">
+                            <span class="github-icon">⚡</span>
+                            View on GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Process Section -->
         <section id="process" class="process">
             <div class="container">
@@ -1207,7 +1508,7 @@
 
             document
                 .querySelectorAll(
-                    ".feature-card, .benefit-card, .pain-point, .process-step",
+                    ".feature-card, .benefit-card, .pain-point, .process-step, .repo-card",
                 )
                 .forEach((el) => {
                     el.style.opacity = "0";
