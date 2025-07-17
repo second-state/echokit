@@ -1,0 +1,1206 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Processor</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.9.4/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/7.7.0/wavesurfer.min.js"></script>
+</head>
+
+<body class="bg-base-200 min-h-screen">
+    <div class="container mx-auto p-4">
+        <div class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-primary mb-2">Audio Processor</h1>
+            <p class="text-base-content/70">Upload audio files, view waveforms, play and cut audio segments</p>
+        </div>
+
+        <div class="card bg-base-100 shadow-xl mb-6">
+            <div class="card-body">
+                <h2 class="card-title">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                    Whisper Settings
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="form-control">
+                        <label class="label">
+                            <span class="label-text">Whisper API URL</span>
+                        </label>
+                        <input type="url" id="whisperUrl"
+                            placeholder="https://whisper.gaia.domains/v1/audio/transcriptions"
+                            value="https://whisper.gaia.domains/v1/audio/transcriptions"
+                            class="input input-bordered w-full" />
+                        <label class="label">
+                            <span class="label-text-alt">Enter the complete Whisper API URL</span>
+                        </label>
+                    </div>
+                    <div class="form-control">
+                        <label class="label">
+                            <span class="label-text">API Token</span>
+                        </label>
+                        <input type="password" id="whisperToken" placeholder="gaia-..."
+                            class="input input-bordered w-full" />
+                        <label class="label">
+                            <span class="label-text-alt">Enter API access token</span>
+                        </label>
+                    </div>
+                    <div class="form-control">
+                        <label class="label">
+                            <span class="label-text">Recognition Language</span>
+                        </label>
+                        <select id="whisperLanguage" class="select select-bordered w-full">
+                            <option value="auto" selected>Auto Detect</option>
+                            <option value="zh">Chinese</option>
+                            <option value="en">English</option>
+                        </select>
+                        <label class="label">
+                            <span class="label-text-alt">Select audio language type</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="flex justify-end mt-4">
+                    <button id="saveWhisperSettings" class="btn btn-primary btn-sm">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3-3m0 0l-3 3m3-3v12" />
+                        </svg>
+                        Save Settings
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card bg-base-100 shadow-xl mb-6">
+            <div class="card-body">
+                <h2 class="card-title">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                    </svg>
+                    Upload Audio File
+                </h2>
+                <div class="form-control">
+                    <input type="file" id="fileInput" accept=".mp3,.wav,.mp4"
+                        class="file-input file-input-bordered file-input-primary w-full" />
+                    <label class="label">
+                        <span class="label-text-alt">Supports MP3, WAV, MP4 formats</span>
+                    </label>
+                </div>
+                <div id="uploadProgress" class="hidden">
+                    <div class="flex items-center gap-3 mt-4">
+                        <span class="loading loading-spinner loading-sm"></span>
+                        <span id="progressText">Processing...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="audioInfo" class="card bg-base-100 shadow-xl mb-6 hidden">
+            <div class="card-body">
+                <h2 class="card-title">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    Audio Information
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="stat">
+                        <div class="stat-title">Filename</div>
+                        <div class="stat-value text-sm" id="fileName">-</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-title">Duration</div>
+                        <div class="stat-value text-lg" id="duration">-</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-title">Size</div>
+                        <div class="stat-value text-lg" id="fileSize">-</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="waveformContainer" class="card bg-base-100 shadow-xl mb-6 hidden">
+            <div class="card-body">
+                <h2 class="card-title mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
+                    </svg>
+                    Audio Waveform & Cutting
+                </h2>
+
+                <div class="relative">
+                    <div id="waveform" class="w-full h-32 bg-base-200 rounded-lg border-2 border-base-300"></div>
+                    <div id="timeMarkers" class="absolute top-0 left-0 w-full h-full pointer-events-none">
+                        <div id="startMarker"
+                            class="absolute top-0 w-0.5 h-full bg-green-500 opacity-0 transition-all duration-300"
+                            style="left: 0%;">
+                            <div
+                                class="absolute -top-6 left-1/2 transform -translate-x-1/2 bg-green-500 text-white text-xs px-1 py-0.5 rounded whitespace-nowrap">
+                                Start: <span id="startMarkerTime">0:00</span>
+                            </div>
+                        </div>
+                        <div id="endMarker"
+                            class="absolute top-0 w-0.5 h-full bg-red-500 opacity-0 transition-all duration-300"
+                            style="left: 100%;">
+                            <div
+                                class="absolute -top-6 left-1/2 transform -translate-x-1/2 bg-red-500 text-white text-xs px-1 py-0.5 rounded whitespace-nowrap">
+                                End: <span id="endMarkerTime">0:00</span>
+                            </div>
+                        </div>
+                        <div id="selectionHighlight"
+                            class="absolute top-0 h-full bg-blue-300 opacity-20 transition-all duration-300"
+                            style="left: 0%; width: 0%;"></div>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-4 mb-4 mt-4">
+                    <button id="playPauseBtn" class="btn btn-primary btn-sm">
+                        <svg id="playIcon" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1.586a1 1 0 01.707.293l4.828 4.828a4 4 0 105.656-5.656l-4.828-4.828A1 1 0 0116.586 4H15m-6 6v6m6-6v6m-6-6H9" />
+                        </svg>
+                        <svg id="pauseIcon" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 hidden" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span id="playPauseText">Play</span>
+                    </button>
+
+                    <button id="stopBtn" class="btn btn-accent btn-sm">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        Stop
+                    </button>
+
+                    <div class="flex items-center gap-2">
+                        <span class="text-sm">Volume:</span>
+                        <input type="range" id="volumeSlider" min="0" max="100" value="50"
+                            class="range range-primary range-sm w-24" />
+                    </div>
+
+                    <div class="flex items-center gap-2">
+                        <span id="currentTime" class="text-sm text-base-content/70">00:00</span>
+                        <span class="text-sm text-base-content/70">/</span>
+                        <span id="totalTime" class="text-sm text-base-content/70">00:00</span>
+                    </div>
+
+                    <div class="flex-1"></div>
+
+                    <div class="flex items-center gap-2">
+                        <div class="flex items-center gap-1">
+                            <span class="text-xs text-base-content/60">Start:</span>
+                            <input type="number" id="startTime" placeholder="0"
+                                class="input input-bordered input-xs w-20" step="0.01" min="0" />
+                            <button id="setStartBtn" class="btn btn-outline btn-xs">Set</button>
+                        </div>
+                        <div class="flex items-center gap-1">
+                            <span class="text-xs text-base-content/60">End:</span>
+                            <input type="number" id="endTime" placeholder="0" class="input input-bordered input-xs w-20"
+                                step="0.01" min="0" />
+                            <button id="setEndBtn" class="btn btn-outline btn-xs">Set</button>
+                        </div>
+                        <button id="previewBtn" class="btn btn-info btn-xs">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                            </svg>
+                            Preview
+                        </button>
+                    </div>
+                </div>
+
+                <div class="flex justify-center pt-4 border-t border-base-300">
+                    <button id="cutBtn" class="btn btn-success btn-lg">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 12l2 2 4-4" />
+                        </svg>
+                        Cut Audio
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="cutResultsManager" class="card bg-base-100 shadow-xl hidden">
+            <div class="card-body">
+                <h2 class="card-title mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                    </svg>
+                    Cut Results Management
+                    <div class="badge badge-primary ml-2" id="segmentCount">0</div>
+                </h2>
+
+                <div class="flex justify-between items-center mb-4">
+                    <div class="text-sm text-base-content/70">
+                        <span id="totalSegments">0</span> segments cut
+                    </div>
+                    <div class="flex gap-2">
+                        <button id="transcribeAllBtn" class="btn btn-info btn-sm">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
+                            </svg>
+                            Transcribe All
+                        </button>
+                        <button id="copyAllTranscriptionBtn" class="btn btn-secondary btn-sm">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                            </svg>
+                            Copy All
+                        </button>
+                        <button id="downloadAllBtn" class="btn btn-primary btn-sm">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                            </svg>
+                            Download All
+                        </button>
+                        <button id="clearAllBtn" class="btn btn-outline btn-sm">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                            </svg>
+                            Clear All
+                        </button>
+                    </div>
+                </div>
+
+                <div id="segmentsList" class="space-y-4">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let wavesurfer;
+        let audioContext;
+        let audioBuffer;
+        let currentFile;
+        let cutSegments = [];
+        let segmentCounter = 0;
+        let startMarker = null;
+        let endMarker = null;
+        let isPlaying = false;
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const fileInput = document.getElementById('fileInput');
+            fileInput.addEventListener('change', handleFileUpload);
+
+            document.getElementById('playPauseBtn').addEventListener('click', togglePlayPause);
+            document.getElementById('stopBtn').addEventListener('click', () => {
+                if (wavesurfer) {
+                    wavesurfer.stop();
+                    updatePlayPauseButton(false);
+                }
+            });
+            document.getElementById('volumeSlider').addEventListener('input', (e) => {
+                if (wavesurfer) wavesurfer.setVolume(e.target.value / 100);
+            });
+
+            document.getElementById('setStartBtn').addEventListener('click', setStartTime);
+            document.getElementById('setEndBtn').addEventListener('click', setEndTime);
+            document.getElementById('previewBtn').addEventListener('click', previewSegment);
+            document.getElementById('cutBtn').addEventListener('click', cutAudio);
+
+            document.getElementById('startTime').addEventListener('input', updateTimeMarkers);
+            document.getElementById('endTime').addEventListener('input', updateTimeMarkers);
+
+            document.getElementById('transcribeAllBtn').addEventListener('click', transcribeAllSegments);
+            document.getElementById('copyAllTranscriptionBtn').addEventListener('click', copyAllTranscriptions);
+            document.getElementById('downloadAllBtn').addEventListener('click', downloadAllSegments);
+            document.getElementById('clearAllBtn').addEventListener('click', clearAllSegments);
+
+            document.getElementById('saveWhisperSettings').addEventListener('click', saveWhisperSettings);
+
+            loadWhisperSettings();
+        });
+
+        function togglePlayPause() {
+            if (!wavesurfer) return;
+
+            if (isPlaying) {
+                wavesurfer.pause();
+            } else {
+                wavesurfer.play();
+            }
+        }
+
+        function updatePlayPauseButton(playing) {
+            isPlaying = playing;
+            const playIcon = document.getElementById('playIcon');
+            const pauseIcon = document.getElementById('pauseIcon');
+            const playPauseText = document.getElementById('playPauseText');
+
+            if (playing) {
+                playIcon.classList.add('hidden');
+                pauseIcon.classList.remove('hidden');
+                playPauseText.textContent = 'Pause';
+            } else {
+                playIcon.classList.remove('hidden');
+                pauseIcon.classList.add('hidden');
+                playPauseText.textContent = 'Play';
+            }
+        }
+
+        async function handleFileUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            currentFile = file;
+            showProgress('Processing file...');
+
+            try {
+                let audioFile = file;
+
+                if (file.type === 'video/mp4' || file.name.toLowerCase().endsWith('.mp4')) {
+                    try {
+                        audioFile = await extractAudioFromVideo(file);
+                        showProgress('Audio extracted successfully, loading waveform...');
+                    } catch (error) {
+                        console.warn('MP4 audio extraction failed, trying direct load:', error);
+                        audioFile = file;
+                    }
+                }
+
+                displayFileInfo(file);
+                await initWaveform(audioFile);
+                hideProgress();
+                showAudioControls();
+
+            } catch (error) {
+                console.error('Error processing file:', error);
+                hideProgress();
+                showError('Error processing file: ' + error.message + '. Please ensure the file format is correct and not corrupted.');
+            }
+        }
+
+        async function extractAudioFromVideo(videoFile) {
+            return new Promise((resolve, reject) => {
+                const video = document.createElement('video');
+                video.crossOrigin = 'anonymous';
+                video.muted = true;
+
+                video.onloadedmetadata = () => {
+                    try {
+                        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                        const source = audioCtx.createMediaElementSource(video);
+                        const destination = audioCtx.createMediaStreamDestination();
+                        source.connect(destination);
+                        source.connect(audioCtx.destination);
+
+                        const mediaRecorder = new MediaRecorder(destination.stream, {
+                            mimeType: 'audio/webm;codecs=opus'
+                        });
+                        const chunks = [];
+
+                        mediaRecorder.ondataavailable = (e) => {
+                            if (e.data.size > 0) {
+                                chunks.push(e.data);
+                            }
+                        };
+
+                        mediaRecorder.onstop = () => {
+                            const audioBlob = new Blob(chunks, { type: 'audio/webm' });
+                            audioCtx.close();
+                            resolve(audioBlob);
+                        };
+
+                        mediaRecorder.onerror = (e) => {
+                            audioCtx.close();
+                            reject(e);
+                        };
+
+                        video.onended = () => {
+                            mediaRecorder.stop();
+                        };
+
+                        mediaRecorder.start();
+                        video.play();
+
+                    } catch (error) {
+                        reject(error);
+                    }
+                };
+
+                video.onerror = (e) => {
+                    reject(new Error('Unable to load video file'));
+                };
+
+                video.src = URL.createObjectURL(videoFile);
+            });
+        }
+
+        async function initWaveform(audioFile) {
+            if (wavesurfer) {
+                wavesurfer.destroy();
+            }
+
+            wavesurfer = WaveSurfer.create({
+                container: '#waveform',
+                waveColor: '#4f46e5',
+                progressColor: '#7c3aed',
+                cursorColor: '#ef4444',
+                barWidth: 2,
+                barRadius: 3,
+                responsive: true,
+                height: 128,
+                normalize: true,
+                interact: true
+            });
+
+            await wavesurfer.loadBlob(audioFile);
+
+            if (!audioContext) {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            }
+
+            const arrayBuffer = await audioFile.arrayBuffer();
+            audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
+
+            wavesurfer.on('ready', () => {
+                const duration = wavesurfer.getDuration();
+                document.getElementById('totalTime').textContent = formatTime(duration);
+                document.getElementById('endTime').value = duration.toFixed(2);
+                updateTimeMarkers();
+                updatePlayPauseButton(false);
+            });
+
+            wavesurfer.on('audioprocess', () => {
+                const currentTime = wavesurfer.getCurrentTime();
+                document.getElementById('currentTime').textContent = formatTimeWithDecimals(currentTime);
+            });
+
+            wavesurfer.on('play', () => {
+                updatePlayPauseButton(true);
+            });
+
+            wavesurfer.on('pause', () => {
+                updatePlayPauseButton(false);
+            });
+
+            wavesurfer.on('finish', () => {
+                updatePlayPauseButton(false);
+            });
+
+            wavesurfer.on('click', () => {
+                const currentTime = wavesurfer.getCurrentTime();
+            });
+        }
+
+        function displayFileInfo(file) {
+            document.getElementById('fileName').textContent = file.name;
+            document.getElementById('fileSize').textContent = formatFileSize(file.size);
+            document.getElementById('audioInfo').classList.remove('hidden');
+        }
+
+        function showAudioControls() {
+            document.getElementById('waveformContainer').classList.remove('hidden');
+        }
+
+        function showProgress(message) {
+            document.getElementById('progressText').textContent = message;
+            document.getElementById('uploadProgress').classList.remove('hidden');
+        }
+
+        function hideProgress() {
+            document.getElementById('uploadProgress').classList.add('hidden');
+        }
+
+        function showError(message) {
+            const alert = document.createElement('div');
+            alert.className = 'alert alert-error mt-4';
+            alert.innerHTML = `
+                <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span>${message}</span>
+            `;
+            document.querySelector('.container').appendChild(alert);
+
+            setTimeout(() => alert.remove(), 5000);
+        }
+
+        function setStartTime() {
+            if (wavesurfer) {
+                const currentTime = wavesurfer.getCurrentTime();
+                document.getElementById('startTime').value = currentTime.toFixed(2);
+                updateTimeMarkers();
+            }
+        }
+
+        function setEndTime() {
+            if (wavesurfer) {
+                const currentTime = wavesurfer.getCurrentTime();
+                document.getElementById('endTime').value = currentTime.toFixed(2);
+                updateTimeMarkers();
+            }
+        }
+
+        function updateTimeMarkers() {
+            if (!wavesurfer) return;
+
+            const duration = wavesurfer.getDuration();
+            const startTime = parseFloat(document.getElementById('startTime').value) || 0;
+            const endTime = parseFloat(document.getElementById('endTime').value) || duration;
+
+            const startMarkerEl = document.getElementById('startMarker');
+            const endMarkerEl = document.getElementById('endMarker');
+            const selectionEl = document.getElementById('selectionHighlight');
+            const startTimeEl = document.getElementById('startMarkerTime');
+            const endTimeEl = document.getElementById('endMarkerTime');
+
+            if (startTime >= 0 && startTime <= duration) {
+                const startPercent = (startTime / duration) * 100;
+                startMarkerEl.style.left = `${startPercent}%`;
+                startMarkerEl.style.opacity = '1';
+                startTimeEl.textContent = formatTimeWithDecimals(startTime);
+            } else {
+                startMarkerEl.style.opacity = '0';
+            }
+
+            if (endTime >= 0 && endTime <= duration) {
+                const endPercent = (endTime / duration) * 100;
+                endMarkerEl.style.left = `${endPercent}%`;
+                endMarkerEl.style.opacity = '1';
+                endTimeEl.textContent = formatTimeWithDecimals(endTime);
+            } else {
+                endMarkerEl.style.opacity = '0';
+            }
+
+            if (startTime < endTime && startTime >= 0 && endTime <= duration) {
+                const startPercent = (startTime / duration) * 100;
+                const endPercent = (endTime / duration) * 100;
+                selectionEl.style.left = `${startPercent}%`;
+                selectionEl.style.width = `${endPercent - startPercent}%`;
+                selectionEl.style.opacity = '0.2';
+            } else {
+                selectionEl.style.opacity = '0';
+            }
+        }
+
+        function previewSegment() {
+            if (!wavesurfer) return;
+
+            const startTime = parseFloat(document.getElementById('startTime').value) || 0;
+            const endTime = parseFloat(document.getElementById('endTime').value) || wavesurfer.getDuration();
+
+            if (startTime >= endTime) {
+                showError('Start time must be less than end time');
+                return;
+            }
+
+            wavesurfer.stop();
+            wavesurfer.seekTo(startTime / wavesurfer.getDuration());
+            wavesurfer.play();
+
+            const playDuration = (endTime - startTime) * 1000;
+            setTimeout(() => {
+                if (wavesurfer.isPlaying()) {
+                    wavesurfer.pause();
+                    wavesurfer.seekTo(endTime / wavesurfer.getDuration());
+                }
+            }, playDuration);
+        }
+
+        let cutAudioBlob;
+
+        async function cutAudio() {
+            if (!audioBuffer) return;
+
+            const startTime = parseFloat(document.getElementById('startTime').value) || 0;
+            const endTime = parseFloat(document.getElementById('endTime').value) || audioBuffer.duration;
+
+            if (startTime >= endTime) {
+                showError('Start time must be less than end time');
+                return;
+            }
+
+            showProgress('Cutting audio...');
+
+            try {
+                const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                const sampleRate = audioBuffer.sampleRate;
+                const startSample = Math.floor(startTime * sampleRate);
+                const endSample = Math.floor(endTime * sampleRate);
+                const frameCount = endSample - startSample;
+
+                const newBuffer = audioCtx.createBuffer(
+                    audioBuffer.numberOfChannels,
+                    frameCount,
+                    sampleRate
+                );
+
+                for (let channel = 0; channel < audioBuffer.numberOfChannels; channel++) {
+                    const oldData = audioBuffer.getChannelData(channel);
+                    const newData = newBuffer.getChannelData(channel);
+
+                    for (let i = 0; i < frameCount; i++) {
+                        newData[i] = oldData[startSample + i];
+                    }
+                }
+
+                const wavFile = bufferToWav(newBuffer);
+                const audioBlob = new Blob([wavFile], { type: 'audio/wav' });
+
+                const segment = {
+                    id: ++segmentCounter,
+                    startTime: startTime,
+                    endTime: endTime,
+                    duration: endTime - startTime,
+                    blob: audioBlob,
+                    audioBuffer: newBuffer,
+                    filename: `segment_${segmentCounter}_${startTime.toFixed(1)}s_${endTime.toFixed(1)}s.wav`
+                };
+
+                cutSegments.push(segment);
+                await addSegmentToList(segment);
+                document.getElementById('cutResultsManager').classList.remove('hidden');
+                updateSegmentCount();
+                hideProgress();
+
+                document.getElementById('startTime').value = '';
+                document.getElementById('endTime').value = '';
+
+            } catch (error) {
+                console.error('Error cutting audio:', error);
+                hideProgress();
+                showError('Error cutting audio: ' + error.message);
+            }
+        }
+
+        async function addSegmentToList(segment) {
+            const segmentDiv = document.createElement('div');
+            segmentDiv.className = 'card bg-base-200 border border-base-300';
+            segmentDiv.id = `segment-${segment.id}`;
+
+            segmentDiv.innerHTML = `
+                <div class="card-body p-4">
+                    <div class="flex justify-between items-start mb-3">
+                        <div>
+                            <h3 class="font-semibold">Segment ${segment.id}</h3>
+                            <div class="text-sm text-base-content/70">
+                                ${formatTime(segment.startTime)} - ${formatTime(segment.endTime)} 
+                                (${formatTime(segment.duration)}) | ${formatFileSize(segment.blob.size)}
+                            </div>
+                        </div>
+                        <button class="btn btn-ghost btn-xs" onclick="removeSegment(${segment.id})">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
+                    
+                    <div id="waveform-${segment.id}" class="w-full h-20 bg-base-100 rounded border mb-3"></div>
+                    
+                    <div class="flex gap-2">
+                        <button class="btn btn-xs btn-primary" onclick="playSegment(${segment.id})">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1.586a1 1 0 01.707.293l4.828 4.828a4 4 0 105.656-5.656l-4.828-4.828A1 1 0 0116.586 4H15m-6 6v6m6-6v6m-6-6H9" />
+                            </svg>
+                            Play
+                        </button>
+                        <button class="btn btn-xs btn-info" onclick="transcribeSegment(${segment.id})">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
+                            </svg>
+                            Transcribe
+                        </button>
+                        <button class="btn btn-xs btn-success" onclick="downloadSegment(${segment.id})">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                            </svg>
+                            Download
+                        </button>
+                    </div>
+                    
+                    <div id="transcription-${segment.id}" class="hidden mt-3">
+                        <div class="divider my-2"></div>
+                        <div class="flex items-start gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mt-0.5 text-info flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                            </svg>
+                            <div class="flex-1">
+                                <div class="flex justify-between items-center mb-1">
+                                    <div class="text-sm font-medium text-base-content">Transcription Result:</div>
+                                    <button class="btn btn-ghost btn-xs" onclick="copyTranscription(${segment.id})">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                                        </svg>
+                                        Copy
+                                    </button>
+                                </div>
+                                <div id="transcription-text-${segment.id}" class="text-sm text-base-content/80 bg-base-200 p-2 rounded whitespace-pre-wrap"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('segmentsList').appendChild(segmentDiv);
+            await createSegmentWaveform(segment);
+        }
+
+        async function createSegmentWaveform(segment) {
+            try {
+                const segmentWavesurfer = WaveSurfer.create({
+                    container: `#waveform-${segment.id}`,
+                    waveColor: '#10b981',
+                    progressColor: '#059669',
+                    cursorColor: '#ef4444',
+                    barWidth: 2,
+                    barRadius: 3,
+                    responsive: true,
+                    height: 80,
+                    normalize: true,
+                    interact: true
+                });
+
+                await segmentWavesurfer.loadBlob(segment.blob);
+                segment.wavesurfer = segmentWavesurfer;
+
+            } catch (error) {
+                console.error('Error creating segment waveform:', error);
+            }
+        }
+
+        function updateSegmentCount() {
+            document.getElementById('segmentCount').textContent = cutSegments.length;
+            document.getElementById('totalSegments').textContent = cutSegments.length;
+        }
+
+        window.playSegment = function (segmentId) {
+            const segment = cutSegments.find(s => s.id === segmentId);
+            if (segment && segment.wavesurfer) {
+                cutSegments.forEach(s => {
+                    if (s.wavesurfer && s.id !== segmentId) {
+                        s.wavesurfer.pause();
+                    }
+                });
+                if (wavesurfer) {
+                    wavesurfer.pause();
+                }
+
+                segment.wavesurfer.playPause();
+            }
+        };
+
+        window.transcribeSegment = async function (segmentId) {
+            const segment = cutSegments.find(s => s.id === segmentId);
+            if (!segment) return;
+
+            if (!window.whisperConfig || !window.whisperConfig.url) {
+                showError('Please configure Whisper API URL first');
+                return;
+            }
+
+            const transcriptionBtn = document.querySelector(`button[onclick="transcribeSegment(${segmentId})"]`);
+            const originalText = transcriptionBtn.innerHTML;
+
+            transcriptionBtn.disabled = true;
+            transcriptionBtn.innerHTML = `
+                <span class="loading loading-spinner loading-xs"></span>
+                Transcribing...
+            `;
+
+            try {
+                await transcribeSegmentInternal(segmentId);
+            } catch (error) {
+                console.error('Speech recognition failed:', error);
+                showError(`Speech recognition failed: ${error.message}`);
+            } finally {
+                transcriptionBtn.disabled = false;
+                transcriptionBtn.innerHTML = originalText;
+            }
+        };
+
+        function displayTranscription(segmentId, text) {
+            const transcriptionDiv = document.getElementById(`transcription-${segmentId}`);
+            const transcriptionText = document.getElementById(`transcription-text-${segmentId}`);
+
+            if (transcriptionDiv && transcriptionText) {
+                // delete [00:00:00.000 --> 00:00:03.000]
+                const cleanText = text.replace(/^\[\d{2}:\d{2}:\d{2}\.\d{3}\s*-->\s*\d{2}:\d{2}:\d{2}\.\d{3}\]\s*/, '');
+
+                const segment = cutSegments.find(s => s.id === segmentId);
+                if (segment) {
+                    segment.transcription = cleanText;
+                }
+
+                transcriptionText.textContent = cleanText;
+                transcriptionDiv.classList.remove('hidden');
+            }
+        }
+
+        window.downloadSegment = function (segmentId) {
+            const segment = cutSegments.find(s => s.id === segmentId);
+            if (segment) {
+                const url = URL.createObjectURL(segment.blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = segment.filename;
+                a.click();
+                URL.revokeObjectURL(url);
+            }
+        };
+
+        window.removeSegment = function (segmentId) {
+            const segmentIndex = cutSegments.findIndex(s => s.id === segmentId);
+            if (segmentIndex !== -1) {
+                const segment = cutSegments[segmentIndex];
+
+                if (segment.wavesurfer) {
+                    segment.wavesurfer.destroy();
+                }
+
+                cutSegments.splice(segmentIndex, 1);
+
+                const segmentElement = document.getElementById(`segment-${segmentId}`);
+                if (segmentElement) {
+                    segmentElement.remove();
+                }
+
+                updateSegmentCount();
+
+                if (cutSegments.length === 0) {
+                    document.getElementById('cutResultsManager').classList.add('hidden');
+                }
+            }
+        };
+
+        function downloadAllSegments() {
+            if (cutSegments.length === 0) return;
+
+            cutSegments.forEach(segment => {
+                setTimeout(() => {
+                    const url = URL.createObjectURL(segment.blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = segment.filename;
+                    a.click();
+                    URL.revokeObjectURL(url);
+                }, 100);
+            });
+        }
+
+        function clearAllSegments() {
+            cutSegments.forEach(segment => {
+                if (segment.wavesurfer) {
+                    segment.wavesurfer.destroy();
+                }
+            });
+
+            cutSegments = [];
+            segmentCounter = 0;
+
+            document.getElementById('segmentsList').innerHTML = '';
+            updateSegmentCount();
+            document.getElementById('cutResultsManager').classList.add('hidden');
+        }
+
+        async function transcribeAllSegments() {
+            if (cutSegments.length === 0) {
+                showError('No segments to transcribe');
+                return;
+            }
+
+            if (!window.whisperConfig || !window.whisperConfig.url) {
+                showError('Please configure Whisper API URL first');
+                return;
+            }
+
+            const transcribeAllBtn = document.getElementById('transcribeAllBtn');
+            const originalText = transcribeAllBtn.innerHTML;
+
+            transcribeAllBtn.disabled = true;
+            let completed = 0;
+
+            const updateProgress = () => {
+                transcribeAllBtn.innerHTML = `
+                    <span class="loading loading-spinner loading-sm"></span>
+                    Transcribing ${completed}/${cutSegments.length}
+                `;
+            };
+
+            updateProgress();
+
+            try {
+                const concurrentLimit = 3;
+                const results = [];
+
+                for (let i = 0; i < cutSegments.length; i += concurrentLimit) {
+                    const batch = cutSegments.slice(i, i + concurrentLimit);
+                    const batchPromises = batch.map(async (segment) => {
+                        try {
+                            await transcribeSegmentInternal(segment.id);
+                            completed++;
+                            updateProgress();
+                            return { success: true, segmentId: segment.id };
+                        } catch (error) {
+                            completed++;
+                            updateProgress();
+                            return { success: false, segmentId: segment.id, error: error.message };
+                        }
+                    });
+
+                    const batchResults = await Promise.all(batchPromises);
+                    results.push(...batchResults);
+                }
+
+                const successCount = results.filter(r => r.success).length;
+                const failCount = results.filter(r => !r.success).length;
+
+                if (failCount > 0) {
+                    showError(`Transcription completed: ${successCount} succeeded, ${failCount} failed`);
+                } else {
+                    showSuccess(`All ${successCount} segments transcribed successfully`);
+                }
+
+            } catch (error) {
+                console.error('Batch transcription error:', error);
+                showError('Batch transcription error: ' + error.message);
+            } finally {
+                transcribeAllBtn.disabled = false;
+                transcribeAllBtn.innerHTML = originalText;
+            }
+        }
+
+        async function transcribeSegmentInternal(segmentId) {
+            const segment = cutSegments.find(s => s.id === segmentId);
+            if (!segment) throw new Error('Segment not found');
+
+            const formData = new FormData();
+            formData.append('file', segment.blob, segment.filename);
+
+            const language = window.whisperConfig.language || 'en';
+            if (language !== 'auto') {
+                formData.append('language', language);
+            }
+
+            const headers = {};
+            if (window.whisperConfig.token) {
+                headers['Authorization'] = `Bearer ${window.whisperConfig.token}`;
+            }
+
+            const response = await fetch(window.whisperConfig.url, {
+                method: 'POST',
+                headers: headers,
+                body: formData
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+            }
+
+            const result = await response.json();
+            displayTranscription(segmentId, result.text || result.transcript || 'Transcription result is empty');
+        }
+
+        async function copyAllTranscriptions() {
+            const transcribedSegments = cutSegments.filter(segment => segment.transcription);
+
+            if (transcribedSegments.length === 0) {
+                showError('No transcription results to copy');
+                return;
+            }
+
+            const allText = transcribedSegments
+                .map(segment => `${segment.filename}|${segment.transcription}`)
+                .join('\n');
+
+            try {
+                await navigator.clipboard.writeText(allText);
+                showSuccess(`Copied ${transcribedSegments.length} transcription results to clipboard`);
+            } catch (error) {
+                console.error('Copy failed:', error);
+                const textArea = document.createElement('textarea');
+                textArea.value = allText;
+                document.body.appendChild(textArea);
+                textArea.select();
+                try {
+                    document.execCommand('copy');
+                    showSuccess(`Copied ${transcribedSegments.length} transcription results to clipboard`);
+                } catch (fallbackError) {
+                    showError('Copy failed, please copy manually');
+                }
+                document.body.removeChild(textArea);
+            }
+        }
+
+        window.copyTranscription = async function (segmentId) {
+            const segment = cutSegments.find(s => s.id === segmentId);
+            if (!segment || !segment.transcription) {
+                showError('No transcription result to copy');
+                return;
+            }
+
+            const textToCopy = `${segment.filename}|${segment.transcription}`;
+
+            try {
+                await navigator.clipboard.writeText(textToCopy);
+                showSuccess('Transcription result copied to clipboard');
+            } catch (error) {
+                console.error('Copy failed:', error);
+                const textArea = document.createElement('textarea');
+                textArea.value = textToCopy;
+                document.body.appendChild(textArea);
+                textArea.select();
+                try {
+                    document.execCommand('copy');
+                    showSuccess('Transcription result copied to clipboard');
+                } catch (fallbackError) {
+                    showError('Copy failed, please copy manually');
+                }
+                document.body.removeChild(textArea);
+            }
+        };
+
+        function bufferToWav(buffer) {
+            const length = buffer.length;
+            const numberOfChannels = buffer.numberOfChannels;
+            const sampleRate = buffer.sampleRate;
+            const arrayBuffer = new ArrayBuffer(44 + length * numberOfChannels * 2);
+            const view = new DataView(arrayBuffer);
+
+            const writeString = (offset, string) => {
+                for (let i = 0; i < string.length; i++) {
+                    view.setUint8(offset + i, string.charCodeAt(i));
+                }
+            };
+
+            writeString(0, 'RIFF');
+            view.setUint32(4, 36 + length * numberOfChannels * 2, true);
+            writeString(8, 'WAVE');
+            writeString(12, 'fmt ');
+            view.setUint32(16, 16, true);
+            view.setUint16(20, 1, true);
+            view.setUint16(22, numberOfChannels, true);
+            view.setUint32(24, sampleRate, true);
+            view.setUint32(28, sampleRate * numberOfChannels * 2, true);
+            view.setUint16(32, numberOfChannels * 2, true);
+            view.setUint16(34, 16, true);
+            writeString(36, 'data');
+            view.setUint32(40, length * numberOfChannels * 2, true);
+
+            let offset = 44;
+            for (let i = 0; i < length; i++) {
+                for (let channel = 0; channel < numberOfChannels; channel++) {
+                    const sample = Math.max(-1, Math.min(1, buffer.getChannelData(channel)[i]));
+                    view.setInt16(offset, sample < 0 ? sample * 0x8000 : sample * 0x7FFF, true);
+                    offset += 2;
+                }
+            }
+
+            return arrayBuffer;
+        }
+
+        function formatTime(seconds) {
+            const minutes = Math.floor(seconds / 60);
+            const remainingSeconds = Math.floor(seconds % 60);
+            return `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
+        }
+
+        function formatTimeWithDecimals(seconds) {
+            const minutes = Math.floor(seconds / 60);
+            const remainingSeconds = (seconds % 60);
+            return `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toFixed(2).padStart(5, '0')}`;
+        }
+
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+
+        function saveWhisperSettings() {
+            const whisperUrl = document.getElementById('whisperUrl').value;
+            const whisperToken = document.getElementById('whisperToken').value;
+            const whisperLanguage = document.getElementById('whisperLanguage').value;
+
+            if (whisperUrl && !isValidUrl(whisperUrl)) {
+                showError('Please enter a valid URL');
+                return;
+            }
+
+            window.whisperConfig = {
+                url: whisperUrl,
+                token: whisperToken,
+                language: whisperLanguage
+            };
+
+            showSuccess('Whisper settings saved');
+        }
+
+        function loadWhisperSettings() {
+            if (!window.whisperConfig) {
+                window.whisperConfig = {
+                    url: 'https://whisper.gaia.domains/v1/audio/transcriptions',
+                    token: '',
+                    language: 'auto'
+                };
+            }
+
+            document.getElementById('whisperUrl').value = window.whisperConfig.url || 'https://whisper.gaia.domains/v1/audio/transcriptions';
+            document.getElementById('whisperToken').value = window.whisperConfig.token || '';
+            document.getElementById('whisperLanguage').value = window.whisperConfig.language || 'auto';
+        }
+
+        function isValidUrl(string) {
+            try {
+                new URL(string);
+                return true;
+            } catch (_) {
+                return false;
+            }
+        }
+
+        function showSuccess(message) {
+            const alert = document.createElement('div');
+            alert.className = 'alert alert-success mt-4';
+            alert.innerHTML = `
+                <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span>${message}</span>
+            `;
+            document.querySelector('.container').appendChild(alert);
+
+            setTimeout(() => alert.remove(), 3000);
+        }
+    </script>
+</body>
+
+</html>

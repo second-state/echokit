@@ -1,0 +1,1324 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>音频处理器</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.9.4/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/7.7.0/wavesurfer.min.js"></script>
+</head>
+
+<body class="bg-base-200 min-h-screen">
+    <div class="container mx-auto p-4">
+        <!-- 标题 -->
+        <div class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-primary mb-2">音频处理器</h1>
+            <p class="text-base-content/70">上传音频文件，查看波形，播放和切割</p>
+        </div>
+
+        <!-- Whisper 设置区域 -->
+        <div class="card bg-base-100 shadow-xl mb-6">
+            <div class="card-body">
+                <h2 class="card-title">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                    Whisper 设置
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="form-control">
+                        <label class="label">
+                            <span class="label-text">Whisper API 地址</span>
+                        </label>
+                        <input type="url" id="whisperUrl"
+                            placeholder="https://whisper.gaia.domains/v1/audio/transcriptions"
+                            value="https://whisper.gaia.domains/v1/audio/transcriptions"
+                            class="input input-bordered w-full" />
+                        <label class="label">
+                            <span class="label-text-alt">输入 Whisper API 的完整地址</span>
+                        </label>
+                    </div>
+                    <div class="form-control">
+                        <label class="label">
+                            <span class="label-text">API Token</span>
+                        </label>
+                        <input type="password" id="whisperToken" placeholder="gaia-..."
+                            class="input input-bordered w-full" />
+                        <label class="label">
+                            <span class="label-text-alt">输入 API 访问令牌</span>
+                        </label>
+                    </div>
+                    <div class="form-control">
+                        <label class="label">
+                            <span class="label-text">识别语言</span>
+                        </label>
+                        <select id="whisperLanguage" class="select select-bordered w-full">
+                            <option value="auto" selected>自动检测</option>
+                            <option value="zh">中文</option>
+                            <option value="en">英文</option>
+                        </select>
+                        <label class="label">
+                            <span class="label-text-alt">选择音频语言类型</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="flex justify-end mt-4">
+                    <button id="saveWhisperSettings" class="btn btn-primary btn-sm">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3-3m0 0l-3 3m3-3v12" />
+                        </svg>
+                        保存设置
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 文件上传区域 -->
+        <div class="card bg-base-100 shadow-xl mb-6">
+            <div class="card-body">
+                <h2 class="card-title">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                    </svg>
+                    上传音频文件
+                </h2>
+                <div class="form-control">
+                    <input type="file" id="fileInput" accept=".mp3,.wav,.mp4"
+                        class="file-input file-input-bordered file-input-primary w-full" />
+                    <label class="label">
+                        <span class="label-text-alt">支持 MP3, WAV, MP4 格式</span>
+                    </label>
+                </div>
+                <div id="uploadProgress" class="hidden">
+                    <div class="flex items-center gap-3 mt-4">
+                        <span class="loading loading-spinner loading-sm"></span>
+                        <span id="progressText">处理中...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 音频信息 -->
+        <div id="audioInfo" class="card bg-base-100 shadow-xl mb-6 hidden">
+            <div class="card-body">
+                <h2 class="card-title">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    音频信息
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="stat">
+                        <div class="stat-title">文件名</div>
+                        <div class="stat-value text-sm" id="fileName">-</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-title">时长</div>
+                        <div class="stat-value text-lg" id="duration">-</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-title">大小</div>
+                        <div class="stat-value text-lg" id="fileSize">-</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 波形显示和音频控制 -->
+        <div id="waveformContainer" class="card bg-base-100 shadow-xl mb-6 hidden">
+            <div class="card-body">
+                <h2 class="card-title mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
+                    </svg>
+                    音频波形与切割
+                </h2>
+
+                <!-- 波形显示区域 -->
+                <div class="relative">
+                    <div id="waveform" class="w-full h-32 bg-base-200 rounded-lg border-2 border-base-300"></div>
+                    <!-- 时间标记线容器 -->
+                    <div id="timeMarkers" class="absolute top-0 left-0 w-full h-full pointer-events-none">
+                        <!-- 开始时间线 -->
+                        <div id="startMarker"
+                            class="absolute top-0 w-0.5 h-full bg-green-500 opacity-0 transition-all duration-300"
+                            style="left: 0%;">
+                            <div
+                                class="absolute -top-6 left-1/2 transform -translate-x-1/2 bg-green-500 text-white text-xs px-1 py-0.5 rounded whitespace-nowrap">
+                                开始: <span id="startMarkerTime">0:00</span>
+                            </div>
+                        </div>
+                        <!-- 结束时间线 -->
+                        <div id="endMarker"
+                            class="absolute top-0 w-0.5 h-full bg-red-500 opacity-0 transition-all duration-300"
+                            style="left: 100%;">
+                            <div
+                                class="absolute -top-6 left-1/2 transform -translate-x-1/2 bg-red-500 text-white text-xs px-1 py-0.5 rounded whitespace-nowrap">
+                                结束: <span id="endMarkerTime">0:00</span>
+                            </div>
+                        </div>
+                        <!-- 选中区域高亮 -->
+                        <div id="selectionHighlight"
+                            class="absolute top-0 h-full bg-blue-300 opacity-20 transition-all duration-300"
+                            style="left: 0%; width: 0%;"></div>
+                    </div>
+                </div>
+
+                <!-- 播放控制 -->
+                <div class="flex items-center gap-4 mb-4 mt-4">
+                    <!-- 播放/暂停按钮 -->
+                    <button id="playPauseBtn" class="btn btn-primary btn-sm">
+                        <svg id="playIcon" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1.586a1 1 0 01.707.293l4.828 4.828a4 4 0 105.656-5.656l-4.828-4.828A1 1 0 0116.586 4H15m-6 6v6m6-6v6m-6-6H9" />
+                        </svg>
+                        <svg id="pauseIcon" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 hidden" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span id="playPauseText">播放</span>
+                    </button>
+
+                    <button id="stopBtn" class="btn btn-accent btn-sm">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        停止
+                    </button>
+
+                    <div class="flex items-center gap-2">
+                        <span class="text-sm">音量:</span>
+                        <input type="range" id="volumeSlider" min="0" max="100" value="50"
+                            class="range range-primary range-sm w-24" />
+                    </div>
+
+                    <div class="flex items-center gap-2">
+                        <span id="currentTime" class="text-sm text-base-content/70">00:00</span>
+                        <span class="text-sm text-base-content/70">/</span>
+                        <span id="totalTime" class="text-sm text-base-content/70">00:00</span>
+                    </div>
+
+                    <div class="flex-1"></div>
+
+                    <!-- 切割时间设置 -->
+                    <div class="flex items-center gap-2">
+                        <div class="flex items-center gap-1">
+                            <span class="text-xs text-base-content/60">开始:</span>
+                            <input type="number" id="startTime" placeholder="0"
+                                class="input input-bordered input-xs w-20" step="0.01" min="0" />
+                            <button id="setStartBtn" class="btn btn-outline btn-xs">设置</button>
+                        </div>
+                        <div class="flex items-center gap-1">
+                            <span class="text-xs text-base-content/60">结束:</span>
+                            <input type="number" id="endTime" placeholder="0" class="input input-bordered input-xs w-20"
+                                step="0.01" min="0" />
+                            <button id="setEndBtn" class="btn btn-outline btn-xs">设置</button>
+                        </div>
+                        <button id="previewBtn" class="btn btn-info btn-xs">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                            </svg>
+                            预览
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 切割按钮单独一行 -->
+                <div class="flex justify-center pt-4 border-t border-base-300">
+                    <button id="cutBtn" class="btn btn-success btn-lg">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 12l2 2 4-4" />
+                        </svg>
+                        切割音频
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 切割结果管理 -->
+        <div id="cutResultsManager" class="card bg-base-100 shadow-xl hidden">
+            <div class="card-body">
+                <h2 class="card-title mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                    </svg>
+                    切割结果管理
+                    <div class="badge badge-primary ml-2" id="segmentCount">0</div>
+                </h2>
+
+                <div class="flex justify-between items-center mb-4">
+                    <div class="text-sm text-base-content/70">
+                        已切割 <span id="totalSegments">0</span> 个片段
+                    </div>
+                    <div class="flex gap-2">
+                        <button id="transcribeAllBtn" class="btn btn-info btn-sm">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
+                            </svg>
+                            识别全部
+                        </button>
+                        <button id="copyAllTranscriptionBtn" class="btn btn-secondary btn-sm">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                            </svg>
+                            复制全部
+                        </button>
+                        <button id="downloadAllBtn" class="btn btn-primary btn-sm">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                            </svg>
+                            下载全部
+                        </button>
+                        <button id="clearAllBtn" class="btn btn-outline btn-sm">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                            </svg>
+                            清空全部
+                        </button>
+                    </div>
+                </div>
+
+                <div id="segmentsList" class="space-y-4">
+                    <!-- 切割片段将动态添加到这里 -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let wavesurfer;
+        let audioContext;
+        let audioBuffer;
+        let currentFile;
+        let cutSegments = []; // 存储所有切割片段
+        let segmentCounter = 0; // 片段计数器
+        let startMarker = null; // 开始时间标记
+        let endMarker = null; // 结束时间标记
+        let isPlaying = false; // 播放状态
+
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function () {
+            const fileInput = document.getElementById('fileInput');
+            fileInput.addEventListener('change', handleFileUpload);
+
+            // 播放控制事件
+            document.getElementById('playPauseBtn').addEventListener('click', togglePlayPause);
+            document.getElementById('stopBtn').addEventListener('click', () => {
+                if (wavesurfer) {
+                    wavesurfer.stop();
+                    updatePlayPauseButton(false);
+                }
+            });
+            document.getElementById('volumeSlider').addEventListener('input', (e) => {
+                if (wavesurfer) wavesurfer.setVolume(e.target.value / 100);
+            });
+
+            // 切割控制事件
+            document.getElementById('setStartBtn').addEventListener('click', setStartTime);
+            document.getElementById('setEndBtn').addEventListener('click', setEndTime);
+            document.getElementById('previewBtn').addEventListener('click', previewSegment);
+            document.getElementById('cutBtn').addEventListener('click', cutAudio);
+
+            // 时间输入框变化事件
+            document.getElementById('startTime').addEventListener('input', updateTimeMarkers);
+            document.getElementById('endTime').addEventListener('input', updateTimeMarkers);
+
+            // 切割结果管理事件
+            document.getElementById('transcribeAllBtn').addEventListener('click', transcribeAllSegments);
+            document.getElementById('copyAllTranscriptionBtn').addEventListener('click', copyAllTranscriptions);
+            document.getElementById('downloadAllBtn').addEventListener('click', downloadAllSegments);
+            document.getElementById('clearAllBtn').addEventListener('click', clearAllSegments);
+
+            // Whisper 设置事件
+            document.getElementById('saveWhisperSettings').addEventListener('click', saveWhisperSettings);
+
+            // 加载保存的设置
+            loadWhisperSettings();
+        });
+
+        function togglePlayPause() {
+            if (!wavesurfer) return;
+
+            if (isPlaying) {
+                wavesurfer.pause();
+            } else {
+                wavesurfer.play();
+            }
+        }
+
+        function updatePlayPauseButton(playing) {
+            isPlaying = playing;
+            const playIcon = document.getElementById('playIcon');
+            const pauseIcon = document.getElementById('pauseIcon');
+            const playPauseText = document.getElementById('playPauseText');
+
+            if (playing) {
+                playIcon.classList.add('hidden');
+                pauseIcon.classList.remove('hidden');
+                playPauseText.textContent = '暂停';
+            } else {
+                playIcon.classList.remove('hidden');
+                pauseIcon.classList.add('hidden');
+                playPauseText.textContent = '播放';
+            }
+        }
+
+        async function handleFileUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            currentFile = file;
+            showProgress('正在处理文件...');
+
+            try {
+                let audioFile = file;
+
+                // 如果是 MP4 文件，尝试提取音频
+                if (file.type === 'video/mp4' || file.name.toLowerCase().endsWith('.mp4')) {
+                    try {
+                        audioFile = await extractAudioFromVideo(file);
+                        showProgress('音频提取成功，正在加载波形...');
+                    } catch (error) {
+                        console.warn('MP4 音频提取失败，尝试直接加载:', error);
+                        // 如果 MP4 提取失败，尝试直接加载（某些 MP4 文件可能直接支持）
+                        audioFile = file;
+                    }
+                }
+
+                // 显示文件信息
+                displayFileInfo(file);
+
+                // 初始化波形
+                await initWaveform(audioFile);
+
+                hideProgress();
+                showAudioControls();
+
+            } catch (error) {
+                console.error('处理文件时出错:', error);
+                hideProgress();
+                showError('处理文件时出错: ' + error.message + '. 请确保文件格式正确且未损坏。');
+            }
+        }
+
+        async function extractAudioFromVideo(videoFile) {
+            return new Promise((resolve, reject) => {
+                const video = document.createElement('video');
+                video.crossOrigin = 'anonymous';
+                video.muted = true;
+
+                video.onloadedmetadata = () => {
+                    try {
+                        // 创建音频上下文
+                        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                        const source = audioCtx.createMediaElementSource(video);
+                        const destination = audioCtx.createMediaStreamDestination();
+                        source.connect(destination);
+                        source.connect(audioCtx.destination);
+
+                        // 录制音频
+                        const mediaRecorder = new MediaRecorder(destination.stream, {
+                            mimeType: 'audio/webm;codecs=opus'
+                        });
+                        const chunks = [];
+
+                        mediaRecorder.ondataavailable = (e) => {
+                            if (e.data.size > 0) {
+                                chunks.push(e.data);
+                            }
+                        };
+
+                        mediaRecorder.onstop = () => {
+                            const audioBlob = new Blob(chunks, { type: 'audio/webm' });
+                            audioCtx.close();
+                            resolve(audioBlob);
+                        };
+
+                        mediaRecorder.onerror = (e) => {
+                            audioCtx.close();
+                            reject(e);
+                        };
+
+                        video.onended = () => {
+                            mediaRecorder.stop();
+                        };
+
+                        mediaRecorder.start();
+                        video.play();
+
+                    } catch (error) {
+                        reject(error);
+                    }
+                };
+
+                video.onerror = (e) => {
+                    reject(new Error('无法加载视频文件'));
+                };
+
+                video.src = URL.createObjectURL(videoFile);
+            });
+        }
+
+        async function initWaveform(audioFile) {
+            // 销毁现有的波形
+            if (wavesurfer) {
+                wavesurfer.destroy();
+            }
+
+            // 创建新的波形
+            wavesurfer = WaveSurfer.create({
+                container: '#waveform',
+                waveColor: '#4f46e5',
+                progressColor: '#7c3aed',
+                cursorColor: '#ef4444',
+                barWidth: 2,
+                barRadius: 3,
+                responsive: true,
+                height: 128,
+                normalize: true,
+                interact: true
+            });
+
+            // 加载音频文件
+            await wavesurfer.loadBlob(audioFile);
+
+            // 创建音频上下文并解码音频数据
+            if (!audioContext) {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            }
+
+            // 从文件创建音频缓冲区
+            const arrayBuffer = await audioFile.arrayBuffer();
+            audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
+
+            // 更新时间显示
+            wavesurfer.on('ready', () => {
+                const duration = wavesurfer.getDuration();
+                document.getElementById('totalTime').textContent = formatTime(duration);
+                document.getElementById('endTime').value = duration.toFixed(2);
+                updateTimeMarkers();
+                updatePlayPauseButton(false);
+            });
+
+            wavesurfer.on('audioprocess', () => {
+                const currentTime = wavesurfer.getCurrentTime();
+                document.getElementById('currentTime').textContent = formatTimeWithDecimals(currentTime);
+            });
+
+            // 播放状态改变事件
+            wavesurfer.on('play', () => {
+                updatePlayPauseButton(true);
+            });
+
+            wavesurfer.on('pause', () => {
+                updatePlayPauseButton(false);
+            });
+
+            wavesurfer.on('finish', () => {
+                updatePlayPauseButton(false);
+            });
+
+            // 点击波形设置时间点
+            wavesurfer.on('click', () => {
+                const currentTime = wavesurfer.getCurrentTime();
+                // 可以在这里添加点击时的逻辑
+            });
+        }
+
+        function displayFileInfo(file) {
+            document.getElementById('fileName').textContent = file.name;
+            document.getElementById('fileSize').textContent = formatFileSize(file.size);
+            document.getElementById('audioInfo').classList.remove('hidden');
+        }
+
+        function showAudioControls() {
+            document.getElementById('waveformContainer').classList.remove('hidden');
+        }
+
+        function showProgress(message) {
+            document.getElementById('progressText').textContent = message;
+            document.getElementById('uploadProgress').classList.remove('hidden');
+        }
+
+        function hideProgress() {
+            document.getElementById('uploadProgress').classList.add('hidden');
+        }
+
+        function showError(message) {
+            // 创建错误提示
+            const alert = document.createElement('div');
+            alert.className = 'alert alert-error mt-4';
+            alert.innerHTML = `
+                <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span>${message}</span>
+            `;
+            document.querySelector('.container').appendChild(alert);
+
+            // 5秒后自动移除
+            setTimeout(() => alert.remove(), 5000);
+        }
+
+        function setStartTime() {
+            if (wavesurfer) {
+                const currentTime = wavesurfer.getCurrentTime();
+                document.getElementById('startTime').value = currentTime.toFixed(2);
+                updateTimeMarkers();
+            }
+        }
+
+        function setEndTime() {
+            if (wavesurfer) {
+                const currentTime = wavesurfer.getCurrentTime();
+                document.getElementById('endTime').value = currentTime.toFixed(2);
+                updateTimeMarkers();
+            }
+        }
+
+        function updateTimeMarkers() {
+            if (!wavesurfer) return;
+
+            const duration = wavesurfer.getDuration();
+            const startTime = parseFloat(document.getElementById('startTime').value) || 0;
+            const endTime = parseFloat(document.getElementById('endTime').value) || duration;
+
+            const startMarkerEl = document.getElementById('startMarker');
+            const endMarkerEl = document.getElementById('endMarker');
+            const selectionEl = document.getElementById('selectionHighlight');
+            const startTimeEl = document.getElementById('startMarkerTime');
+            const endTimeEl = document.getElementById('endMarkerTime');
+
+            if (startTime >= 0 && startTime <= duration) {
+                const startPercent = (startTime / duration) * 100;
+                startMarkerEl.style.left = `${startPercent}%`;
+                startMarkerEl.style.opacity = '1';
+                startTimeEl.textContent = formatTimeWithDecimals(startTime);
+            } else {
+                startMarkerEl.style.opacity = '0';
+            }
+
+            if (endTime >= 0 && endTime <= duration) {
+                const endPercent = (endTime / duration) * 100;
+                endMarkerEl.style.left = `${endPercent}%`;
+                endMarkerEl.style.opacity = '1';
+                endTimeEl.textContent = formatTimeWithDecimals(endTime);
+            } else {
+                endMarkerEl.style.opacity = '0';
+            }
+
+            // 更新选中区域高亮
+            if (startTime < endTime && startTime >= 0 && endTime <= duration) {
+                const startPercent = (startTime / duration) * 100;
+                const endPercent = (endTime / duration) * 100;
+                selectionEl.style.left = `${startPercent}%`;
+                selectionEl.style.width = `${endPercent - startPercent}%`;
+                selectionEl.style.opacity = '0.2';
+            } else {
+                selectionEl.style.opacity = '0';
+            }
+        }
+
+        function previewSegment() {
+            if (!wavesurfer) return;
+
+            const startTime = parseFloat(document.getElementById('startTime').value) || 0;
+            const endTime = parseFloat(document.getElementById('endTime').value) || wavesurfer.getDuration();
+
+            if (startTime >= endTime) {
+                showError('开始时间必须小于结束时间');
+                return;
+            }
+
+            // 停止当前播放
+            wavesurfer.stop();
+            // 设置播放位置并播放指定区间
+            wavesurfer.seekTo(startTime / wavesurfer.getDuration());
+            wavesurfer.play();
+
+            // 在结束时间停止播放，并确保播放标记对齐到结束标记
+            const playDuration = (endTime - startTime) * 1000; // 转换为毫秒
+            setTimeout(() => {
+                if (wavesurfer.isPlaying()) {
+                    wavesurfer.pause();
+                    // 确保播放头精确定位到结束时间
+                    wavesurfer.seekTo(endTime / wavesurfer.getDuration());
+                }
+            }, playDuration);
+        }
+
+        let cutAudioBlob; // 存储切割后的音频数据
+
+        async function cutAudio() {
+            if (!audioBuffer) return;
+
+            const startTime = parseFloat(document.getElementById('startTime').value) || 0;
+            const endTime = parseFloat(document.getElementById('endTime').value) || audioBuffer.duration;
+
+            if (startTime >= endTime) {
+                showError('开始时间必须小于结束时间');
+                return;
+            }
+
+            showProgress('正在切割音频...');
+
+            try {
+                const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                const sampleRate = audioBuffer.sampleRate;
+                const startSample = Math.floor(startTime * sampleRate);
+                const endSample = Math.floor(endTime * sampleRate);
+                const frameCount = endSample - startSample;
+
+                // 创建新的音频缓冲区
+                const newBuffer = audioCtx.createBuffer(
+                    audioBuffer.numberOfChannels,
+                    frameCount,
+                    sampleRate
+                );
+
+                // 复制音频数据
+                for (let channel = 0; channel < audioBuffer.numberOfChannels; channel++) {
+                    const oldData = audioBuffer.getChannelData(channel);
+                    const newData = newBuffer.getChannelData(channel);
+
+                    for (let i = 0; i < frameCount; i++) {
+                        newData[i] = oldData[startSample + i];
+                    }
+                }
+
+                // 转换为 WAV 格式
+                const wavFile = bufferToWav(newBuffer);
+                const audioBlob = new Blob([wavFile], { type: 'audio/wav' });
+
+                // 创建片段对象
+                const segment = {
+                    id: ++segmentCounter,
+                    startTime: startTime,
+                    endTime: endTime,
+                    duration: endTime - startTime,
+                    blob: audioBlob,
+                    audioBuffer: newBuffer,
+                    filename: `segment_${segmentCounter}_${startTime.toFixed(1)}s_${endTime.toFixed(1)}s.wav`
+                };
+
+                // 添加到片段数组
+                cutSegments.push(segment);
+
+                // 显示片段
+                await addSegmentToList(segment);
+
+                // 显示管理器
+                document.getElementById('cutResultsManager').classList.remove('hidden');
+
+                // 更新计数
+                updateSegmentCount();
+
+                hideProgress();
+
+                // 清空时间输入，准备下一次切割
+                document.getElementById('startTime').value = '';
+                document.getElementById('endTime').value = '';
+
+            } catch (error) {
+                console.error('切割音频时出错:', error);
+                hideProgress();
+                showError('切割音频时出错: ' + error.message);
+            }
+        }
+
+        async function addSegmentToList(segment) {
+            const segmentDiv = document.createElement('div');
+            segmentDiv.className = 'card bg-base-200 border border-base-300';
+            segmentDiv.id = `segment-${segment.id}`;
+
+            segmentDiv.innerHTML = `
+                <div class="card-body p-4">
+                    <div class="flex justify-between items-start mb-3">
+                        <div>
+                            <h3 class="font-semibold">片段 ${segment.id}</h3>
+                            <div class="text-sm text-base-content/70">
+                                ${formatTime(segment.startTime)} - ${formatTime(segment.endTime)} 
+                                (${formatTime(segment.duration)}) | ${formatFileSize(segment.blob.size)}
+                            </div>
+                        </div>
+                        <button class="btn btn-ghost btn-xs" onclick="removeSegment(${segment.id})">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
+                    
+                    <!-- 波形显示 -->
+                    <div id="waveform-${segment.id}" class="w-full h-20 bg-base-100 rounded border mb-3"></div>
+                    
+                    <!-- 控制按钮 -->
+                    <div class="flex gap-2">
+                        <button class="btn btn-xs btn-primary" onclick="playSegment(${segment.id})">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1.586a1 1 0 01.707.293l4.828 4.828a4 4 0 105.656-5.656l-4.828-4.828A1 1 0 0116.586 4H15m-6 6v6m6-6v6m-6-6H9" />
+                            </svg>
+                            播放
+                        </button>
+                        <button class="btn btn-xs btn-info" onclick="transcribeSegment(${segment.id})">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
+                            </svg>
+                            识别
+                        </button>
+                        <button class="btn btn-xs btn-success" onclick="downloadSegment(${segment.id})">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                            </svg>
+                            下载
+                        </button>
+                    </div>
+                    
+                    <!-- 识别结果显示区域 -->
+                    <div id="transcription-${segment.id}" class="hidden mt-3">
+                        <div class="divider my-2"></div>
+                        <div class="flex items-start gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mt-0.5 text-info flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                            </svg>
+                            <div class="flex-1">
+                                <div class="flex justify-between items-center mb-1">
+                                    <div class="text-sm font-medium text-base-content">识别结果:</div>
+                                    <button class="btn btn-ghost btn-xs" onclick="copyTranscription(${segment.id})">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                                        </svg>
+                                        复制
+                                    </button>
+                                </div>
+                                <div id="transcription-text-${segment.id}" class="text-sm text-base-content/80 bg-base-200 p-2 rounded whitespace-pre-wrap"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('segmentsList').appendChild(segmentDiv);
+
+            // 为这个片段创建波形
+            await createSegmentWaveform(segment);
+        }
+
+        async function createSegmentWaveform(segment) {
+            try {
+                const segmentWavesurfer = WaveSurfer.create({
+                    container: `#waveform-${segment.id}`,
+                    waveColor: '#10b981',
+                    progressColor: '#059669',
+                    cursorColor: '#ef4444',
+                    barWidth: 2,
+                    barRadius: 3,
+                    responsive: true,
+                    height: 80,
+                    normalize: true,
+                    interact: true
+                });
+
+                await segmentWavesurfer.loadBlob(segment.blob);
+
+                // 存储 wavesurfer 实例到片段对象中
+                segment.wavesurfer = segmentWavesurfer;
+
+            } catch (error) {
+                console.error('创建片段波形时出错:', error);
+            }
+        }
+
+        function updateSegmentCount() {
+            document.getElementById('segmentCount').textContent = cutSegments.length;
+            document.getElementById('totalSegments').textContent = cutSegments.length;
+        }
+
+        // 全局函数，供 HTML 调用
+        window.playSegment = function (segmentId) {
+            const segment = cutSegments.find(s => s.id === segmentId);
+            if (segment && segment.wavesurfer) {
+                // 停止其他正在播放的音频
+                cutSegments.forEach(s => {
+                    if (s.wavesurfer && s.id !== segmentId) {
+                        s.wavesurfer.pause();
+                    }
+                });
+                // 停止主波形
+                if (wavesurfer) {
+                    wavesurfer.pause();
+                }
+
+                segment.wavesurfer.playPause();
+            }
+        };
+
+        window.transcribeSegment = async function (segmentId) {
+            const segment = cutSegments.find(s => s.id === segmentId);
+            if (!segment) return;
+
+            // 检查是否配置了 Whisper
+            if (!window.whisperConfig || !window.whisperConfig.url) {
+                showError('请先配置 Whisper API 地址');
+                return;
+            }
+
+            const transcriptionBtn = document.querySelector(`button[onclick="transcribeSegment(${segmentId})"]`);
+            const originalText = transcriptionBtn.innerHTML;
+
+            // 显示加载状态
+            transcriptionBtn.disabled = true;
+            transcriptionBtn.innerHTML = `
+                <span class="loading loading-spinner loading-xs"></span>
+                识别中...
+            `;
+
+            try {
+                await transcribeSegmentInternal(segmentId);
+            } catch (error) {
+                console.error('语音识别失败:', error);
+                showError(`语音识别失败: ${error.message}`);
+            } finally {
+                // 恢复按钮状态
+                transcriptionBtn.disabled = false;
+                transcriptionBtn.innerHTML = originalText;
+            }
+        };
+
+        function displayTranscription(segmentId, text) {
+            const transcriptionDiv = document.getElementById(`transcription-${segmentId}`);
+            const transcriptionText = document.getElementById(`transcription-text-${segmentId}`);
+
+            if (transcriptionDiv && transcriptionText) {
+                // 去掉开头的时间戳格式 [00:00:00.000 --> 00:00:03.000]
+                const cleanText = text.replace(/^\[\d{2}:\d{2}:\d{2}\.\d{3}\s*-->\s*\d{2}:\d{2}:\d{2}\.\d{3}\]\s*/, '');
+
+                // 将识别结果存储到片段对象中
+                const segment = cutSegments.find(s => s.id === segmentId);
+                if (segment) {
+                    segment.transcription = cleanText;
+                }
+
+                transcriptionText.textContent = cleanText;
+                transcriptionDiv.classList.remove('hidden');
+            }
+        }
+
+        window.downloadSegment = function (segmentId) {
+            const segment = cutSegments.find(s => s.id === segmentId);
+            if (segment) {
+                const url = URL.createObjectURL(segment.blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = segment.filename;
+                a.click();
+                URL.revokeObjectURL(url);
+            }
+        };
+
+        window.removeSegment = function (segmentId) {
+            const segmentIndex = cutSegments.findIndex(s => s.id === segmentId);
+            if (segmentIndex !== -1) {
+                const segment = cutSegments[segmentIndex];
+
+                // 销毁波形实例
+                if (segment.wavesurfer) {
+                    segment.wavesurfer.destroy();
+                }
+
+                // 从数组中移除
+                cutSegments.splice(segmentIndex, 1);
+
+                // 从 DOM 中移除
+                const segmentElement = document.getElementById(`segment-${segmentId}`);
+                if (segmentElement) {
+                    segmentElement.remove();
+                }
+
+                // 更新计数
+                updateSegmentCount();
+
+                // 如果没有片段了，隐藏管理器
+                if (cutSegments.length === 0) {
+                    document.getElementById('cutResultsManager').classList.add('hidden');
+                }
+            }
+        };
+
+        function downloadAllSegments() {
+            if (cutSegments.length === 0) return;
+
+            cutSegments.forEach(segment => {
+                setTimeout(() => {
+                    const url = URL.createObjectURL(segment.blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = segment.filename;
+                    a.click();
+                    URL.revokeObjectURL(url);
+                }, 100); // 稍微延迟避免浏览器阻止多个下载
+            });
+        }
+
+        function clearAllSegments() {
+            // 销毁所有波形实例
+            cutSegments.forEach(segment => {
+                if (segment.wavesurfer) {
+                    segment.wavesurfer.destroy();
+                }
+            });
+
+            // 清空数组
+            cutSegments = [];
+            segmentCounter = 0;
+
+            // 清空列表
+            document.getElementById('segmentsList').innerHTML = '';
+
+            // 更新计数
+            updateSegmentCount();
+
+            // 隐藏管理器
+            document.getElementById('cutResultsManager').classList.add('hidden');
+        }
+
+        // 一键识别所有切割音频
+        async function transcribeAllSegments() {
+            if (cutSegments.length === 0) {
+                showError('没有可识别的切割片段');
+                return;
+            }
+
+            // 检查是否配置了 Whisper
+            if (!window.whisperConfig || !window.whisperConfig.url) {
+                showError('请先配置 Whisper API 地址');
+                return;
+            }
+
+            const transcribeAllBtn = document.getElementById('transcribeAllBtn');
+            const originalText = transcribeAllBtn.innerHTML;
+
+            // 显示总体进度
+            transcribeAllBtn.disabled = true;
+            let completed = 0;
+
+            const updateProgress = () => {
+                transcribeAllBtn.innerHTML = `
+                    <span class="loading loading-spinner loading-sm"></span>
+                    识别中 ${completed}/${cutSegments.length}
+                `;
+            };
+
+            updateProgress();
+
+            try {
+                // 并发识别所有片段（限制并发数避免过载）
+                const concurrentLimit = 3; // 最大并发数
+                const results = [];
+
+                for (let i = 0; i < cutSegments.length; i += concurrentLimit) {
+                    const batch = cutSegments.slice(i, i + concurrentLimit);
+                    const batchPromises = batch.map(async (segment) => {
+                        try {
+                            await transcribeSegmentInternal(segment.id);
+                            completed++;
+                            updateProgress();
+                            return { success: true, segmentId: segment.id };
+                        } catch (error) {
+                            completed++;
+                            updateProgress();
+                            return { success: false, segmentId: segment.id, error: error.message };
+                        }
+                    });
+
+                    const batchResults = await Promise.all(batchPromises);
+                    results.push(...batchResults);
+                }
+
+                // 统计结果
+                const successCount = results.filter(r => r.success).length;
+                const failCount = results.filter(r => !r.success).length;
+
+                if (failCount > 0) {
+                    showError(`识别完成：${successCount} 个成功，${failCount} 个失败`);
+                } else {
+                    showSuccess(`所有 ${successCount} 个片段识别完成`);
+                }
+
+            } catch (error) {
+                console.error('批量识别出错:', error);
+                showError('批量识别出错: ' + error.message);
+            } finally {
+                // 恢复按钮状态
+                transcribeAllBtn.disabled = false;
+                transcribeAllBtn.innerHTML = originalText;
+            }
+        }
+
+        // 内部识别函数，不处理按钮状态
+        async function transcribeSegmentInternal(segmentId) {
+            const segment = cutSegments.find(s => s.id === segmentId);
+            if (!segment) throw new Error('片段不存在');
+
+            // 准备 FormData
+            const formData = new FormData();
+            formData.append('file', segment.blob, segment.filename);
+
+            // 获取语言设置
+            const language = window.whisperConfig.language || 'zh';
+            if (language !== 'auto') {
+                formData.append('language', language);
+            }
+
+            // 准备请求头
+            const headers = {};
+            if (window.whisperConfig.token) {
+                headers['Authorization'] = `Bearer ${window.whisperConfig.token}`;
+            }
+
+            // 发送请求
+            const response = await fetch(window.whisperConfig.url, {
+                method: 'POST',
+                headers: headers,
+                body: formData
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+            }
+
+            const result = await response.json();
+
+            // 显示识别结果
+            displayTranscription(segmentId, result.text || result.transcript || '识别结果为空');
+        }
+
+        // 复制所有识别结果
+        async function copyAllTranscriptions() {
+            // 获取所有已识别的片段
+            const transcribedSegments = cutSegments.filter(segment => segment.transcription);
+
+            if (transcribedSegments.length === 0) {
+                showError('没有可复制的识别结果');
+                return;
+            }
+
+            // 组织文本内容 - 格式：文件名|识别内容
+            const allText = transcribedSegments
+                .map(segment => `${segment.filename}|${segment.transcription}`)
+                .join('\n');
+
+            try {
+                // 复制到剪贴板
+                await navigator.clipboard.writeText(allText);
+                showSuccess(`已复制 ${transcribedSegments.length} 个识别结果到剪贴板`);
+            } catch (error) {
+                console.error('复制失败:', error);
+                // 降级方案：创建临时文本框
+                const textArea = document.createElement('textarea');
+                textArea.value = allText;
+                document.body.appendChild(textArea);
+                textArea.select();
+                try {
+                    document.execCommand('copy');
+                    showSuccess(`已复制 ${transcribedSegments.length} 个识别结果到剪贴板`);
+                } catch (fallbackError) {
+                    showError('复制失败，请手动复制');
+                }
+                document.body.removeChild(textArea);
+            }
+        }
+
+        // 复制单个识别结果
+        window.copyTranscription = async function (segmentId) {
+            const segment = cutSegments.find(s => s.id === segmentId);
+            if (!segment || !segment.transcription) {
+                showError('没有可复制的识别结果');
+                return;
+            }
+
+            // 格式：文件名|识别内容
+            const textToCopy = `${segment.filename}|${segment.transcription}`;
+
+            try {
+                // 复制到剪贴板
+                await navigator.clipboard.writeText(textToCopy);
+                showSuccess('识别结果已复制到剪贴板');
+            } catch (error) {
+                console.error('复制失败:', error);
+                // 降级方案：创建临时文本框
+                const textArea = document.createElement('textarea');
+                textArea.value = textToCopy;
+                document.body.appendChild(textArea);
+                textArea.select();
+                try {
+                    document.execCommand('copy');
+                    showSuccess('识别结果已复制到剪贴板');
+                } catch (fallbackError) {
+                    showError('复制失败，请手动复制');
+                }
+                document.body.removeChild(textArea);
+            }
+        };
+
+        function bufferToWav(buffer) {
+            const length = buffer.length;
+            const numberOfChannels = buffer.numberOfChannels;
+            const sampleRate = buffer.sampleRate;
+            const arrayBuffer = new ArrayBuffer(44 + length * numberOfChannels * 2);
+            const view = new DataView(arrayBuffer);
+
+            // WAV 头部
+            const writeString = (offset, string) => {
+                for (let i = 0; i < string.length; i++) {
+                    view.setUint8(offset + i, string.charCodeAt(i));
+                }
+            };
+
+            writeString(0, 'RIFF');
+            view.setUint32(4, 36 + length * numberOfChannels * 2, true);
+            writeString(8, 'WAVE');
+            writeString(12, 'fmt ');
+            view.setUint32(16, 16, true);
+            view.setUint16(20, 1, true);
+            view.setUint16(22, numberOfChannels, true);
+            view.setUint32(24, sampleRate, true);
+            view.setUint32(28, sampleRate * numberOfChannels * 2, true);
+            view.setUint16(32, numberOfChannels * 2, true);
+            view.setUint16(34, 16, true);
+            writeString(36, 'data');
+            view.setUint32(40, length * numberOfChannels * 2, true);
+
+            // 音频数据
+            let offset = 44;
+            for (let i = 0; i < length; i++) {
+                for (let channel = 0; channel < numberOfChannels; channel++) {
+                    const sample = Math.max(-1, Math.min(1, buffer.getChannelData(channel)[i]));
+                    view.setInt16(offset, sample < 0 ? sample * 0x8000 : sample * 0x7FFF, true);
+                    offset += 2;
+                }
+            }
+
+            return arrayBuffer;
+        }
+
+        function formatTime(seconds) {
+            const minutes = Math.floor(seconds / 60);
+            const remainingSeconds = Math.floor(seconds % 60);
+            return `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
+        }
+
+        function formatTimeWithDecimals(seconds) {
+            const minutes = Math.floor(seconds / 60);
+            const remainingSeconds = (seconds % 60);
+            return `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toFixed(2).padStart(5, '0')}`;
+        }
+
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+
+        // Whisper 设置相关函数
+        function saveWhisperSettings() {
+            const whisperUrl = document.getElementById('whisperUrl').value;
+            const whisperToken = document.getElementById('whisperToken').value;
+            const whisperLanguage = document.getElementById('whisperLanguage').value;
+
+            // 简单的 URL 验证
+            if (whisperUrl && !isValidUrl(whisperUrl)) {
+                showError('请输入有效的 URL 地址');
+                return;
+            }
+
+            // 保存到内存变量（因为不能使用 localStorage）
+            window.whisperConfig = {
+                url: whisperUrl,
+                token: whisperToken,
+                language: whisperLanguage
+            };
+
+            // 显示保存成功消息
+            showSuccess('Whisper 设置已保存');
+        }
+
+        function loadWhisperSettings() {
+            // 设置默认配置
+            if (!window.whisperConfig) {
+                window.whisperConfig = {
+                    url: 'https://whisper.gaia.domains/v1/audio/transcriptions',
+                    token: '',
+                    language: 'auto'
+                };
+            }
+
+            // 从内存中加载设置到界面
+            document.getElementById('whisperUrl').value = window.whisperConfig.url || 'https://whisper.gaia.domains/v1/audio/transcriptions';
+            document.getElementById('whisperToken').value = window.whisperConfig.token || '';
+            document.getElementById('whisperLanguage').value = window.whisperConfig.language || 'auto';
+        }
+
+        function isValidUrl(string) {
+            try {
+                new URL(string);
+                return true;
+            } catch (_) {
+                return false;
+            }
+        }
+
+        function showSuccess(message) {
+            // 创建成功提示
+            const alert = document.createElement('div');
+            alert.className = 'alert alert-success mt-4';
+            alert.innerHTML = `
+                <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span>${message}</span>
+            `;
+            document.querySelector('.container').appendChild(alert);
+
+            // 3秒后自动移除
+            setTimeout(() => alert.remove(), 3000);
+        }
+    </script>
+</body>
+
+</html>
