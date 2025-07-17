@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dim">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voice Clone</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css" />
+    <!-- Add MessagePack dependency -->
+    <script crossorigin src="https://unpkg.com/@msgpack/msgpack"></script>
+</head>
+
+<body>
+    <div class="card shadow-xl">
+        <div class="card-body">
+            <h1 class="card-title text-2xl justify-center mb-6">Clone your voice</h1>
+
+            <div class="flex gap-2 mb-6 text-xl justify-center">
+                Create a MP3 or WAV file for the person speaking without background noise. Then use the following tool to upload, segment (into sentences) and transcribe the source audio file. 
+            </div>
+
+            <div class="flex gap-2 mb-6 text-2xl justify-center">
+                👉 <a href="cut_en.html">Segment and transcribe</a> | <a href="cut_zh.html">分句与听写</a>
+            </div>
+
+            <div class="flex gap-2 mb-6 text-xl justify-center">
+                Follow the <a href="https://github.com/L-jasmine/GPT-SoVITS/tree/stream_infer?tab=readme-ov-file">GPT-SoVITS guide</a> to finetune the TTS AI model and then deploy the finetuned model in the <a href="https://github.com/second-state/gsv_tts">EchoKit streaming audio TTS server</a>.
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
