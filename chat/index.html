@@ -1,35 +1,351 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dim">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Voice Chat</title>
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css" />
-    <!-- Add MessagePack dependency -->
-    <script crossorigin src="https://unpkg.com/@msgpack/msgpack"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .step {
+            margin-bottom: 50px;
+            padding: 25px;
+            border-left: 4px solid #667eea;
+            background: #f8f9ff;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .step-number {
+            background: #667eea;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-right: 15px;
+        }
+
+        .step-title {
+            font-size: 1.8em;
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        .step-content {
+            margin-left: 55px;
+        }
+
+        .step-description {
+            font-size: 1.1em;
+            margin-bottom: 20px;
+            color: #4a5568;
+        }
+
+        .image-container {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .image-placeholder {
+            width: 100%;
+            max-width: 600px;
+            height: 300px;
+            background: #e2e8f0;
+            border: 2px dashed #cbd5e0;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #718096;
+            font-size: 1.1em;
+            margin: 0 auto;
+        }
+
+        .code-block {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-family: 'Monaco', 'Consolas', 'Courier New', monospace;
+            font-size: 0.9em;
+            overflow-x: auto;
+        }
+
+        .code-header {
+            background: #4a5568;
+            color: #e2e8f0;
+            padding: 10px 20px;
+            font-size: 0.9em;
+            border-radius: 8px 8px 0 0;
+            margin-bottom: 0;
+        }
+
+        .bullet-points {
+            margin: 20px 0;
+        }
+
+        .bullet-points ul {
+            padding-left: 20px;
+        }
+
+        .bullet-points li {
+            margin-bottom: 8px;
+            font-size: 1.05em;
+        }
+
+        .highlight-box {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .highlight-box .icon {
+            display: inline-block;
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+
+        .button {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s;
+            margin: 10px 0;
+        }
+
+        .button:hover {
+            background: #5a67d8;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .nav-button {
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            color: #667eea;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .nav-button:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        .nav-button.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                border-radius: 8px;
+            }
+
+            .header {
+                padding: 30px 20px;
+            }
+
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .step {
+                padding: 20px;
+                margin-bottom: 30px;
+            }
+
+            .step-content {
+                margin-left: 0;
+            }
+
+            .step-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .step-number {
+                margin-bottom: 10px;
+                margin-right: 0;
+            }
+        }
+    </style>
 </head>
-
 <body>
-    <div class="card shadow-xl">
-        <div class="card-body">
-            <h1 class="card-title text-2xl justify-center mb-6">Waiting for your EchoKit device? Try any EchoKit server from your computer!</h1>
+    <div class="container">
+        <div class="header">
+            <h1>Waiting for your EchoKit device?</h1>
+            <p>Try any EchoKit server from your computer!</p>
+        </div>
 
-            <div class="flex gap-2 mb-6 text-xl justify-center">
-                Please download the following HTML and JavaScript file and save it to your local computer.
+        <div class="content">
+            <!-- Step 1 -->
+            <div class="step">
+                <div class="step-header">
+                    <div class="step-number">1</div>
+                    <div class="step-title">Download a web app</div>
+                </div>
+                <div class="step-content">
+                    <div class="step-description">
+                        Please download the following <code>index.html</code> file and save it to your local computer.
+                    </div>
+
+                    <a href="resources/index.html" class="button" download>👉 English</a>
+                    <a href="resources/index_zh.html" class="button" download>👉 中文</a>
+                </div>
             </div>
 
-            <div class="flex gap-2 mb-6 text-2xl justify-center">
-                👉 <a href="resources/index.html" download>English</a> | <a href="resources/index_zh.html" download>中文</a>
+            <!-- Step 2 -->
+            <div class="step">
+                <div class="step-header">
+                    <div class="step-number">2</div>
+                    <div class="step-title">Open the web app</div>
+                </div>
+                <div class="step-content">
+                    <div class="step-description">
+                        Double-click on the downloaded file. It should open in your web browser and you can start chatting with your EchoKit server!
+                    </div>
+
+                </div>
             </div>
 
-            <div class="flex gap-2 mb-6 text-xl justify-center">
-                Then double-click on the downloaded file. It should open in your web browser and you can start chatting with your EchoKit server!
+            <!-- Step 3 -->
+            <div class="step">
+                <div class="step-header">
+                    <div class="step-number">3</div>
+                    <div class="step-title">Chat</div>
+                </div>
+                <div class="step-content">
+                    <div class="step-description">
+                        Enter the chat mode to have the EchoKit server answer your questions using voice.
+                    </div>
+
+                    <div class="bullet-points">
+                        <h4>Steps:</h4>
+                        <ul>
+                            <li>Enter your EchoKit server's WebSocket URL, such as <code>ws://34.44.85.57:9090/ws/</code></li>
+                            <li>Click on "Connect"</li>
+                            <li>Click on "Start Listening"</li>
+                            <li>Start speaking!</li>
+                        </ul>
+                    </div>
+
+                    <div class="image-container">
+                        <img style="max-width: 100%" src="chat-1.png">
+                    </div>
+
+                </div>
             </div>
+
+            <!-- Step 4 -->
+            <div class="step">
+                <div class="step-header">
+                    <div class="step-number">4</div>
+                    <div class="step-title">Record</div>
+                </div>
+                <div class="step-content">
+                    <div class="step-description">
+                        Have the application listening and recording whenever someone speaks!
+                    </div>
+
+                    <div class="bullet-points">
+                        <h4>Steps:</h4>
+                        <ul>
+                            <li>Enter your EchoKit server's WebSocket URL, such as <code>ws://34.44.85.57:9090/ws/</code></li>
+                            <li>Select and turn on "Recording mode"</li>
+                            <li>Click on "Connect"</li>
+                            <li>Click on "Start Listening"</li>
+                            <li>Start speaking!</li>
+                        </ul>
+                    </div>
+
+                    <div class="image-container">
+                        <img style="max-width: 100%" src="chat-2.png">
+                    </div>
+
+                    <div class="highlight-box">
+                        <span class="icon">✅</span>
+                        The recorded audio files are in the <code>record</code> folder on the EchoKit server.
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </body>
-
 </html>
