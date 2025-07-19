@@ -7,7 +7,10 @@
     <title>音频处理器</title>
     <link href="https://cdn.jsdelivr.net/npm/daisyui@3.9.4/dist/full.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/7.7.0/wavesurfer.min.js"></script>
+    <script src="https://unpkg.com/wavesurfer.js@7"></script>
+    <script src="https://unpkg.com/wavesurfer.js@7/dist/plugins/regions.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web@1.14.0/dist/ort.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@ricky0123/vad-web@0.0.22/dist/bundle.min.js"></script>
 </head>
 
 <body class="bg-base-200 min-h-screen">
@@ -148,34 +151,31 @@
                     音频波形与切割
                 </h2>
 
+                <!-- 区域操作说明 -->
+                <div class="bg-info/10 border border-info/20 rounded-lg p-3 mb-4">
+                    <div class="flex items-start gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-info flex-shrink-0 mt-0.5"
+                            fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <div class="text-sm">
+                            <div class="font-medium text-info mb-1">操作说明：</div>
+                            <ul class="text-base-content/70 space-y-1">
+                                <li>• <strong>双击波形</strong>添加新的选择区域</li>
+                                <li>• <strong>智能切割</strong>使用 VAD 自动检测语音片段</li>
+                                <li>• <strong>拖拽区域边缘</strong>调整选择范围</li>
+                                <li>• <strong>拖拽区域中间</strong>移动整个区域</li>
+                                <li>• <strong>右键点击区域</strong>删除</li>
+                                <li>• <strong>点击区域</strong>选中，使用定位按钮跳转到下方片段</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- 波形显示区域 -->
                 <div class="relative">
                     <div id="waveform" class="w-full h-32 bg-base-200 rounded-lg border-2 border-base-300"></div>
-                    <!-- 时间标记线容器 -->
-                    <div id="timeMarkers" class="absolute top-0 left-0 w-full h-full pointer-events-none">
-                        <!-- 开始时间线 -->
-                        <div id="startMarker"
-                            class="absolute top-0 w-0.5 h-full bg-green-500 opacity-0 transition-all duration-300"
-                            style="left: 0%;">
-                            <div
-                                class="absolute -top-6 left-1/2 transform -translate-x-1/2 bg-green-500 text-white text-xs px-1 py-0.5 rounded whitespace-nowrap">
-                                开始: <span id="startMarkerTime">0:00</span>
-                            </div>
-                        </div>
-                        <!-- 结束时间线 -->
-                        <div id="endMarker"
-                            class="absolute top-0 w-0.5 h-full bg-red-500 opacity-0 transition-all duration-300"
-                            style="left: 100%;">
-                            <div
-                                class="absolute -top-6 left-1/2 transform -translate-x-1/2 bg-red-500 text-white text-xs px-1 py-0.5 rounded whitespace-nowrap">
-                                结束: <span id="endMarkerTime">0:00</span>
-                            </div>
-                        </div>
-                        <!-- 选中区域高亮 -->
-                        <div id="selectionHighlight"
-                            class="absolute top-0 h-full bg-blue-300 opacity-20 transition-all duration-300"
-                            style="left: 0%; width: 0%;"></div>
-                    </div>
                 </div>
 
                 <!-- 播放控制 -->
@@ -218,43 +218,76 @@
 
                     <div class="flex-1"></div>
 
-                    <!-- 切割时间设置 -->
+                    <!-- 区域管理按钮 -->
                     <div class="flex items-center gap-2">
                         <div class="flex items-center gap-1">
-                            <span class="text-xs text-base-content/60">开始:</span>
-                            <input type="number" id="startTime" placeholder="0"
-                                class="input input-bordered input-xs w-20" step="0.01" min="0" />
-                            <button id="setStartBtn" class="btn btn-outline btn-xs">设置</button>
+                            <label class="text-xs text-base-content/70">容忍度:</label>
+                            <input type="number" id="redemptionFrames" value="3" min="1" max="20"
+                                class="input input-bordered input-xs w-14 text-center" title="VAD 静音容忍帧数，值越大容忍静音时间越长" />
                         </div>
-                        <div class="flex items-center gap-1">
-                            <span class="text-xs text-base-content/60">结束:</span>
-                            <input type="number" id="endTime" placeholder="0" class="input input-bordered input-xs w-20"
-                                step="0.01" min="0" />
-                            <button id="setEndBtn" class="btn btn-outline btn-xs">设置</button>
-                        </div>
-                        <button id="previewBtn" class="btn btn-info btn-xs">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24"
+                        <button id="autoVadBtn" class="btn btn-info btn-sm">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                    d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
                             </svg>
-                            预览
+                            智能切割
+                        </button>
+                        <button id="addRegionBtn" class="btn btn-outline btn-sm">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                            </svg>
+                            添加区域
+                        </button>
+                        <button id="clearRegionsBtn" class="btn btn-outline btn-sm">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                            </svg>
+                            清除区域
                         </button>
                     </div>
                 </div>
 
-                <!-- 切割按钮单独一行 -->
-                <div class="flex justify-center pt-4 border-t border-base-300">
-                    <button id="cutBtn" class="btn btn-success btn-lg">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
-                            stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 12l2 2 4-4" />
-                        </svg>
-                        切割音频
-                    </button>
+                <!-- 选中区域信息 -->
+                <div id="regionInfo" class="hidden bg-base-200 p-3 rounded-lg mb-4">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <div class="flex gap-2">
+                                <button id="playRegionBtn" class="btn btn-xs btn-primary">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1.586a1 1 0 01.707.293l4.828 4.828a4 4 0 105.656-5.656l-4.828-4.828A1 1 0 0116.586 4H15m-6 6v6m6-6v6m-6-6H9" />
+                                    </svg>
+                                    播放
+                                </button>
+                                <button id="locateRegionBtn" class="btn btn-xs btn-accent">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M19 13l-7 7-7-7m14-8l-7 7-7-7" />
+                                    </svg>
+                                    定位片段
+                                </button>
+                            </div>
+                            <div class="text-sm">
+                                <span class="font-medium">选中区域:</span>
+                                <span id="regionTimeInfo" class="ml-2 text-base-content/70">无选择</span>
+                            </div>
+                        </div>
+                        <button id="deleteRegionBtn" class="btn btn-xs btn-error">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                            </svg>
+                            删除
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -321,14 +354,17 @@
 
     <script>
         let wavesurfer;
+        let regionsPlugin;
         let audioContext;
         let audioBuffer;
         let currentFile;
         let cutSegments = []; // 存储所有切割片段
         let segmentCounter = 0; // 片段计数器
-        let startMarker = null; // 开始时间标记
-        let endMarker = null; // 结束时间标记
         let isPlaying = false; // 播放状态
+        let selectedRegion = null; // 当前选中的区域
+        let selectedSegment = null; // 当前选中的片段
+        let vadInstance = null; // VAD 实例
+        let regionSegmentMap = new Map(); // 区域和片段的映射关系
 
         // 初始化
         document.addEventListener('DOMContentLoaded', function () {
@@ -347,15 +383,13 @@
                 if (wavesurfer) wavesurfer.setVolume(e.target.value / 100);
             });
 
-            // 切割控制事件
-            document.getElementById('setStartBtn').addEventListener('click', setStartTime);
-            document.getElementById('setEndBtn').addEventListener('click', setEndTime);
-            document.getElementById('previewBtn').addEventListener('click', previewSegment);
-            document.getElementById('cutBtn').addEventListener('click', cutAudio);
-
-            // 时间输入框变化事件
-            document.getElementById('startTime').addEventListener('input', updateTimeMarkers);
-            document.getElementById('endTime').addEventListener('input', updateTimeMarkers);
+            // 区域管理事件
+            document.getElementById('addRegionBtn').addEventListener('click', addRandomRegion);
+            document.getElementById('autoVadBtn').addEventListener('click', performVadCutting);
+            document.getElementById('clearRegionsBtn').addEventListener('click', clearAllRegions);
+            document.getElementById('playRegionBtn').addEventListener('click', playSelectedRegion);
+            document.getElementById('locateRegionBtn').addEventListener('click', locateSelectedRegion);
+            document.getElementById('deleteRegionBtn').addEventListener('click', deleteSelectedRegion);
 
             // 切割结果管理事件
             document.getElementById('transcribeAllBtn').addEventListener('click', transcribeAllSegments);
@@ -369,6 +403,41 @@
             // 加载保存的设置
             loadWhisperSettings();
         });
+
+        function playSelectedRegion() {
+            if (selectedRegion) {
+                playRegion(selectedRegion);
+            }
+        }
+
+        // 新增：定位到选中区域对应的片段
+        function locateSelectedRegion() {
+            if (selectedRegion) {
+                const segmentId = regionSegmentMap.get(selectedRegion);
+                if (segmentId) {
+                    scrollToSegment(segmentId);
+                    highlightSegment(segmentId);
+                }
+            }
+        }
+
+        // 新增：删除选中的区域
+        function deleteSelectedRegion() {
+            if (selectedRegion) {
+                selectedRegion.remove(); // 这会触发 region-removed 事件，自动清理相关数据
+            }
+        }
+
+        // 滚动到指定片段
+        function scrollToSegment(segmentId) {
+            const segmentElement = document.getElementById(`segment-${segmentId}`);
+            if (segmentElement) {
+                segmentElement.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+            }
+        }
 
         function togglePlayPause() {
             if (!wavesurfer) return;
@@ -414,7 +483,6 @@
                         showProgress('音频提取成功，正在加载波形...');
                     } catch (error) {
                         console.warn('MP4 音频提取失败，尝试直接加载:', error);
-                        // 如果 MP4 提取失败，尝试直接加载（某些 MP4 文件可能直接支持）
                         audioFile = file;
                     }
                 }
@@ -443,14 +511,12 @@
 
                 video.onloadedmetadata = () => {
                     try {
-                        // 创建音频上下文
                         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
                         const source = audioCtx.createMediaElementSource(video);
                         const destination = audioCtx.createMediaStreamDestination();
                         source.connect(destination);
                         source.connect(audioCtx.destination);
 
-                        // 录制音频
                         const mediaRecorder = new MediaRecorder(destination.stream, {
                             mimeType: 'audio/webm;codecs=opus'
                         });
@@ -499,6 +565,9 @@
                 wavesurfer.destroy();
             }
 
+            // 创建区域插件
+            regionsPlugin = WaveSurfer.Regions.create();
+
             // 创建新的波形
             wavesurfer = WaveSurfer.create({
                 container: '#waveform',
@@ -510,7 +579,10 @@
                 responsive: true,
                 height: 128,
                 normalize: true,
-                interact: true
+                interact: true,
+                minPxPerSec: 50,
+                dragToSeek: true,
+                plugins: [regionsPlugin]
             });
 
             // 加载音频文件
@@ -521,16 +593,16 @@
                 audioContext = new (window.AudioContext || window.webkitAudioContext)();
             }
 
-            // 从文件创建音频缓冲区
             const arrayBuffer = await audioFile.arrayBuffer();
             audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
 
-            // 更新时间显示
+            // 设置区域事件监听
+            setupRegionEvents();
+
+            // 波形事件监听
             wavesurfer.on('ready', () => {
                 const duration = wavesurfer.getDuration();
                 document.getElementById('totalTime').textContent = formatTime(duration);
-                document.getElementById('endTime').value = duration.toFixed(2);
-                updateTimeMarkers();
                 updatePlayPauseButton(false);
             });
 
@@ -539,7 +611,6 @@
                 document.getElementById('currentTime').textContent = formatTimeWithDecimals(currentTime);
             });
 
-            // 播放状态改变事件
             wavesurfer.on('play', () => {
                 updatePlayPauseButton(true);
             });
@@ -552,11 +623,482 @@
                 updatePlayPauseButton(false);
             });
 
-            // 点击波形设置时间点
-            wavesurfer.on('click', () => {
-                const currentTime = wavesurfer.getCurrentTime();
-                // 可以在这里添加点击时的逻辑
+            // 双击添加区域
+            wavesurfer.on('dblclick', (relativeX) => {
+                const duration = wavesurfer.getDuration();
+                const clickTime = relativeX * duration;
+
+                // 创建一个默认 3 秒的区域，以点击位置为中心
+                const regionDuration = Math.min(3, duration * 0.1); // 最多3秒或音频的10%
+                const start = Math.max(0, clickTime - regionDuration / 2);
+                const end = Math.min(duration, start + regionDuration);
+
+                const region = addRegion(start, end);
+                selectRegion(region);
             });
+        }
+
+        function setupRegionEvents() {
+            // 区域点击事件 - 只选择，不跳转
+            regionsPlugin.on('region-clicked', (region, e) => {
+                e.stopPropagation();
+                selectRegion(region);
+                // 移除了自动跳转的逻辑
+            });
+
+            // 区域更新事件 - 同步更新对应的片段
+            regionsPlugin.on('region-updated', (region) => {
+                if (selectedRegion === region) {
+                    updateRegionInfo(region);
+                }
+
+                // 同步更新对应的片段
+                const segmentId = regionSegmentMap.get(region);
+                if (segmentId) {
+                    updateSegmentFromRegion(region, segmentId);
+                }
+            });
+
+            // 区域删除事件 - 同步删除对应的片段
+            regionsPlugin.on('region-removed', (region) => {
+                if (selectedRegion === region) {
+                    selectedRegion = null;
+                    hideRegionInfo();
+                }
+
+                // 删除对应的片段
+                const segmentId = regionSegmentMap.get(region);
+                if (segmentId) {
+                    removeSegmentSilently(segmentId);
+                    regionSegmentMap.delete(region);
+                }
+            });
+
+            // 右键删除区域
+            regionsPlugin.on('region-clicked', (region, e) => {
+                if (e.button === 2) { // 右键
+                    e.preventDefault();
+                    region.remove();
+                }
+            });
+        }
+
+        function addRegion(start, end, options = {}) {
+            const region = regionsPlugin.addRegion({
+                start: start,
+                end: end,
+                color: options.color || 'rgba(0, 123, 255, 0.2)',
+                drag: true,
+                resize: true,
+                ...options
+            });
+
+            // 立即为新区域创建对应的片段
+            if (!options.skipSegmentCreation) {
+                createSegmentFromRegion(region);
+            }
+
+            return region;
+        }
+
+        async function createSegmentFromRegion(region) {
+            if (!audioBuffer) return;
+
+            try {
+                const segment = await cutRegionToSegment(region);
+
+                // 建立区域和片段的映射关系
+                regionSegmentMap.set(region, segment.id);
+
+                // 添加到片段数组
+                cutSegments.push(segment);
+
+                // 显示片段
+                await addSegmentToList(segment);
+
+                // 显示管理器
+                document.getElementById('cutResultsManager').classList.remove('hidden');
+
+                // 更新计数
+                updateSegmentCount();
+
+            } catch (error) {
+                console.error('从区域创建片段时出错:', error);
+                showError('创建片段失败: ' + error.message);
+            }
+        }
+
+        async function updateSegmentFromRegion(region, segmentId) {
+            if (!audioBuffer) return;
+
+            try {
+                // 找到对应的片段
+                const segmentIndex = cutSegments.findIndex(s => s.id === segmentId);
+                if (segmentIndex === -1) return;
+
+                const oldSegment = cutSegments[segmentIndex];
+
+                // 重新切割音频
+                const newSegment = await cutRegionToSegment(region, segmentId);
+
+                // 更新片段数据
+                cutSegments[segmentIndex] = newSegment;
+
+                // 销毁旧的波形
+                if (oldSegment.wavesurfer) {
+                    oldSegment.wavesurfer.destroy();
+                }
+
+                // 更新 DOM 中的片段信息
+                updateSegmentInDOM(newSegment);
+
+                // 重新创建波形
+                await createSegmentWaveform(newSegment);
+
+            } catch (error) {
+                console.error('更新片段时出错:', error);
+                showError('更新片段失败: ' + error.message);
+            }
+        }
+
+        async function cutRegionToSegment(region, existingId = null) {
+            const startTime = region.start;
+            const endTime = region.end;
+
+            const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            const sampleRate = audioBuffer.sampleRate;
+            const startSample = Math.floor(startTime * sampleRate);
+            const endSample = Math.floor(endTime * sampleRate);
+            const frameCount = endSample - startSample;
+
+            // 创建新的音频缓冲区
+            const newBuffer = audioCtx.createBuffer(
+                audioBuffer.numberOfChannels,
+                frameCount,
+                sampleRate
+            );
+
+            // 复制音频数据
+            for (let channel = 0; channel < audioBuffer.numberOfChannels; channel++) {
+                const oldData = audioBuffer.getChannelData(channel);
+                const newData = newBuffer.getChannelData(channel);
+
+                for (let i = 0; i < frameCount; i++) {
+                    newData[i] = oldData[startSample + i];
+                }
+            }
+
+            // 转换为 WAV 格式
+            const wavFile = bufferToWav(newBuffer);
+            const audioBlob = new Blob([wavFile], { type: 'audio/wav' });
+
+            // 创建或更新片段对象
+            const segmentId = existingId || ++segmentCounter;
+            const segment = {
+                id: segmentId,
+                startTime: startTime,
+                endTime: endTime,
+                duration: endTime - startTime,
+                blob: audioBlob,
+                audioBuffer: newBuffer,
+                filename: `segment_${segmentId}_${startTime.toFixed(1)}s_${endTime.toFixed(1)}s.wav`,
+                transcription: existingId ? cutSegments.find(s => s.id === existingId)?.transcription : undefined
+            };
+
+            return segment;
+        }
+
+        function updateSegmentInDOM(segment) {
+            const segmentElement = document.getElementById(`segment-${segment.id}`);
+            if (!segmentElement) return;
+
+            // 更新时间信息
+            const timeInfo = segmentElement.querySelector('.text-sm.text-base-content\\/70');
+            if (timeInfo) {
+                timeInfo.textContent = `${formatTime(segment.startTime)} - ${formatTime(segment.endTime)} (${formatTime(segment.duration)}) | ${formatFileSize(segment.blob.size)}`;
+            }
+
+            // 更新文件名
+            segment.filename = `segment_${segment.id}_${segment.startTime.toFixed(1)}s_${segment.endTime.toFixed(1)}s.wav`;
+        }
+
+        function addRandomRegion() {
+            if (!wavesurfer) return;
+
+            const duration = wavesurfer.getDuration();
+            const regionDuration = Math.min(5, duration * 0.1); // 5秒或音频的10%
+            const maxStart = duration - regionDuration;
+            const start = Math.random() * maxStart;
+            const end = start + regionDuration;
+
+            const region = addRegion(start, end);
+            selectRegion(region);
+        }
+
+        function clearAllRegions() {
+            if (regionsPlugin) {
+                // 清除映射关系
+                regionSegmentMap.clear();
+
+                // 清除所有区域（这会触发删除事件，自动删除对应片段）
+                regionsPlugin.clearRegions();
+                selectedRegion = null;
+                hideRegionInfo();
+            }
+        }
+
+        function selectRegion(region) {
+            // 取消之前选中区域的高亮
+            if (selectedRegion) {
+                selectedRegion.setOptions({ color: 'rgba(0, 123, 255, 0.2)' });
+            }
+
+            // 设置新选中区域
+            selectedRegion = region;
+            region.setOptions({ color: 'rgba(255, 193, 7, 0.3)' }); // 高亮颜色
+
+            updateRegionInfo(region);
+            showRegionInfo();
+
+            // 不再自动高亮对应的片段，由用户主动点击定位按钮
+        }
+
+        function highlightSegment(segmentId) {
+            // 取消之前片段的高亮
+            if (selectedSegment) {
+                const prevElement = document.getElementById(`segment-${selectedSegment}`);
+                if (prevElement) {
+                    prevElement.classList.remove('ring-2', 'ring-warning', 'bg-warning/10');
+                    prevElement.classList.add('bg-base-200');
+                }
+            }
+
+            // 设置新的高亮片段
+            selectedSegment = segmentId;
+            const segmentElement = document.getElementById(`segment-${segmentId}`);
+            if (segmentElement) {
+                segmentElement.classList.remove('bg-base-200');
+                segmentElement.classList.add('ring-2', 'ring-warning', 'bg-warning/10');
+            }
+        }
+
+        // 修改：从片段定位到主音频区域的函数
+        function locateToMainAudio(segmentId) {
+            // 高亮片段
+            highlightSegment(segmentId);
+
+            // 找到对应的区域并高亮
+            for (let [region, mappedSegmentId] of regionSegmentMap.entries()) {
+                if (mappedSegmentId === segmentId) {
+                    selectRegion(region);
+
+                    // 让主音频滚动到对应位置
+                    const progress = region.start / wavesurfer.getDuration();
+                    wavesurfer.seekTo(progress);
+
+                    // 滚动到主音频区域
+                    document.getElementById('waveformContainer').scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'center'
+                    });
+                    break;
+                }
+            }
+        }
+
+        function updateRegionInfo(region) {
+            const start = region.start;
+            const end = region.end;
+            const duration = end - start;
+
+            document.getElementById('regionTimeInfo').textContent =
+                `${formatTimeWithDecimals(start)} - ${formatTimeWithDecimals(end)} (${formatTimeWithDecimals(duration)})`;
+        }
+
+        function showRegionInfo() {
+            document.getElementById('regionInfo').classList.remove('hidden');
+        }
+
+        function hideRegionInfo() {
+            document.getElementById('regionInfo').classList.add('hidden');
+        }
+
+        function playRegion(region) {
+            if (!wavesurfer || !region) return;
+
+            // 播放指定区域
+            wavesurfer.seekTo(region.start / wavesurfer.getDuration());
+            wavesurfer.play();
+
+            // 在区域结束时停止
+            const duration = (region.end - region.start) * 1000;
+            setTimeout(() => {
+                if (wavesurfer.isPlaying()) {
+                    wavesurfer.pause();
+                }
+            }, duration);
+        }
+
+        async function performVadCutting() {
+            if (!audioBuffer) {
+                showError('请先上传音频文件');
+                return;
+            }
+
+            // 每次都重新初始化 VAD 实例以应用新的参数
+            vadInstance = null;
+
+            const vadBtn = document.getElementById('autoVadBtn');
+            const originalText = vadBtn.innerHTML;
+
+            // 显示加载状态
+            vadBtn.disabled = true;
+            vadBtn.innerHTML = `
+                <span class="loading loading-spinner loading-sm"></span>
+                检测中...
+            `;
+
+            try {
+                showProgress('正在初始化 VAD 模型...');
+
+                // 初始化 VAD 实例
+                if (!vadInstance) {
+                    // 从输入框获取 redemptionFrames 值
+                    const redemptionFrames = parseInt(document.getElementById('redemptionFrames').value) || 3;
+
+                    const vadOptions = {
+                        preSpeechPadFrames: 4,
+                        minSpeechFrames: 5,
+                        redemptionFrames: redemptionFrames,
+                        onMissingSourcesReceived: () => {
+                            console.log("模型源未找到，使用默认配置");
+                        }
+                    };
+                    console.log('VAD 配置参数:', vadOptions);
+                    vadInstance = await vad.NonRealTimeVAD.new(vadOptions);
+                }
+
+                showProgress('正在分析音频，检测语音片段...');
+
+                // 准备音频数据 - VAD 需要单声道 16kHz 的音频
+                const audioData = await prepareAudioForVad(audioBuffer);
+                const sampleRate = 16000; // VAD 通常使用 16kHz
+
+                // 运行 VAD 检测
+                const speechSegments = [];
+                let segmentCount = 0;
+
+                for await (const { audio, start, end } of vadInstance.run(audioData, sampleRate)) {
+                    segmentCount++;
+                    showProgress(`已检测到 ${segmentCount} 个语音片段...`);
+
+                    // 将毫秒转换为秒，并映射回原始音频时长
+                    const originalDuration = audioBuffer.duration;
+                    const vadDuration = audioData.length / sampleRate;
+                    const timeScale = originalDuration / vadDuration;
+
+                    const startTime = (start / 1000) * timeScale;
+                    const endTime = (end / 1000) * timeScale;
+
+                    // 过滤掉太短的片段（小于0.5秒）
+                    if (endTime - startTime >= 0.5) {
+                        speechSegments.push({
+                            start: Math.max(0, startTime),
+                            end: Math.min(originalDuration, endTime),
+                            duration: endTime - startTime
+                        });
+                    }
+                }
+
+                hideProgress();
+
+                if (speechSegments.length === 0) {
+                    showError('未检测到语音片段，请检查音频质量或尝试调整音量');
+                    return;
+                }
+
+                // 清除现有区域
+                if (regionsPlugin) {
+                    clearAllRegions();
+                }
+
+                // 为每个检测到的语音片段创建区域
+                showProgress(`正在创建 ${speechSegments.length} 个语音区域...`);
+
+                for (let i = 0; i < speechSegments.length; i++) {
+                    const segment = speechSegments[i];
+
+                    // 创建区域，使用不同颜色表示 VAD 检测的片段
+                    const region = addRegion(segment.start, segment.end, {
+                        color: 'rgba(34, 197, 94, 0.25)', // 绿色表示自动检测
+                        skipSegmentCreation: false
+                    });
+
+                    // 稍微延迟以避免界面卡顿
+                    if (i % 5 === 0) {
+                        await new Promise(resolve => setTimeout(resolve, 10));
+                        showProgress(`正在创建区域 ${i + 1}/${speechSegments.length}...`);
+                    }
+                }
+
+                hideProgress();
+                showSuccess(`成功检测并创建了 ${speechSegments.length} 个语音片段！`);
+
+                // 显示统计信息
+                const totalDuration = speechSegments.reduce((sum, seg) => sum + seg.duration, 0);
+                const coverage = (totalDuration / audioBuffer.duration * 100).toFixed(1);
+
+                setTimeout(() => {
+                    showSuccess(`语音覆盖率: ${coverage}%，平均片段长度: ${(totalDuration / speechSegments.length).toFixed(1)}秒`);
+                }, 2000);
+
+            } catch (error) {
+                console.error('VAD 切割失败:', error);
+                hideProgress();
+                showError('语音检测失败: ' + error.message);
+            } finally {
+                // 恢复按钮状态
+                vadBtn.disabled = false;
+                vadBtn.innerHTML = originalText;
+            }
+        }
+
+        async function prepareAudioForVad(audioBuffer) {
+            // VAD 通常需要 16kHz 单声道音频
+            const targetSampleRate = 16000;
+            const sourceSampleRate = audioBuffer.sampleRate;
+
+            // 获取第一个声道的数据（转换为单声道）
+            let audioData = audioBuffer.getChannelData(0);
+
+            // 如果采样率不是 16kHz，需要重采样
+            if (sourceSampleRate !== targetSampleRate) {
+                audioData = await resampleAudio(audioData, sourceSampleRate, targetSampleRate);
+            }
+
+            return audioData;
+        }
+
+        async function resampleAudio(audioData, sourceSampleRate, targetSampleRate) {
+            // 简单的线性插值重采样
+            const ratio = sourceSampleRate / targetSampleRate;
+            const targetLength = Math.floor(audioData.length / ratio);
+            const resampledData = new Float32Array(targetLength);
+
+            for (let i = 0; i < targetLength; i++) {
+                const sourceIndex = i * ratio;
+                const index = Math.floor(sourceIndex);
+                const fraction = sourceIndex - index;
+
+                if (index + 1 < audioData.length) {
+                    // 线性插值
+                    resampledData[i] = audioData[index] * (1 - fraction) + audioData[index + 1] * fraction;
+                } else {
+                    resampledData[i] = audioData[index] || 0;
+                }
+            }
+
+            return resampledData;
         }
 
         function displayFileInfo(file) {
@@ -579,7 +1121,6 @@
         }
 
         function showError(message) {
-            // 创建错误提示
             const alert = document.createElement('div');
             alert.className = 'alert alert-error mt-4';
             alert.innerHTML = `
@@ -589,181 +1130,33 @@
                 <span>${message}</span>
             `;
             document.querySelector('.container').appendChild(alert);
-
-            // 5秒后自动移除
             setTimeout(() => alert.remove(), 5000);
         }
 
-        function setStartTime() {
-            if (wavesurfer) {
-                const currentTime = wavesurfer.getCurrentTime();
-                document.getElementById('startTime').value = currentTime.toFixed(2);
-                updateTimeMarkers();
-            }
-        }
-
-        function setEndTime() {
-            if (wavesurfer) {
-                const currentTime = wavesurfer.getCurrentTime();
-                document.getElementById('endTime').value = currentTime.toFixed(2);
-                updateTimeMarkers();
-            }
-        }
-
-        function updateTimeMarkers() {
-            if (!wavesurfer) return;
-
-            const duration = wavesurfer.getDuration();
-            const startTime = parseFloat(document.getElementById('startTime').value) || 0;
-            const endTime = parseFloat(document.getElementById('endTime').value) || duration;
-
-            const startMarkerEl = document.getElementById('startMarker');
-            const endMarkerEl = document.getElementById('endMarker');
-            const selectionEl = document.getElementById('selectionHighlight');
-            const startTimeEl = document.getElementById('startMarkerTime');
-            const endTimeEl = document.getElementById('endMarkerTime');
-
-            if (startTime >= 0 && startTime <= duration) {
-                const startPercent = (startTime / duration) * 100;
-                startMarkerEl.style.left = `${startPercent}%`;
-                startMarkerEl.style.opacity = '1';
-                startTimeEl.textContent = formatTimeWithDecimals(startTime);
-            } else {
-                startMarkerEl.style.opacity = '0';
-            }
-
-            if (endTime >= 0 && endTime <= duration) {
-                const endPercent = (endTime / duration) * 100;
-                endMarkerEl.style.left = `${endPercent}%`;
-                endMarkerEl.style.opacity = '1';
-                endTimeEl.textContent = formatTimeWithDecimals(endTime);
-            } else {
-                endMarkerEl.style.opacity = '0';
-            }
-
-            // 更新选中区域高亮
-            if (startTime < endTime && startTime >= 0 && endTime <= duration) {
-                const startPercent = (startTime / duration) * 100;
-                const endPercent = (endTime / duration) * 100;
-                selectionEl.style.left = `${startPercent}%`;
-                selectionEl.style.width = `${endPercent - startPercent}%`;
-                selectionEl.style.opacity = '0.2';
-            } else {
-                selectionEl.style.opacity = '0';
-            }
-        }
-
-        function previewSegment() {
-            if (!wavesurfer) return;
-
-            const startTime = parseFloat(document.getElementById('startTime').value) || 0;
-            const endTime = parseFloat(document.getElementById('endTime').value) || wavesurfer.getDuration();
-
-            if (startTime >= endTime) {
-                showError('开始时间必须小于结束时间');
-                return;
-            }
-
-            // 停止当前播放
-            wavesurfer.stop();
-            // 设置播放位置并播放指定区间
-            wavesurfer.seekTo(startTime / wavesurfer.getDuration());
-            wavesurfer.play();
-
-            // 在结束时间停止播放，并确保播放标记对齐到结束标记
-            const playDuration = (endTime - startTime) * 1000; // 转换为毫秒
-            setTimeout(() => {
-                if (wavesurfer.isPlaying()) {
-                    wavesurfer.pause();
-                    // 确保播放头精确定位到结束时间
-                    wavesurfer.seekTo(endTime / wavesurfer.getDuration());
-                }
-            }, playDuration);
-        }
-
-        let cutAudioBlob; // 存储切割后的音频数据
-
-        async function cutAudio() {
-            if (!audioBuffer) return;
-
-            const startTime = parseFloat(document.getElementById('startTime').value) || 0;
-            const endTime = parseFloat(document.getElementById('endTime').value) || audioBuffer.duration;
-
-            if (startTime >= endTime) {
-                showError('开始时间必须小于结束时间');
-                return;
-            }
-
-            showProgress('正在切割音频...');
-
-            try {
-                const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-                const sampleRate = audioBuffer.sampleRate;
-                const startSample = Math.floor(startTime * sampleRate);
-                const endSample = Math.floor(endTime * sampleRate);
-                const frameCount = endSample - startSample;
-
-                // 创建新的音频缓冲区
-                const newBuffer = audioCtx.createBuffer(
-                    audioBuffer.numberOfChannels,
-                    frameCount,
-                    sampleRate
-                );
-
-                // 复制音频数据
-                for (let channel = 0; channel < audioBuffer.numberOfChannels; channel++) {
-                    const oldData = audioBuffer.getChannelData(channel);
-                    const newData = newBuffer.getChannelData(channel);
-
-                    for (let i = 0; i < frameCount; i++) {
-                        newData[i] = oldData[startSample + i];
-                    }
-                }
-
-                // 转换为 WAV 格式
-                const wavFile = bufferToWav(newBuffer);
-                const audioBlob = new Blob([wavFile], { type: 'audio/wav' });
-
-                // 创建片段对象
-                const segment = {
-                    id: ++segmentCounter,
-                    startTime: startTime,
-                    endTime: endTime,
-                    duration: endTime - startTime,
-                    blob: audioBlob,
-                    audioBuffer: newBuffer,
-                    filename: `segment_${segmentCounter}_${startTime.toFixed(1)}s_${endTime.toFixed(1)}s.wav`
-                };
-
-                // 添加到片段数组
-                cutSegments.push(segment);
-
-                // 显示片段
-                await addSegmentToList(segment);
-
-                // 显示管理器
-                document.getElementById('cutResultsManager').classList.remove('hidden');
-
-                // 更新计数
-                updateSegmentCount();
-
-                hideProgress();
-
-                // 清空时间输入，准备下一次切割
-                document.getElementById('startTime').value = '';
-                document.getElementById('endTime').value = '';
-
-            } catch (error) {
-                console.error('切割音频时出错:', error);
-                hideProgress();
-                showError('切割音频时出错: ' + error.message);
-            }
+        function showSuccess(message) {
+            const alert = document.createElement('div');
+            alert.className = 'alert alert-success mt-4';
+            alert.innerHTML = `
+                <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span>${message}</span>
+            `;
+            document.querySelector('.container').appendChild(alert);
+            setTimeout(() => alert.remove(), 3000);
         }
 
         async function addSegmentToList(segment) {
             const segmentDiv = document.createElement('div');
-            segmentDiv.className = 'card bg-base-200 border border-base-300';
+            segmentDiv.className = 'card bg-base-200 border border-base-300 cursor-pointer transition-all duration-200 hover:shadow-md';
             segmentDiv.id = `segment-${segment.id}`;
+
+            // 修改：点击片段卡片时不再自动定位，移除点击事件
+            // segmentDiv.addEventListener('click', (e) => {
+            //     // 如果点击的是按钮，不触发选择
+            //     if (e.target.closest('button')) return;
+            //     locateToMainAudio(segment.id);
+            // });
 
             segmentDiv.innerHTML = `
                 <div class="card-body p-4">
@@ -799,6 +1192,13 @@
                             </svg>
                             识别
                         </button>
+                        <button class="btn btn-xs btn-accent" onclick="locateToMainAudio(${segment.id})">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                            定位
+                        </button>
                         <button class="btn btn-xs btn-success" onclick="downloadSegment(${segment.id})">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -817,14 +1217,27 @@
                             <div class="flex-1">
                                 <div class="flex justify-between items-center mb-1">
                                     <div class="text-sm font-medium text-base-content">识别结果:</div>
-                                    <button class="btn btn-ghost btn-xs" onclick="copyTranscription(${segment.id})">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                                        </svg>
-                                        复制
-                                    </button>
+                                    <div class="flex gap-1">
+                                        <button class="btn btn-ghost btn-xs" onclick="toggleEditTranscription(${segment.id})">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                            </svg>
+                                            <span id="edit-btn-text-${segment.id}">编辑</span>
+                                        </button>
+                                        <button class="btn btn-ghost btn-xs" onclick="copyTranscription(${segment.id})">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                                            </svg>
+                                            复制
+                                        </button>
+                                    </div>
                                 </div>
-                                <div id="transcription-text-${segment.id}" class="text-sm text-base-content/80 bg-base-200 p-2 rounded whitespace-pre-wrap"></div>
+                                <div id="transcription-display-${segment.id}" class="text-sm text-base-content/80 bg-base-200 p-2 rounded whitespace-pre-wrap"></div>
+                                <textarea id="transcription-edit-${segment.id}" class="textarea textarea-bordered text-sm w-full min-h-16 hidden" placeholder="在此编辑识别结果..."></textarea>
+                                <div id="transcription-edit-actions-${segment.id}" class="flex justify-end gap-2 mt-2 hidden">
+                                    <button class="btn btn-ghost btn-xs" onclick="cancelEditTranscription(${segment.id})">取消</button>
+                                    <button class="btn btn-primary btn-xs" onclick="saveEditTranscription(${segment.id})">保存</button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -832,8 +1245,6 @@
             `;
 
             document.getElementById('segmentsList').appendChild(segmentDiv);
-
-            // 为这个片段创建波形
             await createSegmentWaveform(segment);
         }
 
@@ -853,8 +1264,6 @@
                 });
 
                 await segmentWavesurfer.loadBlob(segment.blob);
-
-                // 存储 wavesurfer 实例到片段对象中
                 segment.wavesurfer = segmentWavesurfer;
 
             } catch (error) {
@@ -867,39 +1276,42 @@
             document.getElementById('totalSegments').textContent = cutSegments.length;
         }
 
-        // 全局函数，供 HTML 调用
+        // 全局函数
         window.playSegment = function (segmentId) {
             const segment = cutSegments.find(s => s.id === segmentId);
             if (segment && segment.wavesurfer) {
-                // 停止其他正在播放的音频
                 cutSegments.forEach(s => {
                     if (s.wavesurfer && s.id !== segmentId) {
                         s.wavesurfer.pause();
                     }
                 });
-                // 停止主波形
                 if (wavesurfer) {
                     wavesurfer.pause();
                 }
-
                 segment.wavesurfer.playPause();
             }
         };
 
         window.transcribeSegment = async function (segmentId) {
             const segment = cutSegments.find(s => s.id === segmentId);
-            if (!segment) return;
+            if (!segment) {
+                console.error('片段不存在:', segmentId);
+                return;
+            }
 
-            // 检查是否配置了 Whisper
             if (!window.whisperConfig || !window.whisperConfig.url) {
                 showError('请先配置 Whisper API 地址');
                 return;
             }
 
             const transcriptionBtn = document.querySelector(`button[onclick="transcribeSegment(${segmentId})"]`);
+            if (!transcriptionBtn) {
+                console.error('找不到识别按钮:', segmentId);
+                return;
+            }
+
             const originalText = transcriptionBtn.innerHTML;
 
-            // 显示加载状态
             transcriptionBtn.disabled = true;
             transcriptionBtn.innerHTML = `
                 <span class="loading loading-spinner loading-xs"></span>
@@ -910,32 +1322,12 @@
                 await transcribeSegmentInternal(segmentId);
             } catch (error) {
                 console.error('语音识别失败:', error);
-                showError(`语音识别失败: ${error.message}`);
+                showError(`片段 ${segmentId} 语音识别失败: ${error.message}`);
             } finally {
-                // 恢复按钮状态
                 transcriptionBtn.disabled = false;
                 transcriptionBtn.innerHTML = originalText;
             }
         };
-
-        function displayTranscription(segmentId, text) {
-            const transcriptionDiv = document.getElementById(`transcription-${segmentId}`);
-            const transcriptionText = document.getElementById(`transcription-text-${segmentId}`);
-
-            if (transcriptionDiv && transcriptionText) {
-                // 去掉开头的时间戳格式 [00:00:00.000 --> 00:00:03.000]
-                const cleanText = text.replace(/^\[\d{2}:\d{2}:\d{2}\.\d{3}\s*-->\s*\d{2}:\d{2}:\d{2}\.\d{3}\]\s*/, '');
-
-                // 将识别结果存储到片段对象中
-                const segment = cutSegments.find(s => s.id === segmentId);
-                if (segment) {
-                    segment.transcription = cleanText;
-                }
-
-                transcriptionText.textContent = cleanText;
-                transcriptionDiv.classList.remove('hidden');
-            }
-        }
 
         window.downloadSegment = function (segmentId) {
             const segment = cutSegments.find(s => s.id === segmentId);
@@ -959,6 +1351,15 @@
                     segment.wavesurfer.destroy();
                 }
 
+                // 找到对应的区域并删除
+                for (let [region, mappedSegmentId] of regionSegmentMap.entries()) {
+                    if (mappedSegmentId === segmentId) {
+                        regionSegmentMap.delete(region);
+                        region.remove(); // 这会触发 region-removed 事件
+                        break;
+                    }
+                }
+
                 // 从数组中移除
                 cutSegments.splice(segmentIndex, 1);
 
@@ -978,10 +1379,138 @@
             }
         };
 
+        // 静默删除片段（不触发区域删除，用于区域删除时调用）
+        function removeSegmentSilently(segmentId) {
+            const segmentIndex = cutSegments.findIndex(s => s.id === segmentId);
+            if (segmentIndex !== -1) {
+                const segment = cutSegments[segmentIndex];
+
+                // 销毁波形实例
+                if (segment.wavesurfer) {
+                    segment.wavesurfer.destroy();
+                }
+
+                // 清除选择状态
+                if (selectedSegment === segmentId) {
+                    selectedSegment = null;
+                }
+
+                // 从数组中移除
+                cutSegments.splice(segmentIndex, 1);
+
+                // 从 DOM 中移除
+                const segmentElement = document.getElementById(`segment-${segmentId}`);
+                if (segmentElement) {
+                    segmentElement.remove();
+                }
+
+                // 更新计数
+                updateSegmentCount();
+
+                // 如果没有片段了，隐藏管理器
+                if (cutSegments.length === 0) {
+                    document.getElementById('cutResultsManager').classList.add('hidden');
+                }
+            }
+        }
+
+        // 编辑识别结果相关函数
+        window.toggleEditTranscription = function (segmentId) {
+            const displayDiv = document.getElementById(`transcription-display-${segmentId}`);
+            const editTextarea = document.getElementById(`transcription-edit-${segmentId}`);
+            const editActions = document.getElementById(`transcription-edit-actions-${segmentId}`);
+            const editBtnText = document.getElementById(`edit-btn-text-${segmentId}`);
+
+            const segment = cutSegments.find(s => s.id === segmentId);
+            if (!segment) return;
+
+            if (displayDiv.classList.contains('hidden')) {
+                // 当前在编辑模式，切换到显示模式
+                cancelEditTranscription(segmentId);
+            } else {
+                // 当前在显示模式，切换到编辑模式
+                displayDiv.classList.add('hidden');
+                editTextarea.classList.remove('hidden');
+                editActions.classList.remove('hidden');
+                editBtnText.textContent = '取消';
+
+                // 将当前文本填入编辑框
+                editTextarea.value = segment.transcription || '';
+                editTextarea.focus();
+            }
+        };
+
+        window.cancelEditTranscription = function (segmentId) {
+            const displayDiv = document.getElementById(`transcription-display-${segmentId}`);
+            const editTextarea = document.getElementById(`transcription-edit-${segmentId}`);
+            const editActions = document.getElementById(`transcription-edit-actions-${segmentId}`);
+            const editBtnText = document.getElementById(`edit-btn-text-${segmentId}`);
+
+            // 切换回显示模式
+            displayDiv.classList.remove('hidden');
+            editTextarea.classList.add('hidden');
+            editActions.classList.add('hidden');
+            editBtnText.textContent = '编辑';
+        };
+
+        window.saveEditTranscription = function (segmentId) {
+            const displayDiv = document.getElementById(`transcription-display-${segmentId}`);
+            const editTextarea = document.getElementById(`transcription-edit-${segmentId}`);
+            const editActions = document.getElementById(`transcription-edit-actions-${segmentId}`);
+            const editBtnText = document.getElementById(`edit-btn-text-${segmentId}`);
+
+            const segment = cutSegments.find(s => s.id === segmentId);
+            if (!segment) return;
+
+            // 保存编辑后的文本
+            const editedText = editTextarea.value.trim();
+            segment.transcription = editedText;
+
+            // 更新显示的文本
+            displayDiv.textContent = editedText;
+
+            // 切换回显示模式
+            displayDiv.classList.remove('hidden');
+            editTextarea.classList.add('hidden');
+            editActions.classList.add('hidden');
+            editBtnText.textContent = '编辑';
+
+            showSuccess(`片段 ${segmentId} 的识别结果已更新`);
+        };
+
+        window.copyTranscription = async function (segmentId) {
+            const segment = cutSegments.find(s => s.id === segmentId);
+            if (!segment || !segment.transcription) {
+                showError('没有可复制的识别结果');
+                return;
+            }
+
+            const textToCopy = `${segment.filename}|${segment.transcription}`;
+
+            try {
+                await navigator.clipboard.writeText(textToCopy);
+                showSuccess('识别结果已复制到剪贴板');
+            } catch (error) {
+                console.error('复制失败:', error);
+                const textArea = document.createElement('textarea');
+                textArea.value = textToCopy;
+                document.body.appendChild(textArea);
+                textArea.select();
+                try {
+                    document.execCommand('copy');
+                    showSuccess('识别结果已复制到剪贴板');
+                } catch (fallbackError) {
+                    showError('复制失败，请手动复制');
+                }
+                document.body.removeChild(textArea);
+            }
+        };
+
+        // 切割结果管理函数
         function downloadAllSegments() {
             if (cutSegments.length === 0) return;
 
-            cutSegments.forEach(segment => {
+            cutSegments.forEach((segment, index) => {
                 setTimeout(() => {
                     const url = URL.createObjectURL(segment.blob);
                     const a = document.createElement('a');
@@ -989,7 +1518,7 @@
                     a.download = segment.filename;
                     a.click();
                     URL.revokeObjectURL(url);
-                }, 100); // 稍微延迟避免浏览器阻止多个下载
+                }, index * 100);
             });
         }
 
@@ -1005,6 +1534,17 @@
             cutSegments = [];
             segmentCounter = 0;
 
+            // 清空选择状态
+            selectedSegment = null;
+            selectedRegion = null;
+
+            // 清空映射关系和区域
+            regionSegmentMap.clear();
+            if (regionsPlugin) {
+                regionsPlugin.clearRegions();
+            }
+            hideRegionInfo();
+
             // 清空列表
             document.getElementById('segmentsList').innerHTML = '';
 
@@ -1015,14 +1555,12 @@
             document.getElementById('cutResultsManager').classList.add('hidden');
         }
 
-        // 一键识别所有切割音频
         async function transcribeAllSegments() {
             if (cutSegments.length === 0) {
                 showError('没有可识别的切割片段');
                 return;
             }
 
-            // 检查是否配置了 Whisper
             if (!window.whisperConfig || !window.whisperConfig.url) {
                 showError('请先配置 Whisper API 地址');
                 return;
@@ -1031,7 +1569,6 @@
             const transcribeAllBtn = document.getElementById('transcribeAllBtn');
             const originalText = transcribeAllBtn.innerHTML;
 
-            // 显示总体进度
             transcribeAllBtn.disabled = true;
             let completed = 0;
 
@@ -1045,34 +1582,42 @@
             updateProgress();
 
             try {
-                // 并发识别所有片段（限制并发数避免过载）
-                const concurrentLimit = 3; // 最大并发数
+                const concurrentLimit = 3;
                 const results = [];
 
+                // 按批次处理以避免API限制
                 for (let i = 0; i < cutSegments.length; i += concurrentLimit) {
                     const batch = cutSegments.slice(i, i + concurrentLimit);
                     const batchPromises = batch.map(async (segment) => {
                         try {
+                            console.log(`开始识别片段 ${segment.id}`);
                             await transcribeSegmentInternal(segment.id);
                             completed++;
                             updateProgress();
+                            console.log(`片段 ${segment.id} 识别完成`);
                             return { success: true, segmentId: segment.id };
                         } catch (error) {
                             completed++;
                             updateProgress();
+                            console.error(`片段 ${segment.id} 识别失败:`, error);
                             return { success: false, segmentId: segment.id, error: error.message };
                         }
                     });
 
                     const batchResults = await Promise.all(batchPromises);
                     results.push(...batchResults);
+
+                    // 批次间稍作延迟，避免API请求过于频繁
+                    if (i + concurrentLimit < cutSegments.length) {
+                        await new Promise(resolve => setTimeout(resolve, 500));
+                    }
                 }
 
-                // 统计结果
                 const successCount = results.filter(r => r.success).length;
                 const failCount = results.filter(r => !r.success).length;
 
                 if (failCount > 0) {
+                    console.log('识别结果统计:', { successCount, failCount, results });
                     showError(`识别完成：${successCount} 个成功，${failCount} 个失败`);
                 } else {
                     showSuccess(`所有 ${successCount} 个片段识别完成`);
@@ -1082,34 +1627,34 @@
                 console.error('批量识别出错:', error);
                 showError('批量识别出错: ' + error.message);
             } finally {
-                // 恢复按钮状态
                 transcribeAllBtn.disabled = false;
                 transcribeAllBtn.innerHTML = originalText;
             }
         }
 
-        // 内部识别函数，不处理按钮状态
         async function transcribeSegmentInternal(segmentId) {
             const segment = cutSegments.find(s => s.id === segmentId);
-            if (!segment) throw new Error('片段不存在');
+            if (!segment) {
+                throw new Error(`片段 ${segmentId} 不存在`);
+            }
 
-            // 准备 FormData
+            console.log(`开始识别片段 ${segmentId}，配置:`, window.whisperConfig);
+
             const formData = new FormData();
             formData.append('file', segment.blob, segment.filename);
 
-            // 获取语言设置
             const language = window.whisperConfig.language || 'zh';
             if (language !== 'auto') {
                 formData.append('language', language);
             }
 
-            // 准备请求头
             const headers = {};
             if (window.whisperConfig.token) {
                 headers['Authorization'] = `Bearer ${window.whisperConfig.token}`;
             }
 
-            // 发送请求
+            console.log(`向 ${window.whisperConfig.url} 发送识别请求`);
+
             const response = await fetch(window.whisperConfig.url, {
                 method: 'POST',
                 headers: headers,
@@ -1117,18 +1662,83 @@
             });
 
             if (!response.ok) {
+                const errorText = await response.text();
+                console.error(`识别请求失败: ${response.status} ${response.statusText}`, errorText);
                 throw new Error(`HTTP ${response.status}: ${response.statusText}`);
             }
 
             const result = await response.json();
+            console.log(`片段 ${segmentId} 识别结果:`, result);
 
-            // 显示识别结果
-            displayTranscription(segmentId, result.text || result.transcript || '识别结果为空');
+            const transcriptionText = result.text || result.transcript || '识别结果为空';
+            displayTranscription(segmentId, transcriptionText);
+
+            return transcriptionText;
         }
 
-        // 复制所有识别结果
+        function displayTranscription(segmentId, text) {
+            const transcriptionDiv = document.getElementById(`transcription-${segmentId}`);
+            const transcriptionDisplay = document.getElementById(`transcription-display-${segmentId}`);
+
+            if (transcriptionDiv && transcriptionDisplay) {
+                // 处理带时间戳的字幕格式
+                const cleanText = cleanWhisperTranscription(text);
+
+                const segment = cutSegments.find(s => s.id === segmentId);
+                if (segment) {
+                    segment.transcription = cleanText;
+                }
+
+                transcriptionDisplay.textContent = cleanText;
+                transcriptionDiv.classList.remove('hidden');
+
+                console.log(`片段 ${segmentId} 识别结果显示完成:`, cleanText);
+            } else {
+                console.error(`找不到片段 ${segmentId} 的识别结果显示元素`);
+            }
+        }
+
+        function cleanWhisperTranscription(text) {
+            if (!text || typeof text !== 'string') {
+                return '识别结果为空';
+            }
+
+            // 按行分割文本
+            const lines = text.split('\n');
+            const cleanedLines = [];
+
+            for (let line of lines) {
+                // 去除首尾空格
+                line = line.trim();
+
+                // 跳过空行
+                if (!line) continue;
+
+                // 检查是否以时间戳开头 [HH:MM:SS.mmm --> HH:MM:SS.mmm]
+                const timestampRegex = /^\[\d{2}:\d{2}:\d{2}\.\d{3}\s*-->\s*\d{2}:\d{2}:\d{2}\.\d{3}\]\s*/;
+
+                if (timestampRegex.test(line)) {
+                    // 移除时间戳，保留文本内容
+                    const textContent = line.replace(timestampRegex, '').trim();
+                    if (textContent) {
+                        cleanedLines.push(textContent);
+                    }
+                } else {
+                    // 如果不是时间戳行，直接添加
+                    cleanedLines.push(line);
+                }
+            }
+
+            // 将所有行拼接成一个字符串，用空格连接
+            const result = cleanedLines.join(' ').trim();
+
+            console.log('原始文本:', text);
+            console.log('清理后文本:', result);
+
+            return result || '识别结果为空';
+        }
+
         async function copyAllTranscriptions() {
-            // 获取所有已识别的片段
             const transcribedSegments = cutSegments.filter(segment => segment.transcription);
 
             if (transcribedSegments.length === 0) {
@@ -1136,18 +1746,15 @@
                 return;
             }
 
-            // 组织文本内容 - 格式：文件名|识别内容
             const allText = transcribedSegments
                 .map(segment => `${segment.filename}|${segment.transcription}`)
                 .join('\n');
 
             try {
-                // 复制到剪贴板
                 await navigator.clipboard.writeText(allText);
                 showSuccess(`已复制 ${transcribedSegments.length} 个识别结果到剪贴板`);
             } catch (error) {
                 console.error('复制失败:', error);
-                // 降级方案：创建临时文本框
                 const textArea = document.createElement('textarea');
                 textArea.value = allText;
                 document.body.appendChild(textArea);
@@ -1162,38 +1769,6 @@
             }
         }
 
-        // 复制单个识别结果
-        window.copyTranscription = async function (segmentId) {
-            const segment = cutSegments.find(s => s.id === segmentId);
-            if (!segment || !segment.transcription) {
-                showError('没有可复制的识别结果');
-                return;
-            }
-
-            // 格式：文件名|识别内容
-            const textToCopy = `${segment.filename}|${segment.transcription}`;
-
-            try {
-                // 复制到剪贴板
-                await navigator.clipboard.writeText(textToCopy);
-                showSuccess('识别结果已复制到剪贴板');
-            } catch (error) {
-                console.error('复制失败:', error);
-                // 降级方案：创建临时文本框
-                const textArea = document.createElement('textarea');
-                textArea.value = textToCopy;
-                document.body.appendChild(textArea);
-                textArea.select();
-                try {
-                    document.execCommand('copy');
-                    showSuccess('识别结果已复制到剪贴板');
-                } catch (fallbackError) {
-                    showError('复制失败，请手动复制');
-                }
-                document.body.removeChild(textArea);
-            }
-        };
-
         function bufferToWav(buffer) {
             const length = buffer.length;
             const numberOfChannels = buffer.numberOfChannels;
@@ -1201,7 +1776,6 @@
             const arrayBuffer = new ArrayBuffer(44 + length * numberOfChannels * 2);
             const view = new DataView(arrayBuffer);
 
-            // WAV 头部
             const writeString = (offset, string) => {
                 for (let i = 0; i < string.length; i++) {
                     view.setUint8(offset + i, string.charCodeAt(i));
@@ -1261,25 +1835,22 @@
             const whisperToken = document.getElementById('whisperToken').value;
             const whisperLanguage = document.getElementById('whisperLanguage').value;
 
-            // 简单的 URL 验证
             if (whisperUrl && !isValidUrl(whisperUrl)) {
                 showError('请输入有效的 URL 地址');
                 return;
             }
 
-            // 保存到内存变量（因为不能使用 localStorage）
             window.whisperConfig = {
                 url: whisperUrl,
                 token: whisperToken,
                 language: whisperLanguage
             };
 
-            // 显示保存成功消息
+            console.log('Whisper 配置已保存:', window.whisperConfig);
             showSuccess('Whisper 设置已保存');
         }
 
         function loadWhisperSettings() {
-            // 设置默认配置
             if (!window.whisperConfig) {
                 window.whisperConfig = {
                     url: 'https://whisper.gaia.domains/v1/audio/transcriptions',
@@ -1288,10 +1859,11 @@
                 };
             }
 
-            // 从内存中加载设置到界面
             document.getElementById('whisperUrl').value = window.whisperConfig.url || 'https://whisper.gaia.domains/v1/audio/transcriptions';
             document.getElementById('whisperToken').value = window.whisperConfig.token || '';
             document.getElementById('whisperLanguage').value = window.whisperConfig.language || 'auto';
+
+            console.log('Whisper 配置已加载:', window.whisperConfig);
         }
 
         function isValidUrl(string) {
@@ -1301,22 +1873,6 @@
             } catch (_) {
                 return false;
             }
-        }
-
-        function showSuccess(message) {
-            // 创建成功提示
-            const alert = document.createElement('div');
-            alert.className = 'alert alert-success mt-4';
-            alert.innerHTML = `
-                <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <span>${message}</span>
-            `;
-            document.querySelector('.container').appendChild(alert);
-
-            // 3秒后自动移除
-            setTimeout(() => alert.remove(), 3000);
         }
     </script>
 </body>
