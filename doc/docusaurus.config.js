@@ -48,10 +48,11 @@ const config = {
       ({
         docs: {
           sidebarPath: './sidebars.js',
+          routeBasePath: '/', // 关键修改：让文档在 /docs/ 的根路径
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+            'https://github.com/second-state/echokit/tree/main/doc/',
         },
         blog: {
           showReadingTime: true,
@@ -62,11 +63,11 @@ const config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+            'https://github.com/second-state/echokit/tree/main/doc/',
           // Useful options to enforce blogging best practices
           onInlineTags: 'warn',
           onInlineAuthors: 'ignore',
-          onUntruncatedBlogPosts: 'warn',
+          onUntruncatedBlogPosts: 'ignore', // 修改：忽略截断警告
         },
         theme: {
           customCss: './src/css/custom.css',
@@ -109,7 +110,7 @@ const config = {
             items: [
               {
                 label: 'Tutorial',
-                to: '/intro',
+                to: '/intro', // 修改：去掉 /docs 前缀
               },
             ],
           },
