@@ -1,0 +1,70 @@
+name: Deploy Docusaurus to GitHub Pages
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: 'pages'
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'npm'
+          cache-dependency-path: doc/package-lock.json
+          
+      - name: Install dependencies
+        run: |
+          cd doc
+          npm ci
+          
+      - name: Build Docusaurus
+        run: |
+          cd doc
+          npm run build
+          
+      - name: Prepare deployment files
+        run: |
+          mkdir -p _site
+          cp -r *.html _site/ 2>/dev/null || :
+          cp -r css _site/ 2>/dev/null || :
+          cp -r js _site/ 2>/dev/null || :
+          cp -r images _site/ 2>/dev/null || :
+          cp -r assets _site/ 2>/dev/null || :
+          for file in *.css *.js *.png *.jpg *.jpeg *.gif *.svg *.ico *.pdf; do
+            [ -f "$file" ] && cp "$file" _site/
+          done
+          cp -r doc/build _site/docs
+          
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./_site
+          
+  deploy:
+    needs: build
+    runs-on: ubuntu-22.04
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
