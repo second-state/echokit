@@ -20,15 +20,15 @@ const config = {
   },
 
   // Set the production url of your site here
-  url: 'https://second-state.github.io',
+  url: 'https://echokit.dev/',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/echokit-doc/',
+  baseUrl: '/docs/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: 'second-state', // Usually your GitHub org/user name.
-  projectName: 'echokit-doc', // Usually your repo name.
+  projectName: 'echokit', // Usually your repo name.
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
