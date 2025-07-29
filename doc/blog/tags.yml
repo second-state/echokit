@@ -1,0 +1,14 @@
+echokit:
+  label: echokit
+  permalink: /echokit
+  description: the article is about EchoKit
+
+kickstarter:
+  label: kickstarter
+  permalink: /kickstarter
+  description: the article is about kickstarter
+
+rust:
+  label: rust
+  permalink: /rust
+  description: the article is about rust
