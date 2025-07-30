@@ -43,14 +43,20 @@ jobs:
       - name: Prepare deployment files
         run: |
           mkdir -p _site
-          cp -r *.html _site/ 2>/dev/null || :
-          cp -r css _site/ 2>/dev/null || :
-          cp -r js _site/ 2>/dev/null || :
-          cp -r images _site/ 2>/dev/null || :
-          cp -r assets _site/ 2>/dev/null || :
-          for file in *.css *.js *.png *.jpg *.jpeg *.gif *.svg *.ico *.pdf; do
-            [ -f "$file" ] && cp "$file" _site/
+          
+          # Copy all files and directories except specific ones
+          for item in *; do
+            if [ "$item" != "_site" ] && [ "$item" != "doc" ] && [ "$item" != ".git" ] && [ "$item" != ".github" ] && [ "$item" != "node_modules" ]; then
+              cp -r "$item" _site/ 2>/dev/null || :
+            fi
           done
+          
+          # Copy hidden files that might be needed
+          cp .htaccess _site/ 2>/dev/null || :
+          cp robots.txt _site/ 2>/dev/null || :
+          cp sitemap.xml _site/ 2>/dev/null || :
+          
+          # Copy Docusaurus build to docs subdirectory
           cp -r doc/build _site/docs
           
       - name: Upload Pages artifact
