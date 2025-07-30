@@ -55,19 +55,21 @@ const config = {
             'https://github.com/second-state/echokit/tree/main/doc/',
         },
         blog: {
-          showReadingTime: true,
-          feedOptions: {
-            type: ['rss', 'atom'],
-            xslt: true,
-          },
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/second-state/echokit/tree/main/doc/',
-          // Useful options to enforce blogging best practices
-          onInlineTags: 'warn',
-          onInlineAuthors: 'ignore',
-          onUntruncatedBlogPosts: 'ignore', 
+        routeBasePath: 'dev',
+        path: './dev',
+        showReadingTime: true,
+        feedOptions: {
+        type: ['rss', 'atom'],
+        xslt: true,
+        },
+        // Please change this to your repo.
+        // Remove this to remove the "edit this page" links.
+        editUrl:
+        'https://github.com/second-state/echokit/tree/main/doc/',
+        // Useful options to enforce blogging best practices
+        onInlineTags: 'warn',
+        onInlineAuthors: 'ignore',
+        onUntruncatedBlogPosts: 'ignore',
         },
         theme: {
           customCss: './src/css/custom.css',
