@@ -48,7 +48,7 @@ const config = {
       ({
         docs: {
           sidebarPath: './sidebars.js',
-          routeBasePath: '/', // 关键修改：让文档在 /docs/ 的根路径
+          routeBasePath: '/', 
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
@@ -67,7 +67,7 @@ const config = {
           // Useful options to enforce blogging best practices
           onInlineTags: 'warn',
           onInlineAuthors: 'ignore',
-          onUntruncatedBlogPosts: 'ignore', // 修改：忽略截断警告
+          onUntruncatedBlogPosts: 'ignore', 
         },
         theme: {
           customCss: './src/css/custom.css',
@@ -110,7 +110,7 @@ const config = {
             items: [
               {
                 label: 'Tutorial',
-                to: '/intro', // 修改：去掉 /docs 前缀
+                to: '/intro', 
               },
             ],
           },
@@ -127,7 +127,7 @@ const config = {
               },
               {
                 label: 'X',
-                href: 'https://x.com/docusaurus',
+                href: 'https://x.com/secondstateinc',
               },
             ],
           },
@@ -135,7 +135,7 @@ const config = {
             title: 'More',
             items: [
               {
-                label: 'Blog',
+                label: 'Build in Public',
                 to: '/blog',
               },
               {
