@@ -94,7 +94,7 @@ const config = {
             position: 'left',
             label: 'Tutorial',
           },
-          {to: '/docs/dev', label: 'Build in Public', position: 'left'},
+          {to: '/dev', label: 'Build in Public', position: 'left'},
           {
             href: 'https://github.com/second-state/echokit_server',
             label: 'GitHub',
