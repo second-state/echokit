@@ -1,12 +1,14 @@
----
-slug: echokit introduction
-title: Build Your First Voice AI Agent - A Step-by-Step Guide with EchoKit
-tags: [echokit]
----
+
 
 
 
 Are you curious about Artificial Intelligence but don't know where to start? The world of AI can seem daunting, filled with complex algorithms and advanced programming. But what if you could build your very own AI agent, right from your home, with a hands-on kit designed for curious minds?
+
+---
+slug: echokit introduction
+title: Build Your First Voice AI Agent:A Step-by-Step Guide with EchoKit
+tags: [Voice Agent, Voice AI, ]
+---
 
 Enter EchoKit: your gateway to understanding and creating with AI. EchoKit is an open-source development kit that allows you to build a self-hosted voice agent with ease. It's not a toy; it's a powerful learning tool that grows with your skills, offering a tangible way to explore the exciting world of AI.
 
