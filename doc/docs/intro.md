@@ -7,6 +7,7 @@ sidebar_position: 1
 EchoKit is an open source voice agent platform.
 
 
-## Hardware
+## Hardware 
+
 
 ## Software

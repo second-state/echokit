@@ -136,7 +136,7 @@ const config = {
             items: [
               {
                 label: 'Build in Public',
-                to: '/blog',
+                to: '/dev',
               },
               {
                 label: 'GitHub',
