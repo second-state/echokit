@@ -1,6 +1,6 @@
 ---
 slug: echokit introduction
-title: Build Your First Voice AI Agen - A Step-by-Step Guide with EchoKit
+title: Build Your First Voice AI Agent - A Step-by-Step Guide with EchoKit
 tags: [echokit]
 ---
 
@@ -35,7 +35,7 @@ This kit is designed to be a hands-on learning experience, allowing you to conne
 One of the most exciting aspects of EchoKit is how quickly you can get your AI agent up and running. Here's a quick start guide to your first AI conversation:
 
 
-1.  **Connect to the web page via Bluetooth:** Your EchoKit device can connect to a web interface for easy configuration.
+1.  **Connect to the web page via Bluetooth/ Cable:** Your EchoKit device can connect to a web interface for easy configuration.
 2.  **Enter Wi-Fi information:** Connect your EchoKit to your home network.
 3.  **Fill in our server address:** Based on your location, you'll configure your device to connect to our server.
 4.  **Start chatting!** Once connected, you can immediately begin interacting with your voice AI agent.
@@ -58,7 +58,7 @@ EchoKit is designed for continuous learning and exploration. Once you're comfort
 This process teaches you about API integrations, server configurations, and the nuances of prompt engineering, all crucial skills in today's AI landscape.
 
 
-## Building Intelligent AI Agents
+## Building Voice AI Agents
 
 EchoKit allows you to create truly intelligent voicr AI agents by adding knowledge and enabling actions:
 
