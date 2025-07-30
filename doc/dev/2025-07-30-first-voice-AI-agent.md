@@ -1,6 +1,6 @@
 ---
 slug: echokit introduction
-title:Build Your First Voice AI Agent: A Step-by-Step Guide with EchoKit 
+title: Build Your First Voice AI Agen - A Step-by-Step Guide with EchoKit
 tags: [echokit]
 ---
 
