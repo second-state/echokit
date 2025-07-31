@@ -3,6 +3,9 @@ name: Deploy Docusaurus to GitHub Pages
 on:
   push:
     branches: [ main ]
+    paths-ignore:
+      - '**.md'
+      - 'README.md'
   pull_request:
     branches: [ main ]
   workflow_dispatch:
@@ -23,7 +26,17 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         
+      - name: Check for doc changes
+        id: changes
+        run: |
+          if git diff --name-only HEAD~1 HEAD | grep -E '^doc/'; then
+            echo "doc_changed=true" >> $GITHUB_OUTPUT
+          else
+            echo "doc_changed=false" >> $GITHUB_OUTPUT
+          fi
+        
       - name: Setup Node.js
+        if: steps.changes.outputs.doc_changed == 'true' || github.event_name == 'workflow_dispatch'
         uses: actions/setup-node@v3
         with:
           node-version: '18'
@@ -31,11 +44,13 @@ jobs:
           cache-dependency-path: doc/package-lock.json
           
       - name: Install dependencies
+        if: steps.changes.outputs.doc_changed == 'true' || github.event_name == 'workflow_dispatch'
         run: |
           cd doc
           npm ci
           
       - name: Build Docusaurus
+        if: steps.changes.outputs.doc_changed == 'true' || github.event_name == 'workflow_dispatch'
         run: |
           cd doc
           npm run build
@@ -56,8 +71,12 @@ jobs:
           cp robots.txt _site/ 2>/dev/null || :
           cp sitemap.xml _site/ 2>/dev/null || :
           
-          # Copy Docusaurus build to docs subdirectory
-          cp -r doc/build _site/docs
+          # Copy Docusaurus build to docs subdirectory (if it exists)
+          if [ -d "doc/build" ]; then
+            cp -r doc/build _site/docs
+          else
+            echo "Docusaurus not built, skipping docs copy"
+          fi
           
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
