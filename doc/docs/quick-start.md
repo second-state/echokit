@@ -4,8 +4,8 @@ sidebar_position: 2
 
 # Quick Start with EchoKit
 
-This guide walks you through setting up your **EchoKit B**, which comes pre-assembled and ready to use.  
-If you are using **EchoKit A**, please refer to the flashing guide before continuing.
+This guide walks you through setting up your **EchoKit**, which comes pre-assembled and ready to use.  
+If you are using **EchoKit DIY Edition**, please refer to the flashing guide before continuing.
 
 ---
 
