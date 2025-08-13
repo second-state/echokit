@@ -49,13 +49,13 @@ Navigate to the Audio Waveform and Cutting section. Here you'll cut your audio f
 **Cutting process**
 
 Click on Smart cut to get a draft version of the cutting using VAD.
-![alt text](image.png)
+![alt text](smart-cut.png)
 
 Next you will need to listen to each segment carefully to ensure it follows the segmentation rules.
 
 Click a segment and the Edit banner will show up.
 
-![](image-1.png)
+![](edit-banner.png)
 
 Click on PLAY to hear the audio. If needed, drag the edges of the segment to adjust the start/end points.
 
