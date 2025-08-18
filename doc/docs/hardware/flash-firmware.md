@@ -2,23 +2,14 @@
 sidebar_position: 1
 ---
 
-# Flash the Hardware
-
-Each EchoKit comes pre-flashed with the ESP32 firmware.
-If your device isn’t working as expected, you can manually re-flash it by following these steps.
-
-Here’s a polished, native-sounding, and clearer version of your tutorial:
-
----
-
-## sidebar\_position: 1
-
 # Flashing the Hardware
 
 Each EchoKit comes pre-flashed with the ESP32 firmware.
 If your device isn’t working as expected, you can manually re-flash it by following these steps.
 
+**After completing this process, your EchoKit should display a QR code and instructions on its screen.**
 
+![alt text](display.png)
 
 ## 1. Install the Rust Toolchain
 
@@ -39,7 +30,6 @@ Fetch the latest precompiled EchoKit firmware:
 ```bash
 curl -L -o echokit https://echokit.dev/firmware/echokit-boards
 ```
-
 
 ## 4. Flash the Firmware to EchoKit
 
@@ -68,6 +58,21 @@ I (705) boot: Loaded app from partition at offset 0x10000
 I (705) boot: Disabling RNG early entropy source...
 I (716) cpu_start: Multicore app
 ```
+
+Once flashing succeeds, you should see output similar to this:
+
+```
+I (4990) esp32_nimble::ble_device: Device Address: 98:A3:16:E5:D8:4A
+I (4993) NimBLE: GAP procedure initiated: advertise; 
+I (4996) NimBLE: disc_mode=2
+I (4998) NimBLE:  adv_channel_map=0 own_addr_type=0 adv_filter_policy=0 adv_itvl_min=0 adv_itvl_max=0
+I (5007) NimBLE: 
+
+I (5010) echokit: Free SPIRAM heap size: 5248788
+I (5014) echokit: Free INTERNAL heap size: 81847
+I (5147) esp_idf_hal::interrupt::asynch: IsrReactor "IsrReactor" started.
+```
+And the display will light and show the QR code.
 
 ## 5. Configure and Connect EchoKit
 
