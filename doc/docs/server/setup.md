@@ -1,5 +1,5 @@
 ---
-sidebar_position: 2
+sidebar_position: 3
 ---
 
 # Connect EchoKit Server with the Device
@@ -38,8 +38,6 @@ Your EchoKit is now connected and ready to use.
 
 
 ## Re-connect the Echokit server
-
-## Reconnect the EchoKit Server
 
 If you need to update your Wi-Fi settings, you’ll have to reconnect the EchoKit device to the server.
 
