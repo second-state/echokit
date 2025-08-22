@@ -10,4 +10,5 @@ In this chapter, you’ll learn how to set up and customize the EchoKit server. 
 
 * [Connect the Echokit device with the EchoKit server](./setup.md) 
 * [Run the EchoKit server locally](./echokit-server.md)  
-* Customize AI settings for the EchoKit server  
+* [Customize AI settings for the EchoKit server](./configure-echokit-server.md)  
+* [Test the EchoKit server](./test-echokit-server.md)

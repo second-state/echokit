@@ -4,7 +4,7 @@ sidebar_position: 5
 
 # Configure an End-to-End Pipeline for EchoKit
 
-In addition to the classic ASR-LLM-TTS pipeline, EchoKit supports real-time models that can reduce latency. However, this approach has several limitations:
+In addition to the classic [ASR-LLM-TTS pipeline](./configure-echokit-server.md), EchoKit supports real-time models that can reduce latency. However, this approach has several limitations:
 
 * **High API costs** – OpenAI's real-time API can cost up to $25 per 100 tokens
 * **No voice customization** – You cannot modify the generated voice

@@ -6,6 +6,9 @@ sidebar_position: 4
 
 EchoKit supports two pipeline approaches: the **ASR-LLM-TTS pipeline** (classic modular approach) and the **end-to-end pipeline** (single integrated model like Gemini Live). 
 
+* ASR-LLM-TTS pipeline for EchoKit: Current article
+* [End-to-end pipeline for EchoKit](real-time-echokit.md)
+
 The ASR-LLM-TTS pipeline offers greater flexibility and customization - you can choose any voice, control costs by mixing different providers, integrate external knowledge, and run components locally for privacy. While end-to-end models can reduce the latency, the classic pipeline gives you full control over each component.
 
 ## How the ASR-LLM-TTS Pipeline Works
