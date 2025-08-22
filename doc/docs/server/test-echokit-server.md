@@ -37,6 +37,8 @@ Go to **https://echokit.dev/chat/** in your web browser.
    - Format: `ws://[your-server-ip]:[port]/ws/`
    - Examples: `ws://192.168.1.100:9090/ws/`
 
+![](test-echokit-server.png)
+
 2. **Click "Connect"** to establish the WebSocket connection
    - You should see a "Connected" status message
 
