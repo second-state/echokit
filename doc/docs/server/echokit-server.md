@@ -58,5 +58,6 @@ Its URL will look like this:
 ws://YOUR_WIFI_ADDRESS:8080/ws
 ```
 
-Use this URL when [connecting your EchoKit device to the server](./setup.md).
+Use this URL when [connecting your EchoKit device to the server](./setup.md). 
 
+> Do not use localhost:8080 or 127.0.0.1, because your EchoKit device needs to connect over the network — it can't reach localhost on your computer.
