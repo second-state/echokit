@@ -1,0 +1,22 @@
+esp_toml_version = 1.0
+
+# This should be a publicly accessible URL of the file server where your firmware binaries are available for download
+firmware_images_url = "https://echokit.dev/firmware/"
+
+# Apps that you support and for which the binaries are available to publish. You can have multiple apps as a comma separated list
+# The launch pad UI will automatically show these Apps in the available apps dropdown
+# There should be a config section per listed App
+supported_apps = ["EchoKit"]
+
+# Optional: This should be a publicly accessible URL of the application configuration markdown file
+# The markdown file will display the application configuration.
+# It might include details such as the revisions of esp-idf, esp-matter, etc. or any other application configuration
+config_readme_url = "https://echokit.dev/"
+
+[EchoKit]
+# ESP32 Chipsets for which you have a supported Firmware App. Define a property for each supported chipset in the given format.
+chipsets = ["ESP32-S3"]
+developKits.esp32-s3 = ["echokit","echokit-box"]
+image.echokit = "echokit-boards.bin"
+image.echokit-box = "echokit-box.bin"
+description = "EchoKit firmware"
