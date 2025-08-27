@@ -122,7 +122,7 @@ voice = "Aaliyah-PlayAI"
 
 
 ### Custom Voice Training
-💡 **Advanced**: [Create custom voices using GPT-SoVITS](/docs/category/clone-your-own-clone) 
+💡 **Advanced**: [Create custom voices using GPT-SoVITS](/docs/category/clone-your-own-voice) 
 
 ## Configure the System Prompt
 
