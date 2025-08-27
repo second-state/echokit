@@ -18,7 +18,7 @@ Before starting, make sure you have:
 2. Click **Connect to EchoKit**.  
 3. Find the device named **`nimble`** and click **Pair**.  
 4. Enter the following details:  
-   * **Wi-Fi name (SSID)**  
+   * **Wi-Fi name (SSID)**  Only support 2.4G WiFi.
    * **Wi-Fi password**  
    * **EchoKit server URL**  
 
@@ -26,7 +26,7 @@ Before starting, make sure you have:
 
    ![Set up EchoKit server](connect-echokit.png)
 
-5. Press the **RST (reset) button** on the device to apply the new settings.  
+5. Press the **BOOT button** on the device to apply the new settings.  
 
 ## Expected Outcome
 
@@ -38,7 +38,7 @@ Your EchoKit is now connected and ready to use.
 
 ## Next
 
-Press the **KO button** (on the left-hand side of the device) to start your conversation with EchoKit.
+Press the **BOOT button** (on the left-hand side of the device) to start your conversation with EchoKit.
 
 ![](../echokit-quick-start-04.jpg)
 

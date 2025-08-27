@@ -59,7 +59,7 @@ This means your device is ready to use!
 
 ## Step 4: Start Chatting
 
-Press the **side button** (on the left-hand side of the device) to start your conversation with EchoKit.
+Press the **K0 button** (on the left-hand side of the device) to start your conversation with EchoKit.
 
 ![](echokit-quick-start-04.jpg)
 
