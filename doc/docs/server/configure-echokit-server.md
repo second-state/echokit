@@ -118,11 +118,11 @@ voice = "Aaliyah-PlayAI"
   * Groq (fast, cost-effective)
   * OpenAI (high accuracy)
   * Azure Speech Services
-  * Local TTS deployment: coming soon
+  * Local GPT-SoVits deployment: coming soon
 
 
 ### Custom Voice Training
-💡 **Advanced**: [Create custom voices using GPT-SoVITS](/docs/category/voice-clone) 
+💡 **Advanced**: [Create custom voices using GPT-SoVITS](/docs/category/clone-your-own-clone) 
 
 ## Configure the System Prompt
 
