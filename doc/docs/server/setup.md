@@ -36,6 +36,13 @@ Once the connection is successful:
 
 Your EchoKit is now connected and ready to use.
 
+## Next
+
+Press the **KO button** (on the left-hand side of the device) to start your conversation with EchoKit.
+
+![](../echokit-quick-start-04.jpg)
+
+
 
 ## Re-connect the Echokit server
 

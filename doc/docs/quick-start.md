@@ -9,9 +9,9 @@ If you are using **EchoKit DIY Edition**, please refer to the flashing guide bef
 
 ---
 
-## Step 1: Connect EchoKit B to Your Computer
+## Step 1: Connect EchoKit to Your Computer
 
-Use a **USB Type-C data cable** to connect EchoKit B to your computer.  
+Use a **USB Type-C data cable** to connect EchoKit to your computer.  
 The Type-C port is located on the **left side** of the device.
 
 ![](echokit-quick-start-01.jpg)
@@ -45,9 +45,9 @@ For each field, click the **"Write"** button after entering the value.
 
 ---
 
-## Step 3: Confirm Setup on EchoKit B
+## Step 3: Confirm Setup on EchoKit
 
-Once configuration is complete, EchoKit B will:
+Once configuration is complete, EchoKit will:
 
 - Display a welcome screen  
 - Play a voice greeting like: **"Hi there"**  
@@ -59,7 +59,7 @@ This means your device is ready to use!
 
 ## Step 4: Start Chatting
 
-Press the **side button** (on the left-hand side of the device) to start your conversation with EchoKit B.
+Press the **side button** (on the left-hand side of the device) to start your conversation with EchoKit.
 
 ![](echokit-quick-start-04.jpg)
 
