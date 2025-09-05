@@ -1,5 +1,5 @@
 ---
-slug: introducing-echokit
+slug: introduce echokit
 title: Introducing EchoKit: Build, Learn, and Play with AI
 tags: [echokit]
 ---
