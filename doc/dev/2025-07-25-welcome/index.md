@@ -1,10 +1,9 @@
 ---
-slug: welcome
-title: Welcome
+slug: introducing-echokit
+title: Introducing EchoKit: Build, Learn, and Play with AI
 tags: [echokit]
 ---
 
-# Introducing EchoKit: Build, Learn, and Play with AI
 
 Artificial intelligence is no longer science fiction—it’s part of everyday life. From classrooms to workplaces, AI tools like ChatGPT and Gemini are being used by millions. But here’s the challenge: most people only interact with these systems as **black boxes**.
 
