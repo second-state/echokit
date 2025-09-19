@@ -7,6 +7,8 @@ sidebar_position: 2
 This guide walks you through setting up your **EchoKit**, which comes pre-assembled and ready to use.  
 If you are using **EchoKit DIY Edition**, please refer to the flashing guide before continuing.
 
+If you would like to get a preview before your EchoKit device arrives, you can use our [web-base EchoKit device simulator](https://echokit.dev/chat/resources/).
+
 ---
 
 ## Step 1: Connect EchoKit to Your Computer
