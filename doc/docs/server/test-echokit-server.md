@@ -4,11 +4,12 @@ sidebar_position: 7
 
 # Test Your EchoKit Server
 
-Once you have your EchoKit server running successfully, you can test it using a web-based interface to verify that voice interactions work properly.
+Once you have your EchoKit server running successfully, you can test it using a web-based EchoKit client to verify that voice interactions work properly.
 
 ## Prerequisites
 
 Before testing, ensure:
+
 - Your EchoKit server is running and accessible
 - You know your server's IP address and port
 - Your browser supports WebSocket connections
@@ -16,11 +17,11 @@ Before testing, ensure:
 
 ## Testing Steps
 
-### 1. Access the Test Interface
+### 1. Overall instructions
 
 Go to **https://echokit.dev/chat/** in your web browser.
 
-### 2. Download the Test Client
+### 2. Download the Test EchoKit Client
 
 1. Download the `index.html` file to your local computer
 2. Save it in a location you can easily find (e.g., Desktop or Downloads folder)
