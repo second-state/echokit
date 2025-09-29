@@ -36,8 +36,8 @@ Once paired via Bluetooth, you’ll be redirected to a setup interface where you
 - **Wi-Fi SSID**: Your Wi-Fi network name  
 - **Wi-Fi Password**: Your Wi-Fi access code  
 - **EchoKit Server**: The IP and port of the EchoKit Server you're connecting to. You can use our hosted servers depending on your location:
-    - 🇺🇸 US: `wss://indie.echokit.dev/ws`
-    - 🇭🇰 Hong Kong: `wss://hk.echokit.dev/ws`
+    - 🇺🇸 US: `ws://indie.echokit.dev/ws`
+    - 🇭🇰 Hong Kong: `ws://hk.echokit.dev/ws`
     - 🇸🇬 Singapore: TBD
 
 For each field, click the **"Write"** button after entering the value.
