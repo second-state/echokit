@@ -8,7 +8,7 @@ Immigrants applying for the US citizenship must pass an oral exam to confirm tha
 
 [Watch a video demo](https://x.com/secondstateinc/status/1965544729334218786)
 
-> **Fun fact:** The greatest logician in the 20th centry, Kurt Gödel, discovered a "loophole" in the U.S. Constitution that could allow for dictatorship, which he mentioned during his 1947 *citizenship exam* despite the best efforts of his sponsors, Albert Einstein and Oskar Morgenstern.
+> **Fun fact:** The greatest logician in the 20th century, Kurt Gödel, discovered a "loophole" in the U.S. Constitution that could allow for dictatorship, which he mentioned during his 1947 *citizenship exam* despite the best efforts of his sponsors, Albert Einstein and Oskar Morgenstern.
 
 Do not have an [EchoKit](https://echokit.dev/) yet? You can try the [text chat version](http://usa.cardea.cc/) for free. :)
 
