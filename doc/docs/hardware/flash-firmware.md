@@ -2,20 +2,39 @@
 sidebar_position: 2
 ---
 
-# Flashing the Hardware
+# Flash the firmware
 
-Each EchoKit comes pre-flashed with the ESP32 firmware.
-If your device isn’t working as expected, you can manually re-flash it by following these steps.
+Each EchoKit comes pre-flashed with our [open-source ESP32 firmware](https://github.com/second-state/echokit_box). If your device isn't working as expected, you can manually re-flash it by following these steps.
+
+## 1. Connect your EchoKit device to your computer
+
+You need to use an USB cable to connect between your computer and the USB-C port on EchoKit labeled `TTL`. Your computer will probably prompt you to accept or trust the connected USB device. You MUST accept the USB connection.
+
+![Trust the USB connection](trust.png)
+
+> On many devices, there are two USB ports, but only the `SLAVE` port can take commands from another computer. You must connect to that `SLAVE` USB port.
+
+## 2. Use the ESP32 launchpad to flash
+
+[Load the launchpad](https://espressif.github.io/esp-launchpad/?flashConfigURL=https://echokit.dev/firmware/echokit.toml) and follow instructions to "Connect" and the "Flash".
+
+![ESP32 launchpad](launchpad.png)
+
+> If it fails, you may force the EchoKit device to enter the "flashing" mode by pressing down the small `RST` button on the main board (maybe behind the screen), and at the time, press and release the `K0` (or `BOOT`) button to the left side of the device.
 
 **After completing this process, your EchoKit should display a QR code and instructions on its screen.**
 
 ![alt text](display.png)
 
-## 1. Install the Rust Toolchain
+## 3. Use a command line tool to flash
+
+Alternatively, you could use the `espflash` command to flash the firmware. It is often faster and easier if you are a software developer!
+
+## 3.1 Install the Rust Toolchain
 
 First, make sure you have the Rust toolchain installed. If not, follow [the official Rust installation guide](https://www.rust-lang.org/tools/install).
 
-## 2. Install `espflash` and Dependencies
+## 3.2 Install `espflash` and Dependencies
 
 Run the following command to install `espflash` and related tools:
 
@@ -23,7 +42,7 @@ Run the following command to install `espflash` and related tools:
 cargo install cargo-espflash espflash ldproxy
 ```
 
-## 3. Download the Precompiled Firmware
+## 3.3 Download the Precompiled Firmware
 
 Fetch the latest precompiled EchoKit firmware:
 
@@ -31,7 +50,7 @@ Fetch the latest precompiled EchoKit firmware:
 curl -L -o echokit https://echokit.dev/firmware/echokit-boards
 ```
 
-## 4. Flash the Firmware to EchoKit
+## 3.4 Flash the Firmware to EchoKit
 
 Use the command below to flash your device:
 
@@ -74,12 +93,12 @@ I (5147) esp_idf_hal::interrupt::asynch: IsrReactor "IsrReactor" started.
 ```
 And the display will light and show the QR code.
 
-## 5. Configure and Connect EchoKit
+## Next steps
 
 After flashing, you’ll need to:
 
-1. **Set up and run an EchoKit server.**
-2. **Configure your device** to connect to the server.
+1. [Set up and run an EchoKit server](../server/echokit-server.md)
+2. [Configure your device](../server/setup.md) to connect to the server
 
 Once both steps are complete, your EchoKit will be ready for use.
 
