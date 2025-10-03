@@ -13,8 +13,7 @@ If you would like to get a preview before your EchoKit device arrives, you can u
 
 ## Step 1: Connect EchoKit to Your Computer
 
-Use a **USB Type-C data cable** to connect EchoKit to your computer.  
-The Type-C port is located on the **left side** of the device.
+Use a **USB Type-C data cable** to connect EchoKit to a power source, such as a battery charger or your computer. The Type-C port is located on the **left side** of the device.
 
 ![](echokit-quick-start-01.jpg)
 
