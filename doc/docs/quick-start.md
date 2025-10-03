@@ -57,8 +57,10 @@ This means your device is ready to use!
 
 ## Step 4: Start Chatting
 
-Press the **K0 button** (on the left-hand side of the device) to start your conversation with EchoKit.
+Press the **K0 button** (on the left-hand side of the device) to start your conversation with EchoKit. The status bar at the top of the screen says "Listening ..." and it is ready to respond to you!
 
 ![](echokit-quick-start-04.jpg)
+
+> If it says "Idle" or "Speaking" in the status bar at the top of the screen, it cannot hear you and would not respond to you. ;)
 
 Enjoy your voice AI journey.
