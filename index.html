@@ -105,34 +105,15 @@
                 min-height: 100vh;
                 display: flex;
                 align-items: center;
-            }
-
-            .hero::before {
-                content: "";
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                background: radial-gradient(
-                        circle at 20% 30%,
-                        rgba(147, 51, 234, 0.15) 0%,
-                        transparent 50%
-                    ),
-                    radial-gradient(
-                        circle at 80% 70%,
-                        rgba(6, 182, 212, 0.15) 0%,
-                        transparent 50%
-                    );
+                background: 
+                    radial-gradient(circle at 20% 30%, rgba(147, 51, 234, 0.15) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 70%, rgba(6, 182, 212, 0.15) 0%, transparent 50%),
+                    linear-gradient(135deg, #0a0a1f 0%, #1a0d2e 50%, #2d1b3d 100%);
             }
 
             .hero-content {
                 position: relative;
                 z-index: 2;
-            }
-
-            .hero-content p {
-                display: none;
             }
 
             .hero-badge {
@@ -158,7 +139,6 @@
             }
 
             .hero-subtitle {
-                display: none;
                 font-size: 1.5rem;
                 font-weight: 600;
                 margin-bottom: 15px;
@@ -169,20 +149,9 @@
                 font-size: 1.2rem;
                 margin-bottom: 40px;
                 opacity: 0.9;
-                max-width: 600px;
+                max-width: 800px;
                 margin-left: auto;
                 margin-right: auto;
-            }
-
-            .hero-video {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                opacity: 0.7;
-                z-index: 1;
             }
 
             .cta-buttons {
@@ -240,6 +209,85 @@
                 display: flex;
                 align-items: center;
                 gap: 8px;
+            }
+
+            /* In Action Section */
+            .in-action {
+                padding: 100px 0;
+                background: rgba(0, 0, 0, 0.2);
+            }
+
+            .video-carousel {
+                position: relative;
+                max-width: 900px;
+                margin: 60px auto 0;
+                border-radius: 20px;
+                overflow: hidden;
+                box-shadow: 0 20px 60px rgba(147, 51, 234, 0.3);
+                cursor: pointer;
+            }
+
+            .carousel-video {
+                width: 100%;
+                aspect-ratio: 16/9;
+                display: none;
+                object-fit: cover;
+            }
+
+            .carousel-video.active {
+                display: block;
+            }
+
+            .play-overlay {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 80px;
+                height: 80px;
+                background: rgba(147, 51, 234, 0.9);
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.3s ease;
+                pointer-events: none;
+            }
+
+            .video-carousel:hover .play-overlay {
+                background: rgba(147, 51, 234, 1);
+                transform: translate(-50%, -50%) scale(1.1);
+            }
+
+            .play-icon {
+                width: 0;
+                height: 0;
+                border-left: 25px solid white;
+                border-top: 15px solid transparent;
+                border-bottom: 15px solid transparent;
+                margin-left: 5px;
+            }
+
+            .carousel-indicators {
+                display: flex;
+                justify-content: center;
+                gap: 10px;
+                margin-top: 30px;
+            }
+
+            .indicator {
+                width: 12px;
+                height: 12px;
+                border-radius: 50%;
+                background: rgba(255, 255, 255, 0.3);
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }
+
+            .indicator.active {
+                background: #9333ea;
+                width: 30px;
+                border-radius: 6px;
             }
 
             /* Loss Aversion Section */
@@ -525,10 +573,6 @@
                 font-size: 1.1rem;
             }
 
-            .opensource-cta {
-                display: none;
-            }
-
             /* Process Section */
             .process {
                 padding: 100px 0;
@@ -622,29 +666,12 @@
                     font-size: 2.8rem;
                 }
 
-                .hero-content p {
-                    display: block;
-                }
-
-                .hero-subtitle {
-                    display: block;
-                }
-
                 .section-title {
                     font-size: 2.2rem;
                 }
 
                 .preorder-title {
                     font-size: 2.2rem;
-                }
-
-                .hero-video {
-                    margin-top: 20px;
-                    height: auto;
-                    border-radius: 20px;
-                    box-shadow: 0 10px 30px rgba(147, 51, 234, 0.2);
-                    position: relative;
-                    z-index: 2;
                 }
 
                 .benefits-grid,
@@ -667,7 +694,6 @@
                     font-size: 1rem;
                 }
 
-                /* Mobile optimization for Loss Aversion section */
                 .container {
                     max-width: 95%;
                     padding: 0 15px;
@@ -675,12 +701,6 @@
 
                 .loss-aversion {
                     padding: 60px 0;
-                }
-
-                .section-title {
-                    font-size: 2rem;
-                    line-height: 1.2;
-                    margin-bottom: 15px;
                 }
 
                 .section-subtitle {
@@ -701,22 +721,6 @@
                     text-align: center;
                 }
 
-                .pain-point .icon {
-                    font-size: 2.5rem;
-                    margin-bottom: 15px;
-                }
-
-                .pain-point h3 {
-                    font-size: 1.2rem;
-                    margin-bottom: 12px;
-                }
-
-                .pain-point p {
-                    font-size: 0.95rem;
-                    line-height: 1.5;
-                }
-
-                /* Mobile optimization for Open Source section */
                 .opensource {
                     padding: 60px 0;
                 }
@@ -725,123 +729,9 @@
                     margin-top: 40px;
                     gap: 20px;
                 }
-
-                .repo-card {
-                    padding: 25px 20px;
-                    border-radius: 15px;
-                }
-
-                .repo-header {
-                    flex-direction: column;
-                    align-items: flex-start;
-                    gap: 15px;
-                }
-
-                .repo-card h3 {
-                    font-size: 1.2rem;
-                }
-
-                .repo-icon {
-                    font-size: 1.2rem;
-                }
-
-                .tech-stack {
-                    width: 100%;
-                    justify-content: flex-start;
-                }
-
-                .tech-tag {
-                    font-size: 0.75rem;
-                    padding: 3px 10px;
-                }
-
-                .repo-card p {
-                    font-size: 0.95rem;
-                    line-height: 1.5;
-                    margin-bottom: 20px;
-                }
-
-                .repo-link {
-                    padding: 8px 16px;
-                    font-size: 0.9rem;
-                    width: 100%;
-                    justify-content: center;
-                }
-
-                .opensource-cta {
-                    margin-top: 40px;
-                    padding: 30px 20px;
-                    border-radius: 15px;
-                }
-
-                .opensource-cta-text {
-                    font-size: 1.1rem;
-                    margin-bottom: 20px;
-                }
-            }
-
-            /* Additional mobile improvements for smaller screens */
-            @media (max-width: 480px) {
-                .opensource {
-                    padding: 50px 0;
-                }
-
-                .opensource-cta {
-                    margin-top: 30px;
-                    padding: 25px 15px;
-                }
-
-                .opensource-cta-text {
-                    font-size: 1rem;
-                }
-
-                .loss-aversion {
-                    padding: 50px 0;
-                }
-
-                .section-title {
-                    font-size: 1.8rem;
-                }
-
-                .section-subtitle {
-                    font-size: 1rem;
-                }
-
-                .pain-point {
-                    padding: 20px 15px;
-                }
-
-                .pain-point .icon {
-                    font-size: 2.2rem;
-                }
-
-                .pain-point h3 {
-                    font-size: 1.1rem;
-                }
-
-                .pain-point p {
-                    font-size: 0.9rem;
-                }
             }
         </style>
     </head>
-    <!-- Google tag (gtag.js) -->
-    <script
-        async
-        src="https://www.googletagmanager.com/gtag/js?id=G-EMHQHV54LP"
-    ></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-
-        gtag("js", new Date());
-
-        gtag("config", "G-EMHQHV54LP");
-    </script>
-
     
     <body>
         <header>
@@ -866,7 +756,7 @@
                         Build, customize and host your own voice AI agent
                     </div>
                     <p>
-                        EchoKit is a fun voice AI agent that can chat with your out of the box. But more importantly, it is also a complete toolkit that enables YOU (and your kids / students) to build cutting edge AI agent systems.
+                        EchoKit is a fun voice AI agent that can chat with you out of the box. But more importantly, it is also a complete toolkit that enables YOU (and your kids / students) to build cutting edge AI agent systems.
                     </p>
                     <div class="cta-buttons">
                         <a
@@ -889,89 +779,6 @@
                         >
                     </div>
                 </div>
-                <svg
-                    id="unmuteIcon"
-                    fill="#9333ea"
-                    viewBox="0 0 16 16"
-                    xmlns="http://www.w3.org/2000/svg"
-                    style="
-                        position: fixed;
-                        top: 100px;
-                        right: 30px;
-                        width: 60px;
-                        z-index: 2000;
-                        cursor: pointer;
-                        background: rgba(255, 255, 255, 0.7);
-                        border-radius: 50%;
-                        padding: 10px;
-                        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-                        opacity: 0.5;
-                    "
-                >
-                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                    <g
-                        id="SVGRepo_tracerCarrier"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                    ></g>
-                    <g id="SVGRepo_iconCarrier">
-                        <path
-                            clip-rule="evenodd"
-                            d="m2 7.5v3c0 .8.6 1.5 1.4 1.5h2.3l3.2 2.8c.1.1.3.2.4.2s.2 0 .3-.1c.2-.1.4-.4.4-.7v-.9l-7.2-7.2c-.5.2-.8.8-.8 1.4zm8 2v-5.8c0-.3-.1-.5-.4-.7-.1 0-.2 0-.3 0s-.3 0-.4.2l-2.8 2.5-4.1-4.1-1 1 3.4 3.4 5.6 5.6 3.6 3.6 1-1z"
-                            fill-rule="evenodd"
-                        ></path>
-                    </g>
-                </svg>
-                <svg
-                    id="muteIcon"
-                    fill="#9333ea"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                    style="
-                        display: none;
-                        position: fixed;
-                        top: 100px;
-                        right: 30px;
-                        width: 60px;
-                        z-index: 2000;
-                        cursor: pointer;
-                        background: rgba(255, 255, 255, 0.7);
-                        border-radius: 50%;
-                        padding: 10px;
-                        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-                        opacity: 0.5;
-                    "
-                >
-                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                    <g
-                        id="SVGRepo_tracerCarrier"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke="#CCCCCC"
-                        stroke-width="0.144"
-                    ></g>
-                    <g id="SVGRepo_iconCarrier">
-                        <path
-                            fill-rule="evenodd"
-                            d="M11.553 3.064A.75.75 0 0112 3.75v16.5a.75.75 0 01-1.255.555L5.46 16H2.75A1.75 1.75 0 011 14.25v-4.5C1 8.784 1.784 8 2.75 8h2.71l5.285-4.805a.75.75 0 01.808-.13zM10.5 5.445l-4.245 3.86a.75.75 0 01-.505.195h-3a.25.25 0 00-.25.25v4.5c0 .138.112.25.25.25h3a.75.75 0 01.505.195l4.245 3.86V5.445z"
-                        ></path>
-                        <path
-                            d="M18.718 4.222a.75.75 0 011.06 0c4.296 4.296 4.296 11.26 0 15.556a.75.75 0 01-1.06-1.06 9.5 9.5 0 000-13.436.75.75 0 010-1.06z"
-                        ></path>
-                        <path
-                            d="M16.243 7.757a.75.75 0 10-1.061 1.061 4.5 4.5 0 010 6.364.75.75 0 001.06 1.06 6 6 0 000-8.485z"
-                        ></path>
-                    </g>
-                </svg>
-                <video
-                    src="/media/hero.mp4"
-                    class="hero-video"
-                    poster="/media/video.png"
-                    autoplay
-                    muted
-                    loop
-                    id="heroVideo"
-                ></video>
             </div>
         </section>
 
@@ -983,6 +790,31 @@
                     <div class="trust-logo">🔐 Private knowledge &amp; data</div>
                     <div class="trust-logo">⚡ Fast &amp; realtime voice</div>
                     <div class="trust-logo">🆓 Any AI model</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- In Action Section -->
+        <section class="in-action">
+            <div class="container">
+                <h2 class="section-title">EchoKit in Action</h2>
+                <p class="section-subtitle">
+                    See how people are using EchoKit to build amazing voice AI experiences
+                </p>
+
+                <div class="video-carousel" id="videoCarousel">
+                    <img class="carousel-video active" src="https://img.youtube.com/vi/XroT7a0DLkw/maxresdefault.jpg" alt="EchoKit Demo Video" data-video-id="XroT7a0DLkw">
+                    <img class="carousel-video" src="https://img.youtube.com/vi/bu_frrOB1F4/maxresdefault.jpg" alt="EchoKit Demo Video" data-video-id="bu_frrOB1F4">
+                    <img class="carousel-video" src="https://img.youtube.com/vi/4DYYT1AUZ9c/maxresdefault.jpg" alt="EchoKit Demo Video" data-video-id="4DYYT1AUZ9c">
+                    <div class="play-overlay">
+                        <div class="play-icon"></div>
+                    </div>
+                </div>
+
+                <div class="carousel-indicators">
+                    <div class="indicator active" data-index="0"></div>
+                    <div class="indicator" data-index="1"></div>
+                    <div class="indicator" data-index="2"></div>
                 </div>
             </div>
         </section>
@@ -1505,77 +1337,6 @@
         </footer>
 
         <script>
-            // Enable audio unlock functionality
-            let userInitiated = false;
-            let firstPlay = true;
-            // document.addEventListener("click", unlockAudio);
-            // document.addEventListener("keydown", unlockAudio);
-            const video = document.getElementById("heroVideo");
-
-            const unmuteIcon = document.getElementById("unmuteIcon");
-            const muteIcon = document.getElementById("muteIcon");
-            if (unmuteIcon) {
-                unmuteIcon.addEventListener("click", unlockAudio);
-            }
-
-            function hideUnmuteIcon() {
-                if (unmuteIcon) unmuteIcon.style.display = "none";
-                if (muteIcon) muteIcon.style.display = "block";
-            }
-
-            muteIcon.addEventListener("click", () => {
-                video.muted = true;
-                muteIcon.style.display = "none";
-                unmuteIcon.style.display = "block";
-            });
-
-            function unlockAudio() {
-                video.muted = false;
-                hideUnmuteIcon();
-                video.volume = 0;
-                let volume = 0;
-                const targetVolume = 1; // Maximum volume
-                const step = 0.1; // Volume increment
-                const interval = 80; // Interval in ms
-
-                const fadeIn = setInterval(() => {
-                    volume += step;
-                    if (volume >= targetVolume) {
-                        volume = targetVolume;
-                        clearInterval(fadeIn);
-                    }
-                    video.volume = volume;
-                }, interval);
-                document.removeEventListener("click", unlockAudio);
-            }
-
-            video.addEventListener('click', () => {
-                userInitiated = true;
-            });
-
-            video.addEventListener('play', function () {
-                if (firstPlay && userInitiated) {
-                    try {
-                        video.muted = false;
-                        hideUnmuteIcon();
-                        firstPlay = false;
-                    }catch (e) {
-                        alert(e)
-                    }
-                }
-            });
-
-            video.play()
-                .then(() => {
-                    // hideUnmuteIcon();
-                })
-                .catch((err) => {
-                    if (err.name === "NotAllowedError") {
-                        video.muted = true;
-                        video.controls = true;
-                    }
-                });
-
             // Smooth scrolling for navigation links
             document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
                 anchor.addEventListener("click", function (e) {
@@ -1630,6 +1391,54 @@
                         "opacity 0.6s ease, transform 0.6s ease";
                     observer.observe(el);
                 });
+
+            // Video carousel functionality
+            let currentVideoIndex = 0;
+            const videos = document.querySelectorAll('.carousel-video');
+            const indicators = document.querySelectorAll('.indicator');
+            const videoCarousel = document.getElementById('videoCarousel');
+
+            function showVideo(index) {
+                videos.forEach((video, i) => {
+                    if (i === index) {
+                        video.classList.add('active');
+                    } else {
+                        video.classList.remove('active');
+                    }
+                });
+
+                indicators.forEach((indicator, i) => {
+                    if (i === index) {
+                        indicator.classList.add('active');
+                    } else {
+                        indicator.classList.remove('active');
+                    }
+                });
+            }
+
+            function nextVideo() {
+                currentVideoIndex = (currentVideoIndex + 1) % videos.length;
+                showVideo(currentVideoIndex);
+            }
+
+            // Auto-advance carousel every 3 seconds
+            const carouselInterval = setInterval(nextVideo, 3000);
+
+            // Manual carousel control
+            indicators.forEach((indicator) => {
+                indicator.addEventListener('click', () => {
+                    currentVideoIndex = parseInt(indicator.dataset.index);
+                    showVideo(currentVideoIndex);
+                    clearInterval(carouselInterval);
+                });
+            });
+
+            // Click to play video on YouTube
+            videoCarousel.addEventListener('click', () => {
+                const activeVideo = document.querySelector('.carousel-video.active');
+                const videoId = activeVideo.dataset.videoId;
+                window.open(`https://www.youtube.com/watch?v=${videoId}`, '_blank');
+            });
         </script>
     </body>
 </html>
