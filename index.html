@@ -1455,7 +1455,7 @@
             videoCarousel.addEventListener('click', () => {
                 const activeVideo = document.querySelector('.carousel-video.active');
                 const videoId = activeVideo.dataset.videoId;
-                const videoSrc = `/media/${videoId}.mp4`
+                const videoSrc = `media/${videoId}.mp4`
                 const rect = activeVideo.getBoundingClientRect();
                 // 隐藏当前图片
                 activeVideo.style.display = 'none';
