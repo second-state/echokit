@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EchoKit - Open Source Voice AI Learning Toolkit for Students | Build Your Own AI Agent</title>
+    <meta name="description" content="EchoKit is an educational voice AI toolkit that teaches students and builders how to create AI agents from scratch. Full-stack open source, privacy-first, with complete Rust codebase. Perfect for STEM education, computer science courses, and self-learners.">
+    <meta name="keywords" content="AI education, voice AI learning, Rust programming education, open source AI toolkit, STEM learning, AI for students, build AI agent, educational AI hardware">
+    <meta property="og:title" content="EchoKit - Educational Voice AI Toolkit for Students">
+    <meta property="og:description" content="Learn AI by building. Complete open-source voice AI system with hardware, firmware, and server code. Perfect for students and educators.">
+    <meta property="og:type" content="product">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #f8f9fa;
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+
+        .header {
+            padding: 20px 0;
+            background: #ffffff;
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid #e0e0e0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            background: linear-gradient(45deg, #ce422b, #9333ea, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: #1a1a1a;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .breadcrumb {
+            padding: 20px 0;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .breadcrumb a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        /* Image Gallery */
+        .gallery-section {
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+
+        .main-image-container {
+            background: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 500px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .main-image-container img {
+            max-width: 100%;
+            max-height: 500px;
+            object-fit: contain;
+            border-radius: 12px;
+        }
+
+        .thumbnail-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+        }
+
+        .thumbnail {
+            aspect-ratio: 1;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: #ffffff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .thumbnail:hover, .thumbnail.active {
+            border-color: #667eea;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(102, 126, 234, 0.2);
+        }
+
+        .thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Product Info */
+        .product-info h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            color: #1a1a1a;
+        }
+
+        .badges {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            padding: 8px 16px;
+            background: rgba(102, 126, 234, 0.1);
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #667eea;
+        }
+
+        .education-badge {
+            background: rgba(16, 185, 129, 0.1);
+            border-color: rgba(16, 185, 129, 0.3);
+            color: #10b981;
+        }
+
+        .price-section {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.08), rgba(118, 75, 162, 0.08));
+            border: 1px solid rgba(102, 126, 234, 0.2);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .price {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .price-note {
+            font-size: 0.95rem;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            flex: 1;
+            min-width: 200px;
+            padding: 16px 32px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.5);
+            background: linear-gradient(135deg, #5568d3 0%, #6a3f92 100%);
+        }
+
+        .cta-secondary {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(118, 75, 162, 0.2));
+            border: 2px solid rgba(102, 126, 234, 0.5);
+        }
+
+        .cta-secondary:hover {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.3), rgba(118, 75, 162, 0.3));
+            border-color: rgba(102, 126, 234, 0.7);
+        }
+
+        .section {
+            margin: 40px 0;
+        }
+
+        .section h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #667eea;
+        }
+
+        .section p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: #444;
+            margin-bottom: 15px;
+        }
+
+        .features-list {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .features-list li {
+            padding: 12px 0 12px 35px;
+            position: relative;
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+
+        .features-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #10b981;
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+
+        /* Educational Focus Section */
+        .edu-focus {
+            background: rgba(16, 185, 129, 0.08);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .edu-focus h2 {
+            color: #10b981;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .learning-paths {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .learning-card {
+            background: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-radius: 16px;
+            padding: 25px;
+            transition: all 0.3s;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .learning-card:hover {
+            transform: translateY(-5px);
+            border-color: #667eea;
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.15);
+        }
+
+        .learning-card h3 {
+            font-size: 1.3rem;
+            color: #667eea;
+            margin-bottom: 12px;
+        }
+
+        .learning-card p {
+            font-size: 0.95rem;
+            color: #555;
+        }
+
+        /* Specs Table */
+        .specs-section {
+            margin: 60px 0;
+        }
+
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1px;
+            background: #e0e0e0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .spec-item {
+            background: #ffffff;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 140px 1fr;
+            gap: 15px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        .spec-label {
+            font-weight: 700;
+            color: #667eea;
+            font-size: 0.95rem;
+        }
+
+        .spec-value {
+            color: #1a1a1a;
+            font-size: 0.95rem;
+        }
+
+        /* What's Included */
+        .included-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .included-item {
+            background: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-radius: 16px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+
+        .included-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(102, 126, 234, 0.15);
+            border-color: #667eea;
+        }
+
+        .included-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .included-item h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #667eea;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .product-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .gallery-section {
+                position: static;
+            }
+
+            .container {
+                padding: 20px 15px;
+            }
+
+            .thumbnail-grid {
+                grid-template-columns: repeat(5, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .product-info h1 {
+                font-size: 1.75rem;
+            }
+
+            .price {
+                font-size: 2.5rem;
+            }
+
+            .cta-button {
+                min-width: 100%;
+                font-size: 1rem;
+                padding: 14px 24px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .specs-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .spec-item {
+                grid-template-columns: 1fr;
+                gap: 5px;
+            }
+
+            .main-image-container {
+                min-height: 300px;
+                padding: 15px;
+            }
+
+            .main-image-container img {
+                max-height: 300px;
+            }
+
+            .thumbnail-grid {
+                grid-template-columns: repeat(5, 1fr);
+                gap: 8px;
+            }
+
+            .price-section {
+                padding: 20px;
+            }
+
+            .section h2 {
+                font-size: 1.5rem;
+            }
+
+            .section p {
+                font-size: 1rem;
+            }
+
+            .features-list li {
+                font-size: 0.95rem;
+                padding: 10px 0 10px 30px;
+            }
+
+            .edu-focus {
+                padding: 25px 20px;
+            }
+
+            .edu-focus h2 {
+                font-size: 1.5rem;
+            }
+
+            .learning-paths {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .learning-card {
+                padding: 20px;
+            }
+
+            .included-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .badges {
+                justify-content: flex-start;
+            }
+
+            .badge {
+                font-size: 0.85rem;
+                padding: 6px 12px;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .breadcrumb {
+                font-size: 13px;
+                padding: 15px 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px 10px;
+            }
+
+            .product-info h1 {
+                font-size: 1.5rem;
+            }
+
+            .header-content {
+                padding: 0 15px;
+            }
+
+            .logo {
+                font-size: 20px;
+            }
+
+            .price {
+                font-size: 2rem;
+            }
+
+            .thumbnail-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .section h2 {
+                font-size: 1.3rem;
+            }
+
+            .edu-focus h2 {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">EchoKit</div>
+            <nav class="nav-links">
+                <a href="/">Home</a>
+                <a href="/docs">Documentation</a>
+                <a href="#specs">Specs</a>
+                <a href="#education">For Education</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="/">Home</a> › EchoKit Toolkit
+        </div>
+
+        <div class="product-grid">
+            <!-- Image Gallery -->
+            <div class="gallery-section">
+                <div class="main-image-container">
+                    <img id="mainImage" src="media/echokit-cube-01.jpg" alt="EchoKit Voice AI Learning Toolkit">
+                </div>
+                <!--
+                <div class="thumbnail-grid">
+                    <div class="thumbnail active" onclick="changeImage(0)">
+                        <img src="https://placehold.co/200x200/1a0d2e/9333ea?text=Front" alt="Front view">
+                    </div>
+                    <div class="thumbnail" onclick="changeImage(1)">
+                        <img src="https://placehold.co/200x200/1a0d2e/06b6d4?text=Side" alt="Side view">
+                    </div>
+                    <div class="thumbnail" onclick="changeImage(2)">
+                        <img src="https://placehold.co/200x200/1a0d2e/ce422b?text=Inside" alt="Components">
+                    </div>
+                    <div class="thumbnail" onclick="changeImage(3)">
+                        <img src="https://placehold.co/200x200/1a0d2e/9333ea?text=Setup" alt="Setup">
+                    </div>
+                    <div class="thumbnail" onclick="changeImage(4)">
+                        <img src="https://placehold.co/200x200/1a0d2e/06b6d4?text=In+Use" alt="In use">
+                    </div>
+                </div>
+                -->
+            </div>
+
+            <!-- Product Info -->
+            <div class="product-info">
+                <h1>EchoKit: Educational Voice AI Toolkit for Students and Builders</h1>
+                
+                <div class="badges">
+                    <span class="badge">Open Source GPL-3.0</span>
+                    <span class="badge">Built with Rust</span>
+                    <span class="badge education-badge">Perfect for Education</span>
+                    <span class="badge">Privacy First</span>
+                </div>
+
+                <div class="section">
+                    <p>
+                        EchoKit is more than a voice AI assistant – it's a complete learning platform that teaches you how to build AI agent systems from the ground up. Perfect for students, educators, and anyone who wants to understand AI by building it themselves.
+                    </p>
+                    <p>
+                        Unlike black-box AI systems, every component of EchoKit is open-source and documented. Learn embedded programming, audio processing, voice detection, agentic AI, LLMs, ASR / STT, TTS, voice-cloning, MCP integration, and real-time networking by working with production-quality code.
+                    </p>
+                </div>
+
+                <div class="price-section">
+                    <div class="price">$49</div>
+                    <p class="price-note">Fully assembled AI assistant in a very small cube, together with full stack open-source software, documentation, and learning materials. Shipping internationally.</p>
+                    
+                    <div class="cta-buttons">
+                        <a href="https://buy.stripe.com/4gM9AU6z92d57p465T63K0a" class="cta-button">Buy EchoKit</a>
+                        <a href="https://forms.gle/MagV8UfLNYYLnCqi6" target="_blank" class="cta-button cta-secondary">Bulk order</a>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2>What You'll Learn</h2>
+                    <ul class="features-list">
+                        <li>Build embedded systems with Rust on ESP32 hardware</li>
+                        <li>Implement real-time audio processing and Voice Activity Detection</li>
+                        <li>Integrate multiple AI models (LLMs, speech recognition, text-to-speech)</li>
+                        <li>Create WebSocket-based real-time AI services</li>
+                        <li>Design agentic systems with tool use and knowledge retrieval</li>
+                        <li>Clone voices using GPT-SoVITS technology</li>
+                        <li>Support Model Context Protocol (MCP) for extensibility</li>
+                        <li>Deploy AI systems locally at your home or office</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Educational Focus -->
+        <div class="edu-focus" id="education">
+            <h2>Built for Learning and Teaching</h2>
+            <p>
+                EchoKit was designed from the ground up as a learning platform. Every design decision prioritizes learning opportunities, code clarity, and hands-on experience with modern AI technologies.
+            </p>
+
+            <div class="learning-paths">
+                <div class="learning-card">
+                    <h3>High School Students</h3>
+                    <p>Introduction to agentic AI systems and LLM APIs. Customize it with your own voice, style &amp; knowledge. Perfect for STEM programs. Use it to create real world projects for your community!</p>
+                </div>
+                <div class="learning-card">
+                    <h3>University Students</h3>
+                    <p>Systems, networking &amp; GPU programming, open-source AI models &amp; inference libraries, tool use &amp; MCPs, vector databases, search &amp; context engineering, voice cloning, and much more!</p>
+                </div>
+                <div class="learning-card">
+                    <h3>Builders &amp; Hackers</h3>
+                    <p>Comprehensive documentation and tutorials guide you through every aspect. Build at your own pace with community support. Create your own products or projects by embedding the EchoKit.</p>
+                </div>
+                <div class="learning-card">
+                    <h3>Educators</h3>
+                    <p>Ready-made curriculum materials, lesson plans, and project ideas. Teach cutting-edge AI with hands-on hardware and software stack. Completely open-source -- free to use, modify &amp; publish.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Technical Specifications -->
+        <div class="specs-section" id="specs">
+            <h2 style="font-size: 2rem; color: #667eea; margin-bottom: 30px;">Technical Specifications</h2>
+            <div class="specs-grid">
+                <div class="spec-item">
+                    <div class="spec-label">Processor</div>
+                    <div class="spec-value">ESP32-S3 Dual-core Xtensa LX7 @ 240MHz</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Memory</div>
+                    <div class="spec-value">8MB PSRAM, 16MB Flash Storage</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Connectivity</div>
+                    <div class="spec-value">WiFi 2.4 GHz, Bluetooth 5.0 LE</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Audio Input</div>
+                    <div class="spec-value">On-board microphone</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Audio Output</div>
+                    <div class="spec-value">On-board speaker</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Display</div>
+                    <div class="spec-value">OLED screen</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Power</div>
+                    <div class="spec-value">USB-C (5V/2A)</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Programming</div>
+                    <div class="spec-value">Rust (firmware and server)</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">AI Models</div>
+                    <div class="spec-value">Works with any cloud API provider as well as local models</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Voice Recognition</div>
+                    <div class="spec-value">Whisper, Groq, OpenAI-compatible APIs</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Text-to-Speech</div>
+                    <div class="spec-value">GPT-SoVITS, OpenAI TTS, 11Labs etc.</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Dimensions</div>
+                    <div class="spec-value">1.6" × 1.6" × 1" (4 × 4 × 2.5 cm)</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Weight</div>
+                    <div class="spec-value">12 oz (340g)</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">License</div>
+                    <div class="spec-value">GPL-3.0 Open Source</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- What's Included -->
+        <div class="section">
+            <h2 style="font-size: 2rem;">What's Included</h2>
+            <div class="included-grid">
+                <div class="included-item">
+                    <div class="included-icon">📦</div>
+                    <h3>EchoKit Cube kit</h3>
+                    <p>Fully assembled and test hardware in a 3D printed cube and pre-flashed firmware.</p>
+                </div>
+                <!--
+                <div class="included-item">
+                    <div class="included-icon">🔌</div>
+                    <h3>USB-C Cable</h3>
+                    <p>High-quality cable for power and programming</p>
+                </div>
+                -->
+                <div class="included-item">
+                    <div class="included-icon">📚</div>
+                    <h3>Documentation</h3>
+                    <p>Complete guides, tutorials, and API references</p>
+                </div>
+                <div class="included-item">
+                    <div class="included-icon">🎓</div>
+                    <h3>Learning Materials</h3>
+                    <p>Step-by-step projects and educational resources</p>
+                </div>
+                <div class="included-item">
+                    <div class="included-icon">💻</div>
+                    <h3>Source Code</h3>
+                    <p>Full access to all firmware and server code</p>
+                </div>
+                <div class="included-item">
+                    <div class="included-icon">🤝</div>
+                    <h3>Community Access</h3>
+                    <p>Join our Discord and GitHub community</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Software Features -->
+        <div class="section">
+            <h2 style="font-size: 2rem;">Software Capabilities</h2>
+            <ul class="features-list">
+                <li>Full-stack Rust implementation for safety and performance</li>
+                <li>WebSocket-based real-time communication</li>
+                <li>Advanced Voice Activity Detection using Silero VAD</li>
+                <li>Streaming audio processing for low latency</li>
+                <li>Model Context Protocol (MCP) support for tool integration</li>
+                <li>Private knowledge base with RAG (Retrieval Augmented Generation)</li>
+                <li>Voice cloning with GPT-SoVITS</li>
+                <li>Flexible deployment: cloud or self-hosted</li>
+                <li>Compatible with all major LLM / AI providers</li>
+                <li>Comprehensive logging and debugging tools</li>
+            </ul>
+        </div>
+
+        <!-- CTA Section -->
+        <div class="price-section" style="text-align: center;">
+            <h2 style="font-size: 2rem; color: #667eea; margin-bottom: 20px;">Start Your AI Learning Journey</h2>
+            <p style="font-size: 1.1rem; margin-bottom: 30px; color: #555;">
+                Ships within 3 weeks. Each device is hand-assembled, tested, and comes with lifetime access to documentation and updates.
+            </p>
+            <div class="cta-buttons" style="justify-content: center;">
+                <a href="https://buy.stripe.com/4gM9AU6z92d57p465T63K0a" class="cta-button">Buy EchoKit - $49</a>
+                <a href="https://forms.gle/MagV8UfLNYYLnCqi6" target="_blank" class="cta-button cta-secondary">Bulk order for your school</a>
+            </div>
+        </div>
+    </div>
+
+    <footer style="background: #ffffff; padding: 40px 20px; margin-top: 80px; border-top: 1px solid #e0e0e0; text-align: center;">
+        <p style="color: #666;">© 2025 EchoKit. Open source under GPL-3.0 License.</p>
+    </footer>
+
+    <script>
+        const images = [
+            'media/echokit-cube-01.jpg',
+            'https://placehold.co/600x600/1a0d2e/06b6d4?text=Side+View',
+            'https://placehold.co/600x600/1a0d2e/ce422b?text=Components',
+            'https://placehold.co/600x600/1a0d2e/9333ea?text=Setup',
+            'https://placehold.co/600x600/1a0d2e/06b6d4?text=In+Use'
+        ];
+
+        function changeImage(index) {
+            document.getElementById('mainImage').src = images[index];
+            
+            const thumbnails = document.querySelectorAll('.thumbnail');
+            thumbnails.forEach((thumb, i) => {
+                if (i === index) {
+                    thumb.classList.add('active');
+                } else {
+                    thumb.classList.remove('active');
+                }
+            });
+        }
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
