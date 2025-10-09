@@ -580,22 +580,24 @@
             <!-- Image Gallery -->
             <div class="gallery-section">
                 <div class="main-image-container">
-                    <img id="mainImage" src="media/echokit-diy-01.jpg" alt="EchoKit Voice AI Learning Toolkit">
                 </div>
                 <div class="thumbnail-grid">
-                    <div class="thumbnail active" onclick="changeImage(0)">
+                    <div class="thumbnail active" onclick="changeMedia(0)">
+                        <img src="media/XroT7a0DLkw.jpg" alt="EchoKit Video">
+                    </div>
+                    <div class="thumbnail" onclick="changeMedia(1)">
                         <img src="media/echokit-diy-01.jpg" alt="EchoKit">
                     </div>
-                    <div class="thumbnail" onclick="changeImage(1)">
+                    <div class="thumbnail" onclick="changeMedia(2)">
                         <img src="media/echokit-diy-02.png" alt="Components">
                     </div>
-                    <div class="thumbnail" onclick="changeImage(2)">
+                    <div class="thumbnail" onclick="changeMedia(3)">
                         <img src="media/echokit-diy-03.png" alt="Assembled">
                     </div>
-                    <div class="thumbnail" onclick="changeImage(3)">
+                    <div class="thumbnail" onclick="changeMedia(4)">
                         <img src="media/echokit-diy-04.jpg" alt="K0 button">
                     </div>
-                    <div class="thumbnail" onclick="changeImage(4)">
+                    <div class="thumbnail" onclick="changeMedia(5)">
                         <img src="media/echokit-diy-05.png" alt="Configure">
                     </div>
                 </div>
@@ -811,26 +813,43 @@
     </footer>
 
     <script>
-        const images = [
-            'media/echokit-diy-01.jpg',
-            'media/echokit-diy-02.png',
-            'media/echokit-diy-03.png',
-            'media/echokit-diy-04.jpg',
-            'media/echokit-diy-05.png'
+        const media = [
+            { type: 'video', src: 'media/XroT7a0DLkw.mp4', poster: 'media/XroT7a0DLkw.jpg' },
+            { type: 'image', src: 'media/echokit-diy-01.jpg' },
+            { type: 'image', src: 'media/echokit-diy-02.png' },
+            { type: 'image', src: 'media/echokit-diy-03.png' },
+            { type: 'image', src: 'media/echokit-diy-04.jpg' },
+            { type: 'image', src: 'media/echokit-diy-05.png' }
         ];
 
-        function changeImage(index) {
-            document.getElementById('mainImage').src = images[index];
-            
+        function changeMedia(index, isInitial = false) {
+            const container = document.querySelector('.main-image-container');
             const thumbnails = document.querySelectorAll('.thumbnail');
+
             thumbnails.forEach((thumb, i) => {
-                if (i === index) {
-                    thumb.classList.add('active');
-                } else {
-                    thumb.classList.remove('active');
-                }
+                if (i === index) thumb.classList.add('active');
+                else thumb.classList.remove('active');
             });
+
+            const item = media[index];
+            if (!item) return;
+
+            if (item.type === 'image') {
+                container.innerHTML = `<img id="mainImage" src="${item.src}" alt="EchoKit">`;
+            } else if (item.type === 'video') {
+                container.innerHTML = `<video id="mainVideo" controls autoplay muted playsinline poster="${item.poster}" style="max-width:100%; max-height:500px; border-radius:12px;">
+                <source src="${item.src}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>`;
+                const v = document.getElementById('mainVideo');
+                v.play().catch(() => {});
+                if (!isInitial) {
+                    v.muted = false;
+                }
+            }
         }
+
+        changeMedia(0, true); // Load first media on page load
 
         // Smooth scroll for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
