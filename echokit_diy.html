@@ -602,7 +602,8 @@
                 <div class="main-image-container">
                 </div>
                 <div class="thumbnail-grid">
-                    <div class="thumbnail active" onclick="changeMedia(0)">
+                    <div class="thumbnail active" style="position: relative;" onclick="changeMedia(0)">
+                        <div class="video-icon" style="font-size: 20px;" id="videoIcon">▶️</div>
                         <img src="media/XroT7a0DLkw.jpg" alt="EchoKit Video">
                     </div>
                     <div class="thumbnail" onclick="changeMedia(1)">
@@ -846,10 +847,10 @@
             const icon = video.parentElement.querySelector('.video-icon');
             if (video.paused || video.ended) {
                 video.play();
-                showIcon(icon, '▶️');
+                showIcon(icon, '');
             } else {
                 video.pause();
-                showIcon(icon, '⏸️', 0);
+                showIcon(icon, '▶️', 0);
             }
         }
 
@@ -879,7 +880,7 @@
             if (item.type === 'image') {
                 container.innerHTML = `<img id="mainImage" src="${item.src}" alt="EchoKit">`;
             } else if (item.type === 'video') {
-                container.innerHTML = `<div class="video-icon" id="videoIcon">⏸️</div><video onclick="togglePlayPause(this)" id="mainVideo" playsinline poster="${item.poster}" style="max-width:100%; max-height:500px; border-radius:12px;">
+                container.innerHTML = `<div class="video-icon" id="videoIcon">▶️</div><video onclick="togglePlayPause(this)" id="mainVideo" playsinline poster="${item.poster}" style="max-width:100%; max-height:500px; border-radius:12px;">
                 <source src="${item.src}" type="video/mp4">
                 Your browser does not support the video tag.
             </video>`;
