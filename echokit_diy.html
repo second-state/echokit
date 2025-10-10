@@ -98,6 +98,20 @@
         }
 
         /* Image Gallery */
+        .video-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 60px;
+            color: white;
+            opacity: 1;
+            pointer-events: none;
+            z-index: 99999;
+            transition: opacity 0.3s ease;
+            text-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+
         .gallery-section {
             position: sticky;
             top: 100px;
@@ -105,6 +119,7 @@
         }
 
         .main-image-container {
+            position: relative;
             background: #ffffff;
             border: 1px solid #e0e0e0;
             border-radius: 20px;
@@ -115,6 +130,11 @@
             justify-content: center;
             min-height: 500px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .main-image-container video {
+            position: relative;
+            z-index: 1;
         }
 
         .main-image-container img {
@@ -822,6 +842,28 @@
             { type: 'image', src: 'media/echokit-diy-05.png' }
         ];
 
+        function togglePlayPause(video) {
+            const icon = video.parentElement.querySelector('.video-icon');
+            if (video.paused || video.ended) {
+                video.play();
+                showIcon(icon, '▶️');
+            } else {
+                video.pause();
+                showIcon(icon, '⏸️', 0);
+            }
+        }
+
+        function showIcon(icon, symbol, duration = 500) {
+            icon.textContent = symbol;
+            icon.style.opacity = 1;
+            if(duration) {
+                setTimeout(() => {
+                    icon.style.opacity = 0;
+                }, 500);
+            }
+        }
+
+
         function changeMedia(index, isInitial = false) {
             const container = document.querySelector('.main-image-container');
             const thumbnails = document.querySelectorAll('.thumbnail');
@@ -837,15 +879,10 @@
             if (item.type === 'image') {
                 container.innerHTML = `<img id="mainImage" src="${item.src}" alt="EchoKit">`;
             } else if (item.type === 'video') {
-                container.innerHTML = `<video id="mainVideo" controls autoplay muted playsinline poster="${item.poster}" style="max-width:100%; max-height:500px; border-radius:12px;">
+                container.innerHTML = `<div class="video-icon" id="videoIcon">⏸️</div><video onclick="togglePlayPause(this)" id="mainVideo" playsinline poster="${item.poster}" style="max-width:100%; max-height:500px; border-radius:12px;">
                 <source src="${item.src}" type="video/mp4">
                 Your browser does not support the video tag.
             </video>`;
-                const v = document.getElementById('mainVideo');
-                v.play().catch(() => {});
-                if (!isInitial) {
-                    v.muted = false;
-                }
             }
         }
 
