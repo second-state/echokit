@@ -10,6 +10,9 @@ Before using your EchoKit, you’ll need to assemble its four components:
 * **Extension board** (with audio and microphone module)
 * **Mini speaker**
 * **1.54" LCD screen**
+  
+![EchoKit Components](echokit-details.png)
+
 
 ## Steps to Assemble
 
@@ -22,7 +25,7 @@ Before using your EchoKit, you’ll need to assemble its four components:
 3. **Insert the LCD screen**  
    Plug the 1.54" LCD screen into the slot at the top of the extension board.
 
-![](assemble-echokit.png)
+![How to Assemble Echokit](assemble-echokit.png)
 
 ✅ You’ve now assembled your EchoKit! 
  
