@@ -107,9 +107,20 @@
             color: white;
             opacity: 1;
             pointer-events: none;
-            z-index: 99999;
+            z-index: 999;
             transition: opacity 0.3s ease;
             text-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+
+        .click-layer {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 12px;
+            z-index: 99999;
+            cursor: pointer;
+            background: transparent;
         }
 
         .gallery-section {
@@ -843,18 +854,36 @@
             { type: 'image', src: 'media/echokit-diy-05.png' }
         ];
 
-        function togglePlayPause(video) {
+        function togglePlayPause() {
+            const video = document.getElementById('mainVideo');
+            const startButton = document.getElementById('click-layer');
             const icon = video.parentElement.querySelector('.video-icon');
             if (video.paused || video.ended) {
-                // video.play();
+                video.play();
                 video.controls = true;
                 showIcon(icon, '');
-            } else {
-                video.pause();
-                video.controls = false;
-                showIcon(icon, '▶️', 0);
+                startButton.style.display = 'none';
+                video.addEventListener("ended", ()=>{
+                    video.controls = false;
+                    startButton.style.display = 'block';
+                    showIcon(icon, '▶️', 0);
+                });
             }
         }
+
+        function resizeClickLayer() {
+            const video = document.getElementById('mainVideo');
+            const layer = document.querySelector('.click-layer');
+            if (!video || !layer) return;
+
+            const rect = video.getBoundingClientRect();
+
+            layer.style.width = rect.width + 'px';
+            layer.style.height = rect.height + 'px';
+        }
+
+        window.addEventListener('resize', resizeClickLayer);
+        window.addEventListener('load', resizeClickLayer);
 
         function showIcon(icon, symbol, duration = 500) {
             icon.textContent = symbol;
@@ -882,10 +911,10 @@
             if (item.type === 'image') {
                 container.innerHTML = `<img id="mainImage" src="${item.src}" alt="EchoKit">`;
             } else if (item.type === 'video') {
-                container.innerHTML = `<div class="video-icon" id="videoIcon">▶️</div><video onclick="togglePlayPause(this)" id="mainVideo" playsinline poster="${item.poster}" style="max-width:100%; max-height:500px; border-radius:12px;">
+                container.innerHTML = `<div class="video-icon" id="videoIcon">▶️</div><video id="mainVideo" playsinline poster="${item.poster}" style="max-width:100%; max-height:500px; border-radius:12px;">
                 <source src="${item.src}" type="video/mp4">
                 Your browser does not support the video tag.
-            </video>`;
+            </video><div id="click-layer" class="click-layer" onclick="togglePlayPause()"></div>`;
             }
         }
 
