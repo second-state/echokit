@@ -842,10 +842,12 @@
         function togglePlayPause(video) {
             const icon = video.parentElement.querySelector('.video-icon');
             if (video.paused || video.ended) {
-                video.play();
+                // video.play();
+                video.controls = true;
                 showIcon(icon, '');
             } else {
                 video.pause();
+                video.controls = false;
                 showIcon(icon, '▶️', 0);
             }
         }
