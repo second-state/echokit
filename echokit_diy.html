@@ -783,6 +783,35 @@
             </div>
         </div>
     </div>
+    <footer style="background: #ffffff; padding: 40px 20px; margin-top: 80px; border-top: 1px solid #e0e0e0; text-align: center;">
+        <p style="color: #666;">© 2025 EchoKit. Open source under GPL-3.0 License.</p>
+    </footer>
+
+    <script>
+        const media = [
+            { type: 'video', src: 'media/XroT7a0DLkw.mp4', poster: 'media/XroT7a0DLkw.jpg' },
+            { type: 'image', src: 'media/echokit-diy-02.png' },
+            { type: 'image', src: 'media/echokit-diy-03.png' },
+            { type: 'image', src: 'media/echokit-diy-01.jpg' },
+            { type: 'image', src: 'media/echokit-diy-05.png' }
+        ];
+
+        function togglePlayPause() {
+            const video = document.getElementById('mainVideo');
+            const startButton = document.getElementById('click-layer');
+            const icon = video.parentElement.querySelector('.video-icon');
+            if (video.paused || video.ended) {
+                video.play();
+                video.controls = true;
+                showIcon(icon, '');
+                startButton.style.display = 'none';
+                video.addEventListener("ended", ()=>{
+                    video.controls = false;
+                    startButton.style.display = 'block';
+                    showIcon(icon, '▶️', 0);
+                });
+            }
+        }
 
     <!-- What's Included -->
     <div class="section">
@@ -927,6 +956,14 @@
             currentVideo.removeEventListener('ended', endedListener);
             endedListener = null;
             currentVideo = null;
+        function showIcon(icon, symbol, duration = 500) {
+            icon.textContent = symbol;
+            icon.style.opacity = 1;
+            if (duration) {
+                setTimeout(() => {
+                    icon.style.opacity = 0;
+                }, duration);
+            }
         }
 
         if (item.type === 'image') {

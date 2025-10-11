@@ -10,7 +10,7 @@ Artificial intelligence is no longer science fiction—it’s part of everyday l
 
 If we want to not just *use* AI, but to **understand, customize, and innovate with it**, we need tools that make AI tangible.
 
-That’s why we created EchoKit — an open-source voice AI toolkit that makes learning AI as hands-on as building with LEGO. And now, we’re preparing to launch it on [Indiegogo](https://www.indiegogo.com/projects/learn-and-build-voice-ai-agents-with-echokit/coming_soon/x/38710006).
+That’s why we created EchoKit — an open-source voice AI toolkit that makes learning AI as hands-on as building with LEGO. 
 
 ## What is EchoKit?
 
@@ -69,5 +69,5 @@ We’re now in our prelaunch phase on Indiegogo. By joining, you’ll:
 
 * Receive exclusive 48% off
 
-👉 Join [our Indiegogo prelaunch page](https://www.indiegogo.com/projects/learn-and-build-voice-ai-agents-with-echokit/coming_soon/x/38710006) and be part of the journey to bring hands-on AI education to everyone.
+👉 Join [our Discord server](https://discord.gg/Fwe3zsT5g3) and be part of the journey to bring hands-on AI education to everyone.
 
