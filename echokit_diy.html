@@ -4,12 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EchoKit - Open Source Voice AI Learning Toolkit for Students | Build Your Own AI Agent</title>
-    <meta name="description" content="EchoKit is an educational voice AI toolkit that teaches students and builders how to create AI agents from scratch. Full-stack open source, privacy-first, with complete Rust codebase. Perfect for STEM education, computer science courses, and self-learners.">
-    <meta name="keywords" content="AI education, voice AI learning, Rust programming education, open source AI toolkit, STEM learning, AI for students, build AI agent, educational AI hardware">
+    <meta name="description"
+          content="EchoKit is an educational voice AI toolkit that teaches students and builders how to create AI agents from scratch. Full-stack open source, privacy-first, with complete Rust codebase. Perfect for STEM education, computer science courses, and self-learners.">
+    <meta name="keywords"
+          content="AI education, voice AI learning, Rust programming education, open source AI toolkit, STEM learning, AI for students, build AI agent, educational AI hardware">
     <meta property="og:title" content="EchoKit - Educational Voice AI Toolkit for Students">
-    <meta property="og:description" content="Learn AI by building. Complete open-source voice AI system with hardware, firmware, and server code. Perfect for students and educators.">
+    <meta property="og:description"
+          content="Learn AI by building. Complete open-source voice AI system with hardware, firmware, and server code. Perfect for students and educators.">
     <meta property="og:type" content="product">
-    
     <style>
         * {
             margin: 0;
@@ -109,7 +111,7 @@
             pointer-events: none;
             z-index: 999;
             transition: opacity 0.3s ease;
-            text-shadow: 0 0 10px rgba(0,0,0,0.5);
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
         }
 
         .click-layer {
@@ -590,346 +592,383 @@
     </style>
 </head>
 <body>
-    <header class="header">
-        <div class="header-content">
-            <div class="logo">EchoKit</div>
-            <nav class="nav-links">
-                <a href="/">Home</a>
-                <a href="/docs">Documentation</a>
-                <a href="#specs">Specs</a>
-                <a href="#education">For Education</a>
-            </nav>
-        </div>
-    </header>
+<header class="header">
+    <div class="header-content">
+        <div class="logo">EchoKit</div>
+        <nav class="nav-links">
+            <a href="/">Home</a>
+            <a href="/docs">Documentation</a>
+            <a href="#specs">Specs</a>
+            <a href="#education">For Education</a>
+        </nav>
+    </div>
+</header>
 
-    <div class="container">
-        <div class="breadcrumb">
-            <a href="/">Home</a> › EchoKit DIY Toolkit
-        </div>
+<div class="container">
+    <div class="breadcrumb">
+        <a href="/">Home</a> › EchoKit DIY Toolkit
+    </div>
 
-        <div class="product-grid">
-            <!-- Image Gallery -->
-            <div class="gallery-section">
-                <div class="main-image-container">
-                </div>
-                <div class="thumbnail-grid">
-                    <div class="thumbnail active" style="position: relative;" onclick="changeMedia(0)">
-                        <div class="video-icon" style="font-size: 20px;" id="videoIcon">▶️</div>
-                        <img src="media/XroT7a0DLkw.jpg" alt="EchoKit Video">
-                    </div>
-                    <div class="thumbnail" onclick="changeMedia(1)">
-                        <img src="media/echokit-diy-01.jpg" alt="EchoKit">
-                    </div>
-                    <div class="thumbnail" onclick="changeMedia(2)">
-                        <img src="media/echokit-diy-02.png" alt="Components">
-                    </div>
-                    <div class="thumbnail" onclick="changeMedia(3)">
-                        <img src="media/echokit-diy-03.png" alt="Assembled">
-                    </div>
-                    <div class="thumbnail" onclick="changeMedia(4)">
-                        <img src="media/echokit-diy-04.jpg" alt="K0 button">
-                    </div>
-                    <div class="thumbnail" onclick="changeMedia(5)">
-                        <img src="media/echokit-diy-05.png" alt="Configure">
-                    </div>
-                </div>
+    <div class="product-grid">
+        <!-- Image Gallery -->
+        <div class="gallery-section">
+            <div class="main-image-container">
             </div>
-
-            <!-- Product Info -->
-            <div class="product-info">
-                <h1>EchoKit: Educational Voice AI Toolkit for Students and Builders</h1>
-                
-                <div class="badges">
-                    <span class="badge">Open Source GPL-3.0</span>
-                    <span class="badge">Built with Rust</span>
-                    <span class="badge education-badge">Perfect for Education</span>
-                    <span class="badge">Privacy First</span>
+            <div class="thumbnail-grid">
+                <div class="thumbnail active" style="position: relative;" onclick="changeMedia(0)">
+                    <div class="video-icon" style="font-size: 20px;">▶️</div>
+                    <img src="media/XroT7a0DLkw.jpg" alt="EchoKit Video">
                 </div>
-
-                <div class="section">
-                    <p>
-                        EchoKit is more than a voice AI assistant – it's a complete learning platform that teaches you how to build AI agent systems from the ground up. Perfect for students, educators, and anyone who wants to understand AI by building it themselves.
-                    </p>
-                    <p>
-                        Unlike black-box AI systems, every component of EchoKit is open-source and documented. Learn embedded programming, audio processing, voice detection, agentic AI, LLMs, ASR / STT, TTS, voice-cloning, MCP integration, and real-time networking by working with production-quality code.
-                    </p>
+                <div class="thumbnail" onclick="changeMedia(1)">
+                    <img src="media/echokit-diy-01.jpg" alt="EchoKit">
                 </div>
-
-                <div class="price-section">
-                    <div class="price">$49</div>
-                    <p class="price-note">Complete toolkit with hardware, documentation, and learning materials. Shipping internationally.</p>
-                    
-                    <div class="cta-buttons">
-                        <a href="https://buy.stripe.com/28EeVebTt7xpeRw51P63K09" class="cta-button">Buy EchoKit</a>
-                        <a href="https://forms.gle/MagV8UfLNYYLnCqi6" target="_blank" class="cta-button cta-secondary">Bulk order</a>
-                    </div>
+                <div class="thumbnail" onclick="changeMedia(2)">
+                    <img src="media/echokit-diy-02.png" alt="Components">
                 </div>
-
-                <div class="section">
-                    <h2>What You'll Learn</h2>
-                    <ul class="features-list">
-                        <li>Build embedded systems with Rust on ESP32 hardware</li>
-                        <li>Implement real-time audio processing and Voice Activity Detection</li>
-                        <li>Integrate multiple AI models (LLMs, speech recognition, text-to-speech)</li>
-                        <li>Create WebSocket-based real-time AI services</li>
-                        <li>Design agentic systems with tool use and knowledge retrieval</li>
-                        <li>Clone voices using GPT-SoVITS technology</li>
-                        <li>Support Model Context Protocol (MCP) for extensibility</li>
-                        <li>Deploy AI systems locally at your home or office</li>
-                    </ul>
+                <div class="thumbnail" onclick="changeMedia(3)">
+                    <img src="media/echokit-diy-03.png" alt="Assembled">
+                </div>
+                <div class="thumbnail" onclick="changeMedia(4)">
+                    <img src="media/echokit-diy-04.jpg" alt="K0 button">
+                </div>
+                <div class="thumbnail" onclick="changeMedia(5)">
+                    <img src="media/echokit-diy-05.png" alt="Configure">
                 </div>
             </div>
         </div>
 
-        <!-- Educational Focus -->
-        <div class="edu-focus" id="education">
-            <h2>Built for Learning and Teaching</h2>
-            <p>
-                EchoKit was designed from the ground up as a learning platform. Every design decision prioritizes learning opportunities, code clarity, and hands-on experience with modern AI technologies.
-            </p>
+        <!-- Product Info -->
+        <div class="product-info">
+            <h1>EchoKit: Educational Voice AI Toolkit for Students and Builders</h1>
 
-            <div class="learning-paths">
-                <div class="learning-card">
-                    <h3>High School Students</h3>
-                    <p>Introduction to agentic AI systems and LLM APIs. Customize it with your own voice, style &amp; knowledge. Perfect for STEM programs. Use it to create real world projects for your community!</p>
-                </div>
-                <div class="learning-card">
-                    <h3>University Students</h3>
-                    <p>Systems, networking &amp; GPU programming, open-source AI models &amp; inference libraries, tool use &amp; MCPs, vector databases, search &amp; context engineering, voice cloning, and much more!</p>
-                </div>
-                <div class="learning-card">
-                    <h3>Builders &amp; Hackers</h3>
-                    <p>Comprehensive documentation and tutorials guide you through every aspect. Build at your own pace with community support. Create your own products or projects by embedding the EchoKit.</p>
-                </div>
-                <div class="learning-card">
-                    <h3>Educators</h3>
-                    <p>Ready-made curriculum materials, lesson plans, and project ideas. Teach cutting-edge AI with hands-on hardware and software stack. Completely open-source -- free to use, modify &amp; publish.</p>
+            <div class="badges">
+                <span class="badge">Open Source GPL-3.0</span>
+                <span class="badge">Built with Rust</span>
+                <span class="badge education-badge">Perfect for Education</span>
+                <span class="badge">Privacy First</span>
+            </div>
+
+            <div class="section">
+                <p>
+                    EchoKit is more than a voice AI assistant – it's a complete learning platform that teaches you how
+                    to build AI agent systems from the ground up. Perfect for students, educators, and anyone who wants
+                    to understand AI by building it themselves.
+                </p>
+                <p>
+                    Unlike black-box AI systems, every component of EchoKit is open-source and documented. Learn
+                    embedded programming, audio processing, voice detection, agentic AI, LLMs, ASR / STT, TTS,
+                    voice-cloning, MCP integration, and real-time networking by working with production-quality code.
+                </p>
+            </div>
+
+            <div class="price-section">
+                <div class="price">$49</div>
+                <p class="price-note">Complete toolkit with hardware, documentation, and learning materials. Shipping
+                    internationally.</p>
+
+                <div class="cta-buttons">
+                    <a href="https://buy.stripe.com/28EeVebTt7xpeRw51P63K09" class="cta-button">Buy EchoKit</a>
+                    <a href="https://forms.gle/MagV8UfLNYYLnCqi6" target="_blank" class="cta-button cta-secondary">Bulk
+                        order</a>
                 </div>
             </div>
-        </div>
 
-        <!-- Technical Specifications -->
-        <div class="specs-section" id="specs">
-            <h2 style="font-size: 2rem; color: #667eea; margin-bottom: 30px;">Technical Specifications</h2>
-            <div class="specs-grid">
-                <div class="spec-item">
-                    <div class="spec-label">Processor</div>
-                    <div class="spec-value">ESP32-S3 Dual-core Xtensa LX7 @ 240MHz</div>
-                </div>
-                <div class="spec-item">
-                    <div class="spec-label">Memory</div>
-                    <div class="spec-value">8MB PSRAM, 16MB Flash Storage</div>
-                </div>
-                <div class="spec-item">
-                    <div class="spec-label">Connectivity</div>
-                    <div class="spec-value">WiFi 2.4 GHz, Bluetooth 5.0 LE</div>
-                </div>
-                <div class="spec-item">
-                    <div class="spec-label">Audio Input</div>
-                    <div class="spec-value">High-sensitivity microphone array</div>
-                </div>
-                <div class="spec-item">
-                    <div class="spec-label">Audio Output</div>
-                    <div class="spec-value">3W high-quality speaker</div>
-                </div>
-                <div class="spec-item">
-                    <div class="spec-label">Display</div>
-                    <div class="spec-value">OLED screen</div>
-                </div>
-                <div class="spec-item">
-                    <div class="spec-label">Power</div>
-                    <div class="spec-value">USB-C (5V/2A), optional battery pack</div>
-                </div>
-                <div class="spec-item">
-                    <div class="spec-label">Programming</div>
-                    <div class="spec-value">Rust (firmware and server)</div>
-                </div>
-                <div class="spec-item">
-                    <div class="spec-label">AI Models</div>
-                    <div class="spec-value">Works with any cloud API provider as well as local models</div>
-                </div>
-                <div class="spec-item">
-                    <div class="spec-label">Voice Recognition</div>
-                    <div class="spec-value">Whisper, Groq, OpenAI-compatible APIs</div>
-                </div>
-                <div class="spec-item">
-                    <div class="spec-label">Text-to-Speech</div>
-                    <div class="spec-value">GPT-SoVITS, OpenAI TTS, 11Labs etc.</div>
-                </div>
-                <div class="spec-item">
-                    <div class="spec-label">Dimensions</div>
-                    <div class="spec-value">4.5" × 4.5" × 2" (11.4 × 11.4 × 5.1 cm)</div>
-                </div>
-                <div class="spec-item">
-                    <div class="spec-label">Weight</div>
-                    <div class="spec-value">12 oz (340g)</div>
-                </div>
-                <div class="spec-item">
-                    <div class="spec-label">License</div>
-                    <div class="spec-value">GPL-3.0 Open Source</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- What's Included -->
-        <div class="section">
-            <h2 style="font-size: 2rem;">What's Included</h2>
-            <div class="included-grid">
-                <div class="included-item">
-                    <div class="included-icon">📦</div>
-                    <h3>EchoKit DIY kit</h3>
-                    <p>Fully tested hardware with pre-flashed firmware. Assemble or replace any component.</p>
-                </div>
-                <!--
-                <div class="included-item">
-                    <div class="included-icon">🔌</div>
-                    <h3>USB-C Cable</h3>
-                    <p>High-quality cable for power and programming</p>
-                </div>
-                -->
-                <div class="included-item">
-                    <div class="included-icon">📚</div>
-                    <h3>Documentation</h3>
-                    <p>Complete guides, tutorials, and API references</p>
-                </div>
-                <div class="included-item">
-                    <div class="included-icon">🎓</div>
-                    <h3>Learning Materials</h3>
-                    <p>Step-by-step projects and educational resources</p>
-                </div>
-                <div class="included-item">
-                    <div class="included-icon">💻</div>
-                    <h3>Source Code</h3>
-                    <p>Full access to all firmware and server code</p>
-                </div>
-                <div class="included-item">
-                    <div class="included-icon">🤝</div>
-                    <h3>Community Access</h3>
-                    <p>Join our Discord and GitHub community</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Software Features -->
-        <div class="section">
-            <h2 style="font-size: 2rem;">Software Capabilities</h2>
-            <ul class="features-list">
-                <li>Full-stack Rust implementation for safety and performance</li>
-                <li>WebSocket-based real-time communication</li>
-                <li>Advanced Voice Activity Detection using Silero VAD</li>
-                <li>Streaming audio processing for low latency</li>
-                <li>Model Context Protocol (MCP) support for tool integration</li>
-                <li>Private knowledge base with RAG (Retrieval Augmented Generation)</li>
-                <li>Voice cloning with GPT-SoVITS</li>
-                <li>Flexible deployment: cloud or self-hosted</li>
-                <li>Compatible with all major LLM / AI providers</li>
-                <li>Comprehensive logging and debugging tools</li>
-            </ul>
-        </div>
-
-        <!-- CTA Section -->
-        <div class="price-section" style="text-align: center;">
-            <h2 style="font-size: 2rem; color: #667eea; margin-bottom: 20px;">Start Your AI Learning Journey</h2>
-            <p style="font-size: 1.1rem; margin-bottom: 30px; color: #555;">
-                Ships within 3 weeks. Each device is hand-assembled, tested, and comes with lifetime access to documentation and updates.
-            </p>
-            <div class="cta-buttons" style="justify-content: center;">
-                <a href="https://buy.stripe.com/28EeVebTt7xpeRw51P63K09" class="cta-button">Buy EchoKit - $49</a>
-                <a href="https://forms.gle/MagV8UfLNYYLnCqi6" target="_blank" class="cta-button cta-secondary">Bulk order for your school</a>
+            <div class="section">
+                <h2>What You'll Learn</h2>
+                <ul class="features-list">
+                    <li>Build embedded systems with Rust on ESP32 hardware</li>
+                    <li>Implement real-time audio processing and Voice Activity Detection</li>
+                    <li>Integrate multiple AI models (LLMs, speech recognition, text-to-speech)</li>
+                    <li>Create WebSocket-based real-time AI services</li>
+                    <li>Design agentic systems with tool use and knowledge retrieval</li>
+                    <li>Clone voices using GPT-SoVITS technology</li>
+                    <li>Support Model Context Protocol (MCP) for extensibility</li>
+                    <li>Deploy AI systems locally at your home or office</li>
+                </ul>
             </div>
         </div>
     </div>
 
-    <footer style="background: #ffffff; padding: 40px 20px; margin-top: 80px; border-top: 1px solid #e0e0e0; text-align: center;">
-        <p style="color: #666;">© 2025 EchoKit. Open source under GPL-3.0 License.</p>
-    </footer>
+    <!-- Educational Focus -->
+    <div class="edu-focus" id="education">
+        <h2>Built for Learning and Teaching</h2>
+        <p>
+            EchoKit was designed from the ground up as a learning platform. Every design decision prioritizes learning
+            opportunities, code clarity, and hands-on experience with modern AI technologies.
+        </p>
 
-    <script>
-        const media = [
-            { type: 'video', src: 'media/XroT7a0DLkw.mp4', poster: 'media/XroT7a0DLkw.jpg' },
-            { type: 'image', src: 'media/echokit-diy-01.jpg' },
-            { type: 'image', src: 'media/echokit-diy-02.png' },
-            { type: 'image', src: 'media/echokit-diy-03.png' },
-            { type: 'image', src: 'media/echokit-diy-04.jpg' },
-            { type: 'image', src: 'media/echokit-diy-05.png' }
-        ];
+        <div class="learning-paths">
+            <div class="learning-card">
+                <h3>High School Students</h3>
+                <p>Introduction to agentic AI systems and LLM APIs. Customize it with your own voice, style &amp;
+                    knowledge. Perfect for STEM programs. Use it to create real world projects for your community!</p>
+            </div>
+            <div class="learning-card">
+                <h3>University Students</h3>
+                <p>Systems, networking &amp; GPU programming, open-source AI models &amp; inference libraries, tool use
+                    &amp; MCPs, vector databases, search &amp; context engineering, voice cloning, and much more!</p>
+            </div>
+            <div class="learning-card">
+                <h3>Builders &amp; Hackers</h3>
+                <p>Comprehensive documentation and tutorials guide you through every aspect. Build at your own pace with
+                    community support. Create your own products or projects by embedding the EchoKit.</p>
+            </div>
+            <div class="learning-card">
+                <h3>Educators</h3>
+                <p>Ready-made curriculum materials, lesson plans, and project ideas. Teach cutting-edge AI with hands-on
+                    hardware and software stack. Completely open-source -- free to use, modify &amp; publish.</p>
+            </div>
+        </div>
+    </div>
 
-        function togglePlayPause() {
-            const video = document.getElementById('mainVideo');
-            const startButton = document.getElementById('click-layer');
-            const icon = video.parentElement.querySelector('.video-icon');
-            if (video.paused || video.ended) {
-                video.play();
+    <!-- Technical Specifications -->
+    <div class="specs-section" id="specs">
+        <h2 style="font-size: 2rem; color: #667eea; margin-bottom: 30px;">Technical Specifications</h2>
+        <div class="specs-grid">
+            <div class="spec-item">
+                <div class="spec-label">Processor</div>
+                <div class="spec-value">ESP32-S3 Dual-core Xtensa LX7 @ 240MHz</div>
+            </div>
+            <div class="spec-item">
+                <div class="spec-label">Memory</div>
+                <div class="spec-value">8MB PSRAM, 16MB Flash Storage</div>
+            </div>
+            <div class="spec-item">
+                <div class="spec-label">Connectivity</div>
+                <div class="spec-value">WiFi 2.4 GHz, Bluetooth 5.0 LE</div>
+            </div>
+            <div class="spec-item">
+                <div class="spec-label">Audio Input</div>
+                <div class="spec-value">High-sensitivity microphone array</div>
+            </div>
+            <div class="spec-item">
+                <div class="spec-label">Audio Output</div>
+                <div class="spec-value">3W high-quality speaker</div>
+            </div>
+            <div class="spec-item">
+                <div class="spec-label">Display</div>
+                <div class="spec-value">OLED screen</div>
+            </div>
+            <div class="spec-item">
+                <div class="spec-label">Power</div>
+                <div class="spec-value">USB-C (5V/2A), optional battery pack</div>
+            </div>
+            <div class="spec-item">
+                <div class="spec-label">Programming</div>
+                <div class="spec-value">Rust (firmware and server)</div>
+            </div>
+            <div class="spec-item">
+                <div class="spec-label">AI Models</div>
+                <div class="spec-value">Works with any cloud API provider as well as local models</div>
+            </div>
+            <div class="spec-item">
+                <div class="spec-label">Voice Recognition</div>
+                <div class="spec-value">Whisper, Groq, OpenAI-compatible APIs</div>
+            </div>
+            <div class="spec-item">
+                <div class="spec-label">Text-to-Speech</div>
+                <div class="spec-value">GPT-SoVITS, OpenAI TTS, 11Labs etc.</div>
+            </div>
+            <div class="spec-item">
+                <div class="spec-label">Dimensions</div>
+                <div class="spec-value">4.5" × 4.5" × 2" (11.4 × 11.4 × 5.1 cm)</div>
+            </div>
+            <div class="spec-item">
+                <div class="spec-label">Weight</div>
+                <div class="spec-value">12 oz (340g)</div>
+            </div>
+            <div class="spec-item">
+                <div class="spec-label">License</div>
+                <div class="spec-value">GPL-3.0 Open Source</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- What's Included -->
+    <div class="section">
+        <h2 style="font-size: 2rem;">What's Included</h2>
+        <div class="included-grid">
+            <div class="included-item">
+                <div class="included-icon">📦</div>
+                <h3>EchoKit DIY kit</h3>
+                <p>Fully tested hardware with pre-flashed firmware. Assemble or replace any component.</p>
+            </div>
+            <!--
+            <div class="included-item">
+                <div class="included-icon">🔌</div>
+                <h3>USB-C Cable</h3>
+                <p>High-quality cable for power and programming</p>
+            </div>
+            -->
+            <div class="included-item">
+                <div class="included-icon">📚</div>
+                <h3>Documentation</h3>
+                <p>Complete guides, tutorials, and API references</p>
+            </div>
+            <div class="included-item">
+                <div class="included-icon">🎓</div>
+                <h3>Learning Materials</h3>
+                <p>Step-by-step projects and educational resources</p>
+            </div>
+            <div class="included-item">
+                <div class="included-icon">💻</div>
+                <h3>Source Code</h3>
+                <p>Full access to all firmware and server code</p>
+            </div>
+            <div class="included-item">
+                <div class="included-icon">🤝</div>
+                <h3>Community Access</h3>
+                <p>Join our Discord and GitHub community</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Software Features -->
+    <div class="section">
+        <h2 style="font-size: 2rem;">Software Capabilities</h2>
+        <ul class="features-list">
+            <li>Full-stack Rust implementation for safety and performance</li>
+            <li>WebSocket-based real-time communication</li>
+            <li>Advanced Voice Activity Detection using Silero VAD</li>
+            <li>Streaming audio processing for low latency</li>
+            <li>Model Context Protocol (MCP) support for tool integration</li>
+            <li>Private knowledge base with RAG (Retrieval Augmented Generation)</li>
+            <li>Voice cloning with GPT-SoVITS</li>
+            <li>Flexible deployment: cloud or self-hosted</li>
+            <li>Compatible with all major LLM / AI providers</li>
+            <li>Comprehensive logging and debugging tools</li>
+        </ul>
+    </div>
+
+    <!-- CTA Section -->
+    <div class="price-section" style="text-align: center;">
+        <h2 style="font-size: 2rem; color: #667eea; margin-bottom: 20px;">Start Your AI Learning Journey</h2>
+        <p style="font-size: 1.1rem; margin-bottom: 30px; color: #555;">
+            Ships within 3 weeks. Each device is hand-assembled, tested, and comes with lifetime access to documentation
+            and updates.
+        </p>
+        <div class="cta-buttons" style="justify-content: center;">
+            <a href="https://buy.stripe.com/28EeVebTt7xpeRw51P63K09" class="cta-button">Buy EchoKit - $49</a>
+            <a href="https://forms.gle/MagV8UfLNYYLnCqi6" target="_blank" class="cta-button cta-secondary">Bulk order
+                for your school</a>
+        </div>
+    </div>
+</div>
+
+<footer style="background: #ffffff; padding: 40px 20px; margin-top: 80px; border-top: 1px solid #e0e0e0; text-align: center;">
+    <p style="color: #666;">© 2025 EchoKit. Open source under GPL-3.0 License.</p>
+</footer>
+
+<script>
+    const media = [
+        {type: 'video', src: 'media/XroT7a0DLkw.mp4', poster: 'media/XroT7a0DLkw.jpg'},
+        {type: 'image', src: 'media/echokit-diy-01.jpg'},
+        {type: 'image', src: 'media/echokit-diy-02.png'},
+        {type: 'image', src: 'media/echokit-diy-03.png'},
+        {type: 'image', src: 'media/echokit-diy-04.jpg'},
+        {type: 'image', src: 'media/echokit-diy-05.png'}
+    ];
+
+    let endedListener = null;
+    let currentVideo = null;
+
+    function togglePlay() {
+        const video = document.getElementById('mainVideo');
+        const startButton = document.getElementById('click-layer');
+        if (!video) return;
+        const icon = video.parentElement ? video.parentElement.querySelector('.video-icon') : null;
+
+        if (video.paused || video.ended) {
+            video.play().then(() => {
                 video.controls = true;
-                showIcon(icon, '');
-                startButton.style.display = 'none';
-                video.addEventListener("ended", ()=>{
-                    video.controls = false;
-                    startButton.style.display = 'block';
-                    showIcon(icon, '▶️', 0);
-                });
-            }
-        }
-
-        function resizeClickLayer() {
-            const video = document.getElementById('mainVideo');
-            const layer = document.querySelector('.click-layer');
-            if (!video || !layer) return;
-
-            const rect = video.getBoundingClientRect();
-
-            layer.style.width = rect.width + 'px';
-            layer.style.height = rect.height + 'px';
-        }
-
-        window.addEventListener('resize', resizeClickLayer);
-        window.addEventListener('load', resizeClickLayer);
-
-        function showIcon(icon, symbol, duration = 500) {
-            icon.textContent = symbol;
-            icon.style.opacity = 1;
-            if(duration) {
-                setTimeout(() => {
-                    icon.style.opacity = 0;
-                }, 500);
-            }
-        }
-
-
-        function changeMedia(index, isInitial = false) {
-            const container = document.querySelector('.main-image-container');
-            const thumbnails = document.querySelectorAll('.thumbnail');
-
-            thumbnails.forEach((thumb, i) => {
-                if (i === index) thumb.classList.add('active');
-                else thumb.classList.remove('active');
+                if (startButton) startButton.style.display = 'none';
+                if (icon) showIcon(icon, '', 300);
+            }).catch(() => {
             });
+        }
+    }
 
-            const item = media[index];
-            if (!item) return;
+    function resizeClickLayer() {
+        const video = document.getElementById('mainVideo');
+        const layer = document.querySelector('.click-layer');
+        if (!video || !layer) return;
+        const rect = video.getBoundingClientRect();
+        layer.style.width = rect.width + 'px';
+        layer.style.height = rect.height + 'px';
+    }
 
-            if (item.type === 'image') {
-                container.innerHTML = `<img id="mainImage" src="${item.src}" alt="EchoKit">`;
-            } else if (item.type === 'video') {
-                container.innerHTML = `<div class="video-icon" id="videoIcon">▶️</div><video id="mainVideo" playsinline poster="${item.poster}" style="max-width:100%; max-height:500px; border-radius:12px;">
+    window.addEventListener('resize', resizeClickLayer);
+    window.addEventListener('load', resizeClickLayer);
+
+    function showIcon(icon, symbol, duration = 500) {
+        if (!icon) return;
+        icon.textContent = symbol;
+        icon.style.opacity = 1;
+        if (duration) {
+            setTimeout(() => {
+                icon.style.opacity = 0;
+            }, duration);
+        }
+    }
+
+    function changeMedia(index, isInitial = false) {
+        const container = document.querySelector('.main-image-container');
+        const thumbnails = document.querySelectorAll('.thumbnail');
+
+        thumbnails.forEach((thumb, i) => {
+            if (i === index) thumb.classList.add('active');
+            else thumb.classList.remove('active');
+        });
+
+        const item = media[index];
+        if (!item) return;
+
+        if (currentVideo && endedListener) {
+            currentVideo.removeEventListener('ended', endedListener);
+            endedListener = null;
+            currentVideo = null;
+        }
+
+        if (item.type === 'image') {
+            container.innerHTML = `<img id="mainImage" src="${item.src}" alt="EchoKit">`;
+        } else if (item.type === 'video') {
+            container.innerHTML = `<div class="video-icon" id="mainVideoIcon">▶️</div><video id="mainVideo" playsinline poster="${item.poster}" style="max-width:100%; max-height:500px; border-radius:12px;" preload="metadata">
                 <source src="${item.src}" type="video/mp4">
                 Your browser does not support the video tag.
-            </video><div id="click-layer" class="click-layer" onclick="togglePlayPause()"></div>`;
+            </video><div id="click-layer" class="click-layer" onclick="togglePlay()"></div>`;
+
+            const video = document.getElementById("mainVideo");
+            const startButton = document.getElementById('click-layer');
+            const icon = document.getElementById('mainVideoIcon') || (video && video.parentElement ? video.parentElement.querySelector('.video-icon') : null);
+
+            if (video) {
+                video.controls = false;
+                if (startButton) startButton.style.display = 'block';
+
+                endedListener = () => {
+                    video.controls = false;
+                    if (startButton) startButton.style.display = 'block';
+                    if (icon) showIcon(icon, '▶️', 0);
+                };
+                video.addEventListener("ended", endedListener);
+                currentVideo = video;
+
+                resizeClickLayer();
             }
         }
+    }
 
-        changeMedia(0, true); // Load first media on page load
+    changeMedia(0, true);
 
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            });
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            }
         });
-    </script>
+    });
+</script>
 </body>
 </html>
