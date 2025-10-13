@@ -108,6 +108,31 @@
         }
 
         /* Image Gallery */
+        .video-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 60px;
+            color: white;
+            opacity: 1;
+            pointer-events: none;
+            z-index: 999;
+            transition: opacity 0.3s ease;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .click-layer {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 12px;
+            z-index: 99999;
+            cursor: pointer;
+            background: transparent;
+        }
+
         .gallery-section {
             position: sticky;
             top: 100px;
@@ -115,6 +140,7 @@
         }
 
         .main-image-container {
+            position: relative;
             background: #ffffff;
             border: 1px solid #e0e0e0;
             border-radius: 20px;
@@ -125,6 +151,11 @@
             justify-content: center;
             min-height: 500px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .main-image-container video {
+            position: relative;
+            z-index: 1;
         }
 
         .main-image-container img {
@@ -591,29 +622,21 @@
             <!-- Image Gallery -->
             <div class="gallery-section">
                 <div class="main-image-container">
-                    <img id="mainImage" src="media/echokit-cube-01.webp"
-                         srcset="media/echokit-cube-01-305.webp 305w,media/echokit-cube-01-542.webp 542w,media/echokit-cube-01-720.webp 720w"
-                         alt="EchoKit Voice AI Learning Toolkit">
                 </div>
-                <!--
                 <div class="thumbnail-grid">
-                    <div class="thumbnail active" onclick="changeImage(0)">
-                        <img src="https://placehold.co/200x200/1a0d2e/9333ea?text=Front" alt="Front view">
+                    <!--
+                    <div class="thumbnail active" style="position: relative;" onclick="changeMedia(0)">
+                        <div class="video-icon" style="font-size: 20px;">▶️</div>
+                        <img src="media/XroT7a0DLkw.jpg" alt="EchoKit Video">
                     </div>
-                    <div class="thumbnail" onclick="changeImage(1)">
-                        <img src="https://placehold.co/200x200/1a0d2e/06b6d4?text=Side" alt="Side view">
+                    -->
+                    <div class="thumbnail" onclick="changeMedia(0)">
+                        <img src="media/echokit-cube-01.jpg" alt="EchoKit">
                     </div>
-                    <div class="thumbnail" onclick="changeImage(2)">
-                        <img src="https://placehold.co/200x200/1a0d2e/ce422b?text=Inside" alt="Components">
-                    </div>
-                    <div class="thumbnail" onclick="changeImage(3)">
-                        <img src="https://placehold.co/200x200/1a0d2e/9333ea?text=Setup" alt="Setup">
-                    </div>
-                    <div class="thumbnail" onclick="changeImage(4)">
-                        <img src="https://placehold.co/200x200/1a0d2e/06b6d4?text=In+Use" alt="In use">
+                    <div class="thumbnail" onclick="changeMedia(1)">
+                        <img src="media/echokit-cube-02.png" alt="EchoKit">
                     </div>
                 </div>
-                -->
             </div>
 
             <!-- Product Info -->
@@ -827,36 +850,112 @@
 
     <script>
         const images = [
-            'media/echokit-cube-01.webp',
+            'media/echokit-cube-01.jpg',
             'https://placehold.co/600x600/1a0d2e/06b6d4?text=Side+View',
             'https://placehold.co/600x600/1a0d2e/ce422b?text=Components',
             'https://placehold.co/600x600/1a0d2e/9333ea?text=Setup',
             'https://placehold.co/600x600/1a0d2e/06b6d4?text=In+Use'
         ];
 
-        function changeImage(index) {
-            document.getElementById('mainImage').src = images[index];
-            
-            const thumbnails = document.querySelectorAll('.thumbnail');
-            thumbnails.forEach((thumb, i) => {
-                if (i === index) {
-                    thumb.classList.add('active');
-                } else {
-                    thumb.classList.remove('active');
-                }
+    let endedListener = null;
+    let currentVideo = null;
+
+    function togglePlay() {
+        const video = document.getElementById('mainVideo');
+        const startButton = document.getElementById('click-layer');
+        if (!video) return;
+        const icon = video.parentElement ? video.parentElement.querySelector('.video-icon') : null;
+
+        if (video.paused || video.ended) {
+            video.play().then(() => {
+                video.controls = true;
+                if (startButton) startButton.style.display = 'none';
+                if (icon) showIcon(icon, '', 300);
+            }).catch(() => {
             });
         }
+    }
 
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            });
+    function resizeClickLayer() {
+        const video = document.getElementById('mainVideo');
+        const layer = document.querySelector('.click-layer');
+        if (!video || !layer) return;
+        const rect = video.getBoundingClientRect();
+        layer.style.width = rect.width + 'px';
+        layer.style.height = rect.height + 'px';
+    }
+
+    window.addEventListener('resize', resizeClickLayer);
+    window.addEventListener('load', resizeClickLayer);
+
+    function showIcon(icon, symbol, duration = 500) {
+        if (!icon) return;
+        icon.textContent = symbol;
+        icon.style.opacity = 1;
+        if (duration) {
+            setTimeout(() => {
+                icon.style.opacity = 0;
+            }, duration);
+        }
+    }
+
+    function changeMedia(index) {
+        const container = document.querySelector('.main-image-container');
+        const thumbnails = document.querySelectorAll('.thumbnail');
+
+        thumbnails.forEach((thumb, i) => {
+            if (i === index) thumb.classList.add('active');
+            else thumb.classList.remove('active');
         });
-    </script>
+
+        const item = media[index];
+        if (!item) return;
+
+        if (currentVideo && endedListener) {
+            currentVideo.removeEventListener('ended', endedListener);
+            endedListener = null;
+            currentVideo = null;
+        }
+
+        if (item.type === 'image') {
+            container.innerHTML = `<img id="mainImage" src="${item.src}" alt="EchoKit">`;
+        } else if (item.type === 'video') {
+            container.innerHTML = `<div class="video-icon" id="mainVideoIcon">▶️</div><video id="mainVideo" playsinline poster="${item.poster}" style="max-width:100%; max-height:500px; border-radius:12px;" preload="metadata">
+                <source src="${item.src}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video><div id="click-layer" class="click-layer" onclick="togglePlay()"></div>`;
+
+            const video = document.getElementById("mainVideo");
+            const startButton = document.getElementById('click-layer');
+            const icon = document.getElementById('mainVideoIcon') || (video && video.parentElement ? video.parentElement.querySelector('.video-icon') : null);
+
+            video.controls = false;
+            if (startButton) startButton.style.display = 'block';
+
+            endedListener = () => {
+                video.controls = false;
+                if (startButton) startButton.style.display = 'block';
+                if (icon) showIcon(icon, '▶️', 0);
+            };
+            video.addEventListener("ended", endedListener);
+            currentVideo = video;
+
+            resizeClickLayer();
+        }
+    }
+
+    changeMedia(0);
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            }
+        });
+    });
+</script>
+
 </body>
 </html>
