@@ -43,7 +43,7 @@ def generate_responsive_webp(input_folder, sizes=(305, 542, 720, 1280), quality=
                     print(f"✅ 生成: {output_filename}")
 
                 # 生成 srcset 字符串
-                srcset = ",\n    ".join([f"{name}-{w}.webp {w}w" for w in sizes])
+                srcset = ",\n    ".join([f"{name}-{w}.webp {w}w" for w in sizes if w < width])
                 print(f"\n📜 <img src=\"{filename}\" srcset=\"\n    {srcset}\n  \" alt=\"...\">\n")
 
         except Exception as e:
