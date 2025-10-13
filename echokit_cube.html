@@ -627,14 +627,14 @@
                     <!--
                     <div class="thumbnail active" style="position: relative;" onclick="changeMedia(0)">
                         <div class="video-icon" style="font-size: 20px;">▶️</div>
-                        <img src="media/XroT7a0DLkw.jpg" alt="EchoKit Video">
+                        <img src="media/XroT7a0DLkw.webp" alt="EchoKit Video">
                     </div>
                     -->
                     <div class="thumbnail" onclick="changeMedia(0)">
-                        <img src="media/echokit-cube-01.jpg" alt="EchoKit">
+                        <img src="media/echokit-cube-01-305.webp" alt="EchoKit">
                     </div>
                     <div class="thumbnail" onclick="changeMedia(1)">
-                        <img src="media/echokit-cube-02.png" alt="EchoKit">
+                        <img src="media/echokit-cube-02-305.webp" alt="EchoKit">
                     </div>
                 </div>
             </div>
@@ -849,12 +849,9 @@
     </footer>
 
     <script>
-        const images = [
-            'media/echokit-cube-01.jpg',
-            'https://placehold.co/600x600/1a0d2e/06b6d4?text=Side+View',
-            'https://placehold.co/600x600/1a0d2e/ce422b?text=Components',
-            'https://placehold.co/600x600/1a0d2e/9333ea?text=Setup',
-            'https://placehold.co/600x600/1a0d2e/06b6d4?text=In+Use'
+        const media = [
+            {type: 'image', src: 'media/echokit-cube-01.webp'},
+            {type: 'image', src: 'media/echokit-cube-02.webp'}
         ];
 
     let endedListener = null;
