@@ -325,6 +325,8 @@
             }
 
             .pain-point {
+                display: grid;
+                grid-template-rows: auto 1fr auto; /* 1fr 占据上面空间，auto 占底部 a 标签 */
                 background: rgba(255, 255, 255, 0.05);
                 border-radius: 16px;
                 padding: 35px;
@@ -656,6 +658,13 @@
                 text-align: center;
             }
 
+            /*!* Responsive *!*/
+            @media (max-width: 1200px) {
+                .pain-points {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+            }
+
             /* Responsive */
             @media (max-width: 768px) {
                 .nav-links {
@@ -893,7 +902,9 @@
                             class="cta-button"
                             style="
                                 font-size: 1.2rem;
-                                padding: 20px 50px;
+                                padding: 20px 30px;
+                                width: max-content;
+                                white-space: nowrap;
                                 margin-top: 20px;
                                 display: inline-block;
                             "
@@ -911,7 +922,9 @@
                             class="cta-button"
                             style="
                                 font-size: 1.2rem;
-                                padding: 20px 50px;
+                                padding: 20px 30px;
+                                width: max-content;
+                                white-space: nowrap;
                                 margin-top: 20px;
                                 display: inline-block;
                             "
@@ -929,7 +942,9 @@
                             class="cta-button"
                             style="
                                 font-size: 1.2rem;
-                                padding: 20px 50px;
+                                padding: 20px 30px;
+                                width: max-content;
+                                white-space: nowrap;
                                 margin-top: 20px;
                                 display: inline-block;
                             "
@@ -948,7 +963,9 @@
                             class="cta-button cta-secondary"
                             style="
                                 font-size: 1.2rem;
-                                padding: 20px 50px;
+                                padding: 20px 30px;
+                                width: max-content;
+                                white-space: nowrap;
                                 margin-top: 20px;
                                 display: inline-block;
                             "
