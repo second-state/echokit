@@ -16,15 +16,26 @@ You need to use an USB cable to connect between your computer and the USB-C port
 
 ## 2. Use the ESP32 launchpad to flash
 
-[Load the launchpad](https://espressif.github.io/esp-launchpad/?flashConfigURL=https://echokit.dev/firmware/echokit.toml) and follow instructions to "Connect" and then "Flash" for [EchoKit-DIY](https://echokit.dev/echokit_diy.html) or [EchoKit-CUBE](https://echokit.dev/echokit_cube.html) respectively.
+[Load the launchpad](https://espressif.github.io/esp-launchpad/?flashConfigURL=https://echokit.dev/firmware/echokit.toml) and select the "ESP Develop Kits" for the device you have - [EchoKit-DIY](https://echokit.dev/echokit_diy.html) or [EchoKit-CUBE](https://echokit.dev/echokit_cube.html).
 
 ![ESP32 launchpad](launchpad.png)
 
-> If it fails, you may force the EchoKit device to enter the "flashing" mode by pressing down the small `RST` button on the main board (maybe behind the screen), and at the time, press and release the `K0` (or `BOOT`) button to the left side of the device.
+Click on "Connect" at the top menu to connect to your device via the USB cable.
+
+> TROUBLESHOOTING: If it fails, you may force the EchoKit device to enter the "flashing" mode. EchoKit-DIY: Press down the small `RST` button on the main board (maybe behind the screen), and at the time, press and release the `K0` (or `BOOT`) button to the left side of the device.
+
+Click on "Flash" at the bottom of the page to start flashing firmware onto the device. 
+You will see a console showing the flashing progress. 
+
+Once it is done. Click on the "Reset Device" button as instructed.
+
+![ESP32 launchpad](launchpad_reset.png)
 
 **After completing this process, your EchoKit should display a QR code and instructions on its screen.**
 
-![alt text](display.png)
+![EchoKit is ready](display.png)
+
+Next, go to the [Quick start guide](../quick-start.md) to configure your EchoKit device for network access.
 
 ## 3. Use a command line tool to flash
 
