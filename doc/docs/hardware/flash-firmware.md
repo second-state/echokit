@@ -16,7 +16,7 @@ You need to use an USB cable to connect between your computer and the USB-C port
 
 ## 2. Use the ESP32 launchpad to flash
 
-[Load the launchpad](https://espressif.github.io/esp-launchpad/?flashConfigURL=https://echokit.dev/firmware/echokit.toml) and follow instructions to "Connect" and the "Flash".
+[Load the launchpad](https://espressif.github.io/esp-launchpad/?flashConfigURL=https://echokit.dev/firmware/echokit.toml) and follow instructions to "Connect" and then "Flash" for [EchoKit-DIY](https://echokit.dev/echokit_diy.html) or [EchoKit-CUBE](https://echokit.dev/echokit_cube.html) respectively.
 
 ![ESP32 launchpad](launchpad.png)
 
@@ -47,7 +47,13 @@ cargo install cargo-espflash espflash ldproxy
 Fetch the latest precompiled EchoKit firmware:
 
 ```bash
-curl -L -o echokit https://echokit.dev/firmware/echokit-boards
+# For EchoKit DIY
+curl -L -o echokit https://echokit.dev/firmware/echokit
+
+# OR
+
+# For EchoKit Cube
+curl -L -o echokit https://echokit.dev/firmware/echokit_cube
 ```
 
 ## 3.4 Flash the Firmware to EchoKit
