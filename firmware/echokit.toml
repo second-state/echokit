@@ -17,6 +17,6 @@ config_readme_url = "https://echokit.dev/"
 # ESP32 Chipsets for which you have a supported Firmware App. Define a property for each supported chipset in the given format.
 chipsets = ["ESP32-S3"]
 developKits.esp32-s3 = ["EchoKit-DIY","EchoKit-CUBE"]
-image.echokit = "echokit.bin"
-image.echokit-box = "echokit_cube.bin"
+image.EchoKit-DIY = "echokit.bin"
+image.EchoKit-CUBE = "echokit_cube.bin"
 description = "EchoKit firmware"
