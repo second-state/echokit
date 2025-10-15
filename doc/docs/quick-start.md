@@ -5,9 +5,8 @@ sidebar_position: 2
 # Quick Start with EchoKit
 
 This guide walks you through setting up your **EchoKit**, which comes pre-assembled and ready to use.  
-If you are using **EchoKit DIY Edition**, please refer to the flashing guide before continuing.
 
-If you would like to get a preview before your EchoKit device arrives, you can use our [web-base EchoKit device simulator](https://echokit.dev/chat/resources/).
+> If you would like to get a preview before your EchoKit device arrives, you can use our [web-base EchoKit device simulator](https://echokit.dev/chat/resources/).
 
 ---
 
@@ -64,3 +63,5 @@ Press the **K0 button** (on the left-hand side of the device) to start your conv
 > If it says "Idle" or "Speaking" in the status bar at the top of the screen, it cannot hear you and would not respond to you. ;)
 
 Enjoy your voice AI journey.
+
+TROUBLESHOOTING: If your EchoKit does not respond to you, please try upgrading its software through [this guide](hardware/flash-firmware.md).
