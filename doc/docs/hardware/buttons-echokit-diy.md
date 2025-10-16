@@ -17,8 +17,8 @@ The **K0 button** (located on the left side of the device) is a multi-purpose co
 
 You also need this button when you want to
 
-* Configure WiFi and EchoKit server: Press and hold **K0** when the device is starting up. Restart the device by clicking on **RST**. [Learn more](../quick-start.md)
-* Flash the device: Press and hold **RST** and then click on **K0**. [Learn more](flash-firmware.md)
+* Configure WiFi and EchoKit server. [Learn more](../quick-start.md).
+* Flash the device. [Learn more](flash-firmware.md).
 
 ![](k0-button-echokit-diy.png)
 
