@@ -4,7 +4,9 @@ sidebar_position: 2
 
 # Buttons on EchoKit DIY
 
-After [assembling your EchoKit DIY device](./assemble-echokit.md), let’s take a moment to get familiar with the common buttons and ports before moving on to the next chapter.
+After [assembling your EchoKit DIY device](./assemble-echokit.md), let’s take a moment to get familiar with the common buttons and ports before moving on to the next chapter. You can have a full view of them in the image below.
+
+![](buttons-echokit-diy.png)
 
 ## USB Port — for Power and Firmware Flashing
 
@@ -26,6 +28,9 @@ The **K0 button** (located on the left side of the device) is a multi-purpose co
 * Interrupt or stop the conversation
 
 ![](k0-button-echokit-diy.png)
+
+
+You can have a full view by the following image.
 
 ## RST Button
 
