@@ -24,7 +24,7 @@ You also need this button when you want to
 
 ## RST Button
 
-The **RST button** (located on the left side of the ESP32 development board) is used to restart the device. As above mentioned, it could also be used with **K0** to configure or flash the device.
+The **RST button** (located on the left side of the ESP32 development board) is used to restart the device. As mentioned above, it could also be used with **K0** to configure or flash the device.
 
 ![](rst-button-echokit-diy.png)
 
