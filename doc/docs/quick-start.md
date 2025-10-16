@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# Quick Start with EchoKit
+# Quick Start with EchoKit DIY
 
 This guide walks you through setting up your **EchoKit**, which comes pre-assembled and ready to use.  
 
