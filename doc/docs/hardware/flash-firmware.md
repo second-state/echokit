@@ -20,14 +20,14 @@ You need to use an USB cable to connect between your computer and the USB-C port
 
 ![ESP32 launchpad](launchpad.png)
 
-Click on "Connect" at the top menu to connect to your device via the USB cable.
+Click on **Connect** at the top menu to connect to your device via the USB cable.
 
-> TROUBLESHOOTING: If it fails, you may force the EchoKit device to enter the "flashing" mode. EchoKit-DIY: Press down the small `RST` button on the main board (maybe behind the screen), and at the time, press and release the `K0` (or `BOOT`) button to the left side of the device.
+> TROUBLESHOOTING: If it fails, you may force the EchoKit device to enter the "flashing" mode. Press down the **RST button**, and at the time, press and release the **K0 button**. The screen could go dark after do that, and the device will be ready to flash.
 
-Click on "Flash" at the bottom of the page to start flashing firmware onto the device. 
+Click on the **Flash** button at the bottom of the page to start flashing firmware onto the device. 
 You will see a console showing the flashing progress. 
 
-Once it is done. Click on the "Reset Device" button as instructed.
+Once it is done. Click on the **Reset Device** button as instructed.
 
 ![ESP32 launchpad](launchpad_reset.png)
 
