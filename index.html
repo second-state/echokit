@@ -1349,21 +1349,205 @@
             </div>
         </section>
         -->
-        
         <footer
             style="
-                padding: 40px 0;
+                padding: 60px 0 30px;
                 background: rgba(0, 0, 0, 0.3);
                 border-top: 1px solid rgba(147, 51, 234, 0.2);
-                text-align: center;
             "
         >
             <div class="container">
-                <p style="opacity: 0.8">
+                <div style="
+                    display: grid;
+                    grid-template-columns: 1fr 2fr;
+                    gap: 60px;
+                    margin-bottom: 40px;
+                ">
+                    <!-- Logo -->
+                    <div>
+                        <div style="
+                            font-size: 32px;
+                            font-weight: 800;
+                            background: linear-gradient(45deg, #ce422b, #9333ea, #06b6d4);
+                            -webkit-background-clip: text;
+                            -webkit-text-fill-color: transparent;
+                            background-clip: text;
+                            margin-bottom: 15px;
+                        ">EchoKit</div>
+                        <p style="opacity: 0.7; font-size: 0.95rem; line-height: 1.6;">
+                            Open Source voice AI agent toolkit for students and builders
+                        </p>
+                    </div>
+
+                    <!-- Links Grid -->
+                    <div style="
+                        display: grid;
+                        grid-template-columns: repeat(3, 1fr);
+                        gap: 40px;
+                    ">
+                        <!-- Contact Us -->
+                    <div>
+                        <h4 style="
+                            font-size: 1.2rem;
+                            font-weight: 700;
+                            margin-bottom: 20px;
+                            color: #9333ea;
+                        ">Contact Us</h4>
+                        <div style="
+                            display: flex;
+                            flex-direction: column;
+                            gap: 12px;
+                        ">
+                            <a href="mailto:contact@secondstate.io" style="
+                                color: #ffffff;
+                                text-decoration: none;
+                                opacity: 0.8;
+                                transition: all 0.3s ease;
+                                display: flex;
+                                align-items: center;
+                                gap: 8px;
+                            " onmouseover="this.style.opacity='1'; this.style.color='#9333ea'" 
+                               onmouseout="this.style.opacity='0.8'; this.style.color='#ffffff'">
+                                📧 contact@secondstate.io
+                            </a>
+                            <a href="https://www.facebook.com/61581407499337" target="_blank" style="
+                                color: #ffffff;
+                                text-decoration: none;
+                                opacity: 0.8;
+                                transition: all 0.3s ease;
+                                display: flex;
+                                align-items: center;
+                                gap: 8px;
+                            " onmouseover="this.style.opacity='1'; this.style.color='#9333ea'" 
+                               onmouseout="this.style.opacity='0.8'; this.style.color='#ffffff'">
+                                📘 Facebook
+                            </a>
+                            <a href="https://discord.gg/Fwe3zsT5g3" target="_blank" style="
+                                color: #ffffff;
+                                text-decoration: none;
+                                opacity: 0.8;
+                                transition: all 0.3s ease;
+                                display: flex;
+                                align-items: center;
+                                gap: 8px;
+                            " onmouseover="this.style.opacity='1'; this.style.color='#9333ea'" 
+                               onmouseout="this.style.opacity='0.8'; this.style.color='#ffffff'">
+                                💬 Discord
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Buy -->
+                    <div>
+                        <h4 style="
+                            font-size: 1.2rem;
+                            font-weight: 700;
+                            margin-bottom: 20px;
+                            color: #9333ea;
+                        ">Buy</h4>
+                        <div style="
+                            display: flex;
+                            flex-direction: column;
+                            gap: 12px;
+                        ">
+                            <a href="echokit_diy.html" style="
+                                color: #ffffff;
+                                text-decoration: none;
+                                opacity: 0.8;
+                                transition: all 0.3s ease;
+                            " onmouseover="this.style.opacity='1'; this.style.color='#9333ea'" 
+                               onmouseout="this.style.opacity='0.8'; this.style.color='#ffffff'">
+                                EchoKit DIY
+                            </a>
+                            <a href="echokit_cube.html" style="
+                                color: #ffffff;
+                                text-decoration: none;
+                                opacity: 0.8;
+                                transition: all 0.3s ease;
+                            " onmouseover="this.style.opacity='1'; this.style.color='#9333ea'" 
+                               onmouseout="this.style.opacity='0.8'; this.style.color='#ffffff'">
+                                EchoKit Cube
+                            </a>
+                            <a href="echokit_web.html" style="
+                                color: #ffffff;
+                                text-decoration: none;
+                                opacity: 0.8;
+                                transition: all 0.3s ease;
+                            " onmouseover="this.style.opacity='1'; this.style.color='#9333ea'" 
+                               onmouseout="this.style.opacity='0.8'; this.style.color='#ffffff'">
+                                EchoKit Voice
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Resources -->
+                    <div>
+                        <h4 style="
+                            font-size: 1.2rem;
+                            font-weight: 700;
+                            margin-bottom: 20px;
+                            color: #9333ea;
+                        ">Resources</h4>
+                        <div style="
+                            display: flex;
+                            flex-direction: column;
+                            gap: 12px;
+                        ">
+                            <a href="https://echokit.dev/docs/quick-start" target="_blank" style="
+                                color: #ffffff;
+                                text-decoration: none;
+                                opacity: 0.8;
+                                transition: all 0.3s ease;
+                            " onmouseover="this.style.opacity='1'; this.style.color='#9333ea'" 
+                               onmouseout="this.style.opacity='0.8'; this.style.color='#ffffff'">
+                                Docs
+                            </a>
+                            <a href="https://github.com/second-state/echokit_server" target="_blank" style="
+                                color: #ffffff;
+                                text-decoration: none;
+                                opacity: 0.8;
+                                transition: all 0.3s ease;
+                            " onmouseover="this.style.opacity='1'; this.style.color='#9333ea'" 
+                               onmouseout="this.style.opacity='0.8'; this.style.color='#ffffff'">
+                                EchoKit Server
+                            </a>
+                            <a href="https://github.com/second-state/echokit_box" target="_blank" style="
+                                color: #ffffff;
+                                text-decoration: none;
+                                opacity: 0.8;
+                                transition: all 0.3s ease;
+                            " onmouseover="this.style.opacity='1'; this.style.color='#9333ea'" 
+                               onmouseout="this.style.opacity='0.8'; this.style.color='#ffffff'">
+                                EchoKit Firmware
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Bottom Bar -->
+            <div class="container" style="
+                padding-top: 30px;
+                border-top: 1px solid rgba(147, 51, 234, 0.1);
+                margin-top: 40px;
+            ">
+                <p style="opacity: 0.8; margin: 0; text-align: center;">
                     &copy; 2025 EchoKit. Open source under GPL3 License.
                 </p>
             </div>
         </footer>
+
+        <style>
+            @media (max-width: 768px) {
+                footer > .container > div:first-child {
+                    grid-template-columns: 1fr !important;
+                    gap: 30px !important;
+                }
+                footer > .container > div:first-child > div:last-child {
+                    grid-template-columns: 1fr !important;
+                }
+            }
+        </style>
 
         <script>
             // Smooth scrolling for navigation links
@@ -1449,7 +1633,7 @@
                 const videoPlayer = document.getElementById('local-player');
                 if (videoPlayer) {
                     const activeVideo = document.querySelector('.carousel-video.active');
-                    activeVideo.style.display = '';
+                  <  activeVideo.style.display = '';
                     console.log("Removing video player");
                     console.log(activeVideo);
                     document.getElementById('play-overlay').style.display = '';
@@ -1486,7 +1670,7 @@
                 const videoId = activeVideo.dataset.videoId;
                 const videoSrc = `media/${videoId}.mp4`
                 const rect = activeVideo.getBoundingClientRect();
-                // 隐藏当前图片
+                // hide the current image
                 activeVideo.style.display = 'none';
                 // Create or switch to the video element
                 let videoPlayer = document.getElementById('local-player');
