@@ -8,35 +8,32 @@ After [assembling your EchoKit DIY device](./assemble-echokit.md), let’s take 
 
 ![](buttons-echokit-diy.png)
 
-## USB Port — for Power and Firmware Flashing
-
-There are two USB ports on the ESP32 development board.
-The **right-side port** is the one you’ll typically use. You can use this USB port to:
-
-* Power the device using a battery or USB cable
-* Flash new firmware onto the board
-
-![](usb-port-echokit-diy.png)
-
 ## K0 Button
 
-The **K0 button** (located on the left side of the device) is a multi-purpose control button. It’s used when you want to:
+The **K0 button** (located on the left side of the device) is a multi-purpose control button. It is used when you want to
 
-* Flash the firmware
-* Connect or reconnect the EchoKit device to the server
-* Start a conversation
-* Interrupt or stop the conversation
+* Start a conversation and have the device "listen" for you.
+* Interrupt or stop when the device is "speaking".
+
+You also need this button when you want to
+
+* Configure WiFi and EchoKit server: Press and hold **K0** when the device is starting up. Restart the device by clicking on **RST**. [Learn more](../quick-start.md)
+* Flash the device: Press and hold **RST** and then click on **K0**. [Learn more](flash-firmware.md)
 
 ![](k0-button-echokit-diy.png)
 
-
-You can have a full view by the following image.
-
 ## RST Button
 
-The **RST button** (located on the left side of the ESP32 development board) is used to:
-
-* Restart the device
-* Reconnect the EchoKit device to the server
+The **RST button** (located on the left side of the ESP32 development board) is used to restart the device. As above mentioned, it could also be used with **K0** to configure or flash the device.
 
 ![](rst-button-echokit-diy.png)
+
+## USB Port — for Power and Firmware Flashing
+
+There are two USB ports on the ESP32 development board.
+The **right-side port** is the one you’ll typically use. You can use this USB port to
+
+* Power the device using a USB cable.
+* Flash new firmware onto the device. [Learn more](flash-firmware.md)
+
+![](usb-port-echokit-diy.png)
