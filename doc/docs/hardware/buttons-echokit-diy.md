@@ -28,7 +28,7 @@ The **RST button** (located on the left side of the ESP32 development board) is 
 
 ![](rst-button-echokit-diy.png)
 
-## USB Port — for Power and Firmware Flashing
+## USB Ports — Power and Firmware Flashing
 
 There are two USB ports on the ESP32 development board.
 The **right-side port** is the one you’ll typically use. You can use this USB port to
