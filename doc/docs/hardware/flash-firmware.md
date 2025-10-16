@@ -6,6 +6,10 @@ sidebar_position: 2
 
 Each EchoKit comes pre-flashed with our [open-source ESP32 firmware](https://github.com/second-state/echokit_box). If your device isn't working as expected, you can manually re-flash it by following these steps.
 
+This guide shows the [EchoKit DIY](https://echokit.dev/echokit_diy.html) device as examples.
+The [EchoKit CUBE](https://echokit.dev/echokit_cube.html) device is very similiar. 
+Just choose the appropriate "ESP Develop Kits" on the Launchpad UI or download the correct firmware binary file as indicated below.
+
 ## 1. Connect your EchoKit device to your computer
 
 You need to use an USB cable to connect between your computer and the USB-C port on EchoKit labeled `TTL`. Your computer will probably prompt you to accept or trust the connected USB device. You MUST accept the USB connection.
