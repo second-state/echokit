@@ -42,7 +42,7 @@ Your EchoKit is now connected and ready to use.
 
 Press the **K0 button** to start your conversation with EchoKit.
 
-![](../echokit-quick-start-04.jpg)
+![](../echokit-quick-start-05.jpg)
 
 ## Re-connect the Echokit server
 
