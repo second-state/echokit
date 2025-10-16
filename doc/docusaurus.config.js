@@ -78,6 +78,17 @@ const config = {
     ],
   ],
 
+  scripts: [
+    {
+      src: 'https://www.googletagmanager.com/gtag/js?id=G-EMHQHV54LP',
+      async: true,
+    },
+    {
+      src: 'js/ga-init.js',
+      async: false,
+    },
+  ],
+
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
