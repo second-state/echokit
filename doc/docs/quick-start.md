@@ -16,7 +16,7 @@ Use a **USB Type-C data cable** to connect EchoKit to a power source, such as a 
 
 ![](echokit-quick-start-01.jpg)
 
-You will see the QR code display on the EchoKit screen. If not, click on the **RST button** to restart the device, and then immediately, press and hold the **K0 button**.
+You will see the QR code display on the EchoKit screen. If not, click on the [**RST button**](hardware/buttons-echokit-diy.md) to restart the device, and then immediately, press and hold the [**K0 button**](hardware/buttons-echokit-diy.md).
 
 ![](echokit-quick-start-02.jpg)
 
@@ -26,11 +26,11 @@ You will see the QR code display on the EchoKit screen. If not, click on the **R
 ## Step 2: Connect EchoKit to Your Computer
 
 Open a web browser on a desktop computer and go to:  
-👉 [https://echokit.dev/setup/](https://echokit.dev/setup/)
+👉 [**https://echokit.dev/setup/**](https://echokit.dev/setup/)
 
 > Make sure that your computer has Bluetooth turned ON.
 
-Click **“Connect to EchoKit”** to begin Bluetooth pairing.
+Click **Connect to EchoKit** to begin Bluetooth pairing.
 
 ![](echokit-quick-start-03.png)
 
@@ -52,7 +52,7 @@ Once paired via Bluetooth, you’ll be redirected to a setup interface where you
 
 For each field, click the **"Write"** button after entering the value.
 
-After you are done writing all fields, click **K0 button** on the EchoKit device.
+After you are done writing all fields, click [**K0 button**](hardware/buttons-echokit-diy.md) on the EchoKit device.
 
 ---
 
@@ -70,7 +70,7 @@ This means your device is ready to use!
 
 ## Step 5: Start Chatting
 
-Press the **K0 button** to start your conversation with EchoKit. The status bar at the top of the screen says "Listening ..." and it is ready to respond to you!
+Press the [**K0 button**](hardware/buttons-echokit-diy.md) to start your conversation with EchoKit. The status bar at the top of the screen says "Listening ..." and it is ready to respond to you!
 
 ![](echokit-quick-start-05.jpg)
 
