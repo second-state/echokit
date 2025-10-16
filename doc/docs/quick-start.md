@@ -16,7 +16,7 @@ Use a **USB Type-C data cable** to connect EchoKit to a power source, such as a 
 
 ![](echokit-quick-start-01.jpg)
 
-You will see the QR code display on the EchoKit screen. If not, press and hold the **K0 button**, and at the same time press and release the **RST button** button on the device.
+You will see the QR code display on the EchoKit screen. If not, press and hold the **K0 button** while the device is starting up. You can restart the device by reconnecting the USB power or pressing the **RST button**.
 
 ![](echokit-quick-start-02.jpg)
 
