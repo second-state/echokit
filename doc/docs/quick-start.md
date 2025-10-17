@@ -77,8 +77,8 @@ Press the [**K0 button**](hardware/buttons-echokit-diy.md) to start your convers
 ![](echokit-quick-start-05.jpg)
 
 If it says "Idle" or "Speaking" in the status bar at the top of the screen, it cannot hear you and would not respond to you. ;) 
-* When it's in Idle, you can press K0 button to start the chat mode
-* When it's speaking, you can talk to the device when it finishes the talk.
+* When it's idle, press the K0 button to start chat mode.
+* When it's speaking, wait until it finishes before talking.
 
 Enjoy your voice AI journey.
 
