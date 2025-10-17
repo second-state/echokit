@@ -39,7 +39,7 @@ voice = "VOICE_ID_HERE"
 ### Why It Matters
 
 EchoKit’s mission is to help everyone **build and own their own AI voice agent**.
-With the power of 11labs, you can now customize the voice with ease.
+With the power of ElevenLabs, you can now customize the voice with ease.
 
 ### Try It Today
 
