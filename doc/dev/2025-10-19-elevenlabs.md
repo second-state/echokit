@@ -5,7 +5,7 @@ tags: [echokit]
 ---
 
 
-We’re excited to share a new update — **EchoKit now supports 11labs**, one of the most advanced voice synthesis platforms in the world. This means your EchoKit can now speak with **natural, expressive, and human-like voices** in multiple languages and styles.
+We’re excited to share a new update — **EchoKit now supports ElevenLabs**, one of the most advanced voice synthesis platforms in the world. This means your EchoKit can now speak with **natural, expressive, and human-like voices** in multiple languages and styles.
 
 ### What’s New
 
