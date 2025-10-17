@@ -10,7 +10,7 @@ This guide walks you through setting up your **EchoKit**, which comes pre-assemb
 
 ## Get familiar with the buttons
 
-Let’s take a moment to get familiar with the common buttons and ports. The image below gives you a clear overview of them. Learn more about the buutons on Button on [Buttons on EchoKit DIY](hardware/buttons-echokit-diy.md)
+Let’s take a moment to get familiar with the common buttons and ports. The image below gives you a clear overview of them. Learn more about the buttons on Button on [Buttons on EchoKit DIY](hardware/buttons-echokit-diy.md)
 
 ![](hardware/buttons-echokit-diy.png)
 
