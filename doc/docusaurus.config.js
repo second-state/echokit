@@ -102,10 +102,9 @@ const config = {
         },
         items: [
           {
-            type: 'docSidebar',
-            sidebarId: 'tutorialSidebar',
+            href: 'https://echokit.dev',
+            label: 'Home',
             position: 'left',
-            label: 'Tutorial',
           },
           {to: '/dev', label: 'Build in Public', position: 'left'},
           {
