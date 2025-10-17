@@ -19,8 +19,8 @@ function HomepageHeader() {
         <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"
-            to="/docs/intro">
-            Quick Start in 5min
+            to="/docs/quick-start">
+            Quick start for your device
           </Link>
         </div>
       </div>
