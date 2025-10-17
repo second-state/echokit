@@ -48,5 +48,6 @@ Press the **K0 button** to start your conversation with EchoKit.
 
 If you need to update your Wi-Fi settings, you’ll have to reconnect the EchoKit device to the server.
 
-1. Click on the RST button to restart the device, and then immediately, press and hold the K0 button until you see the QR code shows.
-3. Repeat the above steps to pair the device and re-enter your Wi-Fi and server details.  
+1. Press the **RST** (reset) button to restart the device.
+2. Immediately press and hold the **K0** button until the QR code appears.
+3. Repeat the steps above to pair the device and re-enter your Wi-Fi and server details.
