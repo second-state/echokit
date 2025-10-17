@@ -9,7 +9,7 @@ We’re excited to share a new update — **EchoKit now supports ElevenLabs**, o
 
 ### What’s New
 
-With 11labs integration, EchoKit users can:
+With ElevenLabs integration, EchoKit users can:
 
 * Generate **lifelike speech** with rich tone and emotion
 * Choose from **dozens of AI voices** or create your own
