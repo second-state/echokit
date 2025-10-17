@@ -8,7 +8,12 @@ This guide walks you through setting up your **EchoKit**, which comes pre-assemb
 
 > If you would like to get a preview before your EchoKit device arrives, you can use our [web-base EchoKit device simulator](https://echokit.dev/chat/resources/).
 
----
+## Get familiar with the buttons
+
+Let’s take a moment to get familiar with the common buttons and ports. The image below gives you a clear overview of them. Learn more about the buttons on Button on [Buttons on EchoKit DIY](hardware/buttons-echokit-diy.md)
+
+![](hardware/buttons-echokit-diy.png)
+
 
 ## Step 1: Power up EchoKit
 
@@ -21,8 +26,6 @@ You will see the QR code display on the EchoKit screen. If not, click on the [**
 ![](echokit-quick-start-02.jpg)
 
 
----
-
 ## Step 2: Connect EchoKit to Your Computer
 
 Open a web browser on a desktop computer and go to:  
@@ -34,7 +37,7 @@ Click **Connect to EchoKit** to begin Bluetooth pairing.
 
 ![](echokit-quick-start-03.png)
 
----
+
 
 ## Step 3: Configure Wi-Fi and Server
 
@@ -54,7 +57,7 @@ For each field, click the **"Write"** button after entering the value.
 
 After you are done writing all fields, click [**K0 button**](hardware/buttons-echokit-diy.md) on the EchoKit device.
 
----
+
 
 ## Step 4: Confirm Setup on EchoKit
 
@@ -62,11 +65,10 @@ Once configuration is complete, EchoKit will:
 
 - Display a welcome screen  
 - Play a voice greeting like: **"Hi there"**  
-- Show a message like: **"Background data loaded"**
+- Show a message like: **"Hello Set"**
 
 This means your device is ready to use!
 
----
 
 ## Step 5: Start Chatting
 
@@ -74,7 +76,9 @@ Press the [**K0 button**](hardware/buttons-echokit-diy.md) to start your convers
 
 ![](echokit-quick-start-05.jpg)
 
-If it says "Idle" or "Speaking" in the status bar at the top of the screen, it cannot hear you and would not respond to you. ;)
+If it says "Idle" or "Speaking" in the status bar at the top of the screen, it cannot hear you and would not respond to you. ;) 
+* When it's idle, press the K0 button to start chat mode.
+* When it's speaking, wait until it finishes before talking.
 
 Enjoy your voice AI journey.
 

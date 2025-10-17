@@ -12,6 +12,7 @@ Before starting, make sure you have:
 
 * Successfully [flashed the EchoKit hardware](../hardware/flash-firmware.md)
 * A [running EchoKit server](echokit-server.md)
+* Powered up your EchoKit
 
 ## Steps to Connect
 
@@ -33,8 +34,7 @@ Before starting, make sure you have:
 
 Once the connection is successful: 
 
-* The device will greet you with an audio message: **“Hi there”**  
-* The display will show the background image  
+* The device will greet you with an audio message: **“Hi there”**   
 
 Your EchoKit is now connected and ready to use.
 
@@ -48,6 +48,6 @@ Press the **K0 button** to start your conversation with EchoKit.
 
 If you need to update your Wi-Fi settings, you’ll have to reconnect the EchoKit device to the server.
 
-1. Press the **RST (reset) button** on the device.  
-2. When you see Reconnect the WiFi on the screen, press and hold the **K0 button** (on the left-hand side of the device) until the QR code appears again.  
-3. Repeat the above steps to pair the device and re-enter your Wi-Fi and server details.  
+1. Press the **RST** (reset) button to restart the device.
+2. Immediately press and hold the **K0** button until the QR code appears.
+3. Repeat the steps above to pair the device and re-enter your Wi-Fi and server details.
