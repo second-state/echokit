@@ -34,7 +34,7 @@ voice = "VOICE_ID_HERE"
 ```
 
 4. Save the file and [rerun your EchoKit server](https://echokit.dev/docs/server/echokit-server).
-5. Connect the new server with your device again
+5. Reconnect your device to the server.
 
 ### Why It Matters
 
