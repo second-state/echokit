@@ -8,7 +8,7 @@ const FeatureList = [
     Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
     description: (
       <>
-        Firmware, AI agents, MCP servers, AI/LLM model inference, ESP 32 servers are all open sourced. Complete solution from embedded firmware to AI inference server.
+        Everything is open-source and written in Rust. Full-stack and complete solution from embedded firmware to AI agents to inference API servers.
       </>
     ),
   },
@@ -17,7 +17,7 @@ const FeatureList = [
     Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
     description: (
       <>
-        Choose your preferred AI models including LLMs, voice to text, and TTS model, or switch between them seamlessly. You can also build your voice AI agent with MCP and agentic search.
+        Choose your preferred AI models, including LLMs, ASRs (voice to text), and TTS. You can also build your voice AI agent with MCP and agentic search.
       </>
     ),
   },
@@ -26,7 +26,7 @@ const FeatureList = [
     Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
     description: (
       <>
-        Learn AI from inside out by our full documentation and tutorials. You will master how to build and customize your own AI system on your own computers
+        Learn AI from inside out through our documentation and tutorials. You will master how to build and customize AI systems on your own computers.
       </>
     ),
   },
