@@ -1294,14 +1294,84 @@
             </div>
         </section>
 
-        <section id="preorder" class="preorder">
+<section id="preorder" class="preorder">
             <div class="container">
                 <h2 class="preorder-title">Your trusted partner</h2>
                 <p class="preorder-subtitle">
                     EchoKit is used by students and teachers in colleges, high schools and middle schools all over the world.
                 </p>
             </div>
-        </section>
+        
+        <!-- Partner logos grid - 4 per row -->
+                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; max-width: 1100px; margin-left: auto; margin-right: auto;">
+
+            <div style="display: flex; align-items: center; justify-content: center; padding: 1.5rem; background: rgba(255, 255, 255, 0.95); border-radius: 12px; transition: all 0.3s ease;">
+                <img src="assets/texas-state-university.jpg" alt="Texas State University" style="max-width: 100%; height: auto; max-height: 70px;">
+            </div>
+            
+            <div style="display: flex; align-items: center; justify-content: center; padding: 1.5rem; background: rgba(255, 255, 255, 0.95); border-radius: 12px; transition: all 0.3s ease;">
+                <img src="assets/tsinghua.jpg" alt="Tsinghua University" style="max-width: 100%; height: auto; max-height: 70px;">
+            </div>
+            
+            <div style="display: flex; align-items: center; justify-content: center; padding: 1.5rem; background: rgba(255, 255, 255, 0.08); border-radius: 12px; transition: all 0.3s ease;">
+                <img src="assets/wyoff-logo.png" alt="Wah Yan One Family Foundation" style="max-width: 100%; height: auto; max-height: 70px;">
+            </div>
+            
+            <div style="display: flex; align-items: center; justify-content: center; padding: 1.5rem; background: rgba(255, 255, 255, 0.08); border-radius: 12px; transition: all 0.3s ease;">
+                <img src="assets/rust-global-logo.svg" alt="Rust Global" style="max-width: 100%; height: auto; max-height: 70px;">
+            </div>
+            
+            <div style="display: flex; align-items: center; justify-content: center; padding: 1.5rem; background: rgba(255, 255, 255, 0.95); border-radius: 12px; transition: all 0.3s ease;">
+                <img src="assets/gosim-logo.svg" alt="GOSIM" style="max-width: 100%; height: auto; max-height: 70px;">
+            </div>
+            
+            <div style="display: flex; align-items: center; justify-content: center; padding: 1.5rem; background: rgba(255, 255, 255, 0.95); border-radius: 12px; transition: all 0.3s ease;">
+                <img src="assets/austin-independant.svg" alt="Liberal Arts and Science Academy of Austin" style="max-width: 100%; height: auto; max-height: 70px;">
+            </div>
+            <div style="display: flex; align-items: center; justify-content: center; padding: 1.5rem; background: rgba(255, 255, 255, 0.95); border-radius: 12px; transition: all 0.3s ease;">
+                <img src="assets/rustchinaconf-logo.svg" alt="RustChinaConf" style="max-width: 100%; height: auto; max-height: 70px;">
+            </div>
+        </div>
+    </div>
+</section>
+        </div>
+    </div>
+</section>
+
+<style>
+@media (max-width: 1024px) {
+    .partners div[style*="grid-template-columns: repeat(4, 1fr)"] {
+        grid-template-columns: repeat(3, 1fr) !important;
+    }
+}
+@media (max-width: 768px) {
+    .partners div[style*="grid-template-columns: repeat(4, 1fr)"] {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 1.5rem !important;
+    }
+}
+@media (max-width: 480px) {
+    .partners div[style*="grid-template-columns: repeat(4, 1fr)"] {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+    }
+}
+</style>
+
+<style>
+@media (max-width: 768px) {
+    .partners div[style*="grid-template-columns: repeat(3, 1fr)"] {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 1.5rem !important;
+    }
+}
+@media (max-width: 480px) {
+    .partners div[style*="grid-template-columns: repeat(3, 1fr)"] {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+    }
+}
+</style>
 
         <!--
         <section id="preorder" class="preorder">
