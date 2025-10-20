@@ -657,6 +657,38 @@
                 text-align: center;
             }
 
+            .logo-dark {
+                display: flex; 
+                align-items: center; 
+                justify-content: center; 
+                padding: 1.5rem; 
+                background: rgba(255, 255, 255, 0.95); 
+                border-radius: 12px; 
+                transition: all 0.3s ease;
+            }
+
+            .logo-dark img {
+                max-width: 100%; 
+                height: auto; 
+                max-height: 70px;
+            }
+
+            .logo-lite {
+                display: flex; 
+                align-items: center; 
+                justify-content: center; 
+                padding: 1.5rem; 
+                background: rgba(255, 255, 255, 0.08); 
+                border-radius: 12px; 
+                transition: all 0.3s ease;
+            }
+
+            .logo-lite img {
+                max-width: 100%; 
+                height: auto; 
+                max-height: 70px;
+            }
+
             /* Responsive */
             @media (max-width: 1200px) {
                 .pain-points {
@@ -738,6 +770,43 @@
                     gap: 20px;
                 }
             }
+
+            @media (max-width: 768px) {
+                footer > .container > div:first-child {
+                    grid-template-columns: 1fr !important;
+                    gap: 30px !important;
+                }
+                footer > .container > div:first-child > div:last-child {
+                    grid-template-columns: 1fr !important;
+                }
+            }
+
+.partners-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    max-width: 1100px; 
+    margin-left: auto; 
+    margin-right: auto;
+}
+
+@media (max-width: 1024px) {
+    .partners-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+@media (max-width: 768px) {
+    .partners-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+}
+@media (max-width: 480px) {
+    .partners-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+}
         </style>
     </head>
 
@@ -1301,53 +1370,39 @@
                     EchoKit is used by students and teachers in colleges, high schools and middle schools all over the world.
                 </p>
             </div>
+        
+        <!-- Partner logos grid - 4 per row -->
+        <div class="partners partners-grid">
+
+            <div class="logo-dark">
+                <img src="assets/texas-state-university.jpg" alt="Texas State University">
+            </div>
+            
+            <div class="logo-dark">
+                <img src="assets/tsinghua.jpg" alt="Tsinghua University">
+            </div>
+            
+            <div class="logo-lite">
+                <img src="assets/wyoff-logo.png" alt="Wah Yan One Family Foundation">
+            </div>
+            
+            <div class="logo-lite">
+                <img src="assets/rust-global-logo.svg" alt="Rust Global">
+            </div>
+            
+            <div class="logo-dark">
+                <img src="assets/gosim-logo.svg" alt="GOSIM">
+            </div>
+            
+            <div class="logo-dark">
+                <img src="assets/austin-independent.svg" alt="Liberal Arts and Science Academy of Austin">
+            </div>
+            <div class="logo-dark">
+                <img src="assets/rustchinaconf-logo.svg" alt="RustChinaConf">
+            </div>
+        </div>
         </section>
 
-        <!--
-        <section id="preorder" class="preorder">
-            <div class="container">
-                <h2 class="preorder-title">Buy EchoKit</h2>
-                <p class="preorder-subtitle">
-                    We will manually assemble, flash, and test each device toolkit before shipping. Expect delivery in up to 3 weeks for international orders. Thank you for your patience.
-                </p>
-                <div class="cta-buttons">
-                    <a
-                        href="https://echokit.dev/spec.html"
-                        target="_blank"
-                        class="cta-button cta-secondary"
-                        style="
-                            font-size: 1.2rem;
-                            padding: 20px 50px;
-                            display: inline-block;
-                        "
-                        >Spec →</a
-                    >
-                    <a
-                        href="https://buy.stripe.com/5kQcN66z93h924Kam963K04"
-                        target="_blank"
-                        class="cta-button"
-                        style="
-                            font-size: 1.2rem;
-                            padding: 20px 50px;
-                            display: inline-block;
-                        "
-                        >Buy EchoKit →</a
-                    >
-                    <a
-                        href="https://buy.stripe.com/5kQ28scXx2d56l09i563K03"
-                        target="_blank"
-                        class="cta-button"
-                        style="
-                            font-size: 1.2rem;
-                            padding: 20px 50px;
-                            display: inline-block;
-                        "
-                        >EchoKit + Book →</a
-                    >
-                </div>
-            </div>
-        </section>
-        -->
         <footer
             style="
                 padding: 60px 0 30px;
@@ -1535,18 +1590,6 @@
                 </p>
             </div>
         </footer>
-
-        <style>
-            @media (max-width: 768px) {
-                footer > .container > div:first-child {
-                    grid-template-columns: 1fr !important;
-                    gap: 30px !important;
-                }
-                footer > .container > div:first-child > div:last-child {
-                    grid-template-columns: 1fr !important;
-                }
-            }
-        </style>
 
         <script>
             // Smooth scrolling for navigation links
