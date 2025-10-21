@@ -7,6 +7,17 @@ tags: [echokit]
 
 We’re excited to share a new update — **EchoKit now supports ElevenLabs**, one of the most advanced voice synthesis platforms in the world. This means your EchoKit can now speak with **natural, expressive, and human-like voices** in multiple languages and styles.
 
+<iframe
+  width="560"
+  height="315"
+  src="https://www.youtube.com/embed/BMvzNP9fVIk"
+  title="EchoKit and ElevenLabs Demo Video"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen
+></iframe>
+
+
 ### What’s New
 
 With ElevenLabs integration, EchoKit users can:
