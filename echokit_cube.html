@@ -1,5 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+    <!-- Twitter conversion tracking base code -->
+<script>
+
+function trackTwitterCheckout() {
+    try {
+        twq('event', 'tw-ocqo3-ocqo3', {
+            value: '49.00',
+            currency: 'USD',
+            content_name: 'EchoKit DIY Toolkit',
+            num_items: '1'
+        });
+        
+        gtag('event', 'begin_checkout', {
+            currency: 'USD',
+            value: 49.00,
+            items: [{
+                item_id: 'echokit-diy',
+                item_name: 'EchoKit DIY Toolkit',
+                price: 49.00,
+                quantity: 1
+            }]
+        });
+        
+        console.log('Checkout events tracked');
+    } catch (error) {
+        console.error('Tracking error:', error);
+    }
+}
+</script>
+<!-- End Twitter conversion tracking base code -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -672,7 +702,7 @@ twq('config','qnwr5');
                     <p class="price-note">Fully assembled AI assistant in a very small cube, together with full stack open-source software, documentation, and learning materials. Shipping internationally.</p>
                     
                     <div class="cta-buttons">
-                        <a href="https://buy.stripe.com/4gM9AU6z92d57p465T63K0a" class="cta-button">Buy EchoKit</a>
+                        <a href="https://buy.stripe.com/4gM9AU6z92d57p465T63K0a" class="cta-button" onclick="trackTwitterCheckout(event)">Buy EchoKit</a>
                         <a href="https://forms.gle/MagV8UfLNYYLnCqi6" target="_blank" class="cta-button cta-secondary">Bulk order</a>
                     </div>
                 </div>
@@ -846,7 +876,7 @@ twq('config','qnwr5');
                 Ships within 3 weeks. Each device is hand-assembled, tested, and comes with lifetime access to documentation and updates.
             </p>
             <div class="cta-buttons" style="justify-content: center;">
-                <a href="https://buy.stripe.com/4gM9AU6z92d57p465T63K0a" class="cta-button">Buy EchoKit - $49</a>
+                <a href="https://buy.stripe.com/4gM9AU6z92d57p465T63K0a" class="cta-button" onclick="trackTwitterCheckout(event)">Buy EchoKit -- $49</a>
                 <a href="https://forms.gle/MagV8UfLNYYLnCqi6" target="_blank" class="cta-button cta-secondary">Bulk order for your school</a>
             </div>
         </div>
