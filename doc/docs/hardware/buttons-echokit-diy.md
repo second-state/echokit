@@ -12,8 +12,10 @@ After [assembling your EchoKit DIY device](./assemble-echokit.md), let’s take 
 
 The **K0 button** (located on the left side of the device) is a multi-purpose control button. It is used when you want to
 
-* Start a conversation and have the device "listen" for you.
-* Interrupt or stop when the device is "speaking".
+* Toggle between listening and idle modes when the device is not speaking. 
+
+* Interrupt the device and switch to listening mode, when the device is speaking.
+
 
 You also need this button when you want to
 
