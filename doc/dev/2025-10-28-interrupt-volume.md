@@ -9,7 +9,7 @@ We’ve just released new versions of **EchoKit Server (0.1.2)** and **EchoKit F
 * EchoKit Server: https://github.com/second-state/echokit_server/
 * EchoKit Firmware: https://github.com/second-state/echokit_box
 
-![](interrupt-volume,png)
+![](interrupt-volume.png)
 
 ### Button Interrupt
 
