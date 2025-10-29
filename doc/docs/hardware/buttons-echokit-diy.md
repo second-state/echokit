@@ -39,3 +39,11 @@ The **right-side port** is the one you’ll typically use. You can use this USB 
 * Flash new firmware onto the device. [Learn more](flash-firmware.md)
 
 ![](usb-port-echokit-diy.png)
+
+## Volume button -- Adjust the volume
+
+The **volume buttons** (located on the left side of the device) are used to adjust the volume of the device.
+* The top button increases the volume.
+* The bottom button lowers the volume.
+
+![](volume-buttons.png)
