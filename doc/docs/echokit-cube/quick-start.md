@@ -6,7 +6,7 @@ sidebar_position: 1
 
 This guide walks you through setting up your **EchoKit Cube**, which comes pre-assembled and ready to use.  
 
-> If you would like to get a preview before your EchoKit device arrives, you can use our [web-base EchoKit device simulator](https://echokit.dev/chat/resources/).
+> If you would like to get a preview before your EchoKit device arrives, you can use our [web-based EchoKit device simulator](https://echokit.dev/chat/resources/).
 
 ## Get familiar with the buttons
 
