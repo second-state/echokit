@@ -31,7 +31,6 @@ Open a web browser on a desktop computer and go to:
 
 Click **Connect to EchoKit** to begin Bluetooth pairing.
 
-![](echokit-quick-start-03.png)
 
 
 
@@ -39,7 +38,6 @@ Click **Connect to EchoKit** to begin Bluetooth pairing.
 
 Once paired via Bluetooth, you’ll be redirected to a setup interface where you can enter:
 
-![](echokit-quick-start-04.png)
 
 - **Wi-Fi Network**: Your Wi-Fi network name. It MUST be a 2.4G network.  
 - **Wi-Fi Password**: Your Wi-Fi access code  
