@@ -12,7 +12,7 @@ We’ve added diverse, natural accents including **Southern, Asian, African-Amer
 
 Each voice is expressive and warm, built to sound like a real person rather than a robotic assistant.
 
-<iframe width="560" height="315" src="https://youtube.com/shorts/JL-31jf0FqQ" title="EchoKit Voice Demo Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen ></iframe>
+<iframe width="560" height="315" src="https://youtube.com/embed/JL-31jf0FqQ" title="EchoKit Voice Demo Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen ></iframe>
 
 No installation or payment needed — just open the EchoKit web demo and start exploring: [https://funvoice.echokit.dev/](https://funvoice.echokit.dev/)
 
