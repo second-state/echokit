@@ -13,7 +13,7 @@ We’ve just released new versions of **EchoKit Server (0.1.2)** and **EchoKit F
 
 ### Button Interrupt
 
-You can now **interrupt EchoKit’s speech with a simple K0 button press**, which are located on the left side of the EchoKit device
+You can now **interrupt EchoKit’s speech with a simple K0 button press**, which are located on the left side of the EchoKit device.
 
 This makes your voice assistant feel more responsive — no need to wait until it finishes talking. Just press the button and start speaking right away!
 
