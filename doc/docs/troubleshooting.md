@@ -30,7 +30,7 @@ Then, [run the EchoKit server](server/quick-start.md) on a computer on your loca
 
 If you use the default `config.toml`, you will be running the EchoKit server at port 8080.
 From the computer's network settings, locate its local network IP address (e.g., `192.168.2.201`).
-In the EchoKit device configuration](quick-start.md), use the local EchoKit server -- replace the IP address with your own.
+In the [EchoKit device configuration](server/setup.md), use the local EchoKit server -- replace the IP address with your own.
 
 ```
 ws://192.168.2.201:8080/ws
