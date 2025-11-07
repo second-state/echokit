@@ -38,19 +38,18 @@ Click **Connect to EchoKit** to begin Bluetooth pairing.
 ![](echokit-quick-start-03.png)
 
 
-
 ## Step 3: Configure Wi-Fi and Server
 
 Once paired via Bluetooth, you’ll be redirected to a setup interface where you can enter:
 
 ![](echokit-quick-start-04.png)
 
-- **Wi-Fi Network**: Your Wi-Fi network name. It MUST be a 2.4G network.  
+- **Wi-Fi Network**: Your Wi-Fi network name. It MUST be a 2.4G network.
 - **Wi-Fi Password**: Your Wi-Fi access code  
 - **EchoKit Server**: The IP and port of the EchoKit Server you're connecting to. You can use our hosted servers depending on your location:
     - 🇺🇸 US: `ws://indie.echokit.dev/ws`
-    - 🇭🇰 Hong Kong: `ws://hk.echokit.dev/ws`
-    - 🇸🇬 Singapore: TBD
+    - 🇭🇰 EU: `ws://eu.echokit.dev/ws`
+    - 🇸🇬 Rest of the world: [run your own EchoKit server](server/quick-start.md)
 - **Background Image**: Upload a transparent GIF image as the background for the device.
 
 For each field, click the **"Write"** button after entering the value.
@@ -77,9 +76,11 @@ Press the [**K0 button**](hardware/buttons-echokit-diy.md) to start your convers
 ![](echokit-quick-start-05.jpg)
 
 If it says "Idle" or "Speaking" in the status bar at the top of the screen, it cannot hear you and would not respond to you. ;) 
+
 * When it's idle, press the K0 button to start chat mode.
-* When it's speaking, wait until it finishes before talking.
+* When it's speaking, press the K0 button to interrupt.
+* When it's listening, press the K0 button to stop listening and go to the idle mode.
 
 Enjoy your voice AI journey.
 
-> TROUBLESHOOTING: If your EchoKit does not respond to you, please try upgrading its software through [this guide](hardware/flash-firmware.md).
+> If your EchoKit does not respond to you, please refer to the [troubleshooting guide](troubleshooting.md).

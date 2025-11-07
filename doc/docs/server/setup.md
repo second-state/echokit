@@ -10,9 +10,10 @@ In this guide, we'll walk through connecting your EchoKit device to the EchoKit 
 
 Before starting, make sure you have:  
 
-* Successfully [flashed the EchoKit hardware](../hardware/flash-firmware.md)
-* A [running EchoKit server](echokit-server.md)
+* A [running EchoKit server](quick-start.md)
 * Powered up your EchoKit
+
+**IMPORTANT** If you are connecting to an EchoKit server on your local network (e.g., a personal laptop connected to WiFi), you will need to find out the local network IP address of the computer. You can typically find that information by opening network settings on that computer. The IP address is something like `192.168.2.101`.
 
 ## Steps to Connect
 
@@ -20,9 +21,9 @@ Before starting, make sure you have:
 2. Click **Connect to EchoKit**.  
 3. Find the device named **`nimble`** and click **Pair**.  
 4. Enter the following details:  
-   * **Wi-Fi name (SSID)**  Only support 2.4G WiFi.
+   * **Wi-Fi name (SSID)**  EchoKit supports 2.4 GHz WiFi only.
    * **Wi-Fi password**  
-   * **EchoKit server URL**  
+   * **EchoKit server URL** E.g., public server: `ws://indie.echokit.dev/ws`, or peronal server on the local network: `ws://192.168.2.101:8080/ws`
 
 👉 Remember to click **Write** to save the settings.  
 
@@ -44,9 +45,9 @@ Press the **K0 button** to start your conversation with EchoKit.
 
 ![](../echokit-quick-start-05.jpg)
 
-## Re-connect the Echokit server
+## Use a different Echokit server
 
-If you need to update your Wi-Fi settings, you’ll have to reconnect the EchoKit device to the server.
+If you want to use a different EchoKit server, you will need to enter the device setup page again.
 
 1. Press the **RST** (reset) button to restart the device.
 2. Immediately press and hold the **K0** button until the QR code appears.

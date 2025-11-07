@@ -24,7 +24,7 @@ You can customize each stage independently by editing the EchoKit server's **`co
 
 Before configuring your pipeline, ensure you have:
 
-* **EchoKit server soruce code** – Follow [the guide](./echokit-server.md) if needed
+* **EchoKit server quick start** – Follow [the guide](./quick-start.md) if needed
 * **API keys** for your chosen providers (Groq, OpenAI, etc.)
 * **Audio files** for welcome messages (optional)
 * **Local services running** (if using local models)

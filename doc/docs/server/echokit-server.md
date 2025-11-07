@@ -2,9 +2,9 @@
 sidebar_position: 2
 ---
 
-# Run the EchoKit Server on Your Machine
+# Build and run the EchoKit Server from source
 
-In this guide, we’ll walk through running the EchoKit server locally.
+In this guide, we'll walk through building and running the EchoKit server locally from the source code.
 
 ## Prerequisites
 
