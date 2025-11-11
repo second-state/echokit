@@ -2,20 +2,20 @@
 sidebar_position: 1
 ---
 
-# Quick Start with EchoKit Cube
+# Quick Start with EchoKit Box
 
-This guide walks you through setting up your **EchoKit Cube**, which comes pre-assembled and ready to use.  
+This guide walks you through setting up your **EchoKit Box**, which comes pre-assembled and ready to use.  
 
 > If you would like to get a preview before your EchoKit device arrives, you can use our [web-based EchoKit device simulator](https://echokit.dev/chat/resources/).
 
 ## Get familiar with the buttons
 
-Let’s take a moment to get familiar with the common buttons and ports. The image below gives you a clear overview of them. Learn more about the buttons on Button on Buttons on EchoKit Cube.
+Let’s take a moment to get familiar with the common buttons and ports. The image below gives you a clear overview of them. Learn more about the buttons on EchoKit Box.
 
 
 ## Step 1: Power up EchoKit
 
-Use a **USB Type-C data cable** to connect EchoKit to a power source, such as a battery charger or your computer. The Type-C port is located on the **left side** of the device.
+Use a **USB Type-C data cable** to connect EchoKit Box to a power source, such as a battery charger or your computer. The Type-C port is located on the **right side** of the device.
 
 
 
@@ -47,11 +47,9 @@ Once paired via Bluetooth, you’ll be redirected to a setup interface where you
     - 🇸🇬 Singapore: TBD
 - **Background Image**: Upload a transparent GIF image as the background for the device.
 
-For each field, click the **"Write"** button after entering the value.
+For each field, click the **"Write"** button on the web page after entering the value.
 
-After you are done writing all fields, click **K0 button** on the EchoKit Cube device.
-
-
+After you are done writing all fields, click **K0 button** on the EchoKit Box device, which located in the upside of the device.
 
 ## Step 4: Confirm Setup on EchoKit
 
@@ -67,7 +65,6 @@ This means your device is ready to use!
 ## Step 5: Start Chatting
 
 Press the [**K0 button**] to start your conversation with EchoKit. The status bar at the top of the screen says "Listening ..." and it is ready to respond to you!
-
 
 
 If it says "Idle" or "Speaking" in the status bar at the top of the screen, it cannot hear you and would not respond to you. ;) 
