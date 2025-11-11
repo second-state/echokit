@@ -49,7 +49,7 @@ Once paired via Bluetooth, you’ll be redirected to a setup interface where you
 
 For each field, click the **"Write"** button on the web page after entering the value.
 
-After you are done writing all fields, click **K0 button** on the EchoKit Box device, which loctaed in the upside of the device.
+After you are done writing all fields, click **K0 button** on the EchoKit Box device, which located in the upside of the device.
 
 ## Step 4: Confirm Setup on EchoKit
 
