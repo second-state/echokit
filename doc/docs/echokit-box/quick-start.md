@@ -10,7 +10,7 @@ This guide walks you through setting up your **EchoKit Box**, which comes pre-as
 
 ## Get familiar with the buttons
 
-Let’s take a moment to get familiar with the common buttons and ports. The image below gives you a clear overview of them. Learn more about the buttons on Buttons on EchoKit Box.
+Let’s take a moment to get familiar with the common buttons and ports. The image below gives you a clear overview of them. Learn more about the buttons on EchoKit Box.
 
 
 ## Step 1: Power up EchoKit
