@@ -13,7 +13,7 @@ If you prefer to build from the source code, please refer to [this guide](echoki
 docker run --rm \
   -p 8080:8080 \
   -v $(pwd)/config.toml:/app/config.toml \
-  secondstate/echokit:0.1.0-server-vad &
+  secondstate/echokit:latest-server-vad &
 ```
 
 The required `config.toml` file for the local EchoKit server could be the following. You will need 
