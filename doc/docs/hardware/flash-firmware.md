@@ -12,15 +12,14 @@ Just choose the appropriate "ESP Develop Kits" on the Launchpad UI or download t
 
 ## 1. Connect your EchoKit device to your computer
 
-You need to use an USB cable to connect between your computer and the USB-C port on EchoKit labeled `TTL`. Your computer will probably prompt you to accept or trust the connected USB device. You MUST accept the USB connection.
+You need to use an USB cable to connect between your computer and the USB-C port on EchoKit DIY labeled `OTG` (or, on EchoKit Box labeled `SLAVE`). Your computer will probably prompt you to accept or trust the connected USB device. You MUST accept the USB connection.
 
 ![Trust the USB connection](trust.png)
 
-> On many devices, there are two USB ports, but only the `SLAVE` port can take commands from another computer. You must connect to that `SLAVE` USB port.
 
 ## 2. Use the ESP32 launchpad to flash
 
-[Load the launchpad](https://espressif.github.io/esp-launchpad/?flashConfigURL=https://echokit.dev/firmware/echokit.toml) and select the "ESP Develop Kits" for the device you have - [EchoKit-DIY](https://echokit.dev/echokit_diy.html) or [EchoKit-CUBE](https://echokit.dev/echokit_cube.html).
+[Load the launchpad](https://espressif.github.io/esp-launchpad/?flashConfigURL=https://echokit.dev/firmware/echokit.toml) and select the "ESP Develop Kits" for the device you have - [EchoKit-DIY](https://echokit.dev/echokit_diy.html) or [EchoKit-Box](https://echokit.dev/echokit_box.html).
 
 ![ESP32 launchpad](launchpad.png)
 
@@ -43,7 +42,7 @@ Next, go to the [Quick start guide](../quick-start.md) to configure your EchoKit
 
 ## 3. Use a command line tool to flash
 
-Alternatively, you could use the `espflash` command to flash the firmware. It is often faster and easier if you are a software developer!
+While the ESP32 Launchpad should work for most devices, we have found occasional devices that refuse to work with the launchpad. For those devices, you could try the `espflash` CLI tool. It is often faster and easier if you are a software developer!
 
 ## 3.1 Install the Rust Toolchain
 
@@ -78,6 +77,8 @@ Use the command below to flash your device:
 ```bash
 espflash flash --monitor --flash-size 16mb echokit
 ```
+
+> If there are errors, you could try to disconnect the device from the USB cable, and then reconnect the data cable to the USB port on the other side (e.g., the `TTL` port on EchoKit DIY)!
 
 You should see output similar to this:
 
