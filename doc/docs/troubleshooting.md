@@ -36,3 +36,14 @@ In the [EchoKit device configuration](server/setup.md), use the local EchoKit se
 ws://192.168.2.201:8080/ws
 ```
 
+## I cannot flash the firmware
+
+While we recommend flashing the firmware with [ESP32 Launchpad](https://espressif.github.io/esp-launchpad/?flashConfigURL=https://echokit.dev/firmware/echokit.toml), it could occasionally fail on some devices.
+
+In that case, you could try the following
+
+1. Connect the data cable to the USB connector on the right side of the device. The one labelled as `TTL`.
+2. Use the `espflash` CLI tool to [flash the firmware](https://echokit.dev/docs/hardware/flash-firmware#3-use-a-command-line-tool-to-flash).
+
+
+
