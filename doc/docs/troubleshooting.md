@@ -42,8 +42,8 @@ While we recommend flashing the firmware with [ESP32 Launchpad](https://espressi
 
 In that case, you could try the following
 
-1. Connect the data cable to the USB connector on the right side of the device. The one labelled as `TTL`.
-2. Use the `espflash` CLI tool to [flash the firmware](https://echokit.dev/docs/hardware/flash-firmware#3-use-a-command-line-tool-to-flash).
+1. Connect the data cable to the USB-C port labeled `TTL` (RIGHT side of the EchoKit DIY).
+2. Use the `espflash` CLI tool to [flash the firmware](hardware/flash-firmware#3-use-a-command-line-tool-to-flash).
 
 
 
