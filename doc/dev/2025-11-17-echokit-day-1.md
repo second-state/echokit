@@ -1,5 +1,5 @@
 ---
-slug: echokit-elevenlabs
+slug: echokit-30-days-day-1
 title: "Day 1: Make Your EchoKit Speak to You | The First 30 Days with EchoKit"
 tags: [echokit30days]
 ---
