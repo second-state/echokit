@@ -14,6 +14,8 @@ EchoKit Box keeps everything people love about EchoKit, but elevates the hardwar
 ## Full-Front 2.4-inch OLED Display
 
 One of the most visible upgrades in **EchoKit Box** is its **large full-front screen**.
+
+![](echokit-box-01.jpg)
 The entire front of the device is a high-contrast **2.4-inch OLED display**, perfect for:
 
 * System information
@@ -31,7 +33,7 @@ Many users struggled to find the **K0 button** and **reset button** on the previ
 
 Clear hardware labeling = less confusion and faster development.
 
-![](echokit-box-02)
+![](echokit-box-02.jpg)
 
 
 ## TF Card Slot for Media and Local AI Workflows
@@ -52,6 +54,7 @@ That means you can say:
 **“Play the music on my memory card.”**
 And the device will display it on the screen.
 
+![](echokit-box-03.jpg)
 
 ## More Connectors for Additional Modules
 
@@ -83,6 +86,7 @@ The back of EchoKit Box features a **clear, transparent cover**, allowing you to
 * Components such as power regulators and drivers
 
 Makers, students, and hardware enthusiasts love this design because it shows exactly how the AI device works internally.
+![](echokit-box-05.jpg)
 
 This is especially useful for:
 
@@ -91,11 +95,11 @@ This is especially useful for:
 * AI Hardware demos
 * AI workshops
 * DIY repair and customization
-* Special gifts for develoeprs
+* Special gifts for developers
 
 ## Why We Love the New EchoKit Box
 
-After months of iteration, we truly believe EchoKit Box is the advanced EchoKit we’ve ever built:
+After months of iteration, we truly believe EchoKit Box is the most advanced EchoKit we’ve ever built:
 
 * Bigger 2.4-inch display
 * Better enclosure and build quality
