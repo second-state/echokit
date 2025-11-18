@@ -12,7 +12,7 @@ The EchoKit might take a long time (more than 5 seconds) to respond to the user.
 Or, the response speech might stutter -- there are long pauses between sentences.
 You could try the folllowing to reduce latency.
 
-### Option 1: Use an EchoKit server close to you
+#### Option 1: Use an EchoKit server close to you
 
 If you are using our public EchoKit servers, please be aware that we make no guarantee of performance. If a lot of people are using the public servers, they will respond slowly. That said, you should at least make sure that you can using a server that is close to your location [in the EchoKit device configuration](quick-start.md).
 
@@ -21,7 +21,7 @@ If you are using our public EchoKit servers, please be aware that we make no gua
 
 If you are outside of north America or Europe, we highly recommend you to run your own EchoKit server on your own computer (see below).
 
-### Option 2: Run your own EchoKit server locally
+#### Option 2: Run your own EchoKit server locally
 
 Running your own EchoKit server on your local (i.e., WiFi) network would drastically reduce latency.
 First, please make sure that [your EchoKit device has the latest firmware](hardware/flash-firmware.md).
@@ -35,6 +35,12 @@ In the [EchoKit device configuration](server/setup.md), use the local EchoKit se
 ```
 ws://192.168.2.201:8080/ws
 ```
+
+## I want to switch to a different EchoKit server
+
+Press the [RST button](hardware/buttons-echokit-diy.md) to restart / reset the device, and then immediately, press and hold the [K0 button](hardware/buttons-echokit-diy.md) until the screen displays the QR code. You are now in the setup mode. 
+
+Follow the [setup guide](server/setup.md) to [configure the device](https://echokit.dev/setup/) to point to a new EchoKit server URL.
 
 ## I cannot flash the firmware
 
