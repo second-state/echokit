@@ -97,6 +97,7 @@ This is especially useful for:
 * DIY repair and customization
 * Special gifts for developers
 
+![](echokit-box-05.png)
 ## Why We Love the New EchoKit Box
 
 After months of iteration, we truly believe EchoKit Box is the most advanced EchoKit we’ve ever built:
