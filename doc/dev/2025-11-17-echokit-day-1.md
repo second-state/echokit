@@ -51,7 +51,7 @@ Once paired, the setup interface will appear. This is where your EchoKit truly b
    * **EchoKit Server**: Choose a pre-set server for a fast connection:
 
      * 🇺🇸 US: `ws://indie.echokit.dev/ws`
-     * 🇭🇰 EU: `ws://eu.echokit.dev/ws`
+     * 🇪🇺 EU: `ws://eu.echokit.dev/ws`
        *(Outside these regions? The response may be slower, but it will still work.)*
 2. Click **Write** for each field.
 3. Once finished, press the **K0 button** on EchoKit.
