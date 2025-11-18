@@ -52,7 +52,7 @@ And here’s where the fun begins:
 
 That means you can say:
 **“Play the music on my memory card.”**
-And the device will display it on the screen.
+And the device will play it through the speaker.
 
 ![](echokit-box-03.jpg)
 
