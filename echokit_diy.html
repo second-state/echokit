@@ -436,6 +436,64 @@
             color: #667eea;
         }
 
+        /* Reviews Section */
+        .reviews-section {
+            margin: 80px 0;
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e0e0e0;
+        }
+
+        .reviews-section h2 {
+            font-size: 2rem;
+            color: #667eea;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .review-card {
+            padding: 30px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.05), rgba(118, 75, 162, 0.05));
+            border: 1px solid rgba(102, 126, 234, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .review-text {
+            font-size: 1.1rem;
+            font-style: italic;
+            color: #333;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .reviewer-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .reviewer-details {
+            margin-left: 15px;
+        }
+
+        .reviewer-name {
+            font-weight: 700;
+            color: #667eea;
+            font-size: 1rem;
+        }
+
+        .reviewer-title {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .star-rating {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
         /* Responsive */
         @media (max-width: 1024px) {
             .product-grid {
@@ -554,6 +612,18 @@
                 font-size: 13px;
                 padding: 15px 0;
             }
+
+            .reviews-section {
+                padding: 25px 20px;
+            }
+
+            .reviews-section h2 {
+                font-size: 1.5rem;
+            }
+
+            .review-text {
+                font-size: 1rem;
+            }
         }
 
         @media (max-width: 480px) {
@@ -586,6 +656,10 @@
             }
 
             .edu-focus h2 {
+                font-size: 1.3rem;
+            }
+
+            .reviews-section h2 {
                 font-size: 1.3rem;
             }
         }
@@ -713,6 +787,26 @@ twq('config','qnwr5');
             </div>
         </div>
     </div>
+
+<!-- Reviews Section with YouTube Link -->
+<div style="margin: 60px 0; padding: 30px; text-align: center;">
+    <h2 style="font-size: 1.8rem; font-weight: 700; margin-bottom: 30px; color: #667eea;">What Our Users Say</h2>
+    <div style="background: #ffffff; border: 1px solid #e0e0e0; border-radius: 20px; padding: 40px; max-width: 800px; margin: 0 auto; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);">
+        <div style="font-size: 1.5rem; color: #fbbf24; margin-bottom: 15px;">★★★★★</div>
+        <p style="font-size: 1.2rem; font-style: italic; color: #333; margin-bottom: 25px; line-height: 1.8;">"EchoKit is exactly what we missed with Alexa."</p>
+        <div style="display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 25px;">
+            <div style="width: 40px; height: 40px; border-radius: 50%; background-color: #667eea; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">PP</div>
+            <div style="text-align: left;">
+                <div style="font-weight: 700; color: #1a1a1a; font-size: 1.1rem;">Pawel Piwosz</div>
+                <div style="font-size: 0.95rem; color: #666;">Docker Captain & Developer Advocate @ UpCloud</div>
+            </div>
+        </div>
+        <!-- Subtle YouTube Link Inside White Card -->
+        <a href="https://youtu.be/fi2hQuZHZYE?si=_Mbdbxf6evLB0AAc" target="_blank" style="display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; background: #f8f9fa; color: #ff0000; text-decoration: none; border-radius: 30px; font-weight: 500; font-size: 0.9rem; transition: all 0.3s; border: 1px solid #eee;">
+            <span>Watch full review on YouTube</span>
+        </a>
+    </div>
+</div>
 
     <!-- Educational Focus -->
     <div class="edu-focus" id="education">
@@ -1034,6 +1128,30 @@ twq('config','qnwr5');
             }
         });
     });
+
+    function trackInitiateCheckout(event) {
+        gtag('event', 'begin_checkout', {
+            currency: 'USD',
+            value: 49.00,
+            items: [{
+                item_id: 'echokit_diy',
+                item_name: 'EchoKit DIY Toolkit',
+                price: '49.00',
+                currency: 'USD',
+                quantity: 1
+            }]
+        });
+        
+        twq('event', 'initiate_checkout', {
+            value: 49.00,
+            currency: 'USD',
+            items: [{
+                id: 'echokit_diy',
+                name: 'EchoKit DIY Toolkit',
+                price: '49.00'
+            }]
+        });
+    }
 </script>
 </body>
 </html>
