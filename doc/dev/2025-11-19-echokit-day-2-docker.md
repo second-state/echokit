@@ -29,7 +29,7 @@ Once **EchoKit Server** is running locally, you can:
 At this point, EchoKit stops being just a “factory robot.”
 It starts becoming **your AI companion**—with the personality you shape and the skills you create.
 
-There're two ways to run EchoKit server locally. One is Dcoker, the other one is to use rust compiler. However, Docker is the simplest and most recommended way because you don’t have to worry about environment setup.
+There're two ways to run EchoKit server locally. One is Docker, the other one is to use rust compiler. However, Docker is the simplest and most recommended way because you don’t have to worry about environment setup.
 
 ## Step 1 — Edit your config.toml
 
