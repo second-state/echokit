@@ -86,7 +86,7 @@ docker run --rm \
 
 This command will run the server on the `8080` port
 
-🔧 **Step 3 — Connect EchoKit to your Server**
+## Step 3 — Connect EchoKit to your Server**
 
 Next, connect your EchoKit device to the server. If you’ve followed **Day 1** to make your EchoKit speak, you will need to reset your device.
 
