@@ -84,7 +84,7 @@ docker run --rm \
   secondstate/echokit:latest-server-vad &
 ```
 
-This command will run the the server on the `8080` port
+This command will run the server on the `8080` port
 
 🔧 **Step 3 — Connect EchoKit to your Server**
 
