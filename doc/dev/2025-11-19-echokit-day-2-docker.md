@@ -84,7 +84,7 @@ docker run --rm \
   secondstate/echokit:latest-server-vad &
 ```
 
-This command will run the server on the `8080` port
+This command will run the server on the `8080` port.
 
 ## Step 3 — Connect EchoKit to your Server**
 
@@ -95,7 +95,7 @@ Next, connect your EchoKit device to the server. If you’ve followed **Day 1** 
 
 Then, go to the setup page and enter your **Wi-Fi name, password, and server URL in the format of `ws://789.123.3.45:8080/ws`**.
 
-> The server URL should be your IP address. Go to WiFi setting to get the IP address. 
+> The server URL should be your IP address starting with `192.168`. Go to WiFi setting to get the IP address. 
 
 Suddenly, your little AI starts working **exactly the way you configured it**:
 Your Groq model, your ElevenLabs voice, your system prompt.
