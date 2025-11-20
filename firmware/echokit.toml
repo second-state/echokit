@@ -11,7 +11,7 @@ supported_apps = ["EchoKit"]
 # Optional: This should be a publicly accessible URL of the application configuration markdown file
 # The markdown file will display the application configuration.
 # It might include details such as the revisions of esp-idf, esp-matter, etc. or any other application configuration
-config_readme_url = "https://echokit.dev/"
+config_readme_url = "https://raw.githubusercontent.com/second-state/echokit_box/refs/heads/main/README.md"
 
 [EchoKit]
 # ESP32 Chipsets for which you have a supported Firmware App. Define a property for each supported chipset in the given format.
