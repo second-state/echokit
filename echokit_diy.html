@@ -788,24 +788,281 @@ twq('config','qnwr5');
         </div>
     </div>
 
-<!-- Reviews Section with YouTube Link -->
-<div style="margin: 60px 0; padding: 30px; text-align: center;">
-    <h2 style="font-size: 1.8rem; font-weight: 700; margin-bottom: 30px; color: #667eea;">What Our Users Say</h2>
-    <div style="background: #ffffff; border: 1px solid #e0e0e0; border-radius: 20px; padding: 40px; max-width: 800px; margin: 0 auto; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);">
-        <p style="font-size: 1.2rem; font-style: italic; color: #333; margin-bottom: 25px; line-height: 1.8;">"EchoKit is exactly what we missed with Alexa."</p>
-        <div style="display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 25px;">
-            <div style="width: 40px; height: 40px; border-radius: 50%; background-color: #667eea; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">PP</div>
-            <div style="text-align: left;">
-                <div style="font-weight: 700; color: #1a1a1a; font-size: 1.1rem;">Pawel Piwosz</div>
-                <div style="font-size: 0.95rem; color: #666;">Docker Captain & Developer Advocate @ UpCloud</div>
+<!-- Reviews Carousel Section -->
+<div class="reviews-carousel-container">
+    <h2>What Our Users Say</h2>
+    
+    <!-- Carousel Container -->
+    <div class="reviews-carousel">
+        <!-- Carousel Track -->
+        <div class="carousel-track">
+            <!-- Pawel Piwosz Review -->
+            <div class="review-card">
+                <p class="review-text">"EchoKit is exactly what we missed with Alexa."</p>
+                <div class="reviewer-info">
+                    <!-- Image Placeholder - PP -->
+                    <div class="reviewer-avatar">
+                        <img src="https://yt3.googleusercontent.com/45nwppdvGkW739BYUQFH_dR70Y3BdQEzk3rYp_mfgc6L2mJU7alx3HJguwQIuxp6JwNjn81XCg=s160-c-k-c0x00ffffff-no-rj" alt="Pawel Piwosz" width="40" height="40" loading="lazy">
+                    </div>
+                    <div class="reviewer-details">
+                        <div class="reviewer-name">Pawel Piwosz</div>
+                        <div class="reviewer-title">Docker Captain & Developer Advocate @ UpCloud</div>
+                    </div>
+                </div>
+                <a href="https://youtu.be/fi2hQuZHZYE?si=_Mbdbxf6evLB0AAc" target="_blank" style="display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; background: #f8f9fa; color: #ff0000; text-decoration: none; border-radius: 30px; font-weight: 500; font-size: 0.9rem; transition: all 0.3s; border: 1px solid #eee; margin-top: 15px;">
+                    <span>Watch full review on YouTube</span>
+                </a>
+            </div>
+            
+            <!-- Saiyam Pathak Review -->
+            <div class="review-card">
+                <p class="review-text">"I will create my custom voice, it’s fun."</p>
+                <div class="reviewer-info">
+                    <!-- Image Placeholder - SP (Fix typo: originally GP should be SP) -->
+                    <div class="reviewer-avatar">
+                        <img src="https://pbs.twimg.com/profile_images/1910566410700423168/zKOVU0eT_400x400.jpg" alt="Saiyam Pathak" width="40" height="40" loading="lazy">
+                    </div>
+                    <div class="reviewer-details">
+                        <div class="reviewer-name">Saiyam Pathak</div>
+                        <div class="reviewer-title">Head of Developer Relations at vCluster</div>
+                    </div>
+                </div>
+                <a href="https://x.com/saiyampathak/status/1990995395917590885" target="_blank" style="display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; background: #f8f9fa; color: #1da1f2; text-decoration: none; border-radius: 30px; font-weight: 500; font-size: 0.9rem; transition: all 0.3s; border: 1px solid #eee; margin-top: 15px;">
+                    <span>View on Twitter</span>
+                </a>
+            </div>
+            
+            <!-- Marco Franzon Review -->
+            <div class="review-card">
+                <p class="review-text">"I love that it just works out of the box."</p>
+                <div class="reviewer-info">
+                    <!-- Image Placeholder - MF -->
+                    <div class="reviewer-avatar">
+                        <img src="https://pbs.twimg.com/profile_images/1982545439300677632/jnTqD4OZ_400x400.jpg" alt="Marco Franzon" width="40" height="40" loading="lazy">
+                    </div>
+                    <div class="reviewer-details">
+                        <div class="reviewer-name">Marco Franzon</div>
+                        <div class="reviewer-title">Data Engineer and DevOps</div>
+                    </div>
+                </div>
+                <a href="https://x.com/mfranz_on/status/1991120018852270250" target="_blank" style="display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; background: #f8f9fa; color: #1da1f2; text-decoration: none; border-radius: 30px; font-weight: 500; font-size: 0.9rem; transition: all 0.3s; border: 1px solid #eee; margin-top: 15px;">
+                    <span>View on Twitter</span>
+                </a>
             </div>
         </div>
-        <!-- Subtle YouTube Link Inside White Card -->
-        <a href="https://youtu.be/fi2hQuZHZYE" target="_blank" style="display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; background: #f8f9fa; color: #ff0000; text-decoration: none; border-radius: 30px; font-weight: 500; font-size: 0.9rem; transition: all 0.3s; border: 1px solid #eee;">
-            <span>Watch full review on YouTube</span>
-        </a>
+    </div>
+    
+    <!-- Carousel Indicators -->
+    <div class="carousel-indicators">
+        <button class="indicator active" data-index="0" aria-label="Go to review 1"></button>
+        <button class="indicator" data-index="1" aria-label="Go to review 2"></button>
+        <button class="indicator" data-index="2" aria-label="Go to review 3"></button>
     </div>
 </div>
+
+<!-- Carousel Styles & Base Styles -->
+<style>
+/* Container Styles */
+.reviews-carousel-container {
+    max-width: 1200px;
+    margin: 4rem auto;
+    padding: 0 2rem;
+}
+
+.reviews-carousel-container h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 2.5rem;
+    color: #2d3748;
+}
+
+/* Carousel Core Styles */
+.reviews-carousel {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+/* Review Card Styles */
+.review-card {
+    flex: 0 0 100%; /* Single card display on mobile */
+    padding: 2.5rem;
+    background: white;
+    margin: 0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border-radius: 12px;
+}
+
+@media (min-width: 768px) {
+    .review-card {
+        flex: 0 0 50%; /* 2 cards display on tablet */
+        margin: 0 0.5rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .review-card {
+        flex: 0 0 33.333%; /* 3 cards display on desktop */
+        margin: 0 0.75rem;
+    }
+}
+
+/* Review Text Styles */
+.review-text {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #4a5568;
+    margin-bottom: 1.5rem;
+    font-style: italic;
+    margin-top: 0;
+}
+
+/* Reviewer Info Styles */
+.reviewer-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Image Placeholder Styles (replaces initials circle) */
+.reviewer-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: #f1f3f5; /* Placeholder background color */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #eee;
+}
+
+.reviewer-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Maintain image aspect ratio */
+}
+
+.reviewer-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.reviewer-name {
+    font-weight: 600;
+    color: #2d3748;
+}
+
+.reviewer-title {
+    font-size: 0.9rem;
+    color: #718096;
+}
+
+/* Link Hover Effect */
+.review-card a:hover {
+    background: #f1f3f5;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+/* Carousel Indicators */
+.carousel-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+}
+
+.indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #e2e8f0;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.indicator.active {
+    background: #667eea;
+    width: 36px;
+    border-radius: 6px;
+}
+
+/* Hide scrollbar on mobile */
+@media (max-width: 767px) {
+    .reviews-carousel::-webkit-scrollbar {
+        display: none;
+    }
+}
+</style>
+
+<!-- Carousel Interaction Script -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const carousel = document.querySelector('.reviews-carousel');
+    const track = document.querySelector('.carousel-track');
+    const indicators = document.querySelectorAll('.indicator');
+    const cards = document.querySelectorAll('.review-card');
+    
+    let currentIndex = 0;
+    let cardWidth;
+    let totalCards = cards.length;
+    
+    // Calculate card width (responsive adaptation)
+    function calculateCardWidth() {
+        if (window.innerWidth >= 1024) {
+            cardWidth = cards[0].offsetWidth + 30; // Include margin
+        } else if (window.innerWidth >= 768) {
+            cardWidth = cards[0].offsetWidth + 20; // Include margin
+        } else {
+            cardWidth = carousel.offsetWidth;
+        }
+    }
+    
+    // Update carousel position
+    function updateCarousel() {
+        track.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
+        
+        // Update indicator status
+        indicators.forEach((indicator, index) => {
+            indicator.classList.toggle('active', index === currentIndex);
+        });
+    }
+    
+    // Next slide
+    function nextSlide() {
+        currentIndex = (currentIndex + 1) % totalCards;
+        updateCarousel();
+    }
+    
+    // Jump to specific slide when clicking indicator
+    indicators.forEach((indicator, index) => {
+        indicator.addEventListener('click', () => {
+            currentIndex = index;
+            updateCarousel();
+        });
+    });
+    
+    // Recalculate when window resizes
+    window.addEventListener('resize', () => {
+        calculateCardWidth();
+        updateCarousel();
+    });
+    
+    // Initialize
+    calculateCardWidth();
+    
+    // Auto carousel (switch every 5 seconds)
+    setInterval(nextSlide, 5000);
+});
+</script>
 
     <!-- Educational Focus -->
     <div class="edu-focus" id="education">

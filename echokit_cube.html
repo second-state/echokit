@@ -40,6 +40,18 @@ function trackTwitterCheckout() {
     <meta property="og:description" content="Learn AI by building. Complete open-source voice AI system with hardware, firmware, and server code. Perfect for students and educators.">
     <meta property="og:type" content="product">
     
+    <!-- 新增：立即重定向到 echokit_box.html（meta + JS 备用） -->
+    <meta http-equiv="refresh" content="0; url=echokit_box.html">
+    <script>
+        // 如果浏览器忽略 meta refresh，则用 JS 强制替代跳转（不会在历史记录中留下此页）
+        try {
+            window.location.replace('echokit_box.html');
+        } catch (e) {
+            // fallback: 设置 href 以防 replace 被阻止
+            window.location.href = 'echokit_box.html';
+        }
+    </script>
+
     <style>
         * {
             margin: 0;
