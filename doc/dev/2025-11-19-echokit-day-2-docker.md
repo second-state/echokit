@@ -4,7 +4,7 @@ title: "Day 2: Running Your EchoKit Server Locally with Docker | The First 30 Da
 tags: [echokit30days]
 ---
 
-*(And Today It Finally Feels Like My EchoKit)*
+*(Today, I take control of my EchoKit )*
 
 Yesterday, after [getting started with EchoKit](dev/2025-11-17-echokit-day-1.md), it could finally talk back to us.
 
