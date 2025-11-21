@@ -1,5 +1,9 @@
+---
+slug: echokit-30-days-day-3-rust
+title: "Day 3: Running Your EchoKit Server Locally from Source Code | The First 30 Days with EchoKit"
+tags: [echokit30days]
+---
 
-# Day 3: Build & Run the EchoKit Server from Source
 
 (And Today I Finally Saw How EchoKit Works Under the Hood)
 
@@ -11,7 +15,7 @@ No containers. No abstraction layers.
 Just you… and the real engine that drives EchoKit.
 
 
-## 🌱 Why Build from Source?
+## 🌱 Why Build EchoKit from Source?
 
 Using Docker is great for quick setup.
 But building from source unlocks more possibilities:
@@ -26,14 +30,14 @@ and Day 2 was about hosting your own server,
 then **Day 3 is where you start becoming an EchoKit developer.**
 
 
-## Step 1 — Install the rust toolchain
+## Step 1 — Install the Rust Toolchain
 
 Since the EchoKit server is written in Rust, so all the depencies is the Rust toolchain.
 
 Refer to the official Rust website to install Rust.
 
 
-## Step 2 — Get the source code
+## Step 2 — Get the Source Code
 
 In your terminal:
 
@@ -47,9 +51,8 @@ the heart of the EchoKit server, right on your machine.
 
 It's recommended that using an IDE like VSCode to open the `echokit_server` folder.
 
----
 
-# 🔧 Step 2 — Configure the Server
+## 🔧 Step 3 — Configure the Server
 
 Open the `config.toml` file and fill in:
 
@@ -85,7 +88,7 @@ You are a helpful assistant. Answer truthfully and concisely. Always answer in E
 
 Just like yesterday's setup, and remember to bring your own API key for Groq and ElevenLabs.
 
-# ⚡ Step 3 — Build the Server
+## ⚡ Step 4 — Build the Server
 
 Compile it using Cargo:
 
@@ -104,7 +107,7 @@ Finished release [optimized] target(s)
 you officially have your own EchoKit server binary.
 
 
-# 🏃 Step 4 — Run the Server
+## 🏃 Step 5 — Run the Server
 
 Start with debug logging:
 
@@ -128,10 +131,9 @@ appending output to nohup.out
 All logs are saved in `nohup.out`,
 so you can monitor everything that happens inside your server.
 
-
+## 🏃 Step 6 — Connect the Server
 
 Next, it's time to connect your EchoKit server to your device following this guide.
-
 
 
 The EchoKit Server runs as a WebSocket service.
@@ -156,7 +158,6 @@ your device will connect to the server you built with your own hands.
 
 
 
-# 🎉 Day 3 Complete — You’re Officially in Developer Mode
 
 Today, you didn’t just run EchoKit.
 You *built* the server.
