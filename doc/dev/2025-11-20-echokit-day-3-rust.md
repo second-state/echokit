@@ -32,7 +32,7 @@ then **Day 3 is where you start becoming an EchoKit developer.**
 
 ## Step 1 — Install the Rust Toolchain
 
-Since the EchoKit server is written in Rust, so all the depencies is the Rust toolchain.
+Since the EchoKit server is written in Rust, so all the dependencies is the Rust toolchain.
 
 Refer to the official Rust website to install Rust.
 
