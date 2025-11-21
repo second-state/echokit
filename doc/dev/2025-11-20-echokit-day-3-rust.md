@@ -49,7 +49,7 @@ cd echokit_server
 And there it is —
 the heart of the EchoKit server, right on your machine.
 
-It's recommended that using an IDE like VSCode to open the `echokit_server` folder.
+It's recommended to use an IDE like VSCode to open the `echokit_server` folder.
 
 
 ## 🔧 Step 3 — Configure the Server
