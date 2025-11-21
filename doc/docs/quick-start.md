@@ -49,6 +49,7 @@ Once paired via Bluetooth, you’ll be redirected to a setup interface where you
 - **EchoKit Server**: The IP and port of the EchoKit Server you're connecting to. You can use our hosted servers depending on your location:
     - 🇺🇸 US: `ws://indie.echokit.dev/ws`
     - 🇭🇰 EU: `ws://eu.echokit.dev/ws`
+    - 🇹🇼 Taiwan and southeast Asia: `ws://tw.echokit.dev/ws`
     - 🇸🇬 Rest of the world: [run your own EchoKit server](server/quick-start.md)
 - **Background Image**: Upload a transparent GIF image as the background for the device.
 
