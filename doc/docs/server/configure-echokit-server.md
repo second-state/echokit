@@ -116,8 +116,8 @@ voice = "Aaliyah-PlayAI"
 * **Required**: Yes – needed for EchoKit to speak responses
 * **Popular Model Provider**:
   * Groq (fast, cost-effective)
-  * OpenAI (high accuracy)
-  * Azure Speech Services
+  * OpenAI
+  * ElevenLabs
   * Local GPT-SoVits deployment: coming soon
 
 
@@ -126,12 +126,26 @@ voice = "Aaliyah-PlayAI"
 
 ## Configure the System Prompt
 
+If you want to change the personality of your Echokit, system prompt is the most important thing.
+
 ```toml
 [[llm.sys_prompts]]
 role = "system"
 content = """
 Your name is EchoKit, a smart and highly individualistic AI assistant. Your current mission is to help users solve various problems and respond in a natural and friendly manner. Keep responses concise but helpful.
 """
+```
+
+Besides above, you can also load the system prompt by URL, like the `llms.txt`. See an example below.
+
+```
+```toml
+[[llm.sys_prompts]]
+role = "system"
+content = """
+Your name is EchoKit, a smart and highly individualistic AI assistant. {{https://langchain-ai.github.io/langgraph/llms.txt}}
+"""
+```
 ```
 
 ### System Prompt Guidelines
