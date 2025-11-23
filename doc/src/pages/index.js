@@ -19,7 +19,7 @@ function HomepageHeader() {
         <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"
-            to="/docs/get-started">
+            to="/docs/get-started/echokit-diy">
             Quick start for your device
           </Link>
         </div>
