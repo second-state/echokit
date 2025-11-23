@@ -10,7 +10,7 @@ In this guide, we'll walk through connecting your EchoKit device to the EchoKit 
 
 Before starting, make sure you have:  
 
-* A [running EchoKit server](quick-start.md)
+* A [running EchoKit server](../get-started/echokit-server.md)
 * Powered up your EchoKit
 
 **IMPORTANT** If you are connecting to an EchoKit server on your local network (e.g., a personal laptop connected to WiFi), you will need to find out the local network IP address of the computer. You can typically find that information by opening network settings on that computer. The IP address is something like `192.168.2.101`.

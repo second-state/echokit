@@ -25,7 +25,7 @@ You need to use an USB cable to connect between your computer and the USB-C port
 
 Click on **Connect** at the top menu to connect to your device via the USB cable.
 
-> TROUBLESHOOTING: If it fails, you may force the EchoKit device to enter the "flashing" mode. Press and hold down the [**RST button**](buttons-echokit-diy.md), and at the same time, press and release the [**K0 button**](buttons-echokit-diy.md). The screen could go dark, and the device will be ready to flash.
+> TROUBLESHOOTING: If it fails, you may force the EchoKit device to enter the "flashing" mode. Press and hold down the **RST button** ([DIY](buttons-echokit-diy.md) | [BOX](buttons-echokit-box.md)), and at the same time, press and release the **K0 button** ([DIY](buttons-echokit-diy.md) | [BOX](buttons-echokit-box.md)). The screen could go dark, and the device will be ready to flash.
 
 Click on the **Flash** button at the bottom of the page to start flashing firmware onto the device. 
 You will see a console showing the flashing progress. 
@@ -38,7 +38,7 @@ Once it is done. Click on the **Reset Device** button as instructed.
 
 ![EchoKit is ready](display.png)
 
-Next, go to the [Quick start guide](../quick-start.md) to configure your EchoKit device for network access.
+Next, go to the Getting Started Guide for EchoKit [DIY](../get-started/echokit-diy.md) or [BOX](../get-started/echokit-box.md)to configure your EchoKit device for network access.
 
 ## 3. Use a command line tool to flash
 
