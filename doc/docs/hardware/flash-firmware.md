@@ -7,7 +7,7 @@ sidebar_position: 2
 Each EchoKit comes pre-flashed with our [open-source ESP32 firmware](https://github.com/second-state/echokit_box). If your device isn't working as expected, you can manually re-flash it by following these steps.
 
 This guide shows the [EchoKit DIY](https://echokit.dev/echokit_diy.html) device as examples.
-The [EchoKit CUBE](https://echokit.dev/echokit_cube.html) device is very similiar. 
+The [EchoKit Box](https://echokit.dev/echokit_box.html) device is very similiar. 
 Just choose the appropriate "ESP Develop Kits" on the Launchpad UI or download the correct firmware binary file as indicated below.
 
 ## 1. Connect your EchoKit device to your computer
@@ -62,12 +62,12 @@ Fetch the latest precompiled EchoKit firmware:
 
 ```bash
 # For EchoKit DIY
-curl -L -o echokit https://echokit.dev/firmware/echokit
+curl -L -o echokit https://echokit.dev/firmware/echokit_board
 
 # OR
 
-# For EchoKit Cube
-curl -L -o echokit https://echokit.dev/firmware/echokit_cube
+# For EchoKit Box
+curl -L -o echokit https://echokit.dev/firmware/echokit_box
 ```
 
 ## 3.4 Flash the Firmware to EchoKit
