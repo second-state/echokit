@@ -26,7 +26,7 @@ Just make sure your audio file meets these requirements:
 * **WAV format**
 * **16 kHz sample rate**
 
-You can quickly convert audio to 16 KHz using [the online tool](https://www.ezyzip.com/convert-wav-to-16kHz-online.html#) or **FFmpeg**:
+You can quickly convert audio to 16 kHz using [the online tool](https://www.ezyzip.com/convert-wav-to-16kHz-online.html#) or **FFmpeg**:
 
 ```bash
 ffmpeg -i input.mp3 -ar 16000 output.wav
