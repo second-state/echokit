@@ -7,7 +7,7 @@ sidebar_position: 2
 Each EchoKit comes pre-flashed with our [open-source ESP32 firmware](https://github.com/second-state/echokit_box). If your device isn't working as expected, you can manually re-flash it by following these steps.
 
 This guide shows the [EchoKit DIY](https://echokit.dev/echokit_diy.html) device as examples.
-The [EchoKit CUBE](https://echokit.dev/echokit_cube.html) device is very similiar. 
+The [EchoKit Box](https://echokit.dev/echokit_box.html) device is very similiar. 
 Just choose the appropriate "ESP Develop Kits" on the Launchpad UI or download the correct firmware binary file as indicated below.
 
 ## 1. Connect your EchoKit device to your computer
@@ -25,7 +25,7 @@ You need to use an USB cable to connect between your computer and the USB-C port
 
 Click on **Connect** at the top menu to connect to your device via the USB cable.
 
-> TROUBLESHOOTING: If it fails, you may force the EchoKit device to enter the "flashing" mode. Press and hold down the [**RST button**](buttons-echokit-diy.md), and at the same time, press and release the [**K0 button**](buttons-echokit-diy.md). The screen could go dark, and the device will be ready to flash.
+> TROUBLESHOOTING: If it fails, you may force the EchoKit device to enter the "flashing" mode. Press and hold down the **RST button** ([DIY](buttons-echokit-diy.md)), and at the same time, press and release the **K0 button** ([DIY](buttons-echokit-diy.md)). The screen could go dark, and the device will be ready to flash.
 
 Click on the **Flash** button at the bottom of the page to start flashing firmware onto the device. 
 You will see a console showing the flashing progress. 
@@ -38,7 +38,7 @@ Once it is done. Click on the **Reset Device** button as instructed.
 
 ![EchoKit is ready](display.png)
 
-Next, go to the [Quick start guide](../quick-start.md) to configure your EchoKit device for network access.
+Next, go to the Getting Started Guide for EchoKit [DIY](../get-started/echokit-diy.md) or [BOX](../get-started/echokit-box.md)to configure your EchoKit device for network access.
 
 ## 3. Use a command line tool to flash
 
@@ -62,12 +62,12 @@ Fetch the latest precompiled EchoKit firmware:
 
 ```bash
 # For EchoKit DIY
-curl -L -o echokit https://echokit.dev/firmware/echokit
+curl -L -o echokit https://echokit.dev/firmware/echokit_board
 
 # OR
 
-# For EchoKit Cube
-curl -L -o echokit https://echokit.dev/firmware/echokit_cube
+# For EchoKit Box
+curl -L -o echokit https://echokit.dev/firmware/echokit_box
 ```
 
 ## 3.4 Flash the Firmware to EchoKit

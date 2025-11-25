@@ -1,8 +1,8 @@
 ---
-sidebar_position: 2
+sidebar_position: 1
 ---
 
-# Quick Start with EchoKit
+# Quick Start with EchoKit DIY
 
 This guide walks you through setting up your **EchoKit**, which comes pre-assembled and ready to use.  
 
@@ -10,20 +10,20 @@ This guide walks you through setting up your **EchoKit**, which comes pre-assemb
 
 ## Get familiar with the buttons
 
-Let’s take a moment to get familiar with the common buttons and ports. The image below gives you a clear overview of them. Learn more about the buttons on Button on [Buttons on EchoKit DIY](hardware/buttons-echokit-diy.md)
+Let’s take a moment to get familiar with the common buttons and ports. The image below gives you a clear overview of them. Learn more about the buttons on Button on [Buttons on EchoKit DIY](../hardware/buttons-echokit-diy.md)
 
-![](hardware/buttons-echokit-diy.png)
+![](../hardware/buttons-echokit-diy.png)
 
 
 ## Step 1: Power up EchoKit
 
 Use a **USB Type-C data cable** to connect EchoKit to a power source, such as a battery charger or your computer. The Type-C port is located on the **left side** of the device.
 
-![](echokit-quick-start-01.jpg)
+![](../echokit-quick-start-01.jpg)
 
-You will see the QR code display on the EchoKit screen. If not, click on the [**RST button**](hardware/buttons-echokit-diy.md) to restart the device, and then immediately, press and hold the [**K0 button**](hardware/buttons-echokit-diy.md).
+You will see the QR code display on the EchoKit screen. If not, click on the [**RST button**](../hardware/buttons-echokit-diy.md) to restart the device, and then immediately, press and hold the [**K0 button**](../hardware/buttons-echokit-diy.md).
 
-![](echokit-quick-start-02.jpg)
+![](../echokit-quick-start-02.jpg)
 
 
 ## Step 2: Connect EchoKit to Your Computer
@@ -35,14 +35,14 @@ Open a web browser on a desktop computer and go to:
 
 Click **Connect to EchoKit** to begin Bluetooth pairing.
 
-![](echokit-quick-start-03.png)
+![](../echokit-quick-start-03.png)
 
 
 ## Step 3: Configure Wi-Fi and Server
 
 Once paired via Bluetooth, you’ll be redirected to a setup interface where you can enter:
 
-![](echokit-quick-start-04.png)
+![](../echokit-quick-start-04.png)
 
 - **Wi-Fi Network**: Your Wi-Fi network name. It MUST be a 2.4G network.
 - **Wi-Fi Password**: Your Wi-Fi access code  
@@ -50,12 +50,12 @@ Once paired via Bluetooth, you’ll be redirected to a setup interface where you
     - 🇺🇸 US: `ws://indie.echokit.dev/ws`
     - 🇭🇰 EU: `ws://eu.echokit.dev/ws`
     - 🇹🇼 Taiwan and southeast Asia: `ws://tw.echokit.dev/ws`
-    - 🇸🇬 Rest of the world: [run your own EchoKit server](server/quick-start.md)
+    - 🇸🇬 Rest of the world: [run your own EchoKit server]../(server/quick-start.md)
 - **Background Image**: Upload a transparent GIF image as the background for the device.
 
 For each field, click the **"Write"** button after entering the value.
 
-After you are done writing all fields, click [**K0 button**](hardware/buttons-echokit-diy.md) on the EchoKit device.
+After you are done writing all fields, click [**K0 button**](../hardware/buttons-echokit-diy.md) on the EchoKit device.
 
 
 
@@ -72,9 +72,9 @@ This means your device is ready to use!
 
 ## Step 5: Start Chatting
 
-Press the [**K0 button**](hardware/buttons-echokit-diy.md) to start your conversation with EchoKit. The status bar at the top of the screen says "Listening ..." and it is ready to respond to you!
+Press the [**K0 button**](../hardware/buttons-echokit-diy.md) to start your conversation with EchoKit. The status bar at the top of the screen says "Listening ..." and it is ready to respond to you!
 
-![](echokit-quick-start-05.jpg)
+![](../echokit-quick-start-05.jpg)
 
 If it says "Idle" or "Speaking" in the status bar at the top of the screen, it cannot hear you and would not respond to you. ;) 
 
@@ -84,4 +84,4 @@ If it says "Idle" or "Speaking" in the status bar at the top of the screen, it c
 
 Enjoy your voice AI journey.
 
-> If your EchoKit does not respond to you, please refer to the [troubleshooting guide](troubleshooting.md).
+> If your EchoKit does not respond to you, please refer to the [troubleshooting guide](../troubleshooting.md).

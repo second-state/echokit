@@ -19,7 +19,7 @@ The **K0 button** (located on the left side of the device) is a multi-purpose co
 
 You also need this button when you want to
 
-* Configure WiFi and EchoKit server. [Learn more](../quick-start.md).
+* Configure WiFi and EchoKit server. [Learn more](../get-started/echokit-diy.md).
 * Flash the device. [Learn more](flash-firmware.md).
 
 ![](k0-button-echokit-diy.png)

@@ -14,7 +14,7 @@ You could try the folllowing to reduce latency.
 
 #### Option 1: Use an EchoKit server close to you
 
-If you are using our public EchoKit servers, please be aware that we make no guarantee of performance. If a lot of people are using the public servers, they will respond slowly. That said, you should at least make sure that you can using a server that is close to your location [in the EchoKit device configuration](quick-start.md).
+If you are using our public EchoKit servers, please be aware that we make no guarantee of performance. If a lot of people are using the public servers, they will respond slowly. That said, you should at least make sure that you can using a server that is close to your location in the EchoKit device configuration ([DIY](get-started/echokit-diy.md) | [BOX](get-started/echokit-box.md)).
 
 * North America: `ws://indie.echokit.dev/ws`
 * Europe: `ws://eu.echokit.dev/ws`
@@ -26,7 +26,7 @@ If you are outside of north America or Europe, we highly recommend you to run yo
 Running your own EchoKit server on your local (i.e., WiFi) network would drastically reduce latency.
 First, please make sure that [your EchoKit device has the latest firmware](hardware/flash-firmware.md).
 
-Then, [run the EchoKit server](server/quick-start.md) on a computer on your local network.
+Then, [run the EchoKit server](get-started/echokit-server.md) on a computer on your local network.
 
 If you use the default `config.toml`, you will be running the EchoKit server at port 8080.
 From the computer's network settings, locate its local network IP address (e.g., `192.168.2.201`).

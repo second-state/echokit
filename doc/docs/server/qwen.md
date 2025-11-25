@@ -10,7 +10,7 @@ Qwen is one of the best open-sourced LLMs in the world. Besides the open source 
 
 Before setting up your Qwen pipeline, ensure you have:
 
-* **EchoKit server quick start** – Follow the [guide](quick-start.md) if you haven't already
+* **EchoKit server quick start** – Follow the [guide](../get-started/echokit-server.md) if you haven't already
 * **Alibaba Cloud API key** – Obtain from [Aliyun Bailian Console](https://bailian.console.aliyun.com/#/home)
 
 ## Configuration

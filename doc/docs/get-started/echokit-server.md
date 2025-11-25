@@ -7,7 +7,7 @@ sidebar_position: 1
 EchoKit Server is the central component that manages communication between the EchoKit device and AI services. It can be deployed locally or connected to preset servers, allowing developers to customize LLM endpoints, plan the LLM prompt, configure speech models, and integrate additional AI features like MCP servers.
 
 The easiest way to start an EchoKit server on your own computer is to use Docker.
-If you prefer to build from the source code, please refer to [this guide](echokit-server.md).
+If you prefer to build from the source code, please refer to [this guide](../server/echokit-server.md).
 
 ```
 docker run --rm \
@@ -49,7 +49,7 @@ You are a helpful assistant. Answer truthfully and concisely. Always answer in E
 """
 ```
 
-> Learn more about [how to configure the EchoKit server](configure-echokit-server.md), especially for [Chinese users](qwen.md).
+> Learn more about [how to configure the EchoKit server](../server/configure-echokit-server.md), especially for [Chinese users](../server/qwen.md).
 
-**Next,** [connect the Echokit device to the EchoKit server](setup.md) 
+**Next,** [connect the Echokit device to the EchoKit server](../server/setup.md) 
 
