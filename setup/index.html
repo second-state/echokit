@@ -145,7 +145,6 @@
         const passInput = document.getElementById('passInput');
         const serverUrlInput = document.getElementById('serverUrlInput');
         const ssidTitle = document.getElementById('ssidTitle');
-        const passTitle = document.getElementById('passTitle');
         const urlTitle = document.getElementById('urlTitle');
         const backgroundImage = document.getElementById('backgroundImage');
         const bgPreview = document.getElementById('bgPreview');
@@ -390,7 +389,6 @@
 
                 // Clear all modification marks
                 clearFieldModification('ssid', ssidTitle);
-                clearFieldModification('pass', passTitle);
                 clearFieldModification('url', urlTitle);
 
                 showNotification('Success', 'All configuration loaded');
@@ -433,7 +431,7 @@
 
                     if (modifiedFields.pass) {
                         await writeCharacteristic(PASS_ID, passInput.value);
-                        clearFieldModification('pass', passTitle);
+                        clearFieldModification('ssid', ssidTitle);
                         savedCount++;
                     }
 
@@ -598,7 +596,7 @@
         });
 
         passInput.addEventListener('input', () => {
-            markFieldAsModified('pass', passTitle);
+            markFieldAsModified('pass', ssidTitle);
         });
 
         serverUrlInput.addEventListener('input', () => {
