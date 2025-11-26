@@ -10,164 +10,166 @@ import {themes as prismThemes} from 'prism-react-renderer';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'EchoKit',
-  tagline: 'DIY personal AI agent on device',
-  favicon: 'img/favicon.ico',
+    title: 'EchoKit',
+    tagline: 'DIY personal AI agent on device',
+    favicon: 'img/favicon.ico',
 
-  // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
-  future: {
-    v4: true, // Improve compatibility with the upcoming Docusaurus v4
-  },
+    // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
+    future: {
+        v4: true, // Improve compatibility with the upcoming Docusaurus v4
+    },
 
-  // Set the production url of your site here
-  url: 'https://echokit.dev/',
-  // Set the /<baseUrl>/ pathname under which your site is served
-  // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/docs/',
+    // Set the production url of your site here
+    url: 'https://echokit.dev/',
+    // Set the /<baseUrl>/ pathname under which your site is served
+    // For GitHub pages deployment, it is often '/<projectName>/'
+    baseUrl: '/docs/',
 
-  // GitHub pages deployment config.
-  // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'second-state', // Usually your GitHub org/user name.
-  projectName: 'echokit', // Usually your repo name.
+    // GitHub pages deployment config.
+    // If you aren't using GitHub pages, you don't need these.
+    organizationName: 'second-state', // Usually your GitHub org/user name.
+    projectName: 'echokit', // Usually your repo name.
 
-  onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'warn',
+    onBrokenLinks: 'throw',
+    onBrokenMarkdownLinks: 'warn',
 
-  // Even if you don't use internationalization, you can use this field to set
-  // useful metadata like html lang. For example, if your site is Chinese, you
-  // may want to replace "en" with "zh-Hans".
-  i18n: {
-    defaultLocale: 'en',
-    locales: ['en'],
-  },
+    // Even if you don't use internationalization, you can use this field to set
+    // useful metadata like html lang. For example, if your site is Chinese, you
+    // may want to replace "en" with "zh-Hans".
+    i18n: {
+        defaultLocale: 'en',
+        locales: ['en'],
+    },
 
-  presets: [
-    [
-      'classic',
-      /** @type {import('@docusaurus/preset-classic').Options} */
-      ({
-        docs: {
-          sidebarPath: './sidebars.js',
-          routeBasePath: '/', 
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/second-state/echokit/tree/main/doc/',
-        },
-        blog: {
-        routeBasePath: 'dev',
-        path: './dev',
-        showReadingTime: true,
-        feedOptions: {
-        type: ['rss', 'atom'],
-        xslt: true,
-        },
-        // Please change this to your repo.
-        // Remove this to remove the "edit this page" links.
-        editUrl:
-        'https://github.com/second-state/echokit/tree/main/doc/',
-        // Useful options to enforce blogging best practices
-        onInlineTags: 'warn',
-        onInlineAuthors: 'ignore',
-        onUntruncatedBlogPosts: 'ignore',
-        },
-        theme: {
-          customCss: './src/css/custom.css',
-        },
-      }),
+    presets: [
+        [
+            'classic',
+            /** @type {import('@docusaurus/preset-classic').Options} */
+            ({
+                docs: {
+                    sidebarPath: './sidebars.js',
+                    routeBasePath: '/',
+                    // Please change this to your repo.
+                    // Remove this to remove the "edit this page" links.
+                    editUrl:
+                        'https://github.com/second-state/echokit/tree/main/doc/',
+                },
+                blog: {
+                    routeBasePath: 'dev',
+                    path: './dev',
+                    blogSidebarCount: "ALL",
+                    blogSidebarTitle: "Build in Public",
+                    showReadingTime: true,
+                    feedOptions: {
+                        type: ['rss', 'atom'],
+                        xslt: true,
+                    },
+                    // Please change this to your repo.
+                    // Remove this to remove the "edit this page" links.
+                    editUrl:
+                        'https://github.com/second-state/echokit/tree/main/doc/dev/',
+                    // Useful options to enforce blogging best practices
+                    onInlineTags: 'warn',
+                    onInlineAuthors: 'ignore',
+                    onUntruncatedBlogPosts: 'ignore',
+                },
+                theme: {
+                    customCss: './src/css/custom.css',
+                },
+            }),
+        ],
     ],
-  ],
 
-  scripts: [
-    {
-      src: 'https://www.googletagmanager.com/gtag/js?id=G-EMHQHV54LP',
-      async: true,
-    },
-    {
-      src: 'js/ga-init.js',
-      async: false,
-    },
-  ],
-
-  themeConfig:
-    /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
-    ({
-      // Replace with your project's social card
-      image: 'img/echokit-b-sample.png',
-      navbar: {
-        title: 'EchoKit',
-        logo: {
-          alt: 'EchoKit Logo',
-          src: 'img/logo.svg',
+    scripts: [
+        {
+            src: 'https://www.googletagmanager.com/gtag/js?id=G-EMHQHV54LP',
+            async: true,
         },
-        items: [
-          {
-            href: 'https://echokit.dev',
-            label: 'Home',
-            position: 'left',
-          },
-          {to: '/dev', label: 'Build in Public', position: 'left'},
-          {
-            href: 'https://github.com/second-state/echokit_server',
-            label: 'GitHub',
-            position: 'right',
-          },
-        ],
-      },
-      footer: {
-        style: 'dark',
-        links: [
-          {
-            title: 'Docs',
-            items: [
-              {
-                label: 'Tutorial',
-                to: '/intro', 
-              },
-            ],
-          },
-          {
-            title: 'Community',
-            items: [
-              {
-                label: 'Facebook',
-                href: 'https://www.facebook.com/61581407499337',
-              },
-              {
-                label: 'Discord',
-                href: 'https://discord.gg/Fwe3zsT5g3',
-              },
-              {
-                label: 'X',
-                href: 'https://x.com/secondstateinc',
-              },
-            ],
-          },
-          {
-            title: 'More',
-            items: [
-              {
-                label: 'Build in Public',
-                to: '/dev',
-              },
-              {
-                label: 'GitHub',
-                href: 'https://github.com/second-state/echokit_server',
-              },
-              {
-                label: 'Buy EchoKit',
-                href: 'https://echokit.dev/',
-              },
-            ],
-          },
-        ],
-        copyright: `Copyright © ${new Date().getFullYear()} EchoKit. Built with Docusaurus.`,
-      },
-      prism: {
-        theme: prismThemes.github,
-        darkTheme: prismThemes.dracula,
-      },
-    }),
+        {
+            src: 'js/ga-init.js',
+            async: false,
+        },
+    ],
+
+    themeConfig:
+    /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
+        ({
+            // Replace with your project's social card
+            image: 'img/echokit-b-sample.png',
+            navbar: {
+                title: 'EchoKit',
+                logo: {
+                    alt: 'EchoKit Logo',
+                    src: 'img/logo.svg',
+                },
+                items: [
+                    {
+                        href: 'https://echokit.dev',
+                        label: 'Home',
+                        position: 'left',
+                    },
+                    {to: '/dev', label: 'Build in Public', position: 'left'},
+                    {
+                        href: 'https://github.com/second-state/echokit_server',
+                        label: 'GitHub',
+                        position: 'right',
+                    },
+                ],
+            },
+            footer: {
+                style: 'dark',
+                links: [
+                    {
+                        title: 'Docs',
+                        items: [
+                            {
+                                label: 'Tutorial',
+                                to: '/intro',
+                            },
+                        ],
+                    },
+                    {
+                        title: 'Community',
+                        items: [
+                            {
+                                label: 'Facebook',
+                                href: 'https://www.facebook.com/61581407499337',
+                            },
+                            {
+                                label: 'Discord',
+                                href: 'https://discord.gg/Fwe3zsT5g3',
+                            },
+                            {
+                                label: 'X',
+                                href: 'https://x.com/secondstateinc',
+                            },
+                        ],
+                    },
+                    {
+                        title: 'More',
+                        items: [
+                            {
+                                label: 'Build in Public',
+                                to: '/dev',
+                            },
+                            {
+                                label: 'GitHub',
+                                href: 'https://github.com/second-state/echokit_server',
+                            },
+                            {
+                                label: 'Buy EchoKit',
+                                href: 'https://echokit.dev/',
+                            },
+                        ],
+                    },
+                ],
+                copyright: `Copyright © ${new Date().getFullYear()} EchoKit. Built with Docusaurus.`,
+            },
+            prism: {
+                theme: prismThemes.github,
+                darkTheme: prismThemes.dracula,
+            },
+        }),
 };
 
 export default config;
