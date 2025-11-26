@@ -51,7 +51,7 @@ Paste the following:
 [asr]
 url = "https://api.groq.com/openai/v1/audio/transcriptions"
 lang = "en"
-api_key = "gsk_1234"
+api_key = "YOUR_GROQ_API_KEY_HERE"
 model = "whisper-large-v3-turbo"
 ```
 
