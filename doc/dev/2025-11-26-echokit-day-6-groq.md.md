@@ -1,8 +1,12 @@
-# Day 6: Integrate Groq as the ASR Engine for Your EchoKit | The First 30 Days with EchoKit
+---
+slug: echokit-30-days-day-6-groq
+title: "Day 6: Integrate Groq as the ASR Engine for Your EchoKit | The First 30 Days with EchoKit"
+tags: [echokit30days]
+---
 
 *(Today, your EchoKit learns to understand you—faster and sharper.)*
 
-By now, you’ve powered up EchoKit, run your own EchoKit server, customized the boot screen, crafted your own welcome voice, and started shaping your very own voice AI companion.
+By now, you’ve powered up EchoKit, [run your own EchoKit server locally](https://echokit.dev/docs/dev/echokit-30-days-day-2-docker), [customized the boot screen](https://echokit.dev/docs/dev/echokit-30-days-day-4-bootscreen), [crafted your own welcome voice](https://echokit.dev/docs/dev/echokit-30-days-day-5-welcome-voice), and started shaping your very own voice AI companion.
 
 Today, we’re upgrading something fundamental: **how your EchoKit listens to you.** In any voice AI agent, ASR is the very first step — it’s how your device hears you before it can think or speak back.
 
@@ -71,7 +75,7 @@ Head to [https://echokit.dev/setup/](https://echokit.dev/setup/) and rebind the 
 
 If nothing changed except your ASR configuration, you can simply **press the RST button** on your EchoKit to restart it and sync the new settings.
 
-If your server URL or WiFi setup changed, you can reconfigure them through the setup page — just like you did on Day 1.
+If your server URL or WiFi setup changed, you can reconfigure them through the setup page — just like you did on [Day 1](https://echokit.dev/docs/dev/echokit-30-days-day-1).
 
 Now comes the fun part.
 
@@ -81,16 +85,17 @@ You’ll feel the difference immediately — the Groq Whisper model picks up you
 
 Your EchoKit just got better ears. Remember to check the logs to see how long Groq’s Whisper took to transcribe the audio.
 
+
 Today’s upgrade brings more speed and responsiveness, setting the stage for a deeper dive into the EchoKit server in the upcoming days.
 
 If you want to share your experience or see what others are building with EchoKit + Groq:
 
-* Join the **EchoKit Discord**
+* Join the **[EchoKit Discord](https://discord.gg/Fwe3zsT5g3)**
 * Or share your latency tests, setups, and experiments — we love seeing them
 
 ---
 
 Want to get your own EchoKit device?
 
-* **EchoKit Box**
-* **EchoKit DIY Kit**
+* [EchoKit Box](https://echokit.dev/echokit_box.html)
+* [EchoKit DIY Kit](https://echokit.dev/echokit_diy.html)
