@@ -58,7 +58,7 @@ const config = {
                     routeBasePath: 'dev',
                     path: './dev',
                     blogSidebarCount: "ALL",
-                    blogSidebarTitle: "Build in Public",
+                    blogSidebarTitle: "Recent updates",
                     showReadingTime: true,
                     feedOptions: {
                         type: ['rss', 'atom'],
