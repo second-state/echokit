@@ -54,7 +54,7 @@ A quick breakdown:
 * [asr] — we’re configuring the ASR section
 * url — Openai’s Whisper endpoint for transcriptions
 * lang — your preferred language (en, zh, ja etc.)
-* api_key — the key you generated from OpenAI dash board
+* api_key — the key obtained from [OpenAI API plaform](https://platform.openai.com/docs/overview)
 * model — OpenAI's supported ASR models (whisper-1, the whisper V2 model, or gpt-4o-transcribe, gpt-4o-mini-transcribe,)
 
 Save → restart your EchoKit server with Docker or from the source code → done.
