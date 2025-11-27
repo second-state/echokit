@@ -17,7 +17,6 @@ Not because one is “better,” but because EchoKit is designed to be **modular
 
 ## What's the difference between OpenAI Whisper and Groq Whisper?
 
-
 Groq Whisper and OpenAI Whisper are based on the same open-source Whisper model.
 
 What differs is the hosting:
@@ -35,7 +34,7 @@ Today’s goal is simple:
 👉 **See how easy it is to switch providers while keeping the same Whisper model.**
 
 
-## **How to Use OpenAI Whisper**
+## How to Use OpenAI Whisper
 
 Now let’s switch EchoKit’s ASR provider.
 
@@ -55,7 +54,7 @@ A quick breakdown:
 * url — Openai’s Whisper endpoint for transcriptions
 * lang — your preferred language (en, zh, ja etc.)
 * api_key — the key obtained from [OpenAI API plaform](https://platform.openai.com/docs/overview)
-* model — OpenAI's supported ASR models (whisper-1, the whisper V2 model, or gpt-4o-transcribe, gpt-4o-mini-transcribe,)
+* model — OpenAI's supported ASR models (whisper-1 or gpt-4o-transcribe, gpt-4o-mini-transcribe,)
 
 Save → restart your EchoKit server with Docker or from the source code → done.
 
