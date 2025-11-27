@@ -1,6 +1,6 @@
 ---
 slug: echokit-30-days-day-7-openai
-title: "Day 6: Integrate Groq as the ASR Engine for Your EchoKit | The First 30 Days with EchoKit"
+title: "Day 7: Use OpenAI Whisper as Your ASR Provider | The First 30 Days with EchoKit"
 tags: [echokit30days]
 ---
 
