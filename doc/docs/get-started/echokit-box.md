@@ -48,7 +48,7 @@ Once paired via Bluetooth, you’ll be redirected to a setup interface where you
     - US: ws://indie.echokit.dev/ws
     - EU: ws://eu.echokit.dev/ws
     - Taiwan and southeast Asia: ws://tw.echokit.dev/ws
-    - Rest of the world: [run your own EchoKit server](../server/quick-start.md)
+    - Rest of the world: [run your own EchoKit server](echokit-server.md)
 - **Background Image (Optional)**: Upload a transparent GIF image (320x240 px) as the background for the EchoKit Box device.
 
 ![](../server/connect-echokit-new.png)
