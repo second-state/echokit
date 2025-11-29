@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# Assemble EchoKit
+# Assemble EchoKit DIY
 
 Before using your EchoKit, you’ll need to assemble its four components:
 
