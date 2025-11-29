@@ -2,9 +2,9 @@
 sidebar_position: 6
 ---
 
-# Add Actions for EchoKit
+# Tool calls and actions
 
-EchoKit supports **MCP (Model Context Protocol)**, which allows LLMs to call external tools and services.  
+EchoKit supports **MCP (Model Context Protocol)**, which allows LLMs to call external tools and actions.  
 With actions, you can extend EchoKit beyond conversation—for example:  
 
 - Manage your Google Calendar  
@@ -16,15 +16,14 @@ With actions, you can extend EchoKit beyond conversation—for example:
 
 ## 1. Prerequisites
 
-Before adding actions, make sure you have:  
+Before adding MCP tools, make sure that you 
 
-- An **MCP server** running. This can be either:  
+- Have access to an **MCP server**. You can use a public MCP server or run one locally on your machine. The MCP server can be either:  
   - **SSE MCP server**, or  
   - **HTTP streamable MCP server**  
-- You can use a public MCP server or run one locally on your machine.  
+- Use an LLM model that is capable of **tool use** (or, **tool calling**)
 
-
-## 2. Configure MCP server in EchoKit
+## 2. Add MCP servers to EchoKit
 
 Add the following section to your `config.toml` file:  
 
@@ -32,24 +31,27 @@ Add the following section to your `config.toml` file:
 [[llm.mcp_server]]
 server = "http://localhost:8000/mcp"
 type = "http_streamable"
+call_mcp_message = "Please hold on a few seconds while I am searching for an answer!"
 ````
 
 * `server`: The MCP server address.
 * `type`: The type of MCP server. Supported values:
-
   * `sse`
   * `http_streamable`
+* `call_mcp_message`: A message the EchoKit device will read aloud when the server calls the MCP function. It is often needed sinc ethe MCP function call could introduce signaificant latency in the response.
 
 👉 You can add multiple `[[llm.mcp_server]]` blocks if you want to connect EchoKit to more than one MCP server.
 
-## 3. Model requirements
+## 3. Example
 
-Not all LLMs support tool use.
-When you add actions, make sure you select a model with **tool-calling capability**, such as:
+Here is an example of using Tavily to add "web search" functions to an EchoKit server.
 
-* **Qwen**
-* **Gemma**
-* **Any model from OpenAI**
+```toml
+[[llm.mcp_server]]
+server = "https://mcp.tavily.com/mcp/?tavilyApiKey=YOUR-API-KEY"
+type = "http_streamable"
+call_mcp_message = "It seems that I need to search the web for an answer. Please hold on!"
+```
 
 ## 4. Run the server
 
