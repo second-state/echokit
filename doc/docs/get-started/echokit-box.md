@@ -10,7 +10,7 @@ This guide walks you through setting up your **EchoKit Box**, which comes pre-as
 
 ## Get familiar with the buttons
 
-Let’s take a moment to get familiar with the common buttons and ports. The image below gives you a clear overview of them. Learn more about the buttons on EchoKit Box.
+Let’s take a moment to get familiar with the common buttons and ports. The image below gives you a clear overview of them. Learn more about [the buttons on EchoKit Box](../hardware/buttons-echokit-box.md).
 
 ![](echokit-box-buttons.jpg)
 
@@ -48,10 +48,10 @@ Once paired via Bluetooth, you’ll be redirected to a setup interface where you
     - US: ws://indie.echokit.dev/ws
     - EU: ws://eu.echokit.dev/ws
     - Taiwan and southeast Asia: ws://tw.echokit.dev/ws
-    - Rest of the world: [run your own EchoKit server]../(server/quick-start.md)
+    - Rest of the world: [run your own EchoKit server](../server/quick-start.md)
 - **Background Image (Optional)**: Upload a transparent GIF image (320x240 px) as the background for the EchoKit Box device.
 
-For each field, click the **"Save Configuration"** button on the web page after entering the value.
+For each field, click the **"Save Configuration"** button on the web page after entering the three values.
 
 And the EchoKit Box will restrat automatically.
 
