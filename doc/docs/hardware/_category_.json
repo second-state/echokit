@@ -1,8 +1,8 @@
 {
-  "label": "Build your Hardware",
-  "position": 3,
+  "label": "Work with your device",
+  "position": 4,
   "link": {
     "type": "generated-index",
-    "description": "Flash your Hardware"
+    "description": "Assemble the hardware components, build and flash the firmware, understand the buttons"
   }
 }
