@@ -1,8 +1,8 @@
 ---
-sidebar_position: 1
+sidebar_position: 3
 ---
 
-# EchoKit server quick start
+# Quick Start with EchoKit Server
 
 EchoKit Server is the central component that manages communication between the EchoKit device and AI services. It can be deployed locally or connected to preset servers, allowing developers to customize LLM endpoints, plan the LLM prompt, configure speech models, and integrate additional AI features like MCP servers.
 
