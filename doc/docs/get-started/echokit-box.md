@@ -53,7 +53,7 @@ Once paired via Bluetooth, you’ll be redirected to a setup interface where you
 
 For each required field, click the **"Save Configuration"** button on the web page after entering the three values (Wi-Fi Network, Wi-Fi Password, and EchoKit Server). If you wish to set a background image, you can upload it as an optional fourth value.
 
-And the EchoKit Box will restrat automatically.
+And the EchoKit Box will restart automatically.
 
 ## Step 4: Confirm Setup on EchoKit
 
