@@ -33,7 +33,7 @@ This installs WasmEdge along with all base components.
 
 ### 2. Install the Whisper Plugin (wasi-nn-whisper)
 
-My computer is a Mac with Appke Sikicon, so I will download the whisper plugin using the following command lines
+My computer is a Mac with Apple Silicon, so I will download the whisper plugin using the following command lines
 
 
 ```bash
