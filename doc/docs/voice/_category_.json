@@ -1,8 +1,8 @@
 {
-  "label": "Configuring Voice for EchoKit",
+  "label": "Use your own voice",
   "position": 4,
   "link": {
     "type": "generated-index",
-    "description": "In this chapter, you’ll learn how to use a pre-built voice, clone your own voice, and deploy your custom voice model to EchoKit."
+    "description": "In this chapter, you’ll learn how to use voice characters in EchoKit, including voice libraries, custom cloned voice, and finetuned TTS models."
   }
 }
