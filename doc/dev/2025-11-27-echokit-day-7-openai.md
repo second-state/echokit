@@ -66,7 +66,7 @@ You can follow the same process to reconnect the server and your EchoKit device.
 
 EchoKit’s ASR system was built to support all OpenAI-compatible provider — so feel free to try different providers, compare results, and find what works best for your setup.
 
-If you want to share your experience or see what others are building with EchoKit + Groq:
+If you want to share your experience or see what others are building with EchoKit + OpenAI:
 
 * Join the **[EchoKit Discord](https://discord.gg/Fwe3zsT5g3)**
 * Or share your latency tests, setups, and experiments — we love seeing them
