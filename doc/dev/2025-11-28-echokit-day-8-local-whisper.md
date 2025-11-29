@@ -99,7 +99,7 @@ model = "whisper"
 ```
 Yes, you only need to replace the endpoint.
 
-Restart the EchoKit server, pair your device, connect the echockit server to the devicer, and speak.
+Restart the EchoKit server, pair your device, connect the EchoKit server to the device, and speak.
 
 
 If you want to share your experience or see what others are building with EchoKit + local whisper:
