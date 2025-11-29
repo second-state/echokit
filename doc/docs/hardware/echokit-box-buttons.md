@@ -11,7 +11,7 @@ Before we move to the next chapter, let's take a quick look at the common button
 
 The **K0 button** (located on the upper base of the device) is a multi-purpose control button. It is used when you want to
 
-* Toggle between listening and idle modes when the device is not speaking. 
+* Toggle between listening and idle modes when the device is not speaking.
 
 * Interrupt the device and switch to listening mode, when the device is speaking.
 
