@@ -33,7 +33,7 @@ The **RST button** (located on the upper base of the device) is used to restart 
 
 The **volume buttons** (located on the upper base of the device) are used to adjust the volume of the device.
 * The K1 button increases the volume.
-* The J1 button lowers the volume.
+* The K2 button lowers the volume.
 
 ![](../get-started/echokit-box-buttons.jpg)
 
