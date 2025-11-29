@@ -42,7 +42,7 @@ Click **Connect to EchoKit** to begin Bluetooth pairing.
 
 Once paired via Bluetooth, you’ll be redirected to a setup interface where you can enter:
 
-![](../echokit-quick-start-04.png)
+![](../server/connect-echokit-new.png)
 
 - **Wi-Fi Network**: Your Wi-Fi network name. It MUST be a 2.4G network.
 - **Wi-Fi Password**: Your Wi-Fi access code  
@@ -53,9 +53,10 @@ Once paired via Bluetooth, you’ll be redirected to a setup interface where you
     - 🇸🇬 Rest of the world: [run your own EchoKit server]../(server/quick-start.md)
 - **Background Image**: Upload a transparent GIF image as the background for the device.
 
-For each field, click the **"Write"** button after entering the value.
+![](../server/connect-echokit-new.png)
+For each required field, click the **"Save Configuration"** button on the web page after entering the three values (Wi-Fi Network, Wi-Fi Password, and EchoKit Server). If you wish to set a background image, you can upload it as an optional fourth value.
 
-After you are done writing all fields, click [**K0 button**](../hardware/buttons-echokit-diy.md) on the EchoKit device.
+And the EchoKit Box will restart automatically.
 
 
 
