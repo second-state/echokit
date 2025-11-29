@@ -41,7 +41,7 @@ The **volume buttons** (located on the upper base of the device) are used to adj
 
 The EchoKit Box includes two distinct USB ports.
 
-The USB port located on the back face serves two functions: powering the device and [flashing the hardware](flash-hardware.md) (using either CLI commands or the ESP Launchpad).
+The USB port located on the back face serves two functions: powering the device and [flashing the device](flash-firmware.md) (using either CLI commands or the ESP Launchpad).
 
 ![](../get-started/echokit-box-usb.jpg)
 
