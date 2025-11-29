@@ -18,7 +18,7 @@ Whisper is an amazing ASR model. Let’s get your local Whisper server running a
 
 You can also use other tool to run whisper locally as long as the API server is OpenAI-compatible.
 
-## Run the whisper model locally
+## Run the Whisper model locally
 
 ### 1. Install WasmEdge
 
