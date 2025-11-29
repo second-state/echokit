@@ -38,7 +38,7 @@ call_mcp_message = "Please hold on a few seconds while I am searching for an ans
 * `type`: The type of MCP server. Supported values:
   * `sse`
   * `http_streamable`
-* `call_mcp_message`: A message the EchoKit device will read aloud when the server calls the MCP function. It is often needed sinc ethe MCP function call could introduce signaificant latency in the response.
+* `call_mcp_message`: A message the EchoKit device will read aloud when the server calls the MCP tool. It is often needed since the MCP tool call could introduce signaificant latency in the response.
 
 👉 You can add multiple `[[llm.mcp_server]]` blocks if you want to connect EchoKit to more than one MCP server.
 
