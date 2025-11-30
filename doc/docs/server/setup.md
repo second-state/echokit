@@ -23,10 +23,9 @@ Before starting, make sure you have:
 4. Enter the following details:  
    * **Wi-Fi name (SSID)**  EchoKit supports 2.4 GHz WiFi only.
    * **Wi-Fi password**  
-   * **EchoKit server URL** E.g., public server: `ws://indie.echokit.dev/ws`, or peronal server on the local network: `ws://192.168.2.101:8080/ws`
+   * **EchoKit server URL** E.g., public server: `ws://echokit-server.fly.dev/ws`, or personal server on the local network: `ws://192.168.2.101:8080/ws`
 
  
-
 ![Set up EchoKit server](connect-echokit-new.png)
 
 5. Click the **Save Changes** button to apply the new settings. Meanwhile, you will see the EchoKit device will restrart automatically.
