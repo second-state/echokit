@@ -49,7 +49,9 @@ You are a helpful assistant. Answer truthfully and concisely. Always answer in E
 """
 ```
 
-> Learn more about [how to configure the EchoKit server](../server/configure-echokit-server.md), especially for [Chinese users](../server/qwen.md).
+Learn more about [how to configure the EchoKit server](../server/configure-echokit-server.md).
+
+> If you are based in mainland China (or Hong Kong), you will need to use [Chinese AI services](../server/qwen.md).
 
 **Next,** [connect the Echokit device to the EchoKit server](../server/setup.md) 
 
