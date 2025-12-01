@@ -1,6 +1,6 @@
 ---
 slug: echokit-30-days-day-9-chatgpt
-title: "Use OpenAI as Your EchoKit LLM Provider | The First 30 Days with EchoKit"
+title: "Day 9: Use OpenAI as Your EchoKit LLM Provider | The First 30 Days with EchoKit"
 tags: [echokit30days]
 ---
 
