@@ -74,7 +74,7 @@ Next, press that K0 button and start speaking. Every clever thing your EchoKit s
 
 ---
 
-If you want to share your experience or see what others are building with EchoKit + local whisper:
+If you want to share your experience or see what others are building with EchoKit + OpenAI:
 
 * Join the **[EchoKit Discord](https://discord.gg/Fwe3zsT5g3)**
 * Or share your latency tests, setups, and experiments — we love seeing them
