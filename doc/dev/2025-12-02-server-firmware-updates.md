@@ -47,7 +47,7 @@ The EchoKit server has also received key improvements:
 ### Firmware Update
 
 1. **Download the latest firmware** from [EchoKit Firmware Page](https://github.com/second-state/echokit_box/releases)
-2. [**Flash the firmware** to your device using the ESP32 Launchpas or CLI command line](https://echokit.dev/docs/hardware/flash-firmware)
+2. [**Flash the firmware** to your device using the ESP32 Launchpad or CLI command line](https://echokit.dev/docs/hardware/flash-firmware)
 3. Your device will now support one-click setup, version display, and volume adjustment for EchoKit Box
 
 ### Server Update
