@@ -674,13 +674,19 @@ twq('config','qnwr5');
                     </div>
                     -->
                     <div class="thumbnail" onclick="changeMedia(0)">
-                        <img src="media/echokit-box-01.png" alt="EchoKit">
+                        <img src="media/echokit-box-01.jpg" alt="EchoKit">
                     </div>
                     <div class="thumbnail" onclick="changeMedia(1)">
-                        <img src="media/echokit-box-02.png" alt="EchoKit">
+                        <img src="media/echokit-box-02.jpg" alt="EchoKit">
                     </div>
                     <div class="thumbnail" onclick="changeMedia(2)">
-                        <img src="media/echokit-box-03.png" alt="EchoKit">
+                        <img src="media/echokit-box-jokes.mp4" alt="EchoKit">
+                    </div>
+                    <div class="thumbnail" onclick="changeMedia(3)">
+                        <img src="media/echokit-box-diana.mp4" alt="EchoKit">
+                    </div>
+                    <div class="thumbnail" onclick="changeMedia(4)">
+                        <img src="media/echokit-box-pudgy.mp4" alt="EchoKit">
                     </div>
                 </div>
             </div>
@@ -1207,10 +1213,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <script>
     const media = [
-        // {type: 'video', src: 'media/XroT7a0DLkw.mp4', poster: 'media/XroT7a0DLkw.jpg'},
-        {type: 'image', src: 'media/echokit-box-01.png'},
-        {type: 'image', src: 'media/echokit-box-02.png'},
-        {type: 'image', src: 'media/echokit-box-03.png'}
+        {type: 'image', src: 'media/echokit-box-01.jpg'},
+        {type: 'image', src: 'media/echokit-box-02.jpg'},
+        {type: 'video', src: 'media/echokit-box-jokes.mp4', poster: 'media/echokit-box-jokes.jpg'},
+        {type: 'video', src: 'media/echokit-box-diana.mp4', poster: 'media/echokit-box-diana.jpg'},
+        {type: 'video', src: 'media/echokit-box-pudgy.mp4', poster: 'media/echokit-box-pudgy.jpg'}
     ];
 
     let endedListener = null;
