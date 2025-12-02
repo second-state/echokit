@@ -47,7 +47,7 @@ Once paired via Bluetooth, you’ll be redirected to a setup interface where you
 - **EchoKit Server**: The IP and port of the EchoKit Server you're connecting to. You can use our hosted servers depending on your location:
     - US: `ws://indie.echokit.dev/ws`
     - Taiwan and southeast Asia: `ws://tw.echokit.dev/ws`
-    - Rest of the world: `ws://echokit-server.fly.dev/ws`
+    - Rest of the world: `ws://edge.echokit.dev/ws`
     - Everyone: [run your own EchoKit server](echokit-server.md)
 - **Background Image (Optional)**: Upload a transparent GIF image (320x240 px) as the background for the EchoKit Box device.
 
