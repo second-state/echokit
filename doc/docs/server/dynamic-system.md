@@ -35,7 +35,7 @@ Afterward, if you want to change the behavior of your EchoKit voice AI agent, si
 
 ## When the System Prompt Is Reloaded
 
-EchoKit reloads the system prompt only during a **full startup flow**. A full startup clears the session and reinitializes all LLM state.
+EchoKit reloads the system prompt only during a **full restart**. A full restart clears the session and reinitializes all LLM state.
 
 The system prompt **will be reloaded** in the following scenarios:
 
@@ -45,22 +45,22 @@ If the device loses power or is manually restarted, EchoKit will reload the syst
 
 ### ✔ Pressing the `RST` hardware button
 
-The reset button triggers a full reboot.
+The reset button triggers a full restart.
 
 
-When a full reboot happens, the following actions occur:
+When a full restart happens, the following actions occur:
 
 * Reload system prompts
 * Clear conversation history
 * Reinitialize LLM state
 
-Your updated system prompt will take effect immediately after the reboot.
+Your updated system prompt will take effect immediately after the restart.
 
 
 
 ## When the System Prompt Is **Not** Reloaded
 
-EchoKit **does not reload** the system prompt during partial reconnections or conversation interruptions.
+EchoKit **does not reload** the system prompt after reconnections or conversation interruptions.
 
 ### ✘ Pressing the `K0` button to interrupt the conversation
 
@@ -80,7 +80,7 @@ This ensures continuity and reduces unnecessary reloads.
 
 ## Summary
 
-Dynamic prompt loading provides a flexible and efficient way to update EchoKit’s system-level behavior without touching firmware or restarting the server. The system prompt is reloaded only during **full startup events**:
+Dynamic prompt loading provides a flexible and efficient way to update EchoKit’s system-level behavior without touching firmware or restarting the server. The system prompt is reloaded only after the EchoKit device restarts.
 
 * Power-on
 * Pressing the RST button
