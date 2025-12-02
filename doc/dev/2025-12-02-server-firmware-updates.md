@@ -17,7 +17,9 @@ The latest firmware brings several user-friendly improvements:
 2. **Version Display**
    You can now easily check your EchoKit firmware version on the device, helping you keep track of updates.
 
-3. **EchoKit Box Volume Adjustment**
+   ![](echokit-version-updates-nov.png)
+
+4. **EchoKit Box Volume Adjustment**
    Adjust the volume directly on your EchoKit Box for a better audio experience without extra steps.
    * K2 to lower the volume
    * K1 to increase the volume
