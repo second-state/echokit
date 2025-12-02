@@ -12,7 +12,7 @@ We’re excited to share the latest updates of **EchoKit** in Nov, our open-sour
 The latest firmware brings several user-friendly improvements:
 
 1. **One-Click Wi-Fi & Server Setup**
-   All configuration options—including Wi-Fi credentials and server URL—are now bundled into a single setup interface when connecting the EchoKit Server to your device. Click one butto - Save Configurations, and your device will automatically save the settings, restart, and apply the new configuration. See details [here](https://echokit.dev/docs/server/setup).
+   All configuration options—including Wi-Fi credentials and server URL—are now bundled into a single setup interface when connecting the EchoKit Server to your device. Click one button - Save Configurations, and your device will automatically save the settings, restart, and apply the new configuration. See details [here](https://echokit.dev/docs/server/setup).
 
 2. **Version Display**
    You can now easily check your EchoKit firmware version on the device, helping you keep track of updates.
