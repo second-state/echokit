@@ -38,11 +38,11 @@ The EchoKit server has also received key improvements:
    * Update the AI’s behavior remotely
    * Test new conversation flows without restarting the server
    * Quickly iterate on experiments and demos
+   
+   Learn more from the doc: https://echokit.dev/docs/server/dynamic-system
 
 2. **Add a Wait Message for MCP Tools**
    When calling MCP tools, a “please wait” message will now appear, providing clear feedback while operations are in progress.
-
-
 
 ## How to Get These New Features
 
