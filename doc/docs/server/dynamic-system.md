@@ -29,7 +29,7 @@ EchoKit will automatically:
 3. Cache the result
 4. Use it for all subsequent LLM interactions (until the next prompt reload)
 
-> The URL must return **plain text** and GitHun repo is a suitable place to store your prompt.
+> The URL must return **plain text** and GitHub repo is a suitable place to store your prompt.
 
 Afterward, if you want to change the behavior of your EchoKit voice AI agent, simply update the prompt at the URL — no firmware update or server restart required.
 
