@@ -6,7 +6,7 @@ tags: [echokit30days]
 
 
 Over the past two weeks, we’ve explored many moving parts inside the **ASR → LLM → TTS** pipeline.
-We’ve changed [the welcome voice](https://echokit.dev/docs/dev/echokit-30-days-day-5-welcome-voic), [updated the boot screen](https://echokit.dev/docs/dev/echokit-30-days-day-4-bootscreen), [switched between multiple ASR providers](https://echokit.dev/docs/dev/echokit-30-days-day-6-groq), and learned how to run the EchoKit server both via [Docker](https://echokit.dev/docs/dev/echokit-30-days-day-2-docker) and [from source](https://echokit.dev/docs/dev/echokit-30-days-day-3-rust).
+We’ve changed [the welcome voice](https://echokit.dev/docs/dev/echokit-30-days-day-5-welcome-voice), [updated the boot screen](https://echokit.dev/docs/dev/echokit-30-days-day-4-bootscreen), [switched between multiple ASR providers](https://echokit.dev/docs/dev/echokit-30-days-day-6-groq), and learned how to run the EchoKit server both via [Docker](https://echokit.dev/docs/dev/echokit-30-days-day-2-docker) and [from source](https://echokit.dev/docs/dev/echokit-30-days-day-3-rust).
 
 This week, we shifted our focus to the **LLM**, the part of the pipeline that interprets what you say and decides how EchoKit should respond.
 
