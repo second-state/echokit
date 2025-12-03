@@ -84,7 +84,7 @@ If you enjoy tweaking, tuning, and exploring how different models shape your Ech
 
 ---
 
-If you want to share your experience or see what others are building with EchoKit + OpenAI:
+If you want to share your experience or see what others are building with EchoKit + OpenRouter:
 
 * Join the **[EchoKit Discord](https://discord.gg/Fwe3zsT5g3)**
 * Or share your latency tests, setups, and experiments — we love seeing them
