@@ -1,6 +1,6 @@
 ---
 slug: echokit-30-days-day-10-openrouter
-title: "Day 10: Using OpenRouter as Your EchoKit LLM Provider| The First 30 Days with EchoKit"
+title: "Day 10: Using OpenRouter as Your EchoKit LLM Provider | The First 30 Days with EchoKit"
 tags: [echokit30days]
 ---
 
