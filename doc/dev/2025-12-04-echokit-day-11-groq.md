@@ -1,5 +1,5 @@
 ---
-slug: echokit-30-days-day-10-openrouter
+slug: echokit-30-days-day-11-groq
 title: "Day 11: Switching EchoKit’s LLM to Groq — And Experiencing Real Speed | The First 30 Days with EchoKit"
 tags: [echokit30days]
 ---
