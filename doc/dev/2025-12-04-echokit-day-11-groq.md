@@ -63,7 +63,7 @@ nohup target/release/echokit_server &
 ```
 
 
-Then return to the setup page, pair the device if needed.You should immediately feel the speed difference — especially on follow-up questions.
+Then return to the setup page, pair the device if needed. You should immediately feel the speed difference — especially on follow-up questions.
 
 ---
 
