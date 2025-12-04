@@ -41,7 +41,7 @@ Replace the LLM endpoint URL, API key and model name.  [The production models fr
 
 ### **Step 2 — Restart your EchoKit server**
 
-After edit the config.toml, you will need to restart your EchoKit server.
+After editing the config.toml, you will need to restart your EchoKit server.
 
 Docker users:
 
