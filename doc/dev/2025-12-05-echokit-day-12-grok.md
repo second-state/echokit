@@ -5,7 +5,7 @@ tags: [echokit30days]
 ---
 
 
-# Day 11 — Switching EchoKit to Grok (with Built-in Web Search)
+# Day 12 — Switching EchoKit to Grok (with Built-in Web Search)
 
 Over the past days, we’ve been exploring how EchoKit’s **ASR → LLM → TTS** pipeline works. We learned how to replace different ASR providers, and this week we shifted our focus to the **LLM** — the part that thinks, reasons, and decides how EchoKit should reply.
 
