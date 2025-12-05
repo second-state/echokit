@@ -30,7 +30,7 @@ For a small device that depends on fast responses, Grok is an excellent option.
 
 ## How to Use Grok as Your LLM in EchoKit
 
-All you need to do is update your `config.toml`.
+All you need to do is update your `config.toml` of your EchoKit Server.
 No code changes, no rewriting your server — just swap URLs and keys.
 
 ### **1. Set Grok as the LLM provider**
@@ -66,6 +66,7 @@ Ask anything news-related, trending, or timely — Grok will search when needed.
 ### Restart the EchoKit server
 
 After that, save these changes, and restart your EchoKit server.
+> If your server is outdated, you'll need to recompile it from source. Support for Grok with built-in web search was added in a commit on December 5, 2025.
 
 ## **Try It Out**
 
