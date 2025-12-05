@@ -49,7 +49,7 @@ You can find your Grok API key in your **[xAI account dashboard](https://console
 
 Don't rush to close the `config.toml` window.
 
-## 2. Enable Grok’s Web Search
+### **2. Enable Grok’s Web Search**
 
 This is the special part.
 
