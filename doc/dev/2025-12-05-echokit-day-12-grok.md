@@ -53,7 +53,7 @@ Don't rush to close the `config.toml` window.
 
 This is the special part.
 
-Add the following section in the config.toml file:
+Add the following section in the `config.toml` file:
 
 ```toml
 [llm.extra]
