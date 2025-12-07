@@ -1,6 +1,6 @@
 {
   "label": "Use your own voice",
-  "position": 4,
+  "position": 5,
   "link": {
     "type": "generated-index",
     "description": "In this chapter, you’ll learn how to use voice characters in EchoKit, including voice libraries, custom cloned voice, and finetuned TTS models."

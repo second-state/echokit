@@ -1,8 +1,8 @@
 ---
-sidebar_position: 3
+sidebar_position: 2
 ---
 
-# Connect EchoKit Server with the Device
+# Connect EchoKit server with the device
 
 In this guide, we'll walk through connecting your EchoKit device to the EchoKit server.
 

@@ -1,8 +1,8 @@
 {
-  "label": "Set Up EchoKit Server",
-  "position": 3,
+  "label": "EchoKit server",
+  "position": 4,
   "link": {
     "type": "generated-index",
-    "description": "In this chapter, you’ll learn how to set up and configure the EchoKit server."
+    "description": "In this chapter, you'll learn how to build, deploy, and scale the EchoKit server."
   }
 }

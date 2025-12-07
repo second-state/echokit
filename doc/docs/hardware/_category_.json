@@ -1,6 +1,6 @@
 {
-  "label": "Work with your device",
-  "position": 4,
+  "label": "EchoKit device",
+  "position": 5,
   "link": {
     "type": "generated-index",
     "description": "Assemble the hardware components, build and flash the firmware, understand the buttons"

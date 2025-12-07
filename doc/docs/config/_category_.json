@@ -1,0 +1,8 @@
+{
+  "label": "Config guide",
+  "position": 3,
+  "link": {
+    "type": "generated-index",
+    "description": "In this chapter, you'll learn how to configure the EchoKit server."
+  }
+}
