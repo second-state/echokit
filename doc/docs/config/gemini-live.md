@@ -15,9 +15,9 @@ EchoKit supports real-time models that can reduce latency. However, this approac
 
 Before setting up your end-to-end pipeline, ensure you have:
 
-* **EchoKit server source code** – Follow the [guide](./echokit-server.md) if you haven't already
+* **EchoKit server source code** – Follow the [guide](../get-started/echokit-server.md) if you haven't already
 * **Gemini API key** – Obtain from [Google AI Studio](https://aistudio.google.com/)
-* **TTS service running** (optional) – If using custom voice synthesis
+* **TTS service** (optional)
 
 ## Gemini API Setup
 
