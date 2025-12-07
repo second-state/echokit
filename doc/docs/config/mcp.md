@@ -55,7 +55,7 @@ call_mcp_message = "It seems that I need to search the web for an answer. Please
 
 ## 4. Run the server
 
-Once your MCP server is set and the configuration updated, restart EchoKit following [Running EchoKit server](./echokit-server.md).
+Once your MCP server is set and the configuration updated, restart EchoKit following [Running EchoKit server](../server/echokit-server.md).
 
 EchoKit will now be able to call external actions via MCP.
 

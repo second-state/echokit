@@ -4,9 +4,9 @@ sidebar_position: 5
 
 # Configure an End-to-End Pipeline for EchoKit
 
-In addition to the classic [ASR-LLM-TTS pipeline](./configure-echokit-server.md), EchoKit supports real-time models that can reduce latency. However, this approach has several limitations:
+EchoKit supports real-time models that can reduce latency. However, this approach has several limitations:
 
-* **High API costs** – OpenAI's real-time API can cost up to $25 per 100 tokens
+* **High API costs** – Real-time API can cost up to $25 per million tokens
 * **No voice customization** – You cannot modify the generated voice
 * **Limited knowledge integration** – External knowledge bases cannot be added to the model
 * **No MCP support** – Model Control Protocol is not supported in most cases
@@ -36,7 +36,7 @@ Google's Gemini is one of the most advanced models supporting voice-to-voice int
 Here's the complete configuration file for Gemini:
 
 ```toml
-addr = "0.0.0.0:9090"
+addr = "0.0.0.0:8080"
 hello_wav = "hello.wav"
 
 [gemini]
@@ -49,16 +49,6 @@ You are a helpful assistant. Please answer user questions as concisely as possib
 """
 ```
 
-### Starting the Server
-
-After editing the configuration file, restart the EchoKit server to apply the changes.
-
-Since you're using a different `config.toml` file in a custom path, your restart command should look like this:
-
-```bash
-./target/release/echokit_server ./examples/gemini/chat/config.toml
-```
-
 ## Gemini + TTS (Custom Voice)
 
 While real-time models typically don't allow voice customization, EchoKit enables you to customize the voice even when using Gemini!
@@ -68,7 +58,7 @@ While real-time models typically don't allow voice customization, EchoKit enable
 Simply add TTS-related parameters to your `config.toml` file:
 
 ```toml
-addr = "0.0.0.0:9090"
+addr = "0.0.0.0:8080"
 hello_wav = "hello.wav"
 
 [gemini]

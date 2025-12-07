@@ -10,7 +10,7 @@ It generally takes two approaches.
 * The pipeline approach. It divides up the task into multiple steps, and use a different AI service to process each step.
   * The [ASR service](asr.md) turns the user input voice audio into text.
   * The [LLM service](llm.md) generates a text response to the user input. The LLM could be aided by [built-in tools, such as web searches](llm-tools.md) and [custom tools in MCP servers](mcp.md].
-  * The [TTS service](ttd.md) converts the response text to voice.
+  * The [TTS service](tts.md) converts the response text to voice.
 * The end-to-end real-time model approach. It utilizes multimodal models that could directly ingest voice input and generate voice output, such as [Google Gemini Live](gemini-live.md).
 
 The pipeline approach offers greater flexibility and customization - you can choose any voice, control costs by mixing different providers, integrate external knowledge, and run components locally for privacy. While end-to-end models can reduce the latency, the classic pipeline gives you full control over each component.
