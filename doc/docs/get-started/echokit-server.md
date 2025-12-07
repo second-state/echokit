@@ -26,7 +26,7 @@ hello_wav = "hello.wav"
 [tts]
 platform = "Elevenlabs"
 token = "sk_1234"
-voice = "pNInz6obpgDQGcFmaJgB"
+voice = "YOUR-VOICE-ID"
 
 [asr]
 url = "https://api.groq.com/openai/v1/audio/transcriptions"
@@ -49,9 +49,7 @@ You are a helpful assistant. Answer truthfully and concisely. Always answer in E
 """
 ```
 
-Learn more about [how to configure the EchoKit server](../server/configure-echokit-server.md).
-
-> If you are based in mainland China (or Hong Kong), you will need to use [Chinese AI services](../server/qwen.md).
+Learn more about [how to configure the EchoKit server](../config/intro.md).
 
 **Next,** [connect the Echokit device to the EchoKit server](../server/setup.md) 
 
