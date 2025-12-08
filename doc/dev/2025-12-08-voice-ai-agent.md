@@ -1,6 +1,6 @@
 ---
 slug: the-way-to-build-voice-ai-agent
-title: " End-to-End vs. ASR-LLM-TTS: Which One Is The Right Choice to Build Voice AI Agent?"
+title: "End-to-End vs. ASR-LLM-TTS: Which One Is The Right Choice to Build Voice AI Agent?"
 tags: [echokit]
 ---
 
