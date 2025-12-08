@@ -100,12 +100,17 @@ Today we reached a major milestone:
 
 ---
 
-If you want to share your experience or see what others are building with EchoKit:
+This tutorial is only one small piece of what EchoKit can do.
+If you want to build your own voice AI device, try different LLMs, or run fully local models like Qwen — EchoKit gives you everything you need in one open-source kit.
+
+Want to explore more or share what you’ve built?
 
 * Join the **[EchoKit Discord](https://discord.gg/Fwe3zsT5g3)**
-* Share your latency tests, hardware setups, and experiments — we love seeing them!
+* Show us your custom models, latency tests, and experiments — the community is growing fast.
 
-Want to get your own EchoKit device?
+Ready to get your own EchoKit?
 
-* **[EchoKit Box](https://echokit.dev/echokit_box.html)**
-* **[EchoKit DIY Kit](https://echokit.dev/echokit_diy.html)**
+* **EchoKit Box →** [https://echokit.dev/echokit_box.html](https://echokit.dev/echokit_box.html)
+* **EchoKit DIY Kit →** [https://echokit.dev/echokit_diy.html](https://echokit.dev/echokit_diy.html)
+
+**Start building your own voice AI agent today.**
