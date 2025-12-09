@@ -109,7 +109,7 @@ If your character “breaks,” try adding:
 Prompt tuning is an art. A few careful sentences can reshape the entire interaction.
 
 
-Try give your EchoKit different personalities now.
+Try giving your EchoKit different personalities now.
 
 Want to explore more or share what you’ve built?
 
