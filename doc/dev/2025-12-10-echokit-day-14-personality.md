@@ -47,7 +47,7 @@ content = """
 
 Just edit this text, save the file, and restart the EchoKit server.
 
-If your WiFi and EchoKit server didn't change, press the rst button on the device to make the new system pormpt take effect.
+If your WiFi and EchoKit server didn't change, press the rst button on the device to make the new system prompt take effect.
 
 
 ## 5 Fun and Hilarious Prompt Ideas You Can Try Today
