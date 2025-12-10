@@ -15,7 +15,7 @@ Recent industry news makes this especially timely: on December 9, 2025, Anthropi
 
 ## 🧠 What is MCP?
 
-MCP acts like a “USB‑C port” for AI agents. It defines a client–server protocol that lets models call external tools, databases or APIs through standardised actions. MCP servers wrap services—such as file systems, web searches or device controls—behind simple JSON‑RPC endpoints. MCP Clients (like EchoKit or Anthropic’s Claude Code) connect to one or more MCP servers and dynamically discover available tools. When the model needs information or wants to perform an action, it sends a tool request; the server executes the tool and returns results for the model to use
+MCP acts like a “USB‑C port” for AI agents. It defines a client–server protocol that lets models call external tools, databases or APIs through standardised actions. MCP servers wrap services—such as file systems, web searches or device controls—behind simple JSON‑RPC endpoints. MCP Clients (like EchoKit or Anthropic’s Claude Code) connect to one or more MCP servers and dynamically discover available tools. When the model needs information or wants to perform an action, it sends a tool request; the server executes the tool and returns results for the model to use.
 
 MCP’s adoption has been rapid: within a year of its release there were over 10,000 public MCP servers and more than 97 million SDK downloads. It’s been integrated into major platforms like ChatGPT, Claude, Cursor, Gemini, Microsoft Copilot and VS Code. By placing MCP under the AAIF, Anthropic and its partners ensure that this crucial infrastructure remains open, neutral and community‑driven.
 
@@ -64,11 +64,11 @@ Under the hood, EchoKit’s LLM recognises that it needs up‑to‑date informat
 
 The MCP server performs the web search and returns structured results (titles, URLs and snippets). EchoKit then synthesises a natural‑language answer, summarising the findings and citing the sources.
 
-You can also use other MCP sever tools like the Google Calendar MCP server to add and edit event, Slack MCP server to send an message to the Slack channel, Home Assistant MCP server to control the home device. All of these tools become accessible through your voice.
+You can also use other MCP server tools like the Google Calendar MCP server to add and edit events, Slack MCP server to send a message to the Slack channel, Home Assistant MCP server to control home devices. All of these tools become accessible through your voice.
 
 ## 📌 Why This Matters
 
-Integrating MCP gives EchoKit access to a rapidly expanding tool ecosystem. You’re no longer limited to predetermined voice commands; your agent can search the web, read files, run code, query databases or control smart devices—all through a the voice interface. The AAIF’s stewardship of MCP ensures that these capabilities remain open and interoperable, so EchoKit can continue to evolve alongside the broader agentic AI community.
+Integrating MCP gives EchoKit access to a rapidly expanding tool ecosystem. You’re no longer limited to predetermined voice commands; your agent can search the web, read files, run code, query databases or control smart devices—all through a voice interface. The AAIF’s stewardship of MCP ensures that these capabilities remain open and interoperable, so EchoKit can continue to evolve alongside the broader agentic AI community.
 
 ---
 
