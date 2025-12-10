@@ -95,7 +95,6 @@ Be philosophical but humorous.
 
 Have fun — EchoKit becomes a completely different creature depending on what you choose.
 
----
 
 ## **Prompt Debugging Tips**
 
@@ -108,8 +107,10 @@ If your character “breaks,” try adding:
 
 Prompt tuning is an art. A few careful sentences can reshape the entire interaction.
 
-
 Try giving your EchoKit different personalities now.
+
+---
+
 
 Want to explore more or share what you’ve built?
 
