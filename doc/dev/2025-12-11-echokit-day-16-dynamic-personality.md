@@ -1,6 +1,6 @@
 ---
 slug: echokit-30-days-day-16-welcome-voice
-title: "Day 16: Dynamic Personality for EchoKit| The First 30 Days with EchoKit"
+title: "Day 16: Dynamic Personality for EchoKit | The First 30 Days with EchoKit"
 tags: [echokit30days]
 ---
 
