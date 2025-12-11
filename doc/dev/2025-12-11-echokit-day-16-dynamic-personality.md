@@ -46,7 +46,7 @@ Interrupting a conversation with the K0 button or a temporary Wi‑Fi reconnecti
 
 ## Summary
 
-Dynamic system prompt loading opens up a new level of flexibility for EchoKit. You no longer need to modify local files or restart server to change your agent’s behaviour; instead, you can pull any prompt hosted on the web and swap personas at will.
+Dynamic system prompt loading opens up a new level of flexibility for EchoKit. You no longer need to modify local files or restart the server to change your agent’s behaviour; instead, you can pull any prompt hosted on the web and swap personas at will.
 
 ---
 Want to get your EchoKit Device and make it unique?
