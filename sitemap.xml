@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+
+<url>
+  <loc>https://echokit.dev/</loc>
+  <lastmod>2025-12-11T17:42:09+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://echokit.dev/docs/category/quick-start/</loc>
+  <lastmod>2025-12-11T17:42:08+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://echokit.dev/echokit_diy.html</loc>
+  <lastmod>2025-12-11T17:42:09+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://echokit.dev/docs/intro/</loc>
+  <lastmod>2025-12-11T17:42:08+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://echokit.dev/echokit_box.html</loc>
+  <lastmod>2025-12-11T17:42:08+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://echokit.dev/docs/quick-start/</loc>
+  <lastmod>2025-12-11T17:42:09+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://echokit.dev/docs/</loc>
+  <lastmod>2025-12-11T17:42:08+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://echokit.dev/docs/dev/</loc>
+  <lastmod>2025-12-11T17:42:08+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://echokit.dev/docs/get-started/echokit-diy/</loc>
+  <lastmod>2025-12-11T17:42:08+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://echokit.dev/docs/get-started/echokit-box/</loc>
+  <lastmod>2025-12-11T17:42:08+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://echokit.dev/docs/get-started/echokit-server/</loc>
+  <lastmod>2025-12-11T17:42:08+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://echokit.dev/docs/category/set-up-echokit-server/</loc>
+  <lastmod>2025-12-11T17:42:08+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://echokit.dev/docs/category/work-with-your-device/</loc>
+  <lastmod>2025-12-11T17:42:08+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://echokit.dev/docs/category/use-your-own-voice/</loc>
+  <lastmod>2025-12-11T17:42:08+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://echokit.dev/docs/category/echokit-use-cases/</loc>
+  <lastmod>2025-12-11T17:42:08+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://echokit.dev/docs/troubleshooting/</loc>
+  <lastmod>2025-12-11T17:42:08+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://echokit.dev/voice_clone/</loc>
+  <lastmod>2025-12-11T17:42:09+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://echokit.dev/docs/dev/echokit-30-days-day-16-dynamic-personality/</loc>
+  <lastmod>2025-12-11T17:42:09+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://echokit.dev/docs/dev/echokit-30-days-day-15-mcp-web-search/</loc>
+  <lastmod>2025-12-11T17:42:09+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://echokit.dev/docs/dev/echokit-30-days-day-14-personality/</loc>
+  <lastmod>2025-12-11T17:42:08+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://echokit.dev/docs/dev/echokit-30-days-day-13-local-llm/</loc>
+  <lastmod>2025-12-11T17:42:09+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://echokit.dev/docs/dev/the-way-to-build-voice-ai-agent/</loc>
+  <lastmod>2025-12-11T17:42:09+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://echokit.dev/docs/dev/echokit-30-days-day-12-grok/</loc>
+  <lastmod>2025-12-11T17:42:08+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://echokit.dev/docs/dev/echokit-30-days-day-11-groq/</loc>
+  <lastmod>2025-12-11T17:42:08+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://echokit.dev/docs/dev/echokit-30-days-day-10-openrouter/</loc>
+  <lastmod>2025-12-11T17:42:09+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://echokit.dev/docs/dev/server-firmware-updates-nov/</loc>
+  <lastmod>2025-12-11T17:42:09+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://echokit.dev/docs/dev/echokit-30-days-day-9-chatgpt/</loc>
+  <lastmod>2025-12-11T17:42:08+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://echokit.dev/docs/dev/echokit-30-days-day-8-local-whisper/</loc>
+  <lastmod>2025-12-11T17:42:09+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://echokit.dev/docs/dev/echokit-30-days-day-7-openai/</loc>
+  <lastmod>2025-12-11T17:42:08+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://echokit.dev/docs/dev/echokit-30-days-day-6-groq/</loc>
+  <lastmod>2025-12-11T17:42:09+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://echokit.dev/docs/dev/echokit-30-days-day-5-welcome-voice/</loc>
+  <lastmod>2025-12-11T17:42:09+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://echokit.dev/docs/dev/echokit-30-days-day-4-bootscreen/</loc>
+  <lastmod>2025-12-11T17:42:08+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://echokit.dev/docs/dev/echokit-30-days-day-3-rust/</loc>
+  <lastmod>2025-12-11T17:42:09+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://echokit.dev/docs/dev/echokit-30-days-day-2-docker/</loc>
+  <lastmod>2025-12-11T17:42:09+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://echokit.dev/docs/dev/echokit-30-days-day-1/</loc>
+  <lastmod>2025-12-11T17:42:08+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://echokit.dev/docs/dev/echokit-box/</loc>
+  <lastmod>2025-12-11T17:42:08+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://echokit.dev/docs/dev/echokit-fun-voice/</loc>
+  <lastmod>2025-12-11T17:42:09+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://echokit.dev/docs/dev/echokit-interrupt-volume/</loc>
+  <lastmod>2025-12-11T17:42:08+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://echokit.dev/docs/dev/echokit-elevenlabs/</loc>
+  <lastmod>2025-12-11T17:42:08+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://echokit.dev/docs/dev/introduce-echokit/</loc>
+  <lastmod>2025-12-11T17:42:08+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://echokit.dev/docs/dev/tags/echokit-30-days/</loc>
+  <lastmod>2025-12-11T17:42:09+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://echokit.dev/docs/dev/tags/echokit/</loc>
+  <lastmod>2025-12-11T17:42:09+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://echokit.dev/docs/server/setup/</loc>
+  <lastmod>2025-12-11T17:42:09+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://echokit.dev/docs/server/dynamic-system/</loc>
+  <lastmod>2025-12-11T17:42:09+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://echokit.dev/docs/hardware/flash-firmware/</loc>
+  <lastmod>2025-12-11T17:42:09+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://echokit.dev/docs/server/echokit-server/</loc>
+  <lastmod>2025-12-11T17:42:08+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://echokit.dev/setup/</loc>
+  <lastmod>2025-12-11T17:42:09+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://echokit.dev/docs/dev/page/2/</loc>
+  <lastmod>2025-12-11T17:42:08+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://echokit.dev/chat/resources/</loc>
+  <lastmod>2025-12-11T17:42:09+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://echokit.dev/docs/hardware/buttons-echokit-diy/</loc>
+  <lastmod>2025-12-11T17:42:09+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://echokit.dev/docs/hardware/buttons-echokit-box/</loc>
+  <lastmod>2025-12-11T17:42:08+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://echokit.dev/docs/server/configure-echokit-server/</loc>
+  <lastmod>2025-12-11T17:42:08+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://echokit.dev/docs/server/qwen/</loc>
+  <lastmod>2025-12-11T17:42:09+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://echokit.dev/docs/server/real-time-echokit/</loc>
+  <lastmod>2025-12-11T17:42:09+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://echokit.dev/docs/server/mcp/</loc>
+  <lastmod>2025-12-11T17:42:09+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://echokit.dev/docs/server/test-echokit-server/</loc>
+  <lastmod>2025-12-11T17:42:08+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://echokit.dev/docs/hardware/assemble-echokit/</loc>
+  <lastmod>2025-12-11T17:42:08+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://echokit.dev/docs/hardware/understand-the-firmware/</loc>
+  <lastmod>2025-12-11T17:42:09+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://echokit.dev/docs/hardware/adopt-your-hardware/</loc>
+  <lastmod>2025-12-11T17:42:09+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://echokit.dev/docs/category/clone-your-own-voice/</loc>
+  <lastmod>2025-12-11T17:42:08+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://echokit.dev/docs/use-cases/usa/</loc>
+  <lastmod>2025-12-11T17:42:08+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://echokit.dev/docs/voice/clone-voice/deploy-voice-model/</loc>
+  <lastmod>2025-12-11T17:42:09+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://echokit.dev/voice_clone/cut_en.html</loc>
+  <lastmod>2025-12-11T17:42:09+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://echokit.dev/voice_clone/cut_zh.html</loc>
+  <lastmod>2025-12-11T17:42:09+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://echokit.dev/docs/dev/tags/voice-ai/</loc>
+  <lastmod>2025-12-11T17:42:09+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://echokit.dev/docs/dev/tags/voice-clone/</loc>
+  <lastmod>2025-12-11T17:42:09+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://echokit.dev/docs/dev/tags/</loc>
+  <lastmod>2025-12-11T17:42:08+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://echokit.dev/docs/dev/tags/echokit-30-days/page/2/</loc>
+  <lastmod>2025-12-11T17:42:08+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://echokit.dev/docs/dev/page/3/</loc>
+  <lastmod>2025-12-11T17:42:09+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://echokit.dev/chat/</loc>
+  <lastmod>2025-12-11T17:42:09+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://echokit.dev/docs/voice/clone-voice/intro/</loc>
+  <lastmod>2025-12-11T17:42:09+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://echokit.dev/docs/voice/clone-voice/process-audio/</loc>
+  <lastmod>2025-12-11T17:42:08+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://echokit.dev/docs/voice/clone-voice/train-the-model/</loc>
+  <lastmod>2025-12-11T17:42:08+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://echokit.dev/chat/resources/index.html</loc>
+  <lastmod>2025-12-11T17:42:09+00:00</lastmod>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://echokit.dev/chat/resources/index_zh.html</loc>
+  <lastmod>2025-12-11T17:42:09+00:00</lastmod>
+  <priority>0.33</priority>
+</url>
+
+
+</urlset>
