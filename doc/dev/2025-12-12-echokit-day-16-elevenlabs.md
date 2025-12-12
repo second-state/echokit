@@ -1,5 +1,5 @@
 ---
-slug: echokit-30-days-day-17-elevenLabs
+slug: echokit-30-days-day-17-elevenlabs
 title: "Day 17: Giving EchoKit a Voice — Using ElevenLabs TTS | The First 30 Days with EchoKit"
 tags: [echokit30days]
 ---
