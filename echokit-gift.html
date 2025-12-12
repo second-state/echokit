@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EchoKit Gift Version - A Personalized Gift from the Future</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- VARIABLES & RESET --- */
+        :root {
+            --bg-body: #FAFAFA; /* Soft Grey/White */
+            --bg-card: #FFFFFF;
+            --text-main: #18181B;
+            --text-muted: #71717A;
+            
+            --accent-warm: #F59E0B; /* Amber/Gold */
+            --accent-tech: #6366f1; /* Indigo */
+            
+            --radius-md: 16px;
+            --radius-lg: 32px;
+            --radius-pill: 100px;
+            
+            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            --shadow-float: 0 20px 40px -10px rgba(0, 0, 0, 0.1);
+            
+            --font-sans: 'Plus Jakarta Sans', sans-serif;
+            --font-serif: 'Playfair Display', serif;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body { 
+            background-color: var(--bg-body); 
+            color: var(--text-main); 
+            font-family: var(--font-sans); 
+            line-height: 1.6; 
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 { color: var(--text-main); font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; }
+        h1 { font-size: 3.5rem; }
+        h2 { font-size: 2.5rem; margin-bottom: 1rem; }
+        p { color: var(--text-muted); }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+
+        /* Typography Accents */
+        .serif-highlight { 
+            font-family: var(--font-serif); 
+            font-style: italic; 
+            color: var(--text-main);
+            position: relative;
+            display: inline-block;
+        }
+        .serif-highlight::after {
+            content: ''; position: absolute; bottom: 4px; left: -2px; right: -2px; height: 8px;
+            background: rgba(245, 158, 11, 0.3); z-index: -1; transform: rotate(-1deg);
+        }
+
+        /* Utilities */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        .text-center { text-align: center; }
+        .section-padding { padding: 120px 0; }
+        .flex-center { display: flex; align-items: center; justify-content: center; }
+
+        /* --- BUTTONS --- */
+        .btn { 
+            display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+            padding: 16px 36px; border-radius: var(--radius-pill); 
+            font-weight: 600; transition: all 0.3s ease; cursor: pointer; font-size: 1rem; border: none; 
+        }
+        .btn-primary { 
+            background: var(--text-main); color: white; 
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2); 
+        }
+        .btn-primary:hover { transform: translateY(-3px); background: black; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+        .btn-outline { background: white; border: 1px solid #E4E4E7; color: var(--text-main); }
+        .btn-outline:hover { border-color: var(--text-main); background: #F4F4F5; }
+
+        /* --- FLOATING NAVBAR --- */
+        .navbar { 
+            position: fixed; top: 24px; left: 0; right: 0; z-index: 1000; 
+            display: flex; justify-content: center; pointer-events: none; /* Let clicks pass through outside */
+        }
+        .nav-pill {
+            pointer-events: auto;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            padding: 12px 32px; border-radius: var(--radius-pill);
+            border: 1px solid rgba(255,255,255,0.5);
+            box-shadow: var(--shadow-sm);
+            display: flex; align-items: center; gap: 40px;
+        }
+        .nav-logo { font-weight: 800; font-size: 1.1rem; display: flex; align-items: center; gap: 8px; }
+        .nav-links { display: none; gap: 24px; }
+        .nav-links a { font-size: 0.9rem; font-weight: 500; color: var(--text-muted); }
+        .nav-links a:hover { color: var(--text-main); }
+        @media(min-width: 768px) { .nav-links { display: flex; } }
+
+        /* --- 1. HERO SECTION (Split Layout) --- */
+        .hero-section {
+            padding: 180px 0 100px;
+            min-height: 90vh;
+            display: flex; align-items: center;
+            background: radial-gradient(circle at top right, #fff7ed 0%, transparent 40%),
+                        radial-gradient(circle at bottom left, #eef2ff 0%, transparent 40%);
+        }
+        .hero-grid {
+            display: grid; grid-template-columns: 1fr; gap: 60px; align-items: center;
+        }
+        @media(min-width: 992px) { .hero-grid { grid-template-columns: 1fr 1fr; } }
+
+        .hero-visual {
+            position: relative;
+            height: 500px;
+            background: linear-gradient(135deg, #1e293b, #000000);
+            border-radius: 40px;
+            box-shadow: var(--shadow-float);
+            display: flex; align-items: center; justify-content: center;
+            overflow: hidden;
+            border: 8px solid white;
+        }
+        /* CSS Simulated OLED Abstract Art */
+        .oled-glow {
+            width: 200px; height: 200px; background: conic-gradient(from 180deg at 50% 50%, #FF6B6B 0deg, #4F46E5 180deg, #FF6B6B 360deg);
+            filter: blur(60px); opacity: 0.8; animation: spin 10s linear infinite;
+        }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+        .glass-overlay {
+            position: absolute; inset: 0; background: linear-gradient(120deg, rgba(255,255,255,0.1) 0%, transparent 40%);
+        }
+
+        /* --- 2. GALLERY (OLED Experience) --- */
+        .gallery-section {
+            background: #09090b; color: white; border-radius: 40px; margin: 20px;
+            padding: 100px 40px;
+        }
+        .gallery-header p { color: #a1a1aa; max-width: 600px; margin: 0 auto; }
+        
+        .gallery-showcase {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px; margin-top: 60px;
+        }
+        .gallery-card {
+            background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 24px; padding: 30px; backdrop-filter: blur(10px);
+        }
+        .audio-player {
+            background: white; border-radius: 50px; padding: 10px 20px;
+            display: flex; align-items: center; gap: 15px; margin-top: 20px; color: black;
+        }
+
+        /* --- 3. FEATURES (Cards) --- */
+        .features-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px; margin-top: 50px;
+        }
+        .feature-box {
+            background: white; padding: 40px; border-radius: var(--radius-lg);
+            border: 1px solid #f4f4f5; transition: 0.3s;
+        }
+        .feature-box:hover { box-shadow: var(--shadow-float); transform: translateY(-5px); }
+        .feature-icon { font-size: 2rem; margin-bottom: 20px; color: var(--accent-tech); }
+
+        /* --- 4. CREATOR STUDIO (Dashboard Layout) --- */
+        .studio-layout {
+            display: grid; grid-template-columns: 1fr; gap: 50px; margin-top: 60px;
+        }
+        @media(min-width: 992px) { 
+            .studio-layout { grid-template-columns: 0.8fr 1.2fr; align-items: center; } 
+        }
+
+        .step-list { display: flex; flex-direction: column; gap: 30px; }
+        .step-item {
+            display: flex; gap: 20px; padding: 20px; border-radius: 20px;
+            transition: 0.3s; cursor: pointer; border: 1px solid transparent;
+        }
+        .step-item:hover, .step-item.active {
+            background: white; box-shadow: var(--shadow-sm); border-color: #e4e4e7;
+        }
+        .step-num {
+            width: 40px; height: 40px; background: #f4f4f5; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .studio-mockup {
+            background: white; border-radius: 24px; padding: 40px;
+            box-shadow: var(--shadow-float); border: 1px solid #f4f4f5;
+            position: relative;
+        }
+        .mockup-header {
+            display: flex; justify-content: space-between; border-bottom: 1px solid #f4f4f5;
+            padding-bottom: 20px; margin-bottom: 20px;
+        }
+
+        /* --- 5. UNBOXING (Bento Grid) --- */
+        .bento-section { background: #f8fafc; }
+        .bento-grid {
+            display: grid; grid-template-columns: repeat(1, 1fr); gap: 20px; margin-top: 60px;
+            grid-auto-rows: minmax(180px, auto);
+        }
+        @media(min-width: 768px) {
+            .bento-grid { 
+                grid-template-columns: repeat(3, 1fr); 
+                grid-template-rows: repeat(2, 250px);
+            }
+        }
+
+        .bento-item {
+            background: white; border-radius: var(--radius-lg); padding: 30px;
+            position: relative; overflow: hidden; transition: 0.3s;
+            border: 1px solid rgba(0,0,0,0.03);
+            display: flex; flex-direction: column; justify-content: space-between;
+        }
+        .bento-item:hover { box-shadow: var(--shadow-float); transform: scale(1.01); }
+        
+        /* Specific Grid Areas */
+        .bento-main {
+            grid-column: span 1; grid-row: span 1;
+            background: #18181b; color: white;
+        }
+        @media(min-width: 768px) {
+            .bento-main { grid-column: span 2; grid-row: span 2; }
+        }
+        .bento-card { grid-column: span 1; grid-row: span 1; background: #e0e7ff; }
+        .bento-acc { grid-column: span 1; grid-row: span 1; background: #fff7ed; }
+
+        .bento-icon-lg { font-size: 5rem; opacity: 0.2; position: absolute; bottom: -20px; right: -20px; }
+        
+        /* --- PRICING & FAQ --- */
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .price-card {
+            background: white; padding: 40px; border-radius: var(--radius-lg);
+            border: 1px solid #f4f4f5; display: flex; flex-direction: column;
+        }
+        .price-card.featured { border: 2px solid var(--text-main); position: relative; }
+        .popular-badge {
+            position: absolute; top: -15px; left: 50%; transform: translateX(-50%);
+            background: var(--text-main); color: white; padding: 5px 15px; border-radius: 20px;
+            font-size: 0.8rem; font-weight: 700;
+        }
+
+        /* --- FOOTER --- */
+        footer { padding: 80px 0 40px; text-align: center; border-top: 1px solid #e4e4e7; background: white; }
+
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-pill">
+            <a href="#" class="nav-logo">
+                <i class="fas fa-gift" style="color: var(--accent-warm);"></i> EchoKit
+            </a>
+            <div class="nav-links">
+                <a href="#gallery">Experience</a>
+                <a href="#features">Features</a>
+                <a href="#studio">Studio</a>
+                <a href="#unboxing">In the Box</a>
+            </div>
+            <a href="https://form.jotform.com/253442751110042" class="btn btn-primary" style="padding: 10px 24px; font-size: 0.9rem;">Start Customizing</a>
+        </div>
+    </nav>
+
+    <!-- 1. HERO SECTION (Split) -->
+    <header class="hero-section">
+        <div class="container">
+            <div class="hero-grid">
+                <!-- Text Side -->
+                <div>
+                    <div style="display: inline-block; padding: 6px 16px; background: #fef3c7; color: #b45309; border-radius: 20px; font-weight: 600; font-size: 0.8rem; margin-bottom: 24px;">
+                        <i class="fas fa-star"></i> The Perfect Gift 2025
+                    </div>
+                    <h1>
+                        Unwrap AI with <span class="serif-highlight">Heart</span>
+                    </h1>
+                    <p style="font-size: 1.25rem; margin: 30px 0; color: var(--text-muted);">
+                        EchoKit Gift Version: A bespoke AI companion living inside a stunning box. 
+                    </p>
+                    <div style="display: flex; gap: 15px;">
+                        <a href="https://form.jotform.com/253442751110042" class="btn btn-primary">Build your Own</a>
+                        <a href="#gallery" class="btn btn-outline"><i class="fas fa-play"></i> Watch Demo</a>
+                    </div>
+                </div>
+                
+                <!-- Visual Side (Abstract Device) -->
+                <div class="hero-visual">
+                    <img src="./assets/hero-2.jpeg" alt="EchoKit Device" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+            </div>
+        </div>
+    </header>
+
+   <!-- 2. GALLERY SECTION (Images + Functional Audio) -->
+    <section id="gallery" class="section-padding" style="padding-top: 0;">
+        
+        <style>
+            .visual-mode-item {
+                position: relative;
+                border-radius: 16px;
+                overflow: hidden;
+                aspect-ratio: 1/1; 
+                border: 1px solid rgba(255,255,255,0.15);
+                cursor: default;
+            }
+            .visual-mode-img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+            }
+            .visual-mode-item:hover .visual-mode-img {
+                transform: scale(1.1); 
+            }
+            .visual-overlay {
+                position: absolute;
+                bottom: 0; left: 0; right: 0;
+                background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%);
+                padding: 20px 15px 15px;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-end;
+            }
+        </style>
+
+        <div class="container">
+            <div class="gallery-section">
+                <div class="text-center gallery-header">
+                    <h2 style="color: white;">The <span class="serif-highlight" style="color:white; border-color:white;">Experience</span></h2>
+                    <p>More than a gadget. It's your voice, your memories. Living on a pure black OLED canvas.</p>
+                </div>
+
+                <div class="gallery-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin-top: 60px;">
+                    
+                    <!-- LEFT: 4 Visual Modes (Images) -->
+                    <div class="gallery-card">
+                        <h3 style="color: white; margin-bottom: 20px;">Examples</h3>
+                        
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                            
+                            <!-- Image 1: Birthday -->
+                            <div class="visual-mode-item">
+                                <img src="./assets/showcase-01.jpeg" class="visual-mode-img" alt="Birthday Cake">
+                                <div class="visual-overlay">
+                                    <i class="fas fa-birthday-cake" style="color: white; margin-bottom: 5px;"></i>
+                                    <span style="color: white; font-size: 0.8rem; font-weight: 500;">Birthday Mode</span>
+                                </div>
+                            </div>
+
+                            <!-- Image 2: Stories (Book/Cozy) -->
+                            <div class="visual-mode-item">
+                                <img src="./assets/showcase-02.jpeg" class="visual-mode-img" alt="Reading">
+                                <div class="visual-overlay">
+                                    <i class="fas fa-book-open" style="color: white; margin-bottom: 5px;"></i>
+                                    <span style="color: white; font-size: 0.8rem; font-weight: 500;">Storytelling</span>
+                                </div>
+                            </div>
+
+                            <!-- Image 3: Now Playing (Abstract/Music) -->
+                            <div class="visual-mode-item">
+                                <img src="./assets/showcase-03.jpeg" class="visual-mode-img" alt="Music Waves">
+                                <div class="visual-overlay">
+                                    <i class="fas fa-music" style="color: white; margin-bottom: 5px;"></i>
+                                    <span style="color: white; font-size: 0.8rem; font-weight: 500;">Now Playing</span>
+                                </div>
+                            </div>
+
+                            <!-- Image 4: Photo Frame (Family) -->
+                            <div class="visual-mode-item">
+                                <img src="./assets/showcase-04.jpeg" class="visual-mode-img" alt="Family Photo">
+                                <div class="visual-overlay">
+                                    <i class="fas fa-image" style="color: white; margin-bottom: 5px;"></i>
+                                    <span style="color: white; font-size: 0.8rem; font-weight: 500;">Digital Frame</span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- RIGHT: 2 Audio Samples (Kept the functional audio) -->
+                    <div style="display: flex; flex-direction: column; gap: 20px;">
+                        
+                        <!-- Audio Sample 1 -->
+                        <div class="gallery-card">
+                            <h3 style="color: white; margin-bottom: 5px;">Grandma's Recipe</h3>
+                            <p style="font-size: 0.85rem; opacity: 0.6; color: white;">Cloned from old cassette tapes.</p>
+                            
+                            <div style="margin-top: 20px;">
+                                <div class="audio-player-ui" style="background: white; border-radius: 50px; padding: 10px 15px; display: flex; align-items: center; gap: 15px;">
+                                    <div class="play-btn-circle" onclick="toggleAudio('audio1', this)" style="width: 35px; height: 35px; background: var(--text-main); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+                                        <i class="fas fa-play" style="color: white; font-size: 0.8rem;"></i>
+                                    </div>
+                                    <div style="height: 4px; background: #e4e4e7; flex-grow: 1; border-radius: 2px; overflow: hidden;">
+                                        <div id="progress1" style="width: 0%; height: 100%; background: var(--accent-tech); transition: width 0.2s;"></div>
+                                    </div>
+                                    <span style="color: #18181b; font-size: 0.8rem; font-weight: 600;">0:12</span>
+                                </div>
+                                <audio id="audio1" src="./assets/grandma.mp3" ontimeupdate="updateProgress('audio1', 'progress1')" onended="resetPlayer('audio1', this)"></audio>
+                            </div>
+                            <p style="font-size: 0.85rem; margin-top:15px; opacity: 0.7; font-style: italic; color: white;">"Don't forget the cinnamon pinch..."</p>
+                        </div>
+
+                        <!-- Audio Sample 2 -->
+                        <div class="gallery-card">
+                            <h3 style="color: #a5b4fc; margin-bottom: 5px;">AI Twin</h3>
+                            <p style="font-size: 0.85rem; opacity: 0.6; color: white;">Your personal tone & style.</p>
+                            
+                            <div style="margin-top: 20px;">
+                                <div class="audio-player-ui" style="background: white; border-radius: 50px; padding: 10px 15px; display: flex; align-items: center; gap: 15px;">
+                                    <div class="play-btn-circle" onclick="toggleAudio('audio2', this)" style="width: 35px; height: 35px; background: var(--accent-tech); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+                                        <i class="fas fa-play" style="color: white; font-size: 0.8rem;"></i>
+                                    </div>
+                                    <div style="height: 4px; background: #e4e4e7; flex-grow: 1; border-radius: 2px; overflow: hidden;">
+                                        <div id="progress2" style="width: 0%; height: 100%; background: var(--accent-tech); transition: width 0.2s;"></div>
+                                    </div>
+                                    <span style="color: #18181b; font-size: 0.8rem; font-weight: 600;">0:08</span>
+                                </div>
+                                <audio id="audio2" src="./assets/girl.mp3" ontimeupdate="updateProgress('audio2', 'progress2')" onended="resetPlayer('audio2', this)"></audio>
+                            </div>
+                            <p style="font-size: 0.85rem; margin-top:15px; opacity: 0.7; font-style: italic; color: white;">"I'm the digital twin of Emma..."</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Store currently playing audio to handle switching
+        let currentAudio = null;
+        let currentBtn = null;
+
+        function toggleAudio(audioId, btnElement) {
+            const audio = document.getElementById(audioId);
+            const icon = btnElement.querySelector('i');
+
+            // If clicking a different audio while one is playing
+            if (currentAudio && currentAudio !== audio) {
+                currentAudio.pause();
+                currentAudio.currentTime = 0;
+                // Reset the other button icon
+                if (currentBtn) {
+                    currentBtn.querySelector('i').classList.remove('fa-pause');
+                    currentBtn.querySelector('i').classList.add('fa-play');
+                }
+            }
+
+            if (audio.paused) {
+                audio.play();
+                icon.classList.remove('fa-play');
+                icon.classList.add('fa-pause');
+                currentAudio = audio;
+                currentBtn = btnElement;
+            } else {
+                audio.pause();
+                icon.classList.remove('fa-pause');
+                icon.classList.add('fa-play');
+                currentAudio = null;
+                currentBtn = null;
+            }
+        }
+
+        function updateProgress(audioId, progressId) {
+            const audio = document.getElementById(audioId);
+            const progressBar = document.getElementById(progressId);
+            if (audio.duration) {
+                const percentage = (audio.currentTime / audio.duration) * 100;
+                progressBar.style.width = percentage + '%';
+            }
+        }
+
+        function resetPlayer(audioId, audioEl) {
+            // Find the button associated with this audio (traverse up to container then find button)
+            // Or simpler: verify if this is the current playing one
+            if (currentAudio === audioEl) {
+                const icon = currentBtn.querySelector('i');
+                icon.classList.remove('fa-pause');
+                icon.classList.add('fa-play');
+                currentAudio = null;
+                // Reset progress bar visually
+                const progressBarId = audioId === 'audio1' ? 'progress1' : 'progress2';
+                document.getElementById(progressBarId).style.width = '0%';
+            }
+        }
+    </script>
+
+    <!-- 3. FEATURES -->
+    <section id="features" class="section-padding" style="background: white;">
+        <div class="container">
+            <div class="text-center">
+                <h2>Why it feels <span class="serif-highlight">Magic</span></h2>
+            </div>
+            <div class="features-grid">
+                <div class="feature-box">
+                    <div class="feature-icon"><i class="fas fa-wand-magic-sparkles"></i></div>
+                    <h3>Ultimate Customization</h3>
+                    <p>Every EchoKit is unique. We manually deploy a custom AI model trained specifically on your provided stories and voice data, ensuring the response style is exclusively yours.</p>
+                </div>
+                <div class="feature-box">
+                    <div class="feature-icon" style="color: var(--accent-warm);"><i class="fas fa-heart"></i></div>
+                    <h3>Emotional Connection</h3>
+                    <p>It’s not just a speaker; it’s a time capsule. Without the distraction of a touchscreen, the <strong>Voice-Only Interface</strong> encourages deeper, more natural conversations.</p>
+                </div>
+        </div>
+    </section>
+
+    <!-- 4. STUDIO (Dashboard Layout) -->
+    <section id="studio" class="section-padding">
+        <div class="container">
+            <div class="text-center">
+                <h2>The <span class="serif-highlight">Creator Studio</span></h2>
+                <p>Before we ship the box, you craft the soul.</p>
+            </div>
+
+            <div class="studio-layout">
+                <!-- Left: Steps -->
+                <div class="step-list">
+                    <div class="step-item active">
+                        <div class="step-num">1</div>
+                        <div>
+                            <h4>Voice Lab</h4>
+                            <p style="font-size: 0.9rem;">Upload 3 minutes of audio to clone a voice.</p>
+                        </div>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-num">2</div>
+                        <div>
+                            <h4>Personality</h4>
+                            <p style="font-size: 0.9rem;">Customize the tone, style and behavior.</p>
+                        </div>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-num">3</div>
+                        <div>
+                            <h4>Knowledge Base</h4>
+                            <p style="font-size: 0.9rem;">Type inside knowlaedge and jokes.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Mockup -->
+                <div class="studio-mockup">
+                    <div class="mockup-header">
+                        <span style="font-weight: 700;">Project: Grandma's 80th</span>
+                        <span style="background: #dcfce7; color: #166534; padding: 2px 10px; border-radius: 10px; font-size: 0.8rem;">Drafting</span>
+                    </div>
+                    <div style="background: #f8fafc; border: 2px dashed #cbd5e1; border-radius: 12px; height: 200px; display: flex; align-items: center; justify-content: center; color: #94a3b8; flex-direction: column; gap: 10px;">
+                        <i class="fas fa-cloud-upload-alt" style="font-size: 2rem;"></i>
+                        <span>Drag & Drop Audio Files Here</span>
+                    </div>
+                    <div style="text-align: center; margin-top: 30px;">
+                        <button class="btn btn-primary">Enter Studio & Start</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. UNBOXING (Bento Grid) -->
+    <section id="unboxing" class="section-padding bento-section">
+        <div class="container">
+            <div class="text-center" style="margin-bottom: 50px;">
+                <h2>Premium <span class="serif-highlight">Unboxing</span></h2>
+                <p>Designed to be gifted.</p>
+            </div>
+
+            <div class="bento-grid">
+                <!-- Main Item: Device -->
+                <div class="bento-item bento-main">
+                    <div style="position: relative; z-index: 2;">
+                        <h3 style="color: white; font-size: 2rem;">EchoKit Device</h3>
+                        <p style="color: #a1a1aa;">A talking device in your design. Pre-loaded with your custom AI.</p>
+                        <ul style="margin-top: 20px; color: #d4d4d8;">
+                            <li><i class="fas fa-check"></i> 2.4-inch OLED Screen</li>
+                            <li><i class="fas fa-check"></i> WiFi 2.4 GHz, Bluetooth 5.0 LE</li>
+                        </ul>
+                    </div>
+                    <i class="fas fa-tv bento-icon-lg" style="color: white;"></i>
+                </div>
+
+                <!-- Item 2: Gift Card -->
+                <div class="bento-item bento-card">
+                    <div style="position: relative; z-index: 2;">
+                        <h4 style="color: #3730a3;">Voice Pass</h4>
+                        <p style="font-size: 0.9rem; color: #4338ca;">Comes with 2 hours of AI conversation monthly on us.</p>
+                    </div>
+                    <i class="fas fa-qrcode bento-icon-lg" style="color: #4338ca;"></i>
+                </div>
+
+                <!-- Item 3: Accessories -->
+                <div class="bento-item bento-acc">
+                    <div style="position: relative; z-index: 2;">
+                        <h4 style="color: #9a3412;">Accessories</h4>
+                        <p style="font-size: 0.9rem; color: #c2410c;">Premium braided cable & power bank included.</p>
+                    </div>
+                    <i class="fas fa-plug bento-icon-lg" style="color: #c2410c;"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICING -->
+    <section id="pricing" class="section-padding" style="background: white;">
+        <div class="container">
+            <div class="text-center" style="margin-bottom: 50px;">
+                <h2>Gift Editions</h2>
+            </div>
+            
+            <div class="pricing-grid">
+                <!-- Starter -->
+                <div class="price-card">
+                    <h3 style="font-family: var(--font-serif);">Starter Gift</h3>
+                    <div style="font-size: 2.5rem; font-weight: 800; margin: 10px 0;">$89</div>
+                    <p style="font-size: 0.9rem; margin-bottom: 20px;">Perfect for visual storytelling.</p>
+                    <a href="#studio" class="btn btn-outline">Select Starter</a>
+                    <ul style="margin-top: 30px; font-size: 0.9rem; display: flex; flex-direction: column; gap: 10px;">
+                        <li><i class="fas fa-check" style="color: var(--text-main);"></i> Custom Bootscreen</li>
+                        <li><i class="fas fa-check" style="color: var(--text-main);"></i> Custom Welcome Voice</li>
+                        <li><i class="fas fa-check" style="color: var(--text-main);"></i> Choose Any pre-trained Voice</li>
+                        <li><i class="fas fa-check" style="color: var(--text-main);"></i> Customize Personality via System Prompt</li>
+                    </ul>
+                </div>
+
+                <!-- Advanced -->
+                <div class="price-card featured">
+                    <div class="popular-badge">Most Gifted</div>
+                    <h3 style="font-family: var(--font-serif);">Advanced Edition</h3>
+                    <div style="font-size: 2.5rem; font-weight: 800; margin: 10px 0;">$199</div>
+                    <p style="font-size: 0.9rem; margin-bottom: 20px;">Deep customization with voice cloning.</p>
+                    <a href="#studio" class="btn btn-primary">Craft This Gift</a>
+                    <ul style="margin-top: 30px; font-size: 0.9rem; display: flex; flex-direction: column; gap: 10px;">
+                        <li><i class="fas fa-check" style="color: var(--accent-tech);"></i> <strong>Everything in Starter</strong></li>
+                        <li><i class="fas fa-check" style="color: var(--accent-tech);"></i> Voice Cloning</li>
+                        <li><i class="fas fa-check" style="color: var(--accent-tech);"></i> Long Memory Vector</li>
+                        <li><i class="fas fa-check" style="color: var(--accent-tech);"></i> MCP Tools</li>
+                    </ul>
+                </div>
+
+                <!-- Corporate -->
+                <div class="price-card">
+                    <h3 style="font-family: var(--font-serif);">Corporate Box</h3>
+                    <div style="font-size: 2.5rem; font-weight: 800; margin: 10px 0;">Custom</div>
+                    <p style="font-size: 0.9rem; margin-bottom: 20px;">High-end gifts for VIP clients.</p>
+                    <a href="#" class="btn btn-outline">Contact Sales</a>
+                    <ul style="margin-top: 30px; font-size: 0.9rem; display: flex; flex-direction: column; gap: 10px;">
+                        <li><i class="fas fa-check" style="color: var(--text-main);"></i> Self-hosted Server</li>
+                        <li><i class="fas fa-check" style="color: var(--text-main);"></i> Bulk Management</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROCESS (Timeline) -->
+    <section class="section-padding">
+        <div class="container">
+            <h3 class="text-center" style="margin-bottom: 40px;">Timeline</h3>
+            <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; text-align: center;">
+                <div style="flex: 1; min-width: 200px;">
+                    <div style="font-weight: 700; margin-bottom: 5px;">1. Prepare the data</div>
+                    <p style="font-size: 0.85rem;">Upload materials (1 days)</p>
+                </div>
+                <div style="font-size: 1.5rem; color: #e4e4e7;">→</div>
+                <div style="flex: 1; min-width: 200px;">
+                    <div style="font-weight: 700; margin-bottom: 5px;">2. Training</div>
+                    <p style="font-size: 0.85rem;">AI Model Training (5 days)</p>
+                </div>
+                <div style="font-size: 1.5rem; color: #e4e4e7;">→</div>
+                <div style="flex: 1; min-width: 200px;">
+                    <div style="font-weight: 700; margin-bottom: 5px;">3. Delivery</div>
+                    <p style="font-size: 0.85rem;">World global Shipping</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div style="font-weight: 800; font-size: 1.2rem; margin-bottom: 10px;">EchoKit Gift Version</div>
+            <p style="font-size: 0.9rem;">&copy; 2025 EchoKit AI. The Gift of Connection.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
