@@ -53,7 +53,7 @@ voice = "yj30vwTGJxSHezdAGsv" # The voice I choose here is Jessa
   [ElevenLabs Developer Dashboard](https://elevenlabs.io/app/developers/api-keys)
 * **voice**: the voice ID you want EchoKit to speak with
 
-![](2025-12-12-echokit-day-16-elevenlabs-01.png)
+![](2025-12-12-echokit-day-17-elevenlabs-01.png)
 
 > ⚠️ **Important:**
 > If you pick a voice in ElevenLabs, you **must add it to “My Voices”**.
