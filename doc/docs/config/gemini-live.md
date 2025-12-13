@@ -65,7 +65,7 @@ hello_wav = "hello.wav"
 api_key = "your_api_key_here"
 
 [tts]
-platform = "StreamGSV"
+platform = "stream_gsv"
 url = "http://localhost:9094/v1/audio/stream_speech"
 speaker = "cooper"
 

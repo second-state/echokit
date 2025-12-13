@@ -45,6 +45,12 @@ The rest of the `config.toml` specifies how to use different AI services. Each s
 * The `[llm]` section configures the [large language model](llm.md) services, including [tools](llm-tools.md) and [MCP actions](mcp.md).
 * The `[tts]` section configures the [text-to-voice](tts.md) services.
 
+It is important to note that each of sections has those fields.
+
+* A `platform` field that designates the service protocol. A common example is `openai` for OpenAI compatible API endpoints.
+* A `url` field for the service URL endpoint. It is typically a `https://` or `wss://` URL. The latter is the Web Socket address for streaming services.
+* Optional fields that are specific to the `platform`. That includes `api_key`, `model`, and others.
+
 ## Complete Configuration Example
 
 You will need a free [API key from Groq](https://console.groq.com/keys).
@@ -54,23 +60,25 @@ You will need a free [API key from Groq](https://console.groq.com/keys).
 addr = "0.0.0.0:8080"
 hello_wav = "hello.wav"
 
-# Speech recognition
+# Speech recognition using the OpenAI transcriptions API, but hosted by Groq (instead of OpenAI)
 [asr]
+platform = "openai"
 url = "https://api.groq.com/openai/v1/audio/transcriptions"
 lang = "en"
 api_key = "gsk_your_api_key_here"
 model = "whisper-large-v3-turbo"
 
-# Language model
+# Language model using the OpenAI chat completions API, but hosted by Groq (instead of OpenAI)
 [llm]
-llm_chat_url = "https://api.groq.com/openai/v1/chat/completions"
+platform = "openai_chat"
+url = "https://api.groq.com/openai/v1/chat/completions"
 api_key = "gsk_your_api_key_here"
 model = "gpt-oss-20b"
 history = 10
 
-# Text-to-speech
+# Text-to-speech using the OpenAI speech API, but hosted by Groq (instead of OpenAI)
 [tts]
-platform = "Groq"
+platform = "openai"
 url = "https://api.groq.com/openai/v1/audio/speech"
 api_key = "gsk_your_api_key_here"
 model = "playai-tts"

@@ -19,6 +19,8 @@ docker run --rm \
 The required `config.toml` file for the local EchoKit server could be the following. You will need 
 free [Groq](https://console.groq.com/keys) and [ElevenLabs](https://elevenlabs.io/app/settings/api-keys) API keys.
 
+> The `platform = "openai"` in the configuration refers to OpenAI-compatible service endpoints. Groq provides its inference service in the OpenAI protocol.
+
 ```
 addr = "0.0.0.0:8080"
 hello_wav = "hello.wav"

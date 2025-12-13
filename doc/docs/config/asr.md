@@ -6,15 +6,23 @@ sidebar_position: 2
 
 The EchoKit server supports popular ASR providers.
 
+| Platform  | URL example | Notes |
+| ------------- | ------------- | ---- |
+| `openai`  | `https://api.openai.com/v1/audio/transcriptions`  | Supports endpoint URLs from any OpenAI-compatible services, such as Groq and Open Router. |
+| `paraformer_v2`  | `wss://dashscope.aliyuncs.com/api-ws/v1/inference`  | A Web socket streaming ASR service endpoint supported by the ALi Cloud |
+
 
 ## OpenAI and compatible services
 
 The OpenAI `/v1/audio/transcriptions` API is supported by OpenAI, Open Router, Groq, Azure, AWS and many other providers.
+This is a non-streaming service endpoint, meaning that EchoKit server must determine when the user is done
+talking (via an VAD service), and then submit the entire audio to get a transscription.
 
 OpenAI example
 
 ```toml
 [asr]
+platform = "openai"
 url = "https://api.openai.com/v1/audio/transcriptions"
 api_key = "sk_ABCD"
 model = "gpt-4o-mini-transcribe"
@@ -26,6 +34,7 @@ Groq example
 
 ```toml
 [asr]
+platform = "openai"
 url = "https://api.groq.com/openai/v1/audio/transcriptions"
 api_key = "gsk_ABCD"
 model = "whisper-large-v3"
@@ -44,6 +53,8 @@ send back text and voice activity events as they happen. There is no need to a s
 
 ```toml
 [asr]
+platform = "paraformer_v2"
+url = "wss://dashscope.aliyuncs.com/api-ws/v1/inference"
 paraformer_token = "sk-API-KEY"
 ```
 

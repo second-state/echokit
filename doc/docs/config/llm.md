@@ -5,7 +5,13 @@ sidebar_position: 3
 # LLM services
 
 The EchoKit server utilizes LLM services to generate responses to user queries. 
-Most popular LLM services support OpenAI's `/v1/chat/completions` API.
+Most popular LLM services support OpenAI API.
+
+| Platform  | URL example | Notes |
+| ------------- | ------------- | ---- |
+| `openai_chat`  | `https://api.openai.com/v1/chat/completions`  | The stateless `/chat/completions` API. It is the most widely supported LLM API. |
+| `openai_responses`  | `https://api.openai.com/v1/responses`  | The stateful `/responses` API. Alpha feature. |
+
 
 ## Simple example
 
@@ -13,7 +19,8 @@ The following example configures the EchoKit server to use the OpenAI LLM servic
 
 ```toml
 [llm]
-llm_chat_url = "https://api.openai.com/v1/chat/completions"
+platform = "openai_chat"
+url = "https://api.openai.com/v1/chat/completions"
 api_key = "sk_ABCD"
 model = "gpt-5-nano"
 history = 5
@@ -78,7 +85,8 @@ We also tells the LLM to use the search tool when needed in the system prompt.
 
 ```toml
 [llm]
-llm_chat_url = "https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions"
+platform = "openai_chat"
+url = "https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions"
 api_key = "sk-API-KEY"
 model = "qwen-plus"
 history = 5
@@ -105,6 +113,6 @@ You can pass any JSON parameter supported by the LLM API provider in the `[llm.e
 
 While the stateless `/v1/chat/completions` API is widely supported, 
 OpenAI and many providers in the ecosystem have shifted their focus to the new stateful
-`/v1/responses` API. The new responses API makes it easier to support tools, icnluding web searches,
+`/v1/responses` API. The new responses API makes it easier to support tools, including web searches,
 in LLM applications. 
 

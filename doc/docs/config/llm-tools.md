@@ -15,7 +15,8 @@ Since it is a stateful API, the EchoKit server only needs to send the last user 
 
 ```toml
 [llm]
-llm_chat_url = "https://api.openai.com/v1/responses"
+platform = "openai_responses"
+url = "https://api.openai.com/v1/responses"
 api_key = "sk_ABCD"
 model = "gpt-5-nano"
 
@@ -43,7 +44,8 @@ The actual implementation of the `web_search_preview` tool is provided by OpenAI
 
 ```toml
 [llm]
-llm_chat_url = "https://api.openai.com/v1/responses"
+platform = "openai_responses"
+url = "https://api.openai.com/v1/responses"
 api_key = "sk_ABCD"
 model = "gpt-5-nano"
 
@@ -69,7 +71,8 @@ provides a `x_search` tool to specifically search for posts in x.com.
 
 ```toml
 [llm]
-llm_chat_url = "https://api.x.ai/v1/responses"
+platform = "openai_responses"
+url = "https://api.x.ai/v1/responses"
 api_key = "xai_ABCD"
 model = "grok-4-1-fast-non-reasoning"
 
@@ -95,7 +98,8 @@ Again the name of the build-in search tool is different. It is called `browser_s
 
 ```toml
 [llm]
-llm_chat_url = "https://api.groq.com/openai/v1/chat/responses"
+platform = "openai_responses"
+url = "https://api.groq.com/openai/v1/chat/responses"
 api_key = "gsk_ABCD"
 model = "openai/gpt-oss-20b"
 
@@ -127,7 +131,8 @@ a response based on those tool call results.
 
 ```toml
 [llm]
-llm_chat_url = "https://api.x.ai/v1/responses"
+platform = "openai_responses"
+url = "https://api.x.ai/v1/responses"
 api_key = "xai_ABCD"
 model = "grok-4-1-fast-non-reasoning"
 
