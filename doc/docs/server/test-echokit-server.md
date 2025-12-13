@@ -1,8 +1,8 @@
 ---
-sidebar_position: 7
+sidebar_position: 3
 ---
 
-# Test Your EchoKit Server
+# Test your EchoKit server
 
 Once you have your EchoKit server running successfully, you can test it using a web-based EchoKit client to verify that voice interactions work properly.
 

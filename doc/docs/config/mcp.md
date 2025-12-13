@@ -1,11 +1,11 @@
 ---
-sidebar_position: 6
+sidebar_position: 5
 ---
 
 # Tool calls and actions
 
 EchoKit supports **MCP (Model Context Protocol)**, which allows LLMs to call external tools and actions.  
-With actions, you can extend EchoKit beyond conversation—for example:  
+With tools, you can extend EchoKit beyond voice conversations, such as,
 
 - Manage your Google Calendar  
 - Send emails  
@@ -21,7 +21,7 @@ Before adding MCP tools, make sure that you
 - Have access to an **MCP server**. You can use a public MCP server or run one locally on your machine. The MCP server can be either:  
   - **SSE MCP server**, or  
   - **HTTP streamable MCP server**  
-- Use an LLM model that is capable of **tool use** (or, **tool calling**)
+- Use an LLM model that is capable of **tool use** (or, **tool calling**). You can use both `/v1/chat/completions` or `/v1/responses` APIs.
 
 ## 2. Add MCP servers to EchoKit
 
@@ -55,12 +55,12 @@ call_mcp_message = "It seems that I need to search the web for an answer. Please
 
 ## 4. Run the server
 
-Once your MCP server is set and the configuration updated, restart EchoKit following [Running EchoKit server](./echokit-server.md).
+Once your MCP server is set and the configuration updated, restart EchoKit following [Running EchoKit server](../server/echokit-server.md).
 
 EchoKit will now be able to call external actions via MCP.
 
 
-✅ With this setup, your EchoKit is no longer just a voice assistant—it can interact with external systems and become a **programmable AI agent**.
+✅ With this setup, your EchoKit is no longer just a chatbot — it can interact with external systems and become a **programmable AI agent**.
 
 
 

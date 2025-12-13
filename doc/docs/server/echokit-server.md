@@ -1,8 +1,8 @@
 ---
-sidebar_position: 2
+sidebar_position: 1
 ---
 
-# Build and run the EchoKit Server from source
+# Build and run the EchoKit server from source
 
 In this guide, we'll walk through building and running the EchoKit server locally from the source code.
 
