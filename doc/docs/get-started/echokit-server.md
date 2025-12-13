@@ -23,29 +23,33 @@ free [Groq](https://console.groq.com/keys) and [ElevenLabs](https://elevenlabs.i
 addr = "0.0.0.0:8080"
 hello_wav = "hello.wav"
 
-[tts]
-platform = "Elevenlabs"
-token = "sk_1234"
-voice = "YOUR-VOICE-ID"
-
 [asr]
+platform = "openai"
 url = "https://api.groq.com/openai/v1/audio/transcriptions"
-api_key = "gsk_1234"
+api_key = "gsk_XYZ"
 model = "whisper-large-v3"
 lang = "en"
 prompt = "Hello\n你好\n(noise)\n(bgm)\n(silence)\n"
 vad_url = "http://localhost:8000/v1/audio/vad"
 
 [llm]
-llm_chat_url = "https://api.groq.com/openai/v1/chat/completions"
-api_key = "gsk_1234"
+platform = "openai_chat"
+url = "https://api.groq.com/openai/v1/chat/completions"
+api_key = "gsk_XYZ"
 model = "openai/gpt-oss-20b"
-history = 15
+history = 20
+
+[tts]
+platform = "elevenlabs"
+url = "wss://api.elevenlabs.io/v1/text-to-speech/"
+token = "sk_xyz"
+voice = "VOICE-ID-ABCD"
 
 [[llm.sys_prompts]]
 role = "system"
 content = """
-You are a helpful assistant. Answer truthfully and concisely. Always answer in English.
+You are a comedian. Engage in lighthearted and humorous conversation with the user. Tell jokes when appropriate.
+
 """
 ```
 
