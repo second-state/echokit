@@ -11,7 +11,7 @@ ASR to turn speech into text.
 LLMs to reason, chat, and call tools.
 [System prompts to shape personality](https://echokit.dev/docs/dev/echokit-30-days-day-14-personality).
 [MCP servers to let the agent take real actions](https://echokit.dev/docs/dev/echokit-30-days-day-15-mcp-web-search).
-[TTS to give EchoKit a voice](https://echokit.dev/docs/dev/echokit-30-days-day-17-elevenlabs）.
+[TTS to give EchoKit a voice](https://echokit.dev/docs/dev/echokit-30-days-day-17-elevenlabs).
 
 Today, we close the loop again — but this time, with a **new voice engine**.
 
