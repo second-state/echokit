@@ -1,6 +1,6 @@
 ---
 slug: echokit-30-days-day-18-groq-playai-tts
-title: "Day 18: Switching EchoKut to Groq PlayAI TTS | The First 30 Days with EchoKit"
+title: "Day 18: Switching EchoKit to Groq PlayAI TTS | The First 30 Days with EchoKit"
 tags: [echokit30days, tts]
 ---
 
