@@ -1,6 +1,6 @@
 ---
 slug: echokit-30-days-day-19-fish-audio-tts
-title: "Day 19: Switching EchoKit’s TTS Provider to Fish.audio| The First 30 Days with EchoKit"
+title: "Day 19: Switching EchoKit’s TTS Provider to Fish.audio | The First 30 Days with EchoKit"
 tags: [echokit30days, tts]
 ---
 
