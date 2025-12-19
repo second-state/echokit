@@ -1,5 +1,5 @@
 ---
-slug: echokit-30-days-day-19-fish-audio-tts
+slug: echokit-30-days-day-20-local-gpt-sovits
 title: "Day 20: Running GPT-SoVITS Locally as EchoKit’s TTS Provider | The First 30 Days with EchoKit"
 tags: [echokit30days, tts]
 ---
