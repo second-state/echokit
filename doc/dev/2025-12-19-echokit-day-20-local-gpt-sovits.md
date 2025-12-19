@@ -52,7 +52,7 @@ unzip libtorch-macos-arm64-2.4.0.zip
 Then, tell the system where to find LibTorch:
 
 ```bash
-export LD_LIBRARY_PATH=$(pwd)/libtorch/lib:$LD_LIBRARY_PATH
+export DYLD_LIBRARY_PATH=$(pwd)/libtorch/lib:$DYLD_LIBRARY_PATH
 export LIBTORCH=$(pwd)/libtorch
 ```
 
