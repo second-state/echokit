@@ -40,7 +40,7 @@ The flashing process is exactly the same for **EchoKit Box** and **EchoKit DIY**
 
 ### EchoKit Box
 
-To flash EchoKit Box, open the flashing page, connect the device to your computer via USB, select **EchoKit Box**, and click *Flash*.
+To flash EchoKit Box, open the flashing page, connect the device to your computer via USB, select **EchoKit Box**, and click *Flash* button.
 
 The flashing process takes a few minutes. Once it completes successfully, the page will prompt you to reset the device. After rebooting, you’ll see the QR code screen, which indicates the firmware is ready. That’s it.
 
@@ -52,7 +52,7 @@ The flashing process takes a few minutes. Once it completes successfully, the pa
 
 EchoKit DIY uses the exact same flashing flow.
 
-The only difference is the firmware profile you choose. On the same flashing page, connect your DIY device via USB, select **EchoKit DIY**, and click Flash.
+The only difference is the firmware profile you choose. On the same flashing page, connect your DIY device via USB, select **EchoKit DIY**, and click Flash button.
 
 Everything else is identical: the flashing takes a few minutes, you reset the device when prompted, and the QR code appears after reboot.
 
