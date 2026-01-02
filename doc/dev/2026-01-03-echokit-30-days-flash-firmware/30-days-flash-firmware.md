@@ -13,7 +13,7 @@ Today, I want to focus on something more foundational:
 
 In this post, we’ll walk through how to flash EchoKit firmware using the **ESP Launchpad web tool**. This approach is direct, dependency-free, and works entirely from the browser. 
 
-> Want to learn to flash via the command line? We will talk it tomorrow.
+> Want to learn to flash via the command line? We will talk about it tomorrow.
 
 ## EchoKit Firmware Is Open Source — and Always Moving
 
