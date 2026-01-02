@@ -45,7 +45,7 @@ To flash EchoKit Box, open the flashing page, connect the device to your compute
 The flashing process takes a few minutes. Once it completes successfully, the page will prompt you to reset the device. After rebooting, you’ll see the QR code screen, which indicates the firmware is ready. That’s it.
 
 
-![]()
+![](web-flash-firmware-echokit-box.png)
 
 
 ### EchoKit DIY
@@ -57,7 +57,7 @@ The only difference is the firmware profile you choose. On the same flashing pag
 Everything else is identical: the flashing takes a few minutes, you reset the device when prompted, and the QR code appears after reboot.
 
 Once flashing is complete, move on to the next step: connecting the EchoKit server and your device so EchoKit can talk to you.
-![]()
+![](web-flash-firmware-echokit-diy.png)
 
 ## Why Firmware Refreshing Is Important
 
