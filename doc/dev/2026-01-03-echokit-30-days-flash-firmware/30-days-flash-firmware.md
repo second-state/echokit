@@ -29,7 +29,7 @@ You should expect to refresh the firmware from time to time. More importantly, y
 
 ## Flashing with ESP Launchpad
 
-ESP Launchpad allows you to flash prebuilt EchoKit firmware directly from a browser, with no local toolchains and dependencies installation.
+ESP Launchpad allows you to flash prebuilt EchoKit firmware directly from a browser, with no local toolchains or dependencies to install.
 
 You can open the ESP Launchpad page here, which is preconfigured with EchoKit firmware profiles:
 
