@@ -60,7 +60,6 @@ This will:
 The compilation might take a few minutes. Once it's complete, you'll have the `espflash` command available globally.
 
 
----
 
 ## Flashing EchoKit DIY
 
@@ -93,10 +92,7 @@ The flags are:
 
 `espflash` will detect your serial port and ask you to select it if multiple ports are available. Once flashing completes, you'll see the device boot up in the terminal, and the screen will display the QR code.
 
-![](cli-flash-firmware-echokit-diy.png)
 
-
----
 
 ## Flashing EchoKit Box
 
@@ -126,10 +122,7 @@ espflash flash --monitor --flash-size 16mb echokit
 
 `espflash` will detect your EchoKit Box, flash the firmware, and monitor the serial output. When it's done, the device will reboot and display the QR code on screen.
 
-![](cli-flash-firmware-echokit-box.png)
 
-
----
 
 ## Troubleshooting
 
