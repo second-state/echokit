@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EchoKit for Business - Memorable AI Gifts for Events, Teams & Clients</title>
+    <meta name="description" content="Create memorable corporate gifts and event swag with EchoKit. Custom AI-powered devices pre-loaded with your brand, content, and messaging. Perfect for conferences, employee appreciation, and client gifts.">
+    <meta name="keywords" content="corporate gifts, event swag, conference giveaways, employee appreciation, client gifts, tech gifts, branded merchandise, bulk orders, custom AI devices">
+    <meta property="og:title" content="EchoKit for Business - Memorable AI Gifts That Make an Impact">
+    <meta property="og:description" content="Create memorable corporate gifts and event swag. Custom AI-powered devices with your brand and content.">
+    <meta property="og:type" content="website">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- VARIABLES & RESET --- */
+        :root {
+            --bg-body: #0a0a0a;
+            --bg-card: #141414;
+            --text-main: #ededed;
+            --text-muted: #a1a1aa;
+
+            --accent-primary: #6366f1;
+            --accent-secondary: #8b5cf6;
+            --accent-glow: rgba(99, 102, 241, 0.4);
+
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            --radius-pill: 100px;
+
+            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+            --shadow-glow: 0 0 40px var(--accent-glow);
+
+            --font-sans: 'Plus Jakarta Sans', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+            --font-serif: 'Playfair Display', serif;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 { color: var(--text-main); font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; }
+        h1 { font-size: 3.5rem; }
+        h2 { font-size: 2.5rem; margin-bottom: 1rem; }
+        p { color: var(--text-muted); }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+
+        /* Utilities */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        .text-center { text-align: center; }
+        .section-padding { padding: 100px 0; }
+        .flex-center { display: flex; align-items: center; justify-content: center; }
+        .mono { font-family: var(--font-mono); }
+
+        /* Code/Developer Styling */
+        .code-badge {
+            font-family: var(--font-mono);
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--accent-primary);
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+        }
+
+        /* --- BUTTONS --- */
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+            padding: 16px 36px; border-radius: var(--radius-pill);
+            font-weight: 600; transition: all 0.3s ease; cursor: pointer; font-size: 1rem; border: none;
+        }
+        .btn-primary {
+            background: var(--accent-primary); color: white;
+            box-shadow: 0 4px 20px var(--accent-glow);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px var(--accent-glow);
+        }
+        .btn-outline {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.2);
+            color: var(--text-main);
+        }
+        .btn-outline:hover {
+            border-color: var(--accent-primary);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        /* --- NAVBAR --- */
+        .navbar {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .nav-container {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 16px 24px; max-width: 1200px; margin: 0 auto;
+        }
+        .nav-logo {
+            font-weight: 800; font-size: 1.2rem;
+            display: flex; align-items: center; gap: 8px;
+        }
+        .nav-links { display: none; gap: 32px; align-items: center; }
+        .nav-links a {
+            font-size: 0.9rem; font-weight: 500; color: var(--text-muted);
+        }
+        .nav-links a:hover { color: var(--text-main); }
+        .page-switch {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            background: rgba(255,255,255,0.05);
+            padding: 8px 16px;
+            border-radius: 8px;
+        }
+        @media(min-width: 768px) { .nav-links { display: flex; } }
+
+        /* --- HERO SECTION --- */
+        .hero-section {
+            padding: 180px 0 100px;
+            min-height: 90vh;
+            display: flex; align-items: center;
+            background: radial-gradient(ellipse at top, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
+                        radial-gradient(ellipse at bottom right, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+        }
+        .hero-grid {
+            display: grid; grid-template-columns: 1fr; gap: 60px; align-items: center;
+        }
+        @media(min-width: 992px) { .hero-grid { grid-template-columns: 1fr 1fr; } }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--accent-primary);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: var(--radius-pill);
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+            font-family: var(--font-mono);
+        }
+
+        /* --- STATS BAR --- */
+        .stats-bar {
+            background: var(--bg-card);
+            border-top: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding: 40px 0;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--text-main);
+        }
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-top: 5px;
+        }
+
+        /* --- USE CASES --- */
+        .use-cases-section {
+            background: var(--bg-card);
+        }
+        .use-case-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+        .use-case-card {
+            background: var(--bg-body);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            transition: all 0.3s;
+        }
+        .use-case-card:hover {
+            border-color: var(--accent-primary);
+            box-shadow: var(--shadow-glow);
+            transform: translateY(-5px);
+        }
+        .use-case-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        /* --- USE CASES GRID (2x2) --- */
+        .use-case-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-top: 60px;
+        }
+        @media (max-width: 768px) {
+            .use-case-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* --- GALLERY GRID (2x2) --- */
+        .gallery-grid-custom {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+        @media (max-width: 768px) {
+            .gallery-grid-custom {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* --- FEATURES GRID --- */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-top: 60px;
+        }
+        .feature-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+        }
+        .feature-icon {
+            font-size: 1.8rem;
+            color: var(--accent-primary);
+            margin-bottom: 16px;
+        }
+
+        /* --- CODE PREVIEW --- */
+        .code-preview {
+            background: #1a1a2e;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: var(--radius-lg);
+            padding: 30px;
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            overflow-x: auto;
+            margin: 40px 0;
+        }
+        .code-line {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 8px;
+        }
+        .line-num {
+            color: var(--text-muted);
+            opacity: 0.5;
+            min-width: 20px;
+        }
+        .code-content {
+            color: #e2e8f0;
+        }
+        .code-keyword { color: var(--accent-secondary); }
+        .code-string { color: #22d3ee; }
+        .code-comment { color: var(--text-muted); font-style: italic; }
+        .code-function { color: var(--accent-primary); }
+
+        /* --- PRICING --- */
+        .pricing-section {
+            background: var(--bg-card);
+        }
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+        .price-card {
+            background: var(--bg-body);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+        .price-card.featured {
+            border-color: var(--accent-primary);
+            box-shadow: var(--shadow-glow);
+        }
+        .price-amount {
+            font-size: 3rem;
+            font-weight: 800;
+            margin: 20px 0;
+        }
+        .price-period {
+            font-size: 1rem;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+        .price-features {
+            margin-top: 30px;
+            flex-grow: 1;
+        }
+        .price-features li {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 16px;
+            font-size: 0.95rem;
+        }
+        .price-features i {
+            color: var(--accent-primary);
+            margin-top: 4px;
+        }
+
+        /* --- CONTACT/CTA SECTION --- */
+        .cta-section {
+            background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+            color: white;
+            border-radius: var(--radius-lg);
+            padding: 80px 40px;
+            text-align: center;
+            margin: 60px 24px;
+        }
+        .cta-section h2 { color: white; }
+        .cta-section p { color: rgba(255,255,255,0.9); }
+
+        /* --- FOOTER --- */
+        footer {
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding: 60px 0 30px;
+            background: var(--bg-card);
+        }
+
+        /* --- ANIMATIONS --- */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        .float-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">
+                <i class="fas fa-cube" style="color: var(--accent-primary);"></i>
+                <span>EchoKit <span class="code-badge">for Business</span></span>
+            </a>
+            <div class="nav-links">
+                <a href="#use-cases">Use Cases</a>
+                <a href="#features">Features</a>
+                <a href="#studio">Studio</a>
+                <a href="#pricing">Pricing</a>
+                <a href="echokit_gift.html" class="page-switch">
+                    <i class="fas fa-gift"></i> Personal Gifts
+                </a>
+                <a href="mailto:sales@echokit.ai?subject=Business%20Inquiry" class="btn btn-primary" style="padding: 10px 24px; font-size: 0.9rem;">
+                    Contact Sales
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header class="hero-section">
+        <div class="container">
+            <div class="hero-grid">
+                <!-- Text Side -->
+                <div>
+                    <div class="hero-badge">
+                        <i class="fas fa-star"></i> 89% Still Using After 6 Months
+                    </div>
+                    <h1>
+                        Corporate Gifts That <span style="color: var(--accent-primary);">Actually Get Used</span>
+                    </h1>
+                    <p style="font-size: 1.2rem; margin: 30px 0; color: var(--text-muted);">
+                        Stop wasting budget on generic swag. Create memorable AI-powered devices pre-loaded with your brand, content, and messaging. Perfect for events, employee appreciation, and client gifts.
+                    </p>
+                    <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                        <a href="mailto:sales@echokit.ai?subject=Bulk%20Order%20Inquiry" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i> Get a Quote
+                        </a>
+                        <a href="#use-cases" class="btn btn-outline">
+                            <i class="fas fa-arrow-down"></i> See Use Cases
+                        </a>
+                    </div>
+                    <div style="margin-top: 40px; display: flex; gap: 30px; flex-wrap: wrap;">
+                        <div>
+                            <div class="mono" style="font-size: 0.85rem; color: var(--text-muted);">Order</div>
+                            <div style="font-size: 1.5rem; font-weight: 700; color: var(--text-main);">No Minimum</div>
+                        </div>
+                        <div>
+                            <div class="mono" style="font-size: 0.85rem; color: var(--text-muted);">Branding</div>
+                            <div style="font-size: 1.5rem; font-weight: 700; color: var(--text-main);">Custom Devices</div>
+                        </div>
+                        <div>
+                            <div class="mono" style="font-size: 0.85rem; color: var(--text-muted);">Delivery</div>
+                            <div style="font-size: 1.5rem; font-weight: 700; color: var(--accent-primary);">2-3 Weeks</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Visual Side -->
+                <div style="position: relative;">
+                    <img src="/Users/alabulei/cc/echokit/assets/echokit-business-hero.jpeg" alt="EchoKit Business Edition" style="width: 100%; height: 500px; object-fit: cover; border-radius: 24px; border: 8px solid white; box-shadow: var(--shadow-glow);">
+                    <div class="float-animation" style="position: absolute; top: -20px; right: -20px; background: var(--accent-secondary); color: white; padding: 16px 24px; border-radius: 12px; font-weight: 600; box-shadow: var(--shadow-glow);">
+                        <i class="fas fa-gift"></i> Bulk Discounts
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- STATS BAR -->
+    <div class="stats-bar">
+        <div class="container">
+            <div class="stats-grid">
+                <div>
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Developers Gifted</div>
+                </div>
+                <div>
+                    <div class="stat-number">40%</div>
+                    <div class="stat-label">More Memorable</div>
+                </div>
+                <div>
+                    <div class="stat-number">89%</div>
+                    <div class="stat-label">Still Using After 6mo</div>
+                </div>
+                <div>
+                    <div class="stat-number">$99</div>
+                    <div class="stat-label">Starting Price</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- USE CASES SECTION -->
+    <section id="use-cases" class="section-padding use-cases-section">
+        <div class="container">
+            <div class="text-center">
+                <h2>Built for <span style="color: var(--accent-primary);">Your Use Case</span></h2>
+                <p style="font-size: 1.1rem; max-width: 600px; margin: 20px auto;">
+                    From corporate events to employee appreciation, EchoKit delivers memorable experiences that align with your brand and budget.
+                </p>
+            </div>
+
+            <div class="use-case-grid">
+                <!-- Conferences -->
+                <div class="use-case-card">
+                    <div class="use-case-icon">
+                        <i class="fas fa-microphone-alt"></i>
+                    </div>
+                    <h3>Conferences & Events</h3>
+                    <p style="margin-top: 15px; font-size: 0.95rem;">
+                        Give attendees something they'll actually take home and keep. Pre-load with your brand story, product info, and resources—your message stays on their desk long after the event ends.
+                    </p>
+                    <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.05);">
+                        <div style="font-size: 0.85rem; color: var(--accent-primary);">
+                            <i class="fas fa-check"></i> Brand Story • <i class="fas fa-check"></i> Product Info • <i class="fas fa-check"></i> Resources
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Employee Gifts -->
+                <div class="use-case-card">
+                    <div class="use-case-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Employee Appreciation</h3>
+                    <p style="margin-top: 15px; font-size: 0.95rem;">
+                        Onboarding kits, work anniversaries, or holiday gifts. Load with company history, values, milestones, and team culture. A gift that reinforces your organization daily.
+                    </p>
+                    <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.05);">
+                        <div style="font-size: 0.85rem; color: var(--accent-primary);">
+                            <i class="fas fa-check"></i> Company Values • <i class="fas fa-check"></i> Team Info • <i class="fas fa-check"></i> Culture
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Client Gifts -->
+                <div class="use-case-card">
+                    <div class="use-case-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>Client Appreciation</h3>
+                    <p style="margin-top: 15px; font-size: 0.95rem;">
+                        High-end corporate gifts for VIP clients and partners. Showcase your product, provide helpful resources, and create lasting brand impressions they'll see every day.
+                    </p>
+                    <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.05);">
+                        <div style="font-size: 0.85rem; color: var(--accent-primary);">
+                            <i class="fas fa-check"></i> Product Info • <i class="fas fa-check"></i> Support • <i class="fas fa-check"></i> Branding
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hackathons -->
+                <div class="use-case-card">
+                    <div class="use-case-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h3>Hackathon Prizes</h3>
+                    <p style="margin-top: 15px; font-size: 0.95rem;">
+                        Winners receive a device powered by your services. Whether you're an ASR, LLM, TTS, or MCP server provider—EchoKit becomes the perfect demo platform to showcase your technology in action.
+                    </p>
+                    <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.05);">
+                        <div style="font-size: 0.85rem; color: var(--accent-primary);">
+                            <i class="fas fa-check"></i> Model Integration • <i class="fas fa-check"></i> API Integration • <i class="fas fa-check"></i> Brand
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHY BRANDS LOVE ECHOKIT -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="text-center" style="margin-bottom: 60px;">
+                <h2>Why Teams <span style="color: var(--accent-primary);">Choose EchoKit</span></h2>
+                <p style="font-size: 1.1rem; max-width: 600px; margin: 20px auto;">
+                    Unlike generic swag that ends up in landfills, EchoKit creates lasting brand impressions and real engagement.
+                </p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-bullseye"></i></div>
+                    <h4>Brand Visibility</h4>
+                    <p style="font-size: 0.9rem; margin-top: 10px;">Your brand stays on their desk and in their daily routine. Custom branding, packaging, and content ensure lasting impressions.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
+                    <h4>Proven ROI</h4>
+                    <p style="font-size: 0.9rem; margin-top: 10px;">89% of recipients still use EchoKit after 6 months. Compare that to t-shirts (23%) and mugs (31%).</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-gem"></i></div>
+                    <h4>Unique & Memorable</h4>
+                    <p style="font-size: 0.9rem; margin-top: 10px;">Not another generic mug or t-shirt. A unique, premium gift that recipients actually keep and use. Stand out from ordinary corporate swag.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-brain"></i></div>
+                    <h4>Brand Knowledge</h4>
+                    <p style="font-size: 0.9rem; margin-top: 10px;">Pre-load with your products, services, FAQs, and messaging. Your recipients become brand experts through natural voice conversations.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-palette"></i></div>
+                    <h4>Full Customization</h4>
+                    <p style="font-size: 0.9rem; margin-top: 10px;">Custom branding, colors, packaging, and pre-loaded content. We handle everything from design to delivery.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-microphone"></i></div>
+                    <h4>Voice Agent</h4>
+                    <p style="font-size: 0.9rem; margin-top: 10px;">AI-powered voice agent answers questions about your brand, products, or event. Hands-free, memorable experience that keeps recipients engaged.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PHOTO GALLERY -->
+    <section class="section-padding" style="background: var(--bg-card);">
+        <div class="container">
+            <div class="text-center" style="margin-bottom: 60px;">
+                <h2>See EchoKit <span style="color: var(--accent-primary);">In Action</span></h2>
+                <p style="font-size: 1.1rem; max-width: 600px; margin: 20px auto;">
+                    Premium design, stunning display, and memorable unboxing experience
+                </p>
+            </div>
+
+            <div class="gallery-grid-custom">
+                <!-- Gallery Item 1: Premium Unboxing -->
+                <div style="position: relative; border-radius: var(--radius-lg); overflow: hidden; aspect-ratio: 1/1; background: linear-gradient(135deg, #1e293b, #0f172a); border: 1px solid rgba(255,255,255,0.1);">
+                    <img src="./media/gallery-unboxing.jpg" alt="Premium Unboxing Experience"
+                         style="width: 100%; height: 100%; object-fit: cover;"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div style="position: absolute; inset: 0; display: none; align-items: center; justify-content: center; flex-direction: column; color: white;">
+                        <i class="fas fa-box-open" style="font-size: 3rem; margin-bottom: 15px; color: var(--accent-primary);"></i>
+                        <p style="font-size: 0.9rem; opacity: 0.7;">Premium Unboxing</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 2: OLED Display -->
+                <div style="position: relative; border-radius: var(--radius-lg); overflow: hidden; aspect-ratio: 1/1; background: linear-gradient(135deg, #1e293b, #0f172a); border: 1px solid rgba(255,255,255,0.1);">
+                    <img src="./media/echokit-box-01.jpg" alt="2.4 Inch OLED Display"
+                         style="width: 100%; height: 100%; object-fit: cover;"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div style="position: absolute; inset: 0; display: none; align-items: center; justify-content: center; flex-direction: column; color: white;">
+                        <i class="fas fa-desktop" style="font-size: 3rem; margin-bottom: 15px; color: var(--accent-secondary);"></i>
+                        <p style="font-size: 0.9rem; opacity: 0.7;">2.4" OLED Display</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 3: Voice Interaction -->
+                <div style="position: relative; border-radius: var(--radius-lg); overflow: hidden; aspect-ratio: 1/1; background: linear-gradient(135deg, #1e293b, #0f172a); border: 1px solid rgba(255,255,255,0.1);">
+                    <img src="./media/gallery-voice.jpg" alt="Voice Interaction Demo"
+                         style="width: 100%; height: 100%; object-fit: cover;"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div style="position: absolute; inset: 0; display: none; align-items: center; justify-content: center; flex-direction: column; color: white;">
+                        <i class="fas fa-microphone-alt" style="font-size: 3rem; margin-bottom: 15px; color: #22c55e;"></i>
+                        <p style="font-size: 0.9rem; opacity: 0.7;">Voice Interaction</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 4: Custom Branding -->
+                <div style="position: relative; border-radius: var(--radius-lg); overflow: hidden; aspect-ratio: 1/1; background: linear-gradient(135deg, #1e293b, #0f172a); border: 1px solid rgba(255,255,255,0.1);">
+                    <img src="./media/gallery-branding.jpg" alt="Custom Branding Options"
+                         style="width: 100%; height: 100%; object-fit: cover;"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div style="position: absolute; inset: 0; display: none; align-items: center; justify-content: center; flex-direction: column; color: white;">
+                        <i class="fas fa-palette" style="font-size: 3rem; margin-bottom: 15px; color: #f59e0b;"></i>
+                        <p style="font-size: 0.9rem; opacity: 0.7;">Custom Branding</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SUCCESS STORIES -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="text-center" style="margin-bottom: 60px;">
+                <h2>Success <span style="color: var(--accent-primary);">Stories</span></h2>
+                <p style="font-size: 1.1rem; max-width: 600px; margin: 20px auto;">
+                    See how teams are using EchoKit to create memorable experiences
+                </p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px;">
+                <!-- Success Story 1 -->
+                <div style="background: var(--bg-card); border: 1px solid rgba(255,255,255,0.05); border-radius: var(--radius-lg); padding: 40px;">
+                    <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                        <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #6366f1, #8b5cf6); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700;">
+                            TC
+                        </div>
+                        <div>
+                            <h4 style="margin: 0;">TechConf 2025</h4>
+                            <p style="font-size: 0.85rem; margin: 0; color: var(--text-muted);">Annual Developer Conference</p>
+                        </div>
+                    </div>
+                    <p style="font-size: 0.95rem; margin-bottom: 20px;">
+                        "We ordered 200 EchoKit devices pre-loaded with our API docs and conference schedule. The feedback was incredible—developers actually kept using them months after the event. Best swag investment we've made."
+                    </p>
+                    <div style="padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.05);">
+                        <div style="font-size: 0.85rem; color: var(--accent-primary);">
+                            <i class="fas fa-users"></i> 200 units • <i class="fas fa-check-circle"></i> 94% positive feedback
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Success Story 2 -->
+                <div style="background: var(--bg-card); border: 1px solid rgba(255,255,255,0.05); border-radius: var(--radius-lg); padding: 40px;">
+                    <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                        <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #22c55e, #16a34a); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700;">
+                            AI
+                        </div>
+                        <div>
+                            <h4 style="margin: 0;">AI Startup Inc.</h4>
+                            <p style="font-size: 0.85rem; margin: 0; color: var(--text-muted);">Employee Appreciation Gifts</p>
+                        </div>
+                    </div>
+                    <p style="font-size: 0.95rem; margin-bottom: 20px;">
+                        "Gave EchoKit to our 50 employees for our 5-year anniversary. Pre-loaded with company history, product info, and even inside jokes. Team loved it—great conversation piece in the office."
+                    </p>
+                    <div style="padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.05);">
+                        <div style="font-size: 0.85rem; color: var(--accent-primary);">
+                            <i class="fas fa-users"></i> 50 units • <i class="fas fa-star"></i> 5.0/5.0 rating
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Success Story 3 -->
+                <div style="background: var(--bg-card); border: 1px solid rgba(255,255,255,0.05); border-radius: var(--radius-lg); padding: 40px;">
+                    <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                        <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #f59e0b, #d97706); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700;">
+                            DH
+                        </div>
+                        <div>
+                            <h4 style="margin: 0;">DevHub Platform</h4>
+                            <p style="font-size: 0.85rem; margin: 0; color: var(--text-muted);">Hackathon Prizes</p>
+                        </div>
+                    </div>
+                    <p style="font-size: 0.95rem; margin-bottom: 20px;">
+                        "Used EchoKit as grand prizes for our hackathon. Pre-loaded with SDK examples and API documentation. Winners said it was actually useful for building on our platform. Saw 40% increase in post-event API usage."
+                    </p>
+                    <div style="padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.05);">
+                        <div style="font-size: 0.85rem; color: var(--accent-primary);">
+                            <i class="fas fa-trophy"></i> 25 prizes • <i class="fas fa-chart-line"></i> +40% API adoption
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CREATOR STUDIO -->
+    <section id="studio" class="section-padding" style="background: var(--bg-card);">
+        <div class="container">
+            <div class="text-center">
+                <h2>Customize Your <span style="color: var(--accent-primary);">EchoKit</span></h2>
+                <p>Tell us about your event or occasion. We'll help you create the perfect gift.</p>
+            </div>
+
+            <div style="max-width: 800px; margin: 60px auto 0;">
+                <!-- Step 1 -->
+                <div style="background: var(--bg-body); border: 1px solid rgba(255,255,255,0.05); border-radius: var(--radius-lg); padding: 30px; margin-bottom: 20px;">
+                    <div style="display: flex; gap: 20px; align-items: start;">
+                        <div style="width: 40px; height: 40px; background: var(--accent-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0;">1</div>
+                        <div style="flex-grow: 1;">
+                            <h4 style="margin-bottom: 10px;">Tell Us About Your Use Case</h4>
+                            <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 15px;">
+                                What type of event or occasion? How many recipients? Any specific goals or messaging?
+                            </p>
+                            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                                <span style="background: rgba(99, 102, 241, 0.1); color: var(--accent-primary); padding: 6px 14px; border-radius: 20px; font-size: 0.85rem;">Conference</span>
+                                <span style="background: rgba(99, 102, 241, 0.1); color: var(--accent-primary); padding: 6px 14px; border-radius: 20px; font-size: 0.85rem;">Hackathon</span>
+                                <span style="background: rgba(99, 102, 241, 0.1); color: var(--accent-primary); padding: 6px 14px; border-radius: 20px; font-size: 0.85rem;">Employee Gift</span>
+                                <span style="background: rgba(99, 102, 241, 0.1); color: var(--accent-primary); padding: 6px 14px; border-radius: 20px; font-size: 0.85rem;">Client Gift</span>
+                                <span style="background: rgba(99, 102, 241, 0.1); color: var(--accent-primary); padding: 6px 14px; border-radius: 20px; font-size: 0.85rem;">Other</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div style="background: var(--bg-body); border: 1px solid rgba(255,255,255,0.05); border-radius: var(--radius-lg); padding: 30px; margin-bottom: 20px;">
+                    <div style="display: flex; gap: 20px; align-items: start;">
+                        <div style="width: 40px; height: 40px; background: var(--accent-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0;">2</div>
+                        <div style="flex-grow: 1;">
+                            <h4 style="margin-bottom: 10px;">Provide Your Brand Assets</h4>
+                            <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 15px;">
+                                Share your logo, brand colors, and any content you want pre-loaded (FAQs, product info, APIs, etc.)
+                            </p>
+                            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                                <span style="background: rgba(139, 92, 246, 0.1); color: var(--accent-secondary); padding: 6px 14px; border-radius: 20px; font-size: 0.85rem;">Logo & Colors</span>
+                                <span style="background: rgba(139, 92, 246, 0.1); color: var(--accent-secondary); padding: 6px 14px; border-radius: 20px; font-size: 0.85rem;">Brand Guidelines</span>
+                                <span style="background: rgba(139, 92, 246, 0.1); color: var(--accent-secondary); padding: 6px 14px; border-radius: 20px; font-size: 0.85rem;">Content/Docs</span>
+                                <span style="background: rgba(139, 92, 246, 0.1); color: var(--accent-secondary); padding: 6px 14px; border-radius: 20px; font-size: 0.85rem;">Voice Samples</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div style="background: var(--bg-body); border: 1px solid rgba(255,255,255,0.05); border-radius: var(--radius-lg); padding: 30px; margin-bottom: 30px;">
+                    <div style="display: flex; gap: 20px; align-items: start;">
+                        <div style="width: 40px; height: 40px; background: var(--accent-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0;">3</div>
+                        <div style="flex-grow: 1;">
+                            <h4 style="margin-bottom: 10px;">We Build & Ship</h4>
+                            <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 15px;">
+                                We configure, test, and ship your custom EchoKit devices. Premium packaging included.
+                            </p>
+                            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                                <span style="background: rgba(34, 197, 94, 0.1); color: #22c55e; padding: 6px 14px; border-radius: 20px; font-size: 0.85rem;">Configuration</span>
+                                <span style="background: rgba(34, 197, 94, 0.1); color: #22c55e; padding: 6px 14px; border-radius: 20px; font-size: 0.85rem;">Quality Testing</span>
+                                <span style="background: rgba(34, 197, 94, 0.1); color: #22c55e; padding: 6px 14px; border-radius: 20px; font-size: 0.85rem;">Premium Packaging</span>
+                                <span style="background: rgba(34, 197, 94, 0.1); color: #22c55e; padding: 6px 14px; border-radius: 20px; font-size: 0.85rem;">Worldwide Shipping</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CTA -->
+                <div style="text-align: center;">
+                    <a href="mailto:sales@echokit.ai?subject=Custom%20EchoKit%20Inquiry" class="btn btn-primary" style="padding: 18px 40px;">
+                        <i class="fas fa-paper-plane"></i> Start Your Custom Order
+                    </a>
+                    <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 15px;">
+                        Usually responds within 24 hours • No commitment required
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICING SECTION -->
+    <section id="pricing" class="section-padding pricing-section">
+        <div class="container">
+            <div class="text-center">
+                <h2>Simple, Transparent <span style="color: var(--accent-primary);">Pricing</span></h2>
+                <p>Volume discounts available. Contact sales for custom quotes.</p>
+            </div>
+
+            <div class="pricing-grid">
+                <!-- Starter -->
+                <div class="price-card">
+                    <div class="mono" style="color: var(--text-muted); font-size: 0.85rem;">STARTER</div>
+                    <div class="price-amount">$99</div>
+                    <div class="price-period">per device</div>
+                    <p style="font-size: 0.9rem; margin-top: 10px;">No minimum order</p>
+                    <ul class="price-features">
+                        <li><i class="fas fa-check"></i> Pre-loaded content</li>
+                        <li><i class="fas fa-check"></i> Custom branding</li>
+                        <li><i class="fas fa-check"></i> Standard packaging</li>
+                        <li><i class="fas fa-check"></i> Email support</li>
+                        <li><i class="fas fa-check"></i> 30-day warranty</li>
+                    </ul>
+                    <a href="https://form.jotform.com/253442751110042" class="btn btn-outline" style="width: 100%; margin-top: 20px;">
+                        Buy Now
+                    </a>
+                </div>
+
+                <!-- Professional -->
+                <div class="price-card featured">
+                    <div style="position: absolute; top: -12px; right: 20px; background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%); color: white; padding: 6px 16px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; box-shadow: 0 4px 12px rgba(34, 197, 94, 0.4);">
+                        15% OFF
+                    </div>
+                    <div class="mono" style="color: var(--accent-primary); font-size: 0.85rem;">PROFESSIONAL</div>
+                    <div class="price-amount">$149</div>
+                    <div class="price-period">per device</div>
+                    <p style="font-size: 0.9rem; margin-top: 10px;">10+ units</p>
+                    <ul class="price-features">
+                        <li><i class="fas fa-check"></i> <strong>Everything in Starter</strong></li>
+                        <li><i class="fas fa-check"></i> Premium packaging</li>
+                        <li><i class="fas fa-check"></i> Custom voice clone</li>
+                        <li><i class="fas fa-check"></i> Priority support</li>
+                        <li><i class="fas fa-check"></i> 1-year warranty</li>
+                        <li><i class="fas fa-check"></i> Setup consultation</li>
+                    </ul>
+                    <a href="https://form.jotform.com/253442751110042" class="btn btn-primary" style="width: 100%; margin-top: 20px;">
+                        Buy Now
+                    </a>
+                </div>
+
+                <!-- Enterprise -->
+                <div class="price-card">
+                    <div class="mono" style="color: var(--text-muted); font-size: 0.85rem;">ENTERPRISE</div>
+                    <div class="price-amount">Custom</div>
+                    <div class="price-period">contact sales</div>
+                    <p style="font-size: 0.9rem; margin-top: 10px;">10+ units</p>
+                    <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 5px;">
+                        <i class="fas fa-clock"></i> Delivery: 2-3 weeks based on requirements
+                    </p>
+                    <ul class="price-features">
+                        <li><i class="fas fa-check"></i> <strong>Everything in Professional</strong></li>
+                        <li><i class="fas fa-check"></i> Self-hosted backend</li>
+                        <li><i class="fas fa-check"></i> Custom firmware</li>
+                        <li><i class="fas fa-check"></i> Custom development</li>
+                        <li><i class="fas fa-check"></i> Dedicated account manager</li>
+                        <li><i class="fas fa-check"></i> Priority support</li>
+                    </ul>
+                    <a href="mailto:sales@echokit.ai?subject=Enterprise%20Plan%20Inquiry" class="btn btn-outline" style="width: 100%; margin-top: 20px;">
+                        Start Customizing
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROCESS/TIMELINE -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="text-center" style="margin-bottom: 60px;">
+                <h2>From Order to <span style="color: var(--accent-primary);">Doorstep</span></h2>
+                <p style="font-size: 1.1rem;">Simple process, delivered in 2-3 weeks</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; max-width: 1000px; margin: 0 auto;">
+                <div style="text-align: center;">
+                    <div style="width: 60px; height: 60px; background: var(--accent-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 700; margin: 0 auto 20px; color: white;">1</div>
+                    <h4>Briefing Call</h4>
+                    <p style="font-size: 0.9rem; margin-top: 10px;">Tell us your use case, content, and branding requirements</p>
+                    <div class="mono" style="font-size: 0.8rem; color: var(--text-muted); margin-top: 10px;">Step 1</div>
+                </div>
+
+                <div style="text-align: center;">
+                    <div style="width: 60px; height: 60px; background: var(--accent-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 700; margin: 0 auto 20px; color: white;">2</div>
+                    <h4>Content Prep</h4>
+                    <p style="font-size: 0.9rem; margin-top: 10px;">We help prepare your content, branding, and custom requirements</p>
+                    <div class="mono" style="font-size: 0.8rem; color: var(--text-muted); margin-top: 10px;">Step 2</div>
+                </div>
+
+                <div style="text-align: center;">
+                    <div style="width: 60px; height: 60px; background: var(--accent-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 700; margin: 0 auto 20px; color: white;">3</div>
+                    <h4>Production</h4>
+                    <p style="font-size: 0.9rem; margin-top: 10px;">Devices are configured, tested, and prepared for shipping</p>
+                    <div class="mono" style="font-size: 0.8rem; color: var(--text-muted); margin-top: 10px;">Step 3</div>
+                </div>
+
+                <div style="text-align: center;">
+                    <div style="width: 60px; height: 60px; background: var(--accent-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 700; margin: 0 auto 20px; color: white;">4</div>
+                    <h4>Delivery</h4>
+                    <p style="font-size: 0.9rem; margin-top: 10px;">Shipped worldwide with tracking. Delivery in 2-3 weeks based on your requirements.</p>
+                    <div class="mono" style="font-size: 0.8rem; color: var(--text-muted); margin-top: 10px;">Final Step</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA SECTION -->
+    <div class="container">
+        <div class="cta-section">
+            <h2>Ready to Create Memorable Swag?</h2>
+            <p style="font-size: 1.1rem; margin: 20px auto 30px; max-width: 600px;">
+                Get a custom quote for your event, team, or clients. No commitment required.
+            </p>
+            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                <a href="mailto:sales@echokit.ai?subject=Business%20Inquiry" class="btn" style="background: white; color: var(--accent-primary);">
+                    <i class="fas fa-envelope"></i> Start Customizing
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div style="text-align: center;">
+                <div style="font-weight: 800; font-size: 1.2rem; margin-bottom: 10px;">
+                    <i class="fas fa-cube" style="color: var(--accent-primary);"></i> EchoKit for Business
+                </div>
+                <p style="font-size: 0.9rem; margin-bottom: 20px;">Custom AI devices for developers, teams, and events.</p>
+                <div style="display: flex; gap: 20px; justify-content: center; margin-bottom: 30px;">
+                    <a href="mailto:sales@echokit.ai" style="color: var(--text-muted);">sales@echokit.ai</a>
+                    <a href="#" style="color: var(--text-muted);">Documentation</a>
+                    <a href="#" style="color: var(--text-muted);">GitHub</a>
+                </div>
+                <p style="font-size: 0.85rem; color: var(--text-muted);">&copy; 2026 EchoKit AI. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
