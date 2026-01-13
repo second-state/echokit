@@ -61,7 +61,7 @@ Before configuring EchoKit, you'll need to set up the Zapier MCP server and get 
 
 1. **Go to [zapier.com/mcp](https://zapier.com/mcp)** — This is where you manage MCP integrations
 3. **Click "+ New MCP Server"** — Zapier will walk you through create the MCP server you want
-4. **Click Rotate token to get the MCP sevrer URL** — It looks like: `https://mcp.zapier.com/api/v1/connect?token=YOUR_TOKEN`
+4. **Click Rotate token to get the MCP server URL** — It looks like: `https://mcp.zapier.com/api/v1/connect?token=YOUR_TOKEN`
 
 **Keep this URL handy — you'll need it for the next step.**
 
