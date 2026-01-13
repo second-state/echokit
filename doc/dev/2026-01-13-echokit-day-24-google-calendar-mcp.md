@@ -1,6 +1,6 @@
 ---
 slug: echokit-30-days-day-24-google-calendar-mcp
-title: "Day 24: Voice-Controlled Google Calendar with Zapier MCP | The First 30 Days with EchoKit"
+title: "Day 24: CES 2026 in Practice — Voice Agents That Act | The First 30 Days with EchoKit"
 tags: [echokit30days, mcp, google-calendar]
 ---
 
