@@ -60,9 +60,7 @@ For today's integration, we're using Zapier's Google Calendar MCP server. Zapier
 * **Update events** — modify existing calendar entries
 
 The Zapier MCP server handles all the OAuth authentication and API details, exposing clean tools that EchoKit can use to take action on your behalf.
-
-Remember that EchoKit supports MCP server in the SSE and HTTP-Streamable mode.
-
+Remember that EchoKit supports MCP servers in the SSE and HTTP-Streamable mode.
 ## Setting Up Zapier MCP Server
 
 Before configuring EchoKit, you'll need to set up the Zapier MCP server and get your endpoint URL:
