@@ -22,6 +22,8 @@ Those were about **information** — giving your voice agent the ability to retr
 
 Today, your EchoKit learns to **do things** for you.
 
+We will show you how to integrate Zapier's Google MCP server and EchoKit to manage your Google Calendar via voice.
+
 ## Why Action Matters
 
 Imagine this: You're rushing to get ready in the morning, hands full, and you remember you need to schedule a meeting with your team tomorrow at 2 PM.
@@ -40,16 +42,6 @@ That's the difference between a conversational AI that **talks about** your sche
 
 **Setup takes 5 minutes. Once configured, every calendar interaction becomes voice-controlled.**
 
-## Why Voice-Controlled Calendar Matters
-
-Voice is the most natural interface for quick tasks. When you're:
-* **Cooking** and remember you need to book a dentist appointment
-* **Driving** and want to check what's on your schedule for today
-* **Getting ready** and need to block out time for a workout
-* **In bed** and realize you forgot to plan your day
-
-Voice removes friction. No unlocking phones, no opening apps, no typing on small screens. Just speak, and it happens.
-
 ## Zapier's Google Calendar MCP Server
 
 For today's integration, we're using Zapier's Google Calendar MCP server. Zapier has built an excellent MCP implementation that provides:
@@ -61,16 +53,15 @@ For today's integration, we're using Zapier's Google Calendar MCP server. Zapier
 
 The Zapier MCP server handles all the OAuth authentication and API details, exposing clean tools that EchoKit can use to take action on your behalf.
 
-Remember that EchoKit supports MCP server in the SSE and HTTP-Streamable mode.
+**Remember that EchoKit supports MCP server in the SSE and HTTP-Streamable mode.**
 
 ## Setting Up Zapier MCP Server
 
 Before configuring EchoKit, you'll need to set up the Zapier MCP server and get your endpoint URL:
 
-1. **Create a Zapier account** at [zapier.com](https://zapier.com) if you don't have one
-2. **Navigate to [zapier.com/mcp](https://zapier.com/mcp)** — This is where you manage MCP integrations
-3. **Click "Enable Google Calendar"** — Zapier will walk you through OAuth authentication in one click
-4. **Copy your server URL** — It looks like: `https://actions.zapier.com/mcp/servers/abc123/sse`
+1. **Go to [zapier.com/mcp](https://zapier.com/mcp)** — This is where you manage MCP integrations
+3. **Click "+ New MCP Server"** — Zapier will walk you through create the MCP server you want
+4. **Click Rotate token to get the MCP sevrer URL** — It looks like: `https://mcp.zapier.com/api/v1/connect?token=YOUR_TOKEN`
 
 **Keep this URL handy — you'll need it for the next step.**
 
@@ -86,9 +77,9 @@ model = "llama-3.3-70b-versatile"  # Or any tool-capable model
 history = 5
 
 [[llm.mcp_server]]
-server = "https://actions.zapier.com/mcp/servers/YOUR_SERVER_ID/sse"
-type = "sse"
-call_mcp_message = "Let me check your calendar."
+server = "https://mcp.zapier.com/api/v1/connect?token=YOUR_TOKEN"
+type = "http_streamable"
+call_mcp_message = "Hold on a second. Let me check your calendar."
 ```
 
 Key points:
@@ -96,7 +87,6 @@ Key points:
 * `type`: `sse` for server-sent events or `http_streamable` for streaming HTTP
 * `call_mcp_message`: What EchoKit says while accessing your calendar
 
-**That's it. Five minutes from now, your calendar will be voice-controlled.**
 
 ## Ask EchoKit: "Schedule a Team Meeting"
 
@@ -142,16 +132,6 @@ Once you have Google Calendar connected, here are some practical voice commands:
 
 The LLM understands natural language timing — "tomorrow morning," "next Tuesday," "in two hours" — and converts it into proper calendar entries.
 
-## Troubleshooting
-
-If something doesn't work, here are a few things to try:
-
-* **Authentication fails** → Revoke Zapier's access in Google Account settings, then reconnect
-* **No response from EchoKit** → Check that the MCP server URL is correct and includes `/sse` at the end
-* **"I can't access your calendar"** → Verify Google Calendar permissions in Zapier dashboard
-* **Event creates at wrong time** → Check your timezone settings in both Google Calendar and EchoKit config
-
-## Beyond Calendar: The Zapier Ecosystem
 
 What makes Zapier's MCP server powerful is that it's not just about calendars. Zapier connects to **5,000+ apps**, and through MCP, EchoKit can potentially interact with many of them:
 
@@ -179,15 +159,6 @@ This is the vision of agentic AI — not just conversation, but action. Not just
 
 Your EchoKit isn't just answering questions anymore. It's getting things done.
 
-## The Post-Phone Era
-
-This is what CES 2026 was all about. Not better screens, but **no screens at all**.
-
-When your EchoKit can manage your calendar, search the web, control your smart home, and handle a thousand other tasks — all through voice — you stop reaching for your phone.
-
-Not because you're anti-technology. But because voice is just faster.
-
-The post-phone era isn't coming. It's here.
 
 ---
 
