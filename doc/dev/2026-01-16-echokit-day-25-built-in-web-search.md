@@ -53,7 +53,6 @@ model = "gpt-5-nano"
 
 [[llm.extra.tools]]
 type = "web_search_preview"
-"""
 ```
 
 Key points:
@@ -91,7 +90,6 @@ model = "openai/gpt-oss-20b"
 
 [[llm.extra.tools]]
 type = "browser_search"
-"""
 ```
 
 ## Ask EchoKit: "What's the Weather?"
