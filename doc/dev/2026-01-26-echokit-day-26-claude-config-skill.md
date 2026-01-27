@@ -56,7 +56,7 @@ The skill guides you through a 5-phase process:
 
 **Phase 4: Preview and Generate** — Review your complete `config.toml`, confirm it's correct, and the skill writes both `config.toml` and `SETUP_GUIDE.md` to your chosen directory.
 
-**Phase 5: API Keys and Launch** — The skill shows where to get API keys, collects them from you, updates config.toml, builds the server with `cargo build --release`, and launches it with debug logging enabled. When the server starts, the skill automatically detects your local IP address and displays the WebSocket URL ready for you to connect.
+**Phase 5: API Keys and Launch** — The skill shows where to get API keys, collects them from you, updates `config.toml`, builds the server with `cargo build --release`, and launches it with debug logging enabled. When the server starts, the skill automatically detects your local IP address and displays the WebSocket URL ready for you to connect.
 
 From zero to running EchoKit in one conversation.
 
