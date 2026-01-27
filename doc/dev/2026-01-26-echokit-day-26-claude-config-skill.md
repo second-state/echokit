@@ -18,7 +18,7 @@ This skill automates the entire setup process through an interactive conversatio
 
 Claude Code "skills" are reusable prompts that live in `.claude/skills/` directories. Think of them as mini-programs written in natural language. Instead of explaining what you want every time, you trigger a skill, and it guides the AI through a structured workflow.
 
-**Why do we need Claude SKILL for EchoKit?**
+**Why do we need Claude Code skill for EchoKit?**
 
 Setting up an EchoKit server involves many steps: writing TOML configuration, understanding platform-specific field names, collecting API keys, building the server, finding your IP address, and launching with the right commands. For beginners, this can be overwhelming. Even experienced users can forget details like which section comes first, or whether ElevenLabs uses `api_key` or `token`.
 
