@@ -88,35 +88,6 @@ echokit_pty is built with Rust. Here's the architecture:
 {"type": "response", "content": "Running tests...\n142 passed, 3 failed"}
 ```
 
-## Use Cases: What Can You Build?
-
-The beauty of echokit_pty is that it turns Claude Code into a *platform*. Here's what you can build:
-
-### Voice-Controlled Coding
-Speak commands, Claude Code executes, hear results. Perfect for hands-free workflows. This is what EchoKit + echokit_pty enables.
-
-**Why echokit_pty for voice control?** While Claude Code's Remote Control works great for mobile/web access, it doesn't support voice interfaces or custom hardware. echokit_pty's open API lets you build exactly the voice experience you need—whether that's a custom device, specialized voice commands, or integration with other speech services.
-
-But it's just one implementation. For more details, check out EchoKit's full integration [documentation](https://echokit.dev/docs/use-cases/claude-code).
-
-### Web Apps
-Build a web interface for Claude Code. No terminal required. Just open a browser, connect to the WebSocket, and start coding. Great for presentations, teaching, or developers who prefer GUIs.
-
-### Mobile Apps
-Control Claude Code from your phone. Run tests while walking. Check build status from the couch. Deploy from anywhere. Your coding environment fits in your pocket.
-
-### Pair Programming Platforms
-Create a web app where multiple people can interact with Claude Code simultaneously. Real-time collaboration, shared context, better than screen sharing.
-
-### Teaching & Demos
-Show Claude Code in presentations without terminal windows cluttering the screen. A clean web interface for live coding demos, tutorials, and workshops.
-
-### Custom Developer Tools
-Build your own tools on top of Claude Code. Automations, dashboards, integrations—anything you can imagine. The WebSocket interface makes Claude Code a building block.
-
-### IDE Integrations
-Embed Claude Code directly into your IDE. VS Code extension, JetBrains plugin, custom editor—give Claude Code a proper home in your development environment.
-
 ## Getting Started
 
 **Installation:**
@@ -159,6 +130,33 @@ You might be wondering: *Should I use echokit_pty or Claude Code's official Remo
 - You're building something beyond simple remote control
 
 **They're complementary, not competing.** Remote Control is perfect for individual developers who want mobile access. echokit_pty is for builders who want to create entirely new experiences on top of Claude Code.
+
+## Use Cases: What Can You Build?
+
+The beauty of echokit_pty is that it turns Claude Code into a *platform*. Here's what you can build:
+
+**Voice-Controlled Coding**
+Speak commands, Claude Code executes, hear results. Perfect for hands-free workflows. This is what EchoKit + echokit_pty enables.
+
+**Why echokit_pty for voice control?** While Claude Code's Remote Control works great for mobile/web access, it doesn't support voice interfaces or custom hardware. echokit_pty's open API lets you build exactly the voice experience you need—whether that's a custom device, specialized voice commands, or integration with other speech services.
+
+But it's just one implementation. For more details, check out EchoKit's full integration [documentation](https://echokit.dev/docs/use-cases/claude-code).
+
+**Web Apps**
+Build a web interface for Claude Code. No terminal required. Just open a browser, connect to the WebSocket, and start coding. Great for presentations, teaching, or developers who prefer GUIs.
+
+**Mobile Apps**
+Control Claude Code from your phone. Run tests while walking. Check build status from the couch. Deploy from anywhere. Your coding environment fits in your pocket.
+
+**Pair Programming Platforms**
+Create a web app where multiple people can interact with Claude Code simultaneously. Real-time collaboration, shared context, better than screen sharing.
+
+**Custom Developer Tools**
+Build your own tools on top of Claude Code. Automations, dashboards, integrations—anything you can imagine. The WebSocket interface makes Claude Code a building block.
+
+**IDE Integrations**
+Embed Claude Code directly into your IDE. VS Code extension, JetBrains plugin, custom editor—give Claude Code a proper home in your development environment.
+
 
 ## The Vision
 
