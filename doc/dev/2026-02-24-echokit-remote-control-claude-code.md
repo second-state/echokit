@@ -22,14 +22,9 @@ Today, I'm excited to share how EchoKit became a voice remote control for Claude
 
 ## It Started with a Problem
 
-Claude Code is amazing. It writes code, fixes bugs, runs tests, explains errors. But it lives in my terminal. To use it, I have to:
-- Stop typing
-- Switch to the terminal window
-- Type my question or command
-- Wait for the response
-- Switch back to my code
+Claude Code is amazing. It writes code, fixes bugs, runs tests, explains errors.
 
-Every time, it breaks my flow. It's a small friction, but multiplied by hundreds of times a day, it adds up.
+**Yes, Claude Code now has an official Remote Control feature for mobile and web access.** But it's designed for phones and browsers—not for hands-free voice control or physical devices. You still need to look at a screen and tap buttons.
 
 I wanted something different. Something that felt like... magic.
 
@@ -102,15 +97,17 @@ It feels like having a coding companion. Not a tool—a teammate.
 
 ## Why This Matters
 
-I know what you're thinking: *Voice control for coding? Sounds weird.*
+I know what you're thinking: *Voice control for coding? Sounds weird.* And doesn't Claude Code have Remote Control now?
 
-And you're right—it *is* weird at first. But here's what I discovered:
+You're right—it *is* weird at first. But here's the thing: **Claude Code's Remote Control is great for mobile access, but you still need to look at a screen.** EchoKit is different—it's completely hands-free.
+
+Here's what I discovered:
 
 **It's not about voice typing.** I'm not dictating code. That would be terrible.
 
-**It's about remote control.** Think of it like a TV remote. You don't dictate to your TV—you press buttons to make things happen. EchoKit is the same, but with voice commands instead of buttons.
+**It's about hands-free control.** Think of it like having a conversation with a coding assistant who's actually in the room with you. No screens, no tapping—just speak.
 
-**The magic is in the physical device.** Having something on my desk that's always there, always listening. No app to open. No window to find. Just speak.
+**The magic is in the physical device.** Having something on my desk that's always there, always listening. No app to open. No window to find. No phone to pick up. Just speak.
 
 **It keeps me in the flow.** That's the biggest one. I can stay focused on coding while EchoKit handles tasks in the background. It's like having a second pair of hands.
 
@@ -164,19 +161,19 @@ Want to build a completely different interface? The WebSocket is waiting.
 
 ## The Future
 
-This experiment showed me something: AI coding assistants shouldn't be trapped in chat windows.
+This experiment showed me something: AI coding assistants can take many forms beyond screens and apps.
 
-They should be everywhere we need them. In physical devices. In web apps. In tools we build ourselves.
+**Claude Code's Remote Control solved mobile access.** But what about specialized hardware? What about completely hands-free experiences? What about devices that do one thing perfectly?
 
-echokit_pty is the bridge that makes this possible. And EchoKit is just the beginning.
+echokit_pty is the bridge that makes these experiments possible. And EchoKit is just one example.
 
 Imagine what else we could build:
-- Voice-controlled debugging from your phone
-- A web app that lets you pair program with Claude from anywhere
-- Mobile apps that control your coding environment
-- Games that teach you to code
+- Voice-controlled development environments
+- Specialized devices for specific workflows
+- Educational tools that feel like magic
+- Assistive technology for developers with disabilities
 
-All built on top of echokit_pty.
+All built on top of echokit_pty's open WebSocket interface.
 
 ## Try It Yourself
 

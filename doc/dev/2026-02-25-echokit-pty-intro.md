@@ -19,9 +19,11 @@ It handles Claude Code's input and output, turning its CLI into a WebSocket serv
 **What makes it special?**
 - Full Claude Code capabilities (file editing, command execution, tool use)
 - **Clean JSON API for integrations**. Check out the full API documentation [here](https://github.com/second-state/echokit_pty?tab=readme-ov-file#api).
+- **Open and extensible** - unlike Claude Code's official Remote Control, you have full control over the protocol and can customize every aspect
+- **No subscription required** - free and open source vs. Max-only Remote Control
 - Bidirectional streaming (real-time responses)
 - Runs locally
-- Open source and extensible
+- Built for developers building custom solutions
 
 ## The Problem: Claude Code Is Trapped in the Terminal
 
@@ -29,9 +31,11 @@ Claude Code was designed as a CLI tool. You run it in your terminal, type comman
 
 But what if you want to:
 - Build a web app that uses Claude Code?
-- Control Claude Code from your phone?
 - Create a physical device that talks to Claude Code?
 - Integrate Claude Code into another tool?
+- Build a custom application that needs programmatic access?
+
+**Yes, Claude Code now has an official Remote Control feature** for mobile and web access. But it's designed as a user-facing feature, not a developer platform. It requires a Max subscription, uses a closed protocol, and can't be integrated into custom applications.
 
 That's where echokit_pty comes in.
 
@@ -89,7 +93,11 @@ echokit_pty is built with Rust. Here's the architecture:
 The beauty of echokit_pty is that it turns Claude Code into a *platform*. Here's what you can build:
 
 ### Voice-Controlled Coding
-Speak commands, Claude Code executes, hear results. Perfect for hands-free workflows. This is what EchoKit + echokit_pty enables. But it's just one implementation. For more details, check out EchoKit's full integration [documentation](https://echokit.dev/docs/use-cases/claude-code).
+Speak commands, Claude Code executes, hear results. Perfect for hands-free workflows. This is what EchoKit + echokit_pty enables.
+
+**Why echokit_pty for voice control?** While Claude Code's Remote Control works great for mobile/web access, it doesn't support voice interfaces or custom hardware. echokit_pty's open API lets you build exactly the voice experience you need—whether that's a custom device, specialized voice commands, or integration with other speech services.
+
+But it's just one implementation. For more details, check out EchoKit's full integration [documentation](https://echokit.dev/docs/use-cases/claude-code).
 
 ### Web Apps
 Build a web interface for Claude Code. No terminal required. Just open a browser, connect to the WebSocket, and start coding. Great for presentations, teaching, or developers who prefer GUIs.
@@ -134,23 +142,41 @@ The WebSocket server will start on `ws://localhost:3000/ws`.
 
 ![](./2026-02-25-echokit-pty.jpg)
 
+## echokit_pty vs. Claude Code Remote Control
+
+You might be wondering: *Should I use echokit_pty or Claude Code's official Remote Control?*
+
+**Use Claude Code Remote Control if:**
+- You want to control Claude Code from your phone or browser
+- You have a Max subscription and don't need customization
+- You just need remote access, not programmatic control
+
+**Use echokit_pty if:**
+- You're building a custom application or service
+- You need full control over the protocol and behavior
+- You want to integrate Claude Code into hardware (voice devices, custom interfaces)
+- You need a free, open-source solution
+- You're building something beyond simple remote control
+
+**They're complementary, not competing.** Remote Control is perfect for individual developers who want mobile access. echokit_pty is for builders who want to create entirely new experiences on top of Claude Code.
+
 ## The Vision
 
-Claude Code is the most capable AI coding assistant today. But it shouldn't be trapped in a terminal.
+Claude Code is the most capable AI coding assistant today. With Remote Control, it can now follow you beyond the terminal. But that's just the beginning.
 
-echokit_pty is the bridge that sets Claude Code free.
+echokit_pty is about turning Claude Code into a true **platform for innovation**.
 
 Imagine what we can build:
 
-- Voice-controlled coding assistants
-- Mobile apps for coding on the go
-- Web-based teaching tools
-- Custom developer workflows
+- Voice-controlled coding assistants with custom hardware
+- Specialized interfaces for specific workflows
+- Custom developer tools and dashboards
 - AI-powered IDE integrations
+- Educational platforms with tailored experiences
 
-All built on top of echokit_pty.
+All built on top of echokit_pty's open API.
 
-**Claude Code as a platform, not just a tool.**
+**Claude Code as a platform for builders, not just a tool for users.**
 
 ---
 
