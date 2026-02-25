@@ -10,6 +10,8 @@ Which meant breaking my flow. Switching windows. Typing the command. Waiting. Sw
 
 I thought: *What if I could just say it?*
 
+**Not into my phone.** Not unlocking an app. Just speak—to a device sitting on my desk.
+
 ## A Small Device, Big Idea
 
 That moment sparked an experiment. What if my AI coding assistant wasn't trapped in a terminal window, but lived in a small device on my desk? What if I could speak to it like a pair programmer sitting next to me?
@@ -99,15 +101,15 @@ It feels like having a coding companion. Not a tool—a teammate.
 
 I know what you're thinking: *Voice control for coding? Sounds weird.* And doesn't Claude Code have Remote Control now?
 
-You're right—it *is* weird at first. But here's the thing: **Claude Code's Remote Control is great for mobile access, but you still need to look at a screen.** EchoKit is different—it's completely hands-free.
+You're right—it *is* weird at first. But here's the thing: **Claude Code's Remote Control is great for mobile access, but EchoKit isn't your phone.** It's a dedicated device that sits on your desk. Always on. Always listening. No unlocking, no apps, no picking it up.
 
 Here's what I discovered:
 
 **It's not about voice typing.** I'm not dictating code. That would be terrible.
 
-**It's about hands-free control.** Think of it like having a conversation with a coding assistant who's actually in the room with you. No screens, no tapping—just speak.
+**It's about having a physical device.** Think of it like a smart speaker for coding. It just sits there, ready to help. No screens to tap, no apps to open, no phone to find.
 
-**The magic is in the physical device.** Having something on my desk that's always there, always listening. No app to open. No window to find. No phone to pick up. Just speak.
+**The magic is the always-there presence.** The device lives on my desk. It's part of my workspace. I don't need to grab anything or unlock anything. I just speak.
 
 **It keeps me in the flow.** That's the biggest one. I can stay focused on coding while EchoKit handles tasks in the background. It's like having a second pair of hands.
 
