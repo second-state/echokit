@@ -14,8 +14,6 @@ Just choose the appropriate "ESP Develop Kits" on the Launchpad UI or download t
 
 You need to use an USB cable to connect between your computer and the USB-C port on EchoKit DIY labeled `OTG` (or, on EchoKit Box labeled `SLAVE`). Your computer will probably prompt you to accept or trust the connected USB device. You MUST accept the USB connection.
 
-NOTE: if your computer cannot detect the Echokit device, hold the `K0` key and reconnect the USB cable to computer. Once you release the `K0` key while connected to computer, the Echokit device should have a black screen and the next step should show a USB device available to connect to.
-
 ![Trust the USB connection](trust.png)
 
 
